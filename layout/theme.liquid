@@ -64,10 +64,18 @@
       }
       .product-card .product-card__content > *:first-child {
         background: #ffffff;
-        padding: 10px !important;
+        padding: 14px !important;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+      }
+      .product-card .product-card__content > *:first-child img {
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        height: 100%;
       }
       .product-card .product-card__content > *:last-child {
-        padding: 10px 14px 14px !important;
+        padding: 14px 18px 18px !important;
         border-top: 1px solid #f1f2f5;
         gap: 2px !important;
       }
@@ -91,7 +99,7 @@
       }
       .product-card product-price,
       .product-card product-price .price {
-        font-weight: 700;
+        font-weight: 400;
         font-size: 1.02rem;
         color: #1c1c24;
       }
