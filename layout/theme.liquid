@@ -153,15 +153,15 @@
          theme's `data-scroll-direction` attribute, which is a plain
          scrollTop comparison with no IntersectionObserver involved.
          ============================================================ */
-      #header-component[sticky='always'] .header {
+      #header-component[sticky='always'] {
         transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
         transform: translateY(0);
       }
-      #header-component[sticky='always'][data-scroll-direction='down'] .header {
+      #header-component[sticky='always'][data-scroll-direction='down'] {
         transform: translateY(-100%);
         opacity: 0;
       }
-      #header-component[sticky='always']:not([data-scroll-direction='none']) .header {
+      #header-component[sticky='always']:not([data-scroll-direction='none']) {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       }
 
@@ -223,10 +223,32 @@
         margin-inline: auto;
         border-radius: 22px;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
+        /* Own compositing layer: prevents the sticky header (which engages
+           on the very first scroll tick) from clipping this shadow, a known
+           browser quirk when a position:sticky sibling shares a scroll
+           container with overflow. */
+        isolation: isolate;
+        transform: translateZ(0);
       }
       #MainContent > div:first-child .media-with-content {
         border-radius: 22px;
         overflow: hidden;
+      }
+
+      /* Hero: image must fully fill its column, edge to edge, no inset/rounding of its own */
+      #MainContent > div:first-child .media-block {
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      #MainContent > div:first-child .media-block__media {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
       }
 
       /* Hero: cinematic slow zoom on the image + refined type */
