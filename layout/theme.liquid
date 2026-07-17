@@ -132,6 +132,15 @@
         fill: currentColor !important;
       }
 
+      /* Product page: keep image left, details/buttons right */
+      .product-information__grid {
+        direction: ltr;
+      }
+      .product-information__grid .product-details,
+      .product-information__grid .product-information__media {
+        direction: rtl;
+      }
+
       /* Toylvia-style floating card layout */
       html, body {
         background: #f0f1f3 !important;
