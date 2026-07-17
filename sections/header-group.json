@@ -24,7 +24,7 @@
             "weight": "",
             "letter_spacing": "normal",
             "case": "none",
-            "text_color": ""
+            "text_color": "#ffffff"
           },
           "blocks": {}
         }
@@ -32,12 +32,11 @@
       "block_order": [
         "announcement_mxxhta"
       ],
-      "disabled": true,
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
         "section_width": "full-width",
-        "background_color": "#ffffff",
+        "background_color": "#1a1a2e",
         "divider_width": 0,
         "divider_color": "",
         "padding-block-start": 15,
