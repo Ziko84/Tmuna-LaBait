@@ -102,10 +102,8 @@
          variable the header actually reads, so nothing renders
          white-on-white in any state.
          ============================================================ */
-      #header-group,
-      #header-group *,
-      .header-section,
-      .header-section * {
+      #header-group .header-section,
+      #header-group .header-section * {
         --color-foreground: #2f2f3a !important;
         --color-foreground-rgb: 47, 47, 58 !important;
         --color-foreground-heading: #2f2f3a !important;
@@ -139,7 +137,7 @@
         background: #f0f1f3 !important;
       }
       .page-wrapper {
-        margin: 14px 8px 8px 12px;
+        margin: 16px;
         background: #ffffff;
         border-radius: 18px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.07);
