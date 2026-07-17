@@ -217,6 +217,12 @@
         margin-inline: auto;
         border-radius: 22px;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
+        /* Pin this card to its own permanent compositing layer so it's
+           never affected by repaints elsewhere in the scroll container
+           (e.g. the reveal-on-scroll opacity transition on the section
+           right below it, which briefly clipped this shadow mid-transition). */
+        will-change: transform;
+        isolation: isolate;
       }
       #MainContent > div:first-child .media-with-content {
         border-radius: 22px;
