@@ -140,19 +140,6 @@
         fill: currentColor !important;
       }
 
-      /* Mobile drawer menu: force dark text + white bg */
-      .header-drawer,
-      .header-drawer *,
-      .menu-drawer-container,
-      .menu-drawer-container *,
-      .menu-drawer__navigation,
-      .menu-drawer__navigation * {
-        color: #2f2f3a !important;
-        --color-foreground: #2f2f3a !important;
-        --menu-top-level-font-color: #2f2f3a !important;
-        background-color: #ffffff;
-      }
-
       /* Menu hover: animated underline left-to-right with fade-out tail */
       .menu-list__link {
         padding: 0 !important;
@@ -197,6 +184,69 @@
         color: #ffffff !important;
       }
 
+      /* ============================================================
+         Apple-style premium homepage polish
+         ============================================================ */
+
+      /* Hero: cinematic slow zoom on the background image + refined type */
+      .hero-wrapper:first-child .hero__media {
+        animation: heroSlowZoom 24s ease-in-out infinite alternate;
+      }
+      @keyframes heroSlowZoom {
+        from { transform: scale(1); }
+        to { transform: scale(1.08); }
+      }
+      .hero-wrapper:first-child .hero__content-wrapper h1 {
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+      }
+      .hero-wrapper:first-child .hero__content-wrapper p {
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.2);
+      }
+      .hero-wrapper:first-child .hero__content-wrapper > * {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(1) { animation-delay: 0.15s; }
+      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(2) { animation-delay: 0.32s; }
+      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(3) { animation-delay: 0.48s; }
+      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(4) { animation-delay: 0.64s; }
+      @keyframes heroFadeUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Premium pill buttons with lift on hover */
+      .button, a.button, .button-secondary, .button-custom {
+        border-radius: 999px !important;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.25s ease !important;
+      }
+      .button:hover, a.button:hover, .button-secondary:hover, .button-custom:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+
+      /* Media-with-content: image hover zoom + fade-up reveal */
+      .media-with-content img {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .media-with-content:hover img {
+        transform: scale(1.03);
+      }
+
+      /* Scroll-reveal: sections fade up into view */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       /* Toylvia-style floating card layout */
       html, body {
         background: #f0f1f3 !important;
@@ -239,6 +289,16 @@
         }
         .menu-list__link {
           margin: 0 16px !important;
+        }
+      }
+
+      /* Hero: tighter type + spacing on small screens */
+      @media (max-width: 767px) {
+        .hero-wrapper:first-child .hero__content-wrapper h1 {
+          font-size: 2rem;
+        }
+        .hero-wrapper:first-child .hero__content-wrapper {
+          padding-inline: 20px;
         }
       }
     </style>
@@ -339,5 +399,42 @@
       {% render 'quick-add-modal' %}
     {% endif %}
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
+    <script>
+      (function () {
+        function initScrollReveal() {
+          var main = document.getElementById('MainContent');
+          if (!main) return;
+          var sections = main.querySelectorAll(':scope > div[id^="shopify-section-"]');
+          if (!sections.length) return;
+
+          sections.forEach(function (section, index) {
+            if (index === 0) return;
+            section.classList.add('reveal-on-scroll');
+          });
+
+          var observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+          );
+
+          document.querySelectorAll('.reveal-on-scroll').forEach(function (el) {
+            observer.observe(el);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initScrollReveal);
+        } else {
+          initScrollReveal();
+        }
+      })();
+    </script>
   </body>
 </html>
