@@ -148,18 +148,21 @@
          Header: smooth boutique reveal on scroll-up only.
          `sticky="always"` keeps the header permanently position:sticky
          (native theme CSS, unconditional). Show/hide is driven directly
-         by JS setting inline transform/opacity further down this file —
+         by JS setting an inline transform further down this file —
          inline styles always win the cascade, removing any dependency
          on attribute-selector specificity or theme JS state timing.
+         Transform-only (no opacity): translateY(-100%) alone is already
+         fully invisible, and a second opacity transition running at the
+         same time was an extra animated property to cause repaints.
          ============================================================ */
       #header-component[sticky='always'] {
-        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
         /* Permanent compositing layer: this animates on every scroll
            direction change, so without will-change the browser keeps
            creating/destroying its layer, which was clipping the hero
            card's shadow (a sibling further down the same scroll
            container) each time it happened. */
-        will-change: transform, opacity;
+        will-change: transform;
       }
       #header-component.header--scrolled {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -241,14 +244,19 @@
         padding: 0 !important;
         margin: 0 !important;
       }
-      #MainContent > div:first-child .media-block__media {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
+      @media (min-width: 750px) {
+        #MainContent > div:first-child .media-block {
+          height: 100% !important;
+        }
+        #MainContent > div:first-child .media-block__media {
+          position: absolute !important;
+          inset: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+          border-radius: 0 !important;
+          margin: 0 !important;
+        }
       }
 
       /* Hero: cinematic slow zoom on the image + refined type */
@@ -523,12 +531,10 @@
 
           function show() {
             header.style.transform = 'translateY(0)';
-            header.style.opacity = '1';
           }
 
           function hide() {
             header.style.transform = 'translateY(-100%)';
-            header.style.opacity = '0';
           }
 
           function onScroll() {
