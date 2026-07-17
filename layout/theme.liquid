@@ -192,6 +192,16 @@
          Apple-style premium homepage polish
          ============================================================ */
 
+      /* Hero: floating rounded card with drop shadow */
+      .hero-wrapper:first-child {
+        padding: 16px 16px 0;
+        box-sizing: border-box;
+      }
+      .hero-wrapper:first-child .hero__container {
+        border-radius: 22px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
       /* Hero: cinematic slow zoom on the background image + refined type */
       .hero-wrapper:first-child .hero__media {
         animation: heroSlowZoom 24s ease-in-out infinite alternate;
@@ -298,6 +308,12 @@
 
       /* Hero: tighter type + spacing on small screens */
       @media (max-width: 767px) {
+        .hero-wrapper:first-child {
+          padding: 4px 4px 0;
+        }
+        .hero-wrapper:first-child .hero__container {
+          border-radius: 14px;
+        }
         .hero-wrapper:first-child .hero__content-wrapper h1 {
           font-size: 2rem;
         }
