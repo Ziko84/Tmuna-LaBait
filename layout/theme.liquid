@@ -140,6 +140,16 @@
         fill: currentColor !important;
       }
 
+      /* Mobile drawer menu: force dark text */
+      .header__drawer,
+      .header__drawer *,
+      .header-drawer-mobile,
+      .header-drawer-mobile * {
+        color: #2f2f3a !important;
+        --color-foreground: #2f2f3a !important;
+        --menu-top-level-font-color: #2f2f3a !important;
+      }
+
       /* Menu hover: animated underline left-to-right with fade-out tail */
       .menu-list__link {
         padding: 0 !important;
