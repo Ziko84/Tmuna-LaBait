@@ -1,0 +1,1 @@
+Drop image files here (hero images, product photos, etc.) for Claude to pick up and wire into the theme.
