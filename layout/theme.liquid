@@ -140,14 +140,17 @@
         fill: currentColor !important;
       }
 
-      /* Mobile drawer menu: force dark text */
-      .header__drawer,
-      .header__drawer *,
-      .header-drawer-mobile,
-      .header-drawer-mobile * {
+      /* Mobile drawer menu: force dark text + white bg */
+      .header-drawer,
+      .header-drawer *,
+      .menu-drawer-container,
+      .menu-drawer-container *,
+      .menu-drawer__navigation,
+      .menu-drawer__navigation * {
         color: #2f2f3a !important;
         --color-foreground: #2f2f3a !important;
         --menu-top-level-font-color: #2f2f3a !important;
+        background-color: #ffffff;
       }
 
       /* Menu hover: animated underline left-to-right with fade-out tail */
