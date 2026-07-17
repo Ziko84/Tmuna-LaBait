@@ -4,7 +4,7 @@
     class="shopify-design-mode"
   {% endif %}
   lang="{{ request.locale.iso_code }}"
-  dir="ltr"
+  dir="rtl"
 >
   <head>
     {%- if settings.favicon != blank -%}
@@ -190,8 +190,6 @@
         scrollbar-width: none !important;
         -ms-overflow-style: none !important;
       }
-      html { direction: ltr; }
-      body { direction: rtl; }
       html::-webkit-scrollbar,
       body::-webkit-scrollbar,
       *::-webkit-scrollbar {
