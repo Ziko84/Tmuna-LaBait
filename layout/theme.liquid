@@ -132,16 +132,23 @@
         fill: currentColor !important;
       }
 
-      /* Menu hover: subtle underline */
+      /* Menu hover: animated underline left-to-right with fade-out tail */
       .menu-list__link-title {
         position: relative;
         display: inline;
-        padding-bottom: 2px;
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.25s ease;
       }
-      .menu-list__link:hover .menu-list__link-title {
-        border-bottom-color: #2f2f3a;
+      .menu-list__link-title::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        right: 0;
+        width: 0;
+        height: 1px;
+        background: linear-gradient(to left, #2f2f3a, transparent);
+        transition: width 0.35s ease;
+      }
+      .menu-list__link:hover .menu-list__link-title::after {
+        width: 100%;
       }
 
       /* Product page: keep image left, details/buttons right */
