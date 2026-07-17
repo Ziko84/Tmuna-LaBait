@@ -132,6 +132,26 @@
         fill: currentColor !important;
       }
 
+      /* Menu hover: animated center underline */
+      .menu-list__link-title {
+        position: relative;
+        padding-bottom: 4px;
+      }
+      .menu-list__link-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 1.5px;
+        background: #2f2f3a;
+        transition: width 0.3s ease, left 0.3s ease;
+      }
+      .menu-list__link:hover .menu-list__link-title::after {
+        width: 100%;
+        left: 0;
+      }
+
       /* Product page: keep image left, details/buttons right */
       .product-information__grid {
         direction: ltr;
