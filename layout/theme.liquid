@@ -144,6 +144,31 @@
         fill: currentColor !important;
       }
 
+      /* ============================================================
+         Header: smooth boutique reveal on scroll-up, no flicker.
+         The theme toggles `position: sticky` on/off based on
+         data-sticky-state, which changes the header's measured
+         position mid-scroll and can retrigger its own scroll logic
+         (visible as blinking). Keeping it permanently sticky and
+         hiding it purely with transform/opacity avoids that loop.
+         ============================================================ */
+      .header-section:has(> #header-component[sticky='scroll-up']) {
+        position: sticky !important;
+        top: -1px;
+        z-index: var(--layer-menu-drawer);
+      }
+      #header-component[sticky='scroll-up'] .header {
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+        transform: translateY(0);
+      }
+      #header-component[sticky='scroll-up'][data-sticky-state='idle'] .header {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      #header-component[sticky='scroll-up'][data-sticky-state='active'] .header {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
       /* Menu hover: animated underline left-to-right with fade-out tail */
       .menu-list__link {
         padding: 0 !important;
