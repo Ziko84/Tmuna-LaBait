@@ -192,17 +192,20 @@
          Apple-style premium homepage polish
          ============================================================ */
 
-      /* Hero (split card): floating rounded card with drop shadow */
+      /* Hero (split card): floating rounded card with drop shadow.
+         box-shadow and overflow:hidden must live on different elements,
+         otherwise overflow clips the shadow into a hard edge. */
       #MainContent > div:first-child {
-        padding: 16px 16px 0;
+        padding-top: 16px;
         box-sizing: border-box;
+        max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
+        margin-inline: auto;
+        border-radius: 22px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
       }
       #MainContent > div:first-child .media-with-content {
         border-radius: 22px;
         overflow: hidden;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
-        max-width: var(--page-width);
-        margin-inline: auto;
       }
 
       /* Hero: cinematic slow zoom on the image + refined type */
@@ -308,7 +311,8 @@
       /* Hero (split card): tighter type + spacing on small screens */
       @media (max-width: 767px) {
         #MainContent > div:first-child {
-          padding: 4px 4px 0;
+          padding-top: 8px;
+          border-radius: 14px;
         }
         #MainContent > div:first-child .media-with-content {
           border-radius: 14px;
