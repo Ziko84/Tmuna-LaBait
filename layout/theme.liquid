@@ -192,44 +192,41 @@
          Apple-style premium homepage polish
          ============================================================ */
 
-      /* Hero: floating rounded card with drop shadow */
-      .hero-wrapper:first-child {
+      /* Hero (split card): floating rounded card with drop shadow */
+      #MainContent > div:first-child {
         padding: 16px 16px 0;
         box-sizing: border-box;
       }
-      .hero-wrapper:first-child .hero__container {
+      #MainContent > div:first-child .media-with-content {
         border-radius: 22px;
+        overflow: hidden;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
         max-width: var(--page-width);
         margin-inline: auto;
       }
 
-      /* Hero: cinematic slow zoom on the background image + refined type */
-      .hero-wrapper:first-child .hero__media {
+      /* Hero: cinematic slow zoom on the image + refined type */
+      #MainContent > div:first-child .media-block img {
         animation: heroSlowZoom 24s ease-in-out infinite alternate;
       }
       @keyframes heroSlowZoom {
         from { transform: scale(1); }
         to { transform: scale(1.08); }
       }
-      .hero-wrapper:first-child .hero__content-wrapper h1 {
+      #MainContent > div:first-child .media-with-content__content h1 {
         font-weight: 500;
         letter-spacing: -0.02em;
         line-height: 1.1;
-        text-shadow: none;
       }
-      .hero-wrapper:first-child .hero__content-wrapper p {
-        text-shadow: none;
-      }
-      .hero-wrapper:first-child .hero__content-wrapper > * {
+      #MainContent > div:first-child .media-with-content__content .group-block-content > * {
         opacity: 0;
         transform: translateY(18px);
         animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
-      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(1) { animation-delay: 0.15s; }
-      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(2) { animation-delay: 0.32s; }
-      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(3) { animation-delay: 0.48s; }
-      .hero-wrapper:first-child .hero__content-wrapper > *:nth-child(4) { animation-delay: 0.64s; }
+      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(1) { animation-delay: 0.15s; }
+      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(2) { animation-delay: 0.32s; }
+      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(3) { animation-delay: 0.48s; }
+      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(4) { animation-delay: 0.64s; }
       @keyframes heroFadeUp {
         to { opacity: 1; transform: translateY(0); }
       }
@@ -308,19 +305,19 @@
         }
       }
 
-      /* Hero: tighter type + spacing on small screens */
+      /* Hero (split card): tighter type + spacing on small screens */
       @media (max-width: 767px) {
-        .hero-wrapper:first-child {
+        #MainContent > div:first-child {
           padding: 4px 4px 0;
         }
-        .hero-wrapper:first-child .hero__container {
+        #MainContent > div:first-child .media-with-content {
           border-radius: 14px;
         }
-        .hero-wrapper:first-child .hero__content-wrapper h1 {
+        #MainContent > div:first-child .media-with-content__content h1 {
           font-size: 2rem;
         }
-        .hero-wrapper:first-child .hero__content-wrapper {
-          padding-inline: 20px;
+        #MainContent > div:first-child .media-with-content__content .group-block-content {
+          padding-inline: 20px !important;
         }
       }
     </style>

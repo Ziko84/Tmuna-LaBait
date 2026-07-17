@@ -1,132 +1,145 @@
 {
   "sections": {
-    "hero_tlb01": {
-      "type": "hero",
+    "hero_split_tlb01": {
+      "type": "media-with-content",
       "blocks": {
-        "text_intro": {
-          "type": "text",
-          "name": "t:names.text",
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
           "settings": {
-            "text": "<p>עשוי ביד &middot; נחתך באור</p>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h6",
-            "font": "var(--font-accent--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "0.08em",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#1a1a2e",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "media_type": "image",
+            "image": "shopify://shop_images/a-beautiful-laser-cut-image-from-black-wood-is-on-a-clean-white-wall-for-a-product-presentation.png",
+            "link": "",
+            "image_position": "cover",
+            "video_position": "cover"
           },
           "blocks": {}
         },
-        "text_main": {
-          "type": "text",
-          "name": "t:names.heading",
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
           "settings": {
-            "text": "<h1>אמנות שנולדת מהאור</h1>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h1",
-            "font": "var(--font-heading--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#1a1a2e",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
           },
-          "blocks": {}
-        },
-        "text_desc": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>כל יצירה נחרטת בלייזר דיוק על עץ בוטיק, ומתעוררת לחיים כשהאור עובר דרכה. עיצוב שהופך קיר לחוויה.</p>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#1a1a2e",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 8,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+          "blocks": {
+            "text_intro": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>עשוי ביד &middot; נחתך באור</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "h6",
+                "font": "var(--font-accent--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "0.08em",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_main": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h1>אמנות שנולדת מהאור</h1>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "h1",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_desc": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>כל יצירה נחרטת בלייזר דיוק על עץ בוטיק, ומתעוררת לחיים כשהאור עובר דרכה. עיצוב שהופך קיר לחוויה.</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_shop": {
+              "type": "button",
+              "name": "t:names.button",
+              "settings": {
+                "label": "גלו את הקולקציה",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-custom",
+                "custom_button_background": "#1a1a2e",
+                "custom_button_text": "#ffffff",
+                "custom_button_border": "#1a1a2e",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
           },
-          "blocks": {}
-        },
-        "button_shop": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "גלו את הקולקציה",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "#1a1a2e",
-            "custom_button_text": "#ffffff",
-            "custom_button_border": "#1a1a2e",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+          "block_order": [
+            "text_intro",
+            "text_main",
+            "text_desc",
+            "button_shop"
+          ]
         }
       },
-      "block_order": [
-        "text_intro",
-        "text_main",
-        "text_desc",
-        "button_shop"
-      ],
-      "name": "t:names.hero",
+      "name": "t:names.media_with_text",
       "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/a-beautiful-laser-cut-image-from-black-wood-is-on-a-clean-white-wall-for-a-product-presentation.png",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 20,
+        "media_position": "left",
+        "media_width": "wide",
+        "media_height": "60svh",
         "section_width": "full-width",
-        "section_height": "large",
-        "background_color": "",
-        "toggle_overlay": true,
-        "overlay_color": "#ffffffb3",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
+        "extend_media": false,
+        "background_color": "#ffffff",
         "padding-block-start": 0,
-        "padding-block-end": 40
+        "padding-block-end": 0
       }
     },
     "product_list_EDUBdR": {
@@ -650,7 +663,7 @@
     }
   },
   "order": [
-    "hero_tlb01",
+    "hero_split_tlb01",
     "product_list_EDUBdR",
     "media_with_content_LfPdEJ",
     "collection_list_xpBxCm"
