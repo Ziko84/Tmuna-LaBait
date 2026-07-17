@@ -116,19 +116,19 @@
         --menu-child-font-color: #2f2f3a !important;
         --menu-parent-font-color: #2f2f3a !important;
       }
-      #header-group a,
-      #header-group button,
-      #header-group .header-actions__action,
-      #header-group .menu-list__link,
-      #header-group .menu-list__link-title,
-      #header-group .header__icon--menu,
-      #header-group .dropdown-localization__button,
-      #header-group .search-action,
-      #header-group svg {
+      #header-group .header-section a,
+      #header-group .header-section button,
+      #header-group .header-section .header-actions__action,
+      #header-group .header-section .menu-list__link,
+      #header-group .header-section .menu-list__link-title,
+      #header-group .header-section .header__icon--menu,
+      #header-group .header-section .dropdown-localization__button,
+      #header-group .header-section .search-action,
+      #header-group .header-section svg {
         color: #2f2f3a !important;
       }
-      #header-group svg [fill]:not([fill='none']),
-      #header-group svg:not([fill='none']) {
+      #header-group .header-section svg [fill]:not([fill='none']),
+      #header-group .header-section svg:not([fill='none']) {
         fill: currentColor !important;
       }
 
@@ -142,7 +142,12 @@
       }
 
       /* Toylvia-style floating card layout */
-      html, body {
+      html {
+        direction: ltr;
+        background: #f0f1f3 !important;
+      }
+      body {
+        direction: rtl;
         background: #f0f1f3 !important;
       }
       .page-wrapper {
