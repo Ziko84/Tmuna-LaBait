@@ -151,17 +151,18 @@
       }
 
       /* Toylvia-style floating card layout */
-      html {
-        direction: ltr;
+      html, body {
         background: #f0f1f3 !important;
-        scrollbar-width: none;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
       }
-      html::-webkit-scrollbar {
-        display: none;
-      }
-      body {
-        direction: rtl;
-        background: #f0f1f3 !important;
+      html { direction: ltr; }
+      body { direction: rtl; }
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar,
+      *::-webkit-scrollbar {
+        width: 0 !important;
+        display: none !important;
       }
       .page-wrapper {
         margin: 16px;
