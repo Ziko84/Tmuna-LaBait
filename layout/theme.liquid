@@ -224,7 +224,7 @@
         box-sizing: border-box;
         max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
         margin-inline: auto;
-        border-radius: 22px;
+        border-radius: 40px;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
         /* Pin this card to its own permanent compositing layer so it's
            never affected by repaints elsewhere in the scroll container
@@ -234,7 +234,7 @@
         isolation: isolate;
       }
       #MainContent > div:first-child .media-with-content {
-        border-radius: 22px;
+        border-radius: 40px;
         overflow: hidden;
       }
 
@@ -365,10 +365,10 @@
       @media (max-width: 767px) {
         #MainContent > div:first-child {
           padding: 8px 0 20px;
-          border-radius: 14px;
+          border-radius: 24px;
         }
         #MainContent > div:first-child .media-with-content {
-          border-radius: 14px;
+          border-radius: 24px;
         }
         #MainContent > div:first-child .media-with-content__content h1 {
           font-size: 2rem;
