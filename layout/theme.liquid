@@ -147,21 +147,15 @@
       /* ============================================================
          Header: smooth boutique reveal on scroll-up only.
          `sticky="always"` keeps the header permanently position:sticky
-         from load (native theme CSS, never toggles on/off — that
-         toggling was the source of the earlier flicker). We layer our
-         own hide-on-scroll-down / reveal-on-scroll-up on top using the
-         theme's `data-scroll-direction` attribute, which is a plain
-         scrollTop comparison with no IntersectionObserver involved.
+         (native theme CSS, unconditional). Show/hide is driven directly
+         by JS setting inline transform/opacity further down this file —
+         inline styles always win the cascade, removing any dependency
+         on attribute-selector specificity or theme JS state timing.
          ============================================================ */
       #header-component[sticky='always'] {
         transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
-        transform: translateY(0);
       }
-      #header-component[sticky='always'][data-scroll-direction='down'] {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      #header-component[sticky='always']:not([data-scroll-direction='none']) {
+      #header-component.header--scrolled {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       }
 
@@ -499,6 +493,67 @@
           document.addEventListener('DOMContentLoaded', initScrollReveal);
         } else {
           initScrollReveal();
+        }
+      })();
+
+      (function () {
+        function initHeaderAutoHide() {
+          var header = document.getElementById('header-component');
+          if (!header) return;
+
+          var desktopQuery = window.matchMedia('(min-width: 990px)');
+
+          function getScrollEl() {
+            if (desktopQuery.matches) {
+              return document.querySelector('.page-wrapper') || document.scrollingElement || document.documentElement;
+            }
+            return document.scrollingElement || document.documentElement;
+          }
+
+          var scrollEl = getScrollEl();
+          var lastScrollTop = scrollEl.scrollTop;
+
+          function show() {
+            header.style.transform = 'translateY(0)';
+            header.style.opacity = '1';
+          }
+
+          function hide() {
+            header.style.transform = 'translateY(-100%)';
+            header.style.opacity = '0';
+          }
+
+          function onScroll() {
+            var current = scrollEl.scrollTop;
+
+            if (current <= 4) {
+              header.classList.remove('header--scrolled');
+              show();
+            } else if (current > lastScrollTop + 2) {
+              header.classList.add('header--scrolled');
+              hide();
+            } else if (current < lastScrollTop - 2) {
+              header.classList.add('header--scrolled');
+              show();
+            }
+
+            lastScrollTop = current;
+          }
+
+          scrollEl.addEventListener('scroll', onScroll, { passive: true });
+
+          desktopQuery.addEventListener('change', function () {
+            scrollEl.removeEventListener('scroll', onScroll);
+            scrollEl = getScrollEl();
+            lastScrollTop = scrollEl.scrollTop;
+            scrollEl.addEventListener('scroll', onScroll, { passive: true });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initHeaderAutoHide);
+        } else {
+          initHeaderAutoHide();
         }
       })();
     </script>
