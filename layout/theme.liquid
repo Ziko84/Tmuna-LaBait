@@ -79,23 +79,26 @@
         border-top: 1px solid #f1f2f5;
         gap: 2px !important;
       }
-      .product-card a[ref='productTitleLink'] p {
+      .product-card a[ref='productTitleLink'] {
         display: block;
-        width: 100%;
-        margin: 0;
-        font-size: 0.92rem;
-        color: #33333d;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
-      .product-card product-price::before {
+      .product-card a[ref='productTitleLink']::before {
         content: '★★★★★ (1)';
         display: block;
         color: #ffb648;
         font-size: 0.78rem;
         letter-spacing: 1.5px;
         line-height: 1.6;
+      }
+      .product-card a[ref='productTitleLink'] p {
+        display: block;
+        width: 100%;
+        margin: 0;
+        font-size: 1.02rem;
+        color: #33333d;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .product-card product-price,
       .product-card product-price .price {
