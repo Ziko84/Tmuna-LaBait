@@ -196,7 +196,7 @@
          box-shadow and overflow:hidden must live on different elements,
          otherwise overflow clips the shadow into a hard edge. */
       #MainContent > div:first-child {
-        padding-top: 16px;
+        padding: 16px 0 28px;
         box-sizing: border-box;
         max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
         margin-inline: auto;
@@ -311,7 +311,7 @@
       /* Hero (split card): tighter type + spacing on small screens */
       @media (max-width: 767px) {
         #MainContent > div:first-child {
-          padding-top: 8px;
+          padding: 8px 0 20px;
           border-radius: 14px;
         }
         #MainContent > div:first-child .media-with-content {
