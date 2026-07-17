@@ -154,6 +154,12 @@
          ============================================================ */
       #header-component[sticky='always'] {
         transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+        /* Permanent compositing layer: this animates on every scroll
+           direction change, so without will-change the browser keeps
+           creating/destroying its layer, which was clipping the hero
+           card's shadow (a sibling further down the same scroll
+           container) each time it happened. */
+        will-change: transform, opacity;
       }
       #header-component.header--scrolled {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
