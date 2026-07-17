@@ -217,19 +217,34 @@
          ============================================================ */
 
       /* Hero (split card): floating rounded card with drop shadow.
-         The outer wrapper only handles spacing/width — it must NOT carry
-         border-radius or box-shadow itself, because its padding (for the
-         shadow to breathe below) pushes the actual visible content down
-         16px from its own box. Rounding the padded outer box and the
-         inset content separately produced two offset arcs at the corner
-         (two visible curves instead of one). Shadow now lives on
-         .section-background instead — same box the visible fill paints
-         from, so its rounded shape lines up exactly. */
+         One rounding source for the visible fill/clip (.media-with-content
+         + .section-background, both 40px, both positioned by the same
+         padding-respecting box). The shadow can't live on either of those:
+         .media-with-content has overflow:hidden (would clip its own
+         shadow), and .section-background is forced to z-index:-2 by the
+         theme (shadow renders but sits behind opaque content, invisible).
+         So the shadow is a dedicated ::before on the outer wrapper,
+         positioned with the exact padding offsets so it lines up with the
+         real content instead of the wrapper's own unpadded box. */
       #MainContent > div:first-child {
         padding: 16px 0 28px;
         box-sizing: border-box;
         max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
         margin-inline: auto;
+        position: relative;
+      }
+      #MainContent > div:first-child::before {
+        content: '';
+        position: absolute;
+        top: 16px;
+        right: 0;
+        bottom: 28px;
+        left: 0;
+        border-radius: 40px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+        will-change: transform;
+        isolation: isolate;
       }
       #MainContent > div:first-child .media-with-content {
         border-radius: 40px;
@@ -239,13 +254,9 @@
          the real white fill on a separate sibling, .section-background —
          that element had no radius of its own, which is the actual reason
          the card kept showing square corners no matter what was rounded
-         on .media-with-content. It now also carries the shadow, since it's
-         the box that actually matches the visible card's true position. */
+         on .media-with-content. */
       #MainContent > div:first-child .section-background {
         border-radius: 40px;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), 0 3px 10px rgba(0, 0, 0, 0.1);
-        will-change: transform;
-        isolation: isolate;
       }
 
       /* Hero: image must fully fill its column, edge to edge. Rounding lives
@@ -370,6 +381,11 @@
       @media (max-width: 767px) {
         #MainContent > div:first-child {
           padding: 8px 0 20px;
+        }
+        #MainContent > div:first-child::before {
+          top: 8px;
+          bottom: 20px;
+          border-radius: 24px;
         }
         #MainContent > div:first-child .media-with-content {
           border-radius: 24px;
