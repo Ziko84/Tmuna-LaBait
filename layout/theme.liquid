@@ -4,7 +4,7 @@
     class="shopify-design-mode"
   {% endif %}
   lang="{{ request.locale.iso_code }}"
-  dir="rtl"
+  dir="ltr"
 >
   <head>
     {%- if settings.favicon != blank -%}
@@ -139,6 +139,15 @@
       .product-information__grid .product-details,
       .product-information__grid .product-information__media {
         direction: rtl;
+      }
+
+      /* Announcement bar: dark stripe */
+      .announcement-bar,
+      .announcement-bar .section-background {
+        background: #1a1a2e !important;
+      }
+      .announcement-bar, .announcement-bar * {
+        color: #ffffff !important;
       }
 
       /* Toylvia-style floating card layout */
