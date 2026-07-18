@@ -39,7 +39,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>עשוי ביד &middot; נחתך באור</p>",
+                "text": "<p>נחתך בידינו &middot; לא בידי אחרים</p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -65,7 +65,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h1>אמנות שנולדת מהאור</h1>",
+                "text": "<h1>מהידיים שלנו, אל הקיר שלכם</h1>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -91,7 +91,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>כל יצירה נחרטת בלייזר דיוק על עץ בוטיק, ומתעוררת לחיים כשהאור עובר דרכה. עיצוב שהופך קיר לחוויה.</p>",
+                "text": "<p>אנחנו היוצרים, לא הסוחרים. כל פרט נולד באולפן שלנו, בדיוק של שבריר מילימטר, לפני שהוא הופך לאור.</p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
