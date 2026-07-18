@@ -281,6 +281,13 @@
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu :is(.mega-menu__grid, .mega-menu__list, .mega-menu__column) {
         display: block;
       }
+      /* Blanket sweep: every div/ul/li nested inside the dropdown's
+         content that hasn't been individually checked, forced to no
+         background at all. This is the wrapper directly under the
+         rounded card the corners were never actually addressed on. */
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu :is(div, ul, li) {
+        background: none !important;
+      }
       /* The theme also expands a full-width colored band under the
          entire header row whenever any submenu is open (built for the
          old full-bleed mega-menu). Our dropdowns are compact now, so
