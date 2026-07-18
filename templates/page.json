@@ -10,8 +10,8 @@
             "text": "<h1>{{ closest.page.title }}</h1>",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "right",
-            "type_preset": "h1",
+            "alignment": "center",
+            "type_preset": "h2",
             "font": "var(--font-heading--family)",
             "line_height": "normal",
             "letter_spacing": "normal",
@@ -34,12 +34,12 @@
       "name": "Page banner",
       "settings": {
         "content_direction": "column",
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "main": {
