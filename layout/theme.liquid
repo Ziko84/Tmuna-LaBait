@@ -218,7 +218,6 @@
         top: 100%;
         clip-path: none;
         padding-inline: 0;
-        background: transparent;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .menu-list__submenu-inner {
         display: block;
@@ -226,15 +225,7 @@
         max-height: none;
         background: var(--color-background);
         border-radius: 16px;
-        overflow: hidden;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
-        /* The base theme slides this in with a transform driven by
-           JS-measured --submenu-height / --full-open-header-height, a
-           slide calibrated for the old full-width sheet. That made two
-           dropdowns of different content height (one link vs two)
-           visibly animate differently. A plain opacity fade doesn't
-           depend on height, so both now animate identically. */
-        transform: none !important;
       }
       /* .mega-menu carries the generic .section class, which sets up a
          3-column page-width grid (grid-template-columns sized off
