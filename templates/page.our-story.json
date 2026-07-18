@@ -8,7 +8,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/hero-image-2.png",
+            "image": "shopify://shop_images/hero-image-5.png",
             "link": "",
             "image_position": "cover",
             "video_position": "cover"
@@ -103,7 +103,7 @@
               "type": "button",
               "settings": {
                 "label": "גלו את הקולקציה",
-                "link": "shopify://collections/all",
+                "link": "shopify://collections/frontpage",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "#1a1a2e",
@@ -146,7 +146,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/hero-image-3.png",
+            "image": "shopify://shop_images/hero-image-5.png",
             "link": "",
             "image_position": "cover",
             "video_position": "cover"
@@ -263,7 +263,7 @@
           "type": "button",
           "settings": {
             "label": "לצפייה בקולקציה המלאה",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/frontpage",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "link_text_color": "",

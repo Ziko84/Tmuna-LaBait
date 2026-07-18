@@ -107,7 +107,7 @@
               "name": "t:names.button",
               "settings": {
                 "label": "גלו את הקולקציה",
-                "link": "shopify://collections/all",
+                "link": "shopify://collections/frontpage",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "#1a1a2e",
@@ -462,7 +462,7 @@
               "type": "button",
               "settings": {
                 "label": "לגלות את הסיפור שלנו",
-                "link": "shopify:\/\/collections\/all",
+                "link": "shopify:\/\/pages\/our-story",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
