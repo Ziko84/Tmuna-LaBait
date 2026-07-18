@@ -232,7 +232,8 @@
          positioned with the exact padding offsets so it lines up with the
          real content instead of the wrapper's own unpadded box. */
       :is(
-        #MainContent > div:first-child,
+        [id$="__hero_split_tlb01"],
+        [id$="__story_hero"],
         [id$="__story_craft"],
         [id$="__media_with_content_LfPdEJ"]
       ) {
@@ -392,7 +393,8 @@
       /* Rounded-card sections: tighter type + spacing on small screens */
       @media (max-width: 767px) {
         :is(
-          #MainContent > div:first-child,
+          [id$="__hero_split_tlb01"],
+          [id$="__story_hero"],
           [id$="__story_craft"],
           [id$="__media_with_content_LfPdEJ"]
         ) {
