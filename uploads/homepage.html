@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lumen Atelier — Light, carved.</title>
+<meta name="description" content="Lumen Atelier — hand-finished laser-cut panels illuminated with warm architectural LED. Limited editions and bespoke commissions." />
+<meta property="og:title" content="Lumen Atelier — Light, carved." />
+<meta property="og:description" content="Hand-finished laser-cut panels illuminated with warm architectural LED. Limited editions and bespoke commissions." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500;600&display=swap" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper: "#fafaf7",
+          cream: "#f2efe8",
+          ink:   "#111110",
+          graphite: "#5a5854",
+          hairline: "#e6e2d8",
+          amber: "#d4a24c",
+          amberSoft: "#e9c987",
+        },
+        fontFamily: {
+          serif: ['"Fraunces"', "serif"],
+          sans:  ['"Inter"', "system-ui", "sans-serif"],
+        },
+        letterSpacing: {
+          widest2: "0.28em",
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#fafaf7; color:#111110; font-family:"Inter",system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+  .display { font-family:"Fraunces",serif; font-weight:300; letter-spacing:-0.02em; line-height:0.95; }
+  .eyebrow { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#5a5854; }
+  .hairline { border-color:#e6e2d8; }
+
+  /* fade + rise reveal */
+  .reveal { opacity:0; transform:translateY(24px); transition: opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+
+  /* hero LED halo */
+  .halo { position:absolute; inset:-12% -8%; z-index:0; border-radius:9999px;
+          background: radial-gradient(closest-side, rgba(212,162,76,.55), rgba(212,162,76,.18) 45%, rgba(212,162,76,0) 72%);
+          filter: blur(30px); animation: pulse 6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:.85; transform:scale(1);} 50%{opacity:1; transform:scale(1.04);} }
+
+  /* piece card hover glow */
+  .piece { position:relative; }
+  .piece .glow { position:absolute; inset:8%; z-index:0; border-radius:2px;
+                 box-shadow: 0 0 0 rgba(212,162,76,0);
+                 transition: box-shadow .9s ease, opacity .9s ease; opacity:0; }
+  .piece:hover .glow { opacity:1; box-shadow: 0 0 90px 20px rgba(212,162,76,.45); }
+  .piece img { position:relative; z-index:1; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+  .piece:hover img { transform: scale(1.02); }
+
+  .link-quiet { position:relative; display:inline-block; }
+  .link-quiet::after { content:""; position:absolute; left:0; right:0; bottom:-3px; height:1px; background:#111110; transform-origin:left; transition:transform .5s ease; }
+  .link-quiet:hover::after { transform:scaleX(0.4); }
+
+  .grain::after {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:60; opacity:.035; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+</style>
+</head>
+
+<body class="grain">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/80 backdrop-blur-md border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14 h-16 flex items-center justify-between">
+    <a href="#" class="font-serif text-[17px] tracking-tight">Lumen <span class="text-graphite">— Atelier</span></a>
+    <nav class="hidden md:flex items-center gap-10 text-[13px] text-ink/80">
+      <a href="#collection" class="link-quiet">Collection</a>
+      <a href="#craft" class="link-quiet">The Craft</a>
+      <a href="#bespoke" class="link-quiet">Bespoke</a>
+      <a href="#journal" class="link-quiet">Journal</a>
+    </nav>
+    <div class="flex items-center gap-6 text-[13px]">
+      <a href="#" class="hidden md:inline text-ink/70 hover:text-ink">Account</a>
+      <a href="#" class="inline-flex items-center gap-2 text-ink/80 hover:text-ink">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 6h18l-2 13H5L3 6Z"/><path d="M8 6a4 4 0 0 1 8 0"/></svg>
+        <span>Bag (0)</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="pt-40 md:pt-48 pb-32 md:pb-48">
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14">
+    <p class="eyebrow reveal">Édition No. 07 — Winter MMXXVI</p>
+    <h1 class="display text-[15vw] md:text-[11rem] mt-8 reveal">Light,<br/><em class="not-italic text-graphite">carved.</em></h1>
+
+    <div class="mt-16 grid md:grid-cols-12 gap-10 items-end">
+      <p class="md:col-span-4 md:col-start-2 text-[15px] leading-[1.7] text-graphite reveal">
+        Panels drawn from a single sheet, cut in a single pass, then lit from behind with warm architectural LED. Each piece is numbered, signed, and made to be looked at for years.
+      </p>
+      <div class="md:col-span-3 md:col-start-9 flex md:justify-end reveal">
+        <a href="#collection" class="link-quiet text-[13px] tracking-[0.2em] uppercase">View the collection</a>
+      </div>
+    </div>
+
+    <!-- hero image with LED halo -->
+    <div class="relative mt-24 md:mt-32 reveal">
+      <div class="halo"></div>
+      <div class="relative z-10 aspect-[16/10] overflow-hidden bg-cream">
+        <img src="https://images.unsplash.com/photo-1524634126442-357e0eac3c14?auto=format&fit=crop&w=2000&q=80"
+             alt="Illuminated laser-cut wall panel"
+             class="w-full h-full object-cover" />
+      </div>
+      <div class="mt-6 flex items-center justify-between text-[12px] text-graphite">
+        <span>Fig. 01 &middot; « Meridian » — brass on oak, backlit 2700K</span>
+        <span>Edition 12 / 25</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PIECE -->
+<section class="py-32 border-t hairline">
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14 grid md:grid-cols-12 gap-12">
+    <div class="md:col-span-7 reveal">
+      <div class="piece relative bg-cream aspect-[4/5] overflow-hidden">
+        <div class="glow"></div>
+        <img src="https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?auto=format&fit=crop&w=1600&q=80"
+             alt="Featured laser cut piece" class="w-full h-full object-cover" />
+      </div>
+    </div>
+    <div class="md:col-span-4 md:col-start-9 flex flex-col justify-end pb-4 reveal">
+      <p class="eyebrow">Piece of the season</p>
+      <h2 class="display text-6xl md:text-7xl mt-6">Solstice</h2>
+      <p class="mt-8 text-[15px] leading-[1.75] text-graphite">
+        A radial composition inspired by the geometry of medieval rose windows. Cut from 3&thinsp;mm blackened steel, floated 24&thinsp;mm off the wall, and lit with a single continuous strip of 2700K light.
+      </p>
+      <dl class="mt-10 grid grid-cols-2 gap-y-3 text-[13px]">
+        <dt class="text-graphite">Material</dt><dd>Blackened steel, oak</dd>
+        <dt class="text-graphite">Dimensions</dt><dd>92 × 92 × 3 cm</dd>
+        <dt class="text-graphite">Edition</dt><dd>Of 15</dd>
+        <dt class="text-graphite">Price</dt><dd>€ 4,800</dd>
+      </dl>
+      <a href="#" class="link-quiet mt-10 text-[13px] tracking-[0.2em] uppercase self-start">Acquire this piece →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section id="collection" class="py-32 border-t hairline">
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14">
+    <div class="flex items-end justify-between reveal">
+      <div>
+        <p class="eyebrow">The Collection</p>
+        <h2 class="display text-5xl md:text-6xl mt-6">Three quiet objects.</h2>
+      </div>
+      <a href="#" class="hidden md:inline link-quiet text-[13px] tracking-[0.2em] uppercase">All twenty-four →</a>
+    </div>
+
+    <div class="mt-20 grid md:grid-cols-3 gap-10 md:gap-14">
+      <!-- card -->
+      <article class="reveal">
+        <div class="piece relative bg-cream aspect-[4/5] overflow-hidden">
+          <div class="glow"></div>
+          <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=1200&q=80" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="mt-6 flex items-baseline justify-between">
+          <h3 class="font-serif text-2xl">Meridian</h3>
+          <span class="text-[13px] text-graphite">€ 3,200</span>
+        </div>
+        <p class="mt-1 text-[12px] text-graphite">Brass on oak · Ed. of 25</p>
+      </article>
+
+      <article class="reveal">
+        <div class="piece relative bg-cream aspect-[4/5] overflow-hidden">
+          <div class="glow"></div>
+          <img src="https://images.unsplash.com/photo-1602934585418-f588bea4215c?auto=format&fit=crop&w=1200&q=80" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="mt-6 flex items-baseline justify-between">
+          <h3 class="font-serif text-2xl">Vespers</h3>
+          <span class="text-[13px] text-graphite">€ 2,600</span>
+        </div>
+        <p class="mt-1 text-[12px] text-graphite">Blackened steel · Ed. of 40</p>
+      </article>
+
+      <article class="reveal">
+        <div class="piece relative bg-cream aspect-[4/5] overflow-hidden">
+          <div class="glow"></div>
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="mt-6 flex items-baseline justify-between">
+          <h3 class="font-serif text-2xl">Aperture</h3>
+          <span class="text-[13px] text-graphite">€ 5,400</span>
+        </div>
+        <p class="mt-1 text-[12px] text-graphite">Copper, walnut · Ed. of 10</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- THE CRAFT -->
+<section id="craft" class="py-40 border-t hairline">
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14 grid md:grid-cols-12 gap-14 items-center">
+    <div class="md:col-span-5 md:col-start-2 reveal">
+      <p class="eyebrow">The Craft</p>
+      <h2 class="display text-5xl md:text-6xl mt-6">A single sheet.<br/>A single pass.</h2>
+      <p class="mt-10 text-[15px] leading-[1.8] text-graphite">
+        Every panel begins as a drawing, refined for weeks before it meets the laser. Cut once from a single sheet, hand-deburred, patinated, and paired with warm 2700K light — never cold, never blue. The result is an object that reads as architecture by day and as a lantern by night.
+      </p>
+      <a href="#" class="link-quiet mt-10 inline-block text-[13px] tracking-[0.2em] uppercase">Read the process →</a>
+    </div>
+    <div class="md:col-span-5 reveal">
+      <div class="aspect-[4/5] bg-cream overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80" alt="Detail of a cut panel" class="w-full h-full object-cover" />
+      </div>
+      <p class="mt-4 text-[12px] text-graphite">Fig. 02 · Detail, « Aperture » — 0.6 mm kerf, brushed by hand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BESPOKE -->
+<section id="bespoke" class="bg-cream py-40 border-y hairline">
+  <div class="max-w-[1000px] mx-auto px-8 md:px-14 text-center">
+    <p class="eyebrow reveal">Bespoke Commissions</p>
+    <h2 class="display text-5xl md:text-7xl mt-8 reveal">
+      Made for one wall,<br/><em class="not-italic text-graphite">and one wall only.</em>
+    </h2>
+    <p class="mt-10 text-[15px] leading-[1.8] text-graphite max-w-xl mx-auto reveal">
+      We take a small number of private commissions each year — for residences, hospitality, and quiet public spaces. Six months, from first sketch to installation.
+    </p>
+    <a href="#" class="link-quiet mt-12 inline-block text-[13px] tracking-[0.2em] uppercase reveal">Begin a conversation →</a>
+  </div>
+</section>
+
+<!-- JOURNAL / QUOTE -->
+<section id="journal" class="py-40">
+  <div class="max-w-[1100px] mx-auto px-8 md:px-14">
+    <blockquote class="display text-3xl md:text-5xl leading-[1.15] reveal">
+      &ldquo;They are not lamps, and not sculpture. They are the light itself, given an edge.&rdquo;
+    </blockquote>
+    <p class="mt-8 text-[12px] tracking-[0.2em] uppercase text-graphite reveal">— Domus, issue 1092</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t hairline py-16">
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4">
+      <p class="font-serif text-xl">Lumen — Atelier</p>
+      <p class="mt-4 text-[13px] text-graphite max-w-xs leading-[1.7]">Rue de la Verrerie 24, 1000 Bruxelles. By appointment.</p>
+    </div>
+    <div class="md:col-span-2 md:col-start-6">
+      <p class="eyebrow mb-4">Shop</p>
+      <ul class="space-y-2 text-[13px]"><li><a href="#" class="link-quiet">Collection</a></li><li><a href="#" class="link-quiet">Editions</a></li><li><a href="#" class="link-quiet">Archive</a></li></ul>
+    </div>
+    <div class="md:col-span-2">
+      <p class="eyebrow mb-4">Atelier</p>
+      <ul class="space-y-2 text-[13px]"><li><a href="#" class="link-quiet">The Craft</a></li><li><a href="#" class="link-quiet">Bespoke</a></li><li><a href="#" class="link-quiet">Press</a></li></ul>
+    </div>
+    <div class="md:col-span-2">
+      <p class="eyebrow mb-4">Contact</p>
+      <ul class="space-y-2 text-[13px]"><li><a href="#" class="link-quiet">Studio</a></li><li><a href="#" class="link-quiet">Instagram</a></li><li><a href="#" class="link-quiet">Newsletter</a></li></ul>
+    </div>
+  </div>
+  <div class="max-w-[1400px] mx-auto px-8 md:px-14 mt-16 flex flex-col md:flex-row justify-between gap-4 text-[11px] tracking-[0.2em] uppercase text-graphite">
+    <span>© MMXXVI Lumen Atelier</span>
+    <span>Handmade in Belgium</span>
+    <span><a href="#" class="hover:text-ink">Terms</a> · <a href="#" class="hover:text-ink">Privacy</a></span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
