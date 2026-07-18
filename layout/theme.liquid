@@ -232,9 +232,32 @@
         width: auto !important;
         max-width: none !important;
         padding: 0 !important;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+      /* .section always paints its real fill on this separate sibling
+         (the theme forces .section itself transparent) — it doesn't
+         share our rounded corners, so it was the source of the square
+         gray corners peeking out from behind the compact dropdown. */
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu .section-background {
+        display: none;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu :is(.mega-menu__grid, .mega-menu__list, .mega-menu__column) {
         display: block;
+      }
+      /* The theme also expands a full-width colored band under the
+         entire header row whenever any submenu is open (built for the
+         old full-bleed mega-menu). Our dropdowns are compact now, so
+         keep the header's underlay at its normal closed height always. */
+      .header__underlay-open {
+        height: var(--closed-underlay-height, 100%) !important;
+        background: linear-gradient(
+          var(--color-background-top-row) 0 var(--top-row-height),
+          var(--color-background-bottom-row) var(--top-row-height) var(--header-height)
+        ) !important;
+      }
+      .header__underlay-open::after {
+        display: none;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu__link {
         display: block;
