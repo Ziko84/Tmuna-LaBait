@@ -207,6 +207,15 @@
          ============================================================ */
       .menu-list__list-item:where(:not([slot='overflow'])) {
         position: relative;
+        background-color: transparent !important;
+        outline: none !important;
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) a,
+      .menu-list__list-item:where(:not([slot='overflow'])) .menu-list__link,
+      .menu-list__list-item:where(:not([slot='overflow'])) .menu-list__link::after {
+        background-color: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu {
         width: max-content;
