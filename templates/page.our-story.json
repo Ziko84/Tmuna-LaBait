@@ -111,7 +111,7 @@
             "button_shop": {
               "type": "button",
               "settings": {
-                "label": "גלו את הקולקציה",
+                "label": "גלו את החנות",
                 "link": "shopify://collections/frontpage",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
@@ -271,7 +271,7 @@
         "button_shop": {
           "type": "button",
           "settings": {
-            "label": "לצפייה בקולקציה המלאה",
+            "label": "למעבר לחנות",
             "link": "shopify://collections/frontpage",
             "open_in_new_tab": false,
             "style_class": "button-secondary",

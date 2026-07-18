@@ -117,7 +117,7 @@
               "type": "button",
               "name": "t:names.button",
               "settings": {
-                "label": "גלו את הקולקציה",
+                "label": "גלו את החנות",
                 "link": "shopify://collections/frontpage",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
