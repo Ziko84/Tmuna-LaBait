@@ -167,6 +167,19 @@
       #header-component.header--scrolled {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       }
+      /* The theme sets the sticky header's own section to the SAME
+         z-index as the cart drawer (both var(--layer-menu-drawer)),
+         relying on DOM order (drawer renders after the header) to
+         break the tie so the drawer naturally wins. The will-change
+         above promotes the header to its own compositor layer, which
+         disrupts that DOM-order tiebreak for equal z-index siblings -
+         that's why the logo started painting over the open cart
+         drawer. Giving the header an explicitly lower z-index removes
+         the ambiguity instead of relying on paint-order luck. */
+      .header-section:has(> #header-component[sticky='always']),
+      .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
+        z-index: var(--layer-sticky) !important;
+      }
 
       /* Menu hover: animated underline left-to-right with fade-out tail */
       .menu-list__link {
