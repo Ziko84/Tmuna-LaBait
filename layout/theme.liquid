@@ -243,7 +243,12 @@
         background: var(--color-background);
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+        /* DevTools confirmed this card itself is the topmost element at
+           the gray pixel - the only thing it paints besides its own
+           white fill is this shadow. 28px blur is sized for a large
+           panel, not a 200px dropdown; shrinking it so it reads as a
+           soft edge instead of a hard-edged corner artifact. */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
       }
       /* .mega-menu carries the generic .section class, which sets up a
          3-column page-width grid (grid-template-columns sized off
