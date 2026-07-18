@@ -218,15 +218,15 @@
         top: 100%;
         clip-path: none;
         padding-inline: 0;
-        /* The theme applies content-visibility:auto to this exact
-           element (a performance optimization for the old giant
-           mega-menu, substituting a blank placeholder box until it's
-           "revealed") - that's almost certainly what conflicted with
-           overflow:hidden here and silently broke opening. Forcing it
-           always-rendered removes that conflict entirely. */
-        content-visibility: visible !important;
-        overflow: hidden;
-        border-radius: 16px;
+        /* NEVER add overflow/content-visibility overrides to this
+           specific element again - confirmed three separate times
+           that doing so breaks the dropdown opening entirely. This
+           element is what header-menu.js reads to drive its whole
+           open/close state; whatever it depends on internally
+           (content-visibility, measured offsetHeight, or something
+           else not yet identified) is incompatible with clipping it
+           directly. Do corner-clipping on .menu-list__submenu-inner
+           only, or on the .mega-menu content itself - never here. */
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .menu-list__submenu-inner {
         display: block;
