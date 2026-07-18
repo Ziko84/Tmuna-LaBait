@@ -17,7 +17,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/A2_20_1.png",
+            "image": "shopify://shop_images/A2_20_12_86b61d46-4b69-4bf3-901c-36d8a87f1302.png",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -401,6 +401,8 @@
             "media_type": "image",
             "image": "shopify://shop_images/A2_20_2.png",
             "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
             "image_position": "cover",
             "video_position": "cover"
           },
