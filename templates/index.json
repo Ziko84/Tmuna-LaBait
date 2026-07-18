@@ -186,7 +186,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "right",
-                "type_preset": "h5",
+                "type_preset": "h4",
                 "font": "var(--font-heading--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
