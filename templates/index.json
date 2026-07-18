@@ -445,7 +445,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>מהמלאכה שלנו, אל הקיר שלכם</h2>",
+                "text": "<h2>מסקיצה, אל חוויה של אור</h2>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -470,7 +470,7 @@
             "text_jxGhdJ": {
               "type": "text",
               "settings": {
-                "text": "<p>אנחנו היצרן, לא מתווכים. כל פריט מתוכנן, נחתך ומורכב ביד באולפן שלנו מעץ בוטיק, בדיוק של שבריר מילימטר. כשמדליקים את התאורה מאחור, האור עובר דרך החריטה ויוצר תמונה חיה על הקיר. שילוב של אומנות, טכנולוגיה ואור.</p>",
+                "text": "<p>כל פריט מתוכנן בקפידה ונחתך בלייזר דיוק על עץ בוטיק. כשהאור נדלק מאחור, הוא עובר דרך החריטה ומעניק לקיר שלכם נשמה.</p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -523,7 +523,7 @@
       "settings": {
         "media_position": "right",
         "media_width": "wide",
-        "media_height": "36svh",
+        "media_height": "30svh",
         "section_width": "full-width",
         "extend_media": false,
         "background_color": "#ffffff",
