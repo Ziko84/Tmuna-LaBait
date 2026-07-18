@@ -489,11 +489,11 @@
         "media_position": "right",
         "media_width": "medium",
         "media_height": "70svh",
-        "section_width": "page-width",
-        "extend_media": true,
+        "section_width": "full-width",
+        "extend_media": false,
         "background_color": "#f7f5f2",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "collection_list_xpBxCm": {

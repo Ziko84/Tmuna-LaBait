@@ -216,7 +216,12 @@
          Apple-style premium homepage polish
          ============================================================ */
 
-      /* Hero (split card): floating rounded card with drop shadow.
+      /* Floating rounded card treatment, shared by every split media+content
+         "hero-style" section on the site (homepage hero, homepage trust
+         section, Our Story page sections). Apply to a new section by adding
+         its shopify-section id (suffix match, ignores the numeric template
+         prefix) to this :is() list — nothing else needs to change.
+
          One rounding source for the visible fill/clip (.media-with-content
          + .section-background, both 40px, both positioned by the same
          padding-respecting box). The shadow can't live on either of those:
@@ -226,90 +231,97 @@
          So the shadow is a dedicated ::before on the outer wrapper,
          positioned with the exact padding offsets so it lines up with the
          real content instead of the wrapper's own unpadded box. */
-      #MainContent > div:first-child {
+      :is(
+        #MainContent > div:first-child,
+        [id$="__story_craft"],
+        [id$="__media_with_content_LfPdEJ"]
+      ) {
         padding: 16px 0 28px;
         box-sizing: border-box;
         max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
         margin-inline: auto;
         position: relative;
-      }
-      #MainContent > div:first-child::before {
-        content: '';
-        position: absolute;
-        top: 16px;
-        right: 0;
-        bottom: 28px;
-        left: 0;
-        border-radius: 40px;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-        pointer-events: none;
-        will-change: transform;
-        isolation: isolate;
-      }
-      #MainContent > div:first-child .media-with-content {
-        border-radius: 40px;
-        overflow: hidden;
-      }
-      /* The theme forces .section's own background to transparent and paints
-         the real white fill on a separate sibling, .section-background —
-         that element had no radius of its own, which is the actual reason
-         the card kept showing square corners no matter what was rounded
-         on .media-with-content. */
-      #MainContent > div:first-child .section-background {
-        border-radius: 40px;
-      }
 
-      /* Hero: image must fully fill its column, edge to edge. Rounding lives
-         ONLY on the outer .media-with-content clip (single source of truth)
-         — the image itself stays radius:0. Rounding it a second time here
-         too produced two slightly offset arcs at the corner instead of one
-         clean edge, since the image's box and the outer clip don't share
-         an exact pixel-identical origin. */
-      #MainContent > div:first-child .media-block {
-        padding: 0 !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-      }
-      #MainContent > div:first-child .media-block__media {
-        border-radius: 0 !important;
-        margin: 0 !important;
-      }
-      @media (min-width: 750px) {
-        #MainContent > div:first-child .media-block {
-          height: 100% !important;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 16px;
+          right: 0;
+          bottom: 28px;
+          left: 0;
+          border-radius: 40px;
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+          pointer-events: none;
+          will-change: transform;
+          isolation: isolate;
         }
-        #MainContent > div:first-child .media-block__media {
-          position: absolute !important;
-          inset: 0 !important;
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover !important;
+
+        .media-with-content {
+          border-radius: 40px;
+          overflow: hidden;
+        }
+
+        /* The theme forces .section's own background to transparent and
+           paints the real white fill on a separate sibling,
+           .section-background — that element had no radius of its own,
+           which is the actual reason the card kept showing square corners
+           no matter what was rounded on .media-with-content. */
+        .section-background {
+          border-radius: 40px;
+        }
+
+        /* Image must fully fill its column, edge to edge. Rounding lives
+           ONLY on the outer .media-with-content clip (single source of
+           truth) — the image itself stays radius:0. Rounding it a second
+           time here too produced two slightly offset arcs at the corner
+           instead of one clean edge, since the image's box and the outer
+           clip don't share an exact pixel-identical origin. */
+        .media-block {
+          padding: 0 !important;
+          margin: 0 !important;
+          border-radius: 0 !important;
+        }
+        .media-block__media {
+          border-radius: 0 !important;
           margin: 0 !important;
         }
-      }
+        @media (min-width: 750px) {
+          .media-block {
+            height: 100% !important;
+          }
+          .media-block__media {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            margin: 0 !important;
+          }
+        }
 
-      /* Hero: cinematic slow zoom on the image + refined type */
-      #MainContent > div:first-child .media-block img {
-        animation: heroSlowZoom 24s ease-in-out infinite alternate;
+        /* Cinematic slow zoom on the image + refined heading type */
+        .media-block img {
+          animation: heroSlowZoom 24s ease-in-out infinite alternate;
+        }
+        .media-with-content__content :is(h1, h2, h3) {
+          font-weight: 500;
+          letter-spacing: -0.02em;
+          line-height: 1.1;
+        }
+        .media-with-content__content .group-block-content > * {
+          opacity: 0;
+          transform: translateY(18px);
+          animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .media-with-content__content .group-block-content > *:nth-child(1) { animation-delay: 0.15s; }
+        .media-with-content__content .group-block-content > *:nth-child(2) { animation-delay: 0.32s; }
+        .media-with-content__content .group-block-content > *:nth-child(3) { animation-delay: 0.48s; }
+        .media-with-content__content .group-block-content > *:nth-child(4) { animation-delay: 0.64s; }
       }
       @keyframes heroSlowZoom {
         from { transform: scale(1); }
         to { transform: scale(1.08); }
       }
-      #MainContent > div:first-child .media-with-content__content h1 {
-        font-weight: 500;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
-      }
-      #MainContent > div:first-child .media-with-content__content .group-block-content > * {
-        opacity: 0;
-        transform: translateY(18px);
-        animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(1) { animation-delay: 0.15s; }
-      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(2) { animation-delay: 0.32s; }
-      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(3) { animation-delay: 0.48s; }
-      #MainContent > div:first-child .media-with-content__content .group-block-content > *:nth-child(4) { animation-delay: 0.64s; }
       @keyframes heroFadeUp {
         to { opacity: 1; transform: translateY(0); }
       }
@@ -377,27 +389,32 @@
         }
       }
 
-      /* Hero (split card): tighter type + spacing on small screens */
+      /* Rounded-card sections: tighter type + spacing on small screens */
       @media (max-width: 767px) {
-        #MainContent > div:first-child {
+        :is(
+          #MainContent > div:first-child,
+          [id$="__story_craft"],
+          [id$="__media_with_content_LfPdEJ"]
+        ) {
           padding: 8px 0 20px;
-        }
-        #MainContent > div:first-child::before {
-          top: 8px;
-          bottom: 20px;
-          border-radius: 24px;
-        }
-        #MainContent > div:first-child .media-with-content {
-          border-radius: 24px;
-        }
-        #MainContent > div:first-child .section-background {
-          border-radius: 24px;
-        }
-        #MainContent > div:first-child .media-with-content__content h1 {
-          font-size: 2rem;
-        }
-        #MainContent > div:first-child .media-with-content__content .group-block-content {
-          padding-inline: 20px !important;
+
+          &::before {
+            top: 8px;
+            bottom: 20px;
+            border-radius: 24px;
+          }
+          .media-with-content {
+            border-radius: 24px;
+          }
+          .section-background {
+            border-radius: 24px;
+          }
+          .media-with-content__content :is(h1, h2, h3) {
+            font-size: 2rem;
+          }
+          .media-with-content__content .group-block-content {
+            padding-inline: 20px !important;
+          }
         }
       }
     </style>
