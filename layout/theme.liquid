@@ -193,6 +193,19 @@
         width: 65%;
       }
 
+      /* Product cards: thin navy frame on hover only, slow luxury fade.
+         Outline (not border) so it never shifts layout, offset a few
+         px so it reads as a floating frame rather than a tight edge. */
+      .product-card {
+        outline: 1px solid transparent;
+        outline-offset: 6px;
+        border-radius: 16px;
+        transition: outline-color 0.6s ease;
+      }
+      .product-card:hover {
+        outline-color: #1a1a2e;
+      }
+
       /* ============================================================
          Header submenus: compact dropdown anchored to its own trigger,
          instead of the theme's default full-width mega-menu panel.
