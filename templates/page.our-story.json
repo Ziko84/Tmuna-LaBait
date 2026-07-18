@@ -223,7 +223,7 @@
       "settings": {
         "media_position": "left",
         "media_width": "medium",
-        "media_height": "70svh",
+        "media_height": "50svh",
         "section_width": "full-width",
         "extend_media": false,
         "background_color": "#f7f5f2",

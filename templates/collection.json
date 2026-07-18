@@ -20,7 +20,7 @@
             "max_width": "normal",
             "alignment": "right",
             "type_preset": "h1",
-            "font": "var(--font-primary--family)",
+            "font": "var(--font-heading--family)",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -140,7 +140,6 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
-        "section_height_custom": 50,
         "background_media": "none",
         "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
@@ -153,8 +152,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 32
+        "padding-block-start": 56,
+        "padding-block-end": 56
       }
     },
     "main": {

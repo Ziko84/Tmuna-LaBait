@@ -8,8 +8,8 @@
  * ------------------------------------------------------------
  */{
   "sections": {
-    "main": {
-      "type": "main-blog",
+    "banner": {
+      "type": "section",
       "blocks": {
         "title": {
           "type": "text",
@@ -17,10 +17,10 @@
           "settings": {
             "text": "<h1>{{ closest.blog.title }}</h1>",
             "width": "100%",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "right",
             "type_preset": "h1",
-            "font": "var(--font-body--family)",
+            "font": "var(--font-heading--family)",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -28,13 +28,31 @@
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
-            "padding-block-start": 48,
-            "padding-block-end": 48,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
+        }
+      },
+      "block_order": [
+        "title"
+      ],
+      "name": "Page banner",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "blocks": {
         "static-blog-post-card": {
           "type": "_blog-post-card",
           "static": true,
@@ -93,9 +111,7 @@
           "block_order": []
         }
       },
-      "block_order": [
-        "title"
-      ],
+      "block_order": [],
       "settings": {
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 0,
@@ -104,6 +120,7 @@
     }
   },
   "order": [
+    "banner",
     "main"
   ]
 }
