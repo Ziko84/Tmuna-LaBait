@@ -134,7 +134,7 @@
       "settings": {
         "media_position": "right",
         "media_width": "wide",
-        "media_height": "60svh",
+        "media_height": "50svh",
         "section_width": "full-width",
         "extend_media": false,
         "background_color": "#ffffff",
