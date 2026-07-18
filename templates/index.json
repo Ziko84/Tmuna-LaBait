@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_split_tlb01": {
@@ -8,8 +17,10 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/hero-image-5.png",
+            "image": "shopify://shop_images/9.png",
             "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
             "image_position": "cover",
             "video_position": "cover"
           },
@@ -182,7 +193,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>כל המוצרים<\/h3>",
+                "text": "<h3>כל המוצרים</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "right",
@@ -388,9 +399,9 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify:\/\/shop_images\/a-beautiful-laser-cut-image-from-black-wood-is-on-a-clean-white-wall-for-a-product-presentation.png",
+            "image": "shopify://shop_images/8.png",
             "link": "",
-            "video": "shopify:\/\/files\/videos\/FC_SKINSCAN_AI_16x9_60sec.mp4",
+            "video": "shopify://files/videos/FC_SKINSCAN_AI_16x9_60sec.mp4",
             "video_loop": true,
             "video_autoplay": true,
             "image_position": "cover",
@@ -411,7 +422,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>מהמלאכה שלנו, אל הקיר שלכם<\/h2>",
+                "text": "<h2>מהמלאכה שלנו, אל הקיר שלכם</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "right",
@@ -436,7 +447,7 @@
             "text_jxGhdJ": {
               "type": "text",
               "settings": {
-                "text": "<p>אנחנו היצרן, לא מתווכים. כל פריט מתוכנן, נחתך ומורכב ביד באולפן שלנו מעץ בוטיק, בדיוק של שבריר מילימטר. כשמדליקים את התאורה מאחור, האור עובר דרך החריטה ויוצר תמונה חיה על הקיר. שילוב של אומנות, טכנולוגיה ואור.<\/p>",
+                "text": "<p>אנחנו היצרן, לא מתווכים. כל פריט מתוכנן, נחתך ומורכב ביד באולפן שלנו מעץ בוטיק, בדיוק של שבריר מילימטר. כשמדליקים את התאורה מאחור, האור עובר דרך החריטה ויוצר תמונה חיה על הקיר. שילוב של אומנות, טכנולוגיה ואור.</p>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -462,7 +473,7 @@
               "type": "button",
               "settings": {
                 "label": "לגלות את הסיפור שלנו",
-                "link": "shopify:\/\/pages\/our-story",
+                "link": "shopify://pages/our-story",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -543,7 +554,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<h2>Shop by Collection<\/h2>",
+                "text": "<h2>Shop by Collection</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",

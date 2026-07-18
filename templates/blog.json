@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "banner": {
       "type": "section",
@@ -111,7 +112,6 @@
           "block_order": []
         }
       },
-      "block_order": [],
       "settings": {
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 0,
