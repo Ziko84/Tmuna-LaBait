@@ -193,7 +193,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>כל המוצרים</h3>",
+                "text": "<h3>הנמכרים ביותר</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "right",
