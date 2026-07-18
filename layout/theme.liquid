@@ -227,7 +227,14 @@
            else not yet identified) is incompatible with clipping it
            directly. Do corner-clipping on .menu-list__submenu-inner
            only, or on the .mega-menu content itself - never here. */
-        background-color: transparent !important;
+        /* DevTools confirmed transparent was actually winning here -
+           the gray wasn't this box's own fill, it was bleeding through
+           from whatever sits behind it on the page (the hero card's
+           own shadow, most likely, since the dropdown floats right
+           above it). Painting the exact same white as the inner card
+           makes the square-vs-rounded-corner seam invisible without
+           needing overflow:hidden on this element at all. */
+        background-color: var(--color-background) !important;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .menu-list__submenu-inner {
         display: block;
