@@ -194,6 +194,59 @@
         transition: width 0.3s ease 0.3s;
       }
 
+      /* ============================================================
+         Header submenus: compact dropdown anchored to its own trigger,
+         instead of the theme's default full-width mega-menu panel.
+         The theme's panel is `position:absolute; left:0; width:100%`
+         (spans the entire header row, physical left) with its content
+         then flex/grid-anchored to one fixed edge — for a small store
+         with plain text links (Our Story under Blog, policies under
+         Contact) that meant the dropdown rendered nowhere near the
+         item you actually hovered. This makes it a normal compact
+         list that opens directly under its own parent, RTL or LTR.
+         ============================================================ */
+      .menu-list__list-item:where(:not([slot='overflow'])) {
+        position: relative;
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu {
+        width: max-content;
+        min-width: 200px;
+        max-width: 280px;
+        left: auto;
+        right: auto;
+        inset-inline-start: 0;
+        top: 100%;
+        clip-path: none;
+        padding-inline: 0;
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .menu-list__submenu-inner {
+        display: block;
+        padding: 8px;
+        max-height: none;
+        background: var(--color-background);
+        border-radius: 16px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu {
+        margin: 0 !important;
+        width: auto !important;
+        max-width: none !important;
+        padding: 0 !important;
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu :is(.mega-menu__grid, .mega-menu__list, .mega-menu__column) {
+        display: block;
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu__link {
+        display: block;
+        padding: 10px 16px;
+        border-radius: 10px;
+        white-space: nowrap;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.04);
+        }
+      }
+
       /* Product page: keep image left, details/buttons right */
       .product-information__grid {
         direction: ltr;
