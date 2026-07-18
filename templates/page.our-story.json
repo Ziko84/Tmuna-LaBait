@@ -1,0 +1,301 @@
+{
+  "sections": {
+    "story_hero": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/hero-image-2.png",
+            "link": "",
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "text_eyebrow": {
+              "type": "text",
+              "settings": {
+                "text": "<p>מי אנחנו</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "h6",
+                "font": "var(--font-accent--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "0.08em",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>הסיפור שנחתך באור</h1>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "h1",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_intro": {
+              "type": "text",
+              "settings": {
+                "text": "<p>תמונה לבית נולדה מתוך אהבה לעיצוב ולפרטים הקטנים. אנחנו מאמינים שקיר ריק הוא הזדמנות, לא רק משטח.</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_shop": {
+              "type": "button",
+              "settings": {
+                "label": "גלו את הקולקציה",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button-custom",
+                "custom_button_background": "#1a1a2e",
+                "custom_button_text": "#ffffff",
+                "custom_button_border": "#1a1a2e",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_eyebrow",
+            "text_heading",
+            "text_intro",
+            "button_shop"
+          ]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "right",
+        "media_width": "wide",
+        "media_height": "50svh",
+        "section_width": "full-width",
+        "extend_media": false,
+        "background_color": "#ffffff",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "story_craft": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/hero-image-3.png",
+            "link": "",
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "text_heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>מהסקיצה הראשונה ועד הקיר שלכם</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "right",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_body": {
+              "type": "text",
+              "settings": {
+                "text": "<p>כל יצירה מתחילה בסקיצה ונחתכת בלייזר דיוק על עץ בוטיק, בדיוק של שבריר מילימטר. כשמדליקים את התאורה מאחור, האור עובר דרך החריטה ומצייר תמונה חיה על הקיר. שילוב של אומנות, טכנולוגיה ואור, שנוצר כולו באולפן שלנו.</p>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "rte",
+                "font": "var(--font-primary--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_heading",
+            "text_body"
+          ]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "left",
+        "media_width": "medium",
+        "media_height": "70svh",
+        "section_width": "page-width",
+        "extend_media": true,
+        "background_color": "#f7f5f2",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "story_philosophy": {
+      "type": "section",
+      "blocks": {
+        "text_quote": {
+          "type": "text",
+          "settings": {
+            "text": "<p>אנחנו מאמינים שאמנות טובה לא צריכה לצעוק. היא נוכחת בשקט, מדויקת, ונשארת רלוונטית שנים קדימה.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#1a1a2e",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_shop": {
+          "type": "button",
+          "settings": {
+            "label": "לצפייה בקולקציה המלאה",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_quote",
+        "button_shop"
+      ],
+      "name": "t:names.section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "background_color": "#ffffff",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    }
+  },
+  "order": [
+    "story_hero",
+    "story_craft",
+    "story_philosophy"
+  ]
+}
