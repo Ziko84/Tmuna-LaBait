@@ -227,20 +227,24 @@
         border-radius: 16px;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
       }
+      /* .mega-menu carries the generic .section class, which sets up a
+         3-column page-width grid (grid-template-columns sized off
+         --page-margin/--page-width, meant for full-bleed page
+         sections). Inside our small anchored dropdown that grid still
+         computed its own page-scale box, a different rectangle than
+         our rounded card wrapped around it — the sharp gray corners
+         peeking out from behind the rounded white card. Killing the
+         grid so it's just a plain block that fills the card. */
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu {
+        display: block !important;
         margin: 0 !important;
-        width: auto !important;
+        width: 100% !important;
         max-width: none !important;
         padding: 0 !important;
-        overflow: hidden;
-        border-radius: 16px;
+        background: none !important;
       }
-      /* .section always paints its real fill on this separate sibling
-         (the theme forces .section itself transparent) — it doesn't
-         share our rounded corners, so it was the source of the square
-         gray corners peeking out from behind the compact dropdown. */
-      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu .section-background {
-        display: none;
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu > * {
+        grid-column: unset;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu :is(.mega-menu__grid, .mega-menu__list, .mega-menu__column) {
         display: block;
