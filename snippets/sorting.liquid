@@ -23,7 +23,9 @@
     assign default_sort_by = results.default_sort_by
     for option in results.sort_options
       if option.value == sort_by
-        assign status = option.name
+        capture status
+          render 'sort-option-label', option: option
+        endcapture
       endif
     endfor
   %}
@@ -51,7 +53,7 @@
               selected
             {% endif %}
           >
-            {{ option.name }}
+            {% render 'sort-option-label', option: option %}
           </option>
         {% endfor %}
       </select>
@@ -126,7 +128,7 @@
                   {% endif %}
                   value="{{ option.value }}"
                   class="sorting-filter__input"
-                  data-option-name="{{ option.name }}"
+                  data-option-name="{% render 'sort-option-label', option: option %}"
                   {% if option.value == sort_by %}
                     checked
                   {% endif %}
@@ -135,7 +137,7 @@
                 <span class="svg-wrapper icon-checkmark sorting-filter__checkmark">
                   {{- 'icon-checkmark.svg' | inline_asset_content -}}
                 </span>
-                <span class="sorting-filter__label">{{ option.name }}</span>
+                <span class="sorting-filter__label">{% render 'sort-option-label', option: option %}</span>
               </div>
             </label>
           {% endfor %}

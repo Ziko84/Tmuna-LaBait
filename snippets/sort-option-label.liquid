@@ -1,0 +1,29 @@
+{%- doc -%}
+  Renders a Hebrew label for a collection/search sort option, since
+  Shopify's native option.name is not translated for this store's locale.
+
+  @param {object} option - A sort option from results.sort_options
+{%- enddoc -%}
+
+{%- liquid
+  assign label = option.name
+  case option.value
+    when 'manual'
+      assign label = 'מומלץ'
+    when 'best-selling'
+      assign label = 'הנמכרים ביותר'
+    when 'title-ascending'
+      assign label = 'לפי שם, א-ת'
+    when 'title-descending'
+      assign label = 'לפי שם, ת-א'
+    when 'price-ascending'
+      assign label = 'מחיר, מהנמוך לגבוה'
+    when 'price-descending'
+      assign label = 'מחיר, מהגבוה לנמוך'
+    when 'created-descending'
+      assign label = 'החדשים ביותר'
+    when 'created-ascending'
+      assign label = 'הישנים ביותר'
+  endcase
+-%}
+{{- label -}}
