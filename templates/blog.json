@@ -47,7 +47,7 @@
         "vertical_alignment": "center",
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 64,
+        "padding-block-start": 32,
         "padding-block-end": 64
       }
     },
