@@ -17,29 +17,22 @@
       {% liquid
         assign label = tab_labels[forloop.index0]
         assign is_current = false
-        assign tab_url = blank
+        assign tab_url = routes.root_url | append: 'collections/' | append: handle
 
         if collection.handle == handle
           assign is_current = true
           assign tab_url = collection.url
-        else
-          assign tab_collection = collections[handle]
-          if tab_collection
-            assign tab_url = tab_collection.url
-          endif
         endif
       %}
-      {% if tab_url %}
-        <a
-          href="{{ tab_url }}"
-          class="collection-tabs__tab{% if is_current %} is-active{% endif %}"
-          {% if is_current %}
-            aria-current="page"
-          {% endif %}
-        >
-          {{ label }}
-        </a>
-      {% endif %}
+      <a
+        href="{{ tab_url }}"
+        class="collection-tabs__tab{% if is_current %} is-active{% endif %}"
+        {% if is_current %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{ label }}
+      </a>
     {% endfor %}
   </nav>
 </div>
