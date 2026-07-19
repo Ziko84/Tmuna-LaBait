@@ -7,20 +7,24 @@
     padding-block-end: {{ section.settings.padding-block-end }}px;
   "
 >
+  {% liquid
+    assign tab_handles = 'frontpage,נוף-וטבע,ערים-ומפות,רוחניות-ויודאיקה,מופשט-ומינימליסטי,חיות' | split: ','
+    assign tab_labels = 'הכל,נוף וטבע,ערים ומפות,רוחניות ויודאיקה,מופשט ומינימליסטי,חיות' | split: ','
+    assign url_prefix = collection.url | split: 'collections/' | first
+  %}
   <nav class="collection-tabs">
-    {% for tab_collection in section.settings.tab_collections %}
+    {% for handle in tab_handles %}
       {% liquid
-        assign label = tab_collection.title
-        if tab_collection.handle == 'frontpage'
-          assign label = 'הכל'
-        endif
+        assign label = tab_labels[forloop.index0]
         assign is_current = false
-        if collection.handle == tab_collection.handle
+        assign tab_url = url_prefix | append: 'collections/' | append: handle
+        if collection.handle == handle
           assign is_current = true
+          assign tab_url = collection.url
         endif
       %}
       <a
-        href="{{ tab_collection.url }}"
+        href="{{ tab_url }}"
         class="collection-tabs__tab{% if is_current %} is-active{% endif %}"
         {% if is_current %}
           aria-current="page"
@@ -94,11 +98,6 @@
     "templates": ["collection"]
   },
   "settings": [
-    {
-      "type": "collection_list",
-      "id": "tab_collections",
-      "label": "Tabs"
-    },
     {
       "type": "range",
       "id": "padding-block-start",

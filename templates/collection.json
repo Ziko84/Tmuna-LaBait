@@ -154,7 +154,7 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 64,
-        "padding-block-end": 64
+        "padding-block-end": 40
       }
     },
     "main": {
@@ -332,23 +332,15 @@
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 32,
+        "padding-block-start": 16,
         "padding-block-end": 32
       }
     },
     "collection-tabs": {
       "type": "collection-tabs",
       "settings": {
-        "tab_collections": [
-          "gid://shopify/Collection/340236861629",
-          "gid://shopify/Collection/340573814973",
-          "gid://shopify/Collection/340573847741",
-          "gid://shopify/Collection/340573880509",
-          "gid://shopify/Collection/340573913277",
-          "gid://shopify/Collection/340611367101"
-        ],
         "padding-block-start": 0,
-        "padding-block-end": 32
+        "padding-block-end": 16
       }
     }
   },
