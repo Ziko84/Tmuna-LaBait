@@ -16,13 +16,24 @@
     {% for handle in tab_handles %}
       {% liquid
         assign label = tab_labels[forloop.index0]
-        assign tab_collection = collections[handle]
+        assign is_current = false
+        assign tab_url = blank
+
+        if collection.handle == handle
+          assign is_current = true
+          assign tab_url = collection.url
+        else
+          assign tab_collection = collections[handle]
+          if tab_collection
+            assign tab_url = tab_collection.url
+          endif
+        endif
       %}
-      {% if tab_collection %}
+      {% if tab_url %}
         <a
-          href="{{ tab_collection.url }}"
-          class="collection-tabs__tab{% if collection.handle == handle %} is-active{% endif %}"
-          {% if collection.handle == handle %}
+          href="{{ tab_url }}"
+          class="collection-tabs__tab{% if is_current %} is-active{% endif %}"
+          {% if is_current %}
             aria-current="page"
           {% endif %}
         >
