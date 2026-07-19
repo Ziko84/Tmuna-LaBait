@@ -14,11 +14,48 @@
   </rte-formatter>
 </div>
 
+{% javascript %}
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    const items = document.querySelectorAll('.page-content > *:not(.is-revealed)');
+    if (!items.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    items.forEach((item) => observer.observe(item));
+  })();
+{% endjavascript %}
+
 {% stylesheet %}
   .page-content {
     color: var(--color, inherit);
     font-size: 1.15rem;
     line-height: 1.8;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .page-content > * {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .page-content > *.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .page-content h2 {
