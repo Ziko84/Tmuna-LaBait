@@ -522,10 +522,10 @@
 
     /* View transitions */
     /* View transition old */
-    --view-transition-old-main-content: var(--animation-speed) var(--animation-easing) both fadeOut;
+    --view-transition-old-main-content: var(--animation-speed-medium) var(--animation-timing-fade-out) both fadeOut;
 
     /* View transition new */
-    --view-transition-new-main-content: var(--animation-speed) var(--animation-easing) both fadeIn, var(--animation-speed) var(--animation-easing) both slideInTopViewTransition;
+    --view-transition-new-main-content: 0.35s var(--animation-timing-fade-in) both fadeIn, 0.35s var(--animation-timing-fade-in) both slideInSubtleViewTransition;
 
     /* Focus */
     --focus-outline-width: 0.09375rem;

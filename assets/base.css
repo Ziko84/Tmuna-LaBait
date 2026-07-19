@@ -3316,6 +3316,12 @@ fly-to-cart.fly-to-cart--sticky {
   }
 }
 
+@keyframes slideInSubtleViewTransition {
+  from {
+    transform: translateY(24px);
+  }
+}
+
 @keyframes elementSlideInTop {
   from {
     margin-top: var(--padding-sm);
