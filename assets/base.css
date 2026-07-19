@@ -122,6 +122,12 @@ select {
 }
 
 @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card-hover-effect-lift .product-card,
+  .card-hover-effect-lift .collection-card,
+  .card-hover-effect-lift .predictive-search-results__card {
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  }
+
   .card-hover-effect-lift .product-card:hover,
   .card-hover-effect-lift .collection-card:hover,
   .card-hover-effect-lift .predictive-search-results__card:hover {
