@@ -15,7 +15,7 @@
           "type": "disclosures",
           "name": "t:names.disclosures",
           "settings": {
-            "heading": "Disclosures",
+            "heading": "גילוי נאות",
             "heading_preset": "h5",
             "open_by_default": false,
             "icon": "caret",
@@ -386,7 +386,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Made with care</p>",
+                            "text": "<p>נעשה בקפידה</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -468,7 +468,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Great value</p>",
+                            "text": "<p>ערך אמיתי</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -595,7 +595,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Elegant design</p>",
+                            "text": "<p>עיצוב אלגנטי</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -677,7 +677,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Quality materials</p>",
+                            "text": "<p>חומרים איכותיים</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -741,7 +741,7 @@
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Details",
+                    "heading": "פרטים נוספים",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -750,7 +750,7 @@
                     "text_McjMWz": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>This product is crafted with quality materials to ensure durability and performance. Designed with your convenience in mind, it seamlessly fits into your everyday life.</p>",
+                        "text": "<p>היצירה נחתכת בלייזר בדיוק של שבריר מילימטר, מעץ בוטיק איכותי, ומוארת באור רך מבפנים. כל פרט מתוכנן בקפידה כדי להשתלב בבית שלכם.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -780,7 +780,7 @@
                 "accordion_row_aaFerA": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping & Returns",
+                    "heading": "משלוחים והחזרות",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -789,7 +789,7 @@
                     "text_DNPAct": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We strive to process and ship all orders in a timely manner, working diligently to ensure that your items are on their way to you as soon as possible. </p><p>We are committed to ensuring a positive shopping experience for all our customers. If for any reason you wish to return an item, we invite you to reach out to our team for assistance, and we will evaluate every return request with care and consideration.</p>",
+                        "text": "<p>אנחנו עושים כל מאמץ לשלוח כל הזמנה בזמן, כדי שהיצירה תגיע אליכם בהקדם האפשרי.</p><p>חשוב לנו שתהיו מרוצים מהרכישה. אם תרצו להחזיר פריט, פנו אלינו דרך עמוד צרו קשר ונטפל בבקשה בקפידה ובהתחשבות.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -951,7 +951,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<p>Shop The Full Collection</p>",
+                "text": "<p>גלו את הקולקציה המלאה</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
