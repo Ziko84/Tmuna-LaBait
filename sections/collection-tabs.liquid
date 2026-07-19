@@ -1,10 +1,5 @@
 
 
-{% liquid
-  assign tab_handles = 'frontpage,נוף-וטבע,ערים-ומפות,רוחניות-ויודאיקה,מופשט-ומינימליסטי,חיות' | split: ','
-  assign tab_labels = 'הכל,נוף וטבע,ערים ומפות,רוחניות ויודאיקה,מופשט ומינימליסטי,חיות' | split: ','
-%}
-
 <div
   class="collection-tabs-wrapper"
   style="
@@ -13,19 +8,19 @@
   "
 >
   <nav class="collection-tabs">
-    {% for handle in tab_handles %}
+    {% for tab_collection in section.settings.tab_collections %}
       {% liquid
-        assign label = tab_labels[forloop.index0]
+        assign label = tab_collection.title
+        if tab_collection.handle == 'frontpage'
+          assign label = 'הכל'
+        endif
         assign is_current = false
-        assign tab_url = routes.root_url | append: 'collections/' | append: handle
-
-        if collection.handle == handle
+        if collection.handle == tab_collection.handle
           assign is_current = true
-          assign tab_url = collection.url
         endif
       %}
       <a
-        href="{{ tab_url }}"
+        href="{{ tab_collection.url }}"
         class="collection-tabs__tab{% if is_current %} is-active{% endif %}"
         {% if is_current %}
           aria-current="page"
@@ -99,6 +94,11 @@
     "templates": ["collection"]
   },
   "settings": [
+    {
+      "type": "collection_list",
+      "id": "tab_collections",
+      "label": "Tabs"
+    },
     {
       "type": "range",
       "id": "padding-block-start",
