@@ -1,0 +1,121 @@
+
+
+{% liquid
+  assign tab_handles = 'frontpage,נוף-וטבע,ערים-ומפות,רוחניות-ויודאיקה,מופשט-ומינימליסטי,חיות' | split: ','
+  assign tab_labels = 'הכל,נוף וטבע,ערים ומפות,רוחניות ויודאיקה,מופשט ומינימליסטי,חיות' | split: ','
+%}
+
+<div
+  class="collection-tabs-wrapper"
+  style="
+    padding-block-start: {{ section.settings.padding-block-start }}px;
+    padding-block-end: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <nav class="collection-tabs">
+    {% for handle in tab_handles %}
+      {% liquid
+        assign label = tab_labels[forloop.index0]
+        assign tab_collection = collections[handle]
+      %}
+      {% if tab_collection %}
+        <a
+          href="{{ tab_collection.url }}"
+          class="collection-tabs__tab{% if collection.handle == handle %} is-active{% endif %}"
+          {% if collection.handle == handle %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{ label }}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+</div>
+
+{% stylesheet %}
+  .collection-tabs-wrapper {
+    width: 100%;
+  }
+
+  .collection-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-inline: 24px;
+  }
+
+  .collection-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-tabs {
+      justify-content: flex-start;
+    }
+  }
+
+  .collection-tabs__tab {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 15%);
+    font-family: var(--font-body--family);
+    font-size: 0.95rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: background-color var(--hover-transition-duration) var(--hover-transition-timing),
+      color var(--hover-transition-duration) var(--hover-transition-timing),
+      border-color var(--hover-transition-duration) var(--hover-transition-timing);
+  }
+
+  .collection-tabs__tab:hover {
+    border-color: {{ settings.color_palette.color1 }};
+  }
+
+  .collection-tabs__tab.is-active {
+    background-color: {{ settings.color_palette.color1 }};
+    border-color: {{ settings.color_palette.color1 }};
+    color: #ffffff;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection tabs",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "presets": []
+}
+{% endschema %}

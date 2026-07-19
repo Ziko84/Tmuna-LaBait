@@ -335,10 +335,18 @@
         "padding-block-start": 32,
         "padding-block-end": 32
       }
+    },
+    "collection-tabs": {
+      "type": "collection-tabs",
+      "settings": {
+        "padding-block-start": 0,
+        "padding-block-end": 32
+      }
     }
   },
   "order": [
     "section",
+    "collection-tabs",
     "main"
   ]
 }
