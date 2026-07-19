@@ -88,14 +88,14 @@
             "text_intro": {
               "type": "text",
               "settings": {
-                "text": "<p>תמונה לבית נולדה מתוך אהבה לעיצוב ולפרטים הקטנים. אנחנו מאמינים שקיר ריק הוא הזדמנות, לא רק משטח.</p>",
+                "text": "<p>תמונה לבית נולדה מתוך אהבה לעיצוב ולפרטים הקטנים. כל יצירה מתחילה בסקיצה, עוברת בין ידיים, ומסתיימת באור.</p>",
                 "width": "100%",
-                "max_width": "narrow",
+                "max_width": "normal",
                 "alignment": "right",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1.125rem",
-                "line_height": "normal",
+                "line_height": "loose",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
@@ -109,31 +109,12 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "button_shop": {
-              "type": "button",
-              "settings": {
-                "label": "גלו את החנות",
-                "link": "shopify://collections/frontpage",
-                "open_in_new_tab": false,
-                "style_class": "button-custom",
-                "custom_button_background": "#1a1a2e",
-                "custom_button_text": "#ffffff",
-                "custom_button_border": "#1a1a2e",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "text_eyebrow",
             "text_heading",
-            "text_intro",
-            "button_shop"
+            "text_intro"
           ]
         }
       },
@@ -141,7 +122,7 @@
       "settings": {
         "media_position": "right",
         "media_width": "wide",
-        "media_height": "50svh",
+        "media_height": "42svh",
         "section_width": "full-width",
         "extend_media": false,
         "background_color": "#ffffff",
