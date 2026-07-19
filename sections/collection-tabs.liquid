@@ -13,8 +13,8 @@
     assign url_prefix = collection.url | split: 'collections/' | first
   %}
   <nav class="collection-tabs">
-    {% for handle in tab_handles %}
-      {% liquid
+    {%- for handle in tab_handles -%}
+      {%- liquid
         assign label = tab_labels[forloop.index0]
         assign is_current = false
         assign tab_url = url_prefix | append: 'collections/' | append: handle
@@ -22,17 +22,10 @@
           assign is_current = true
           assign tab_url = collection.url
         endif
-      %}
-      <a
-        href="{{ tab_url }}"
-        class="collection-tabs__tab{% if is_current %} is-active{% endif %}"
-        {% if is_current %}
-          aria-current="page"
-        {% endif %}
-      >
-        {{ label }}
-      </a>
-    {% endfor %}
+      -%}
+      {%- capture tab_classes -%}collection-tabs__tab{% if is_current %} is-active{% endif %}{%- endcapture -%}
+      <a id="collection-tab-{{ forloop.index0 }}" href="{{ tab_url }}" class="{{ tab_classes | strip }}"{% if is_current %} aria-current="page"{% endif %}>{{- label | strip -}}</a>
+    {%- endfor -%}
   </nav>
 </div>
 
