@@ -1,6 +1,12 @@
 
 
-<div
+<script
+  src="{{ 'reveal-on-scroll.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<reveal-on-scroll
   class="page-content"
   style="
     {% if block.settings.text_color != blank %}
@@ -12,31 +18,7 @@
   <rte-formatter>
     {{ page.content }}
   </rte-formatter>
-</div>
-
-{% javascript %}
-  (function () {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!('IntersectionObserver' in window)) return;
-
-    const items = document.querySelectorAll('.page-content > *:not(.is-revealed)');
-    if (!items.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-revealed');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
-    );
-
-    items.forEach((item) => observer.observe(item));
-  })();
-{% endjavascript %}
+</reveal-on-scroll>
 
 {% stylesheet %}
   .page-content {
@@ -46,13 +28,13 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .page-content > * {
+    .page-content rte-formatter > * {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .page-content > *.is-revealed {
+    .page-content rte-formatter > *.is-revealed {
       opacity: 1;
       transform: translateY(0);
     }
