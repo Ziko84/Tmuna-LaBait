@@ -421,7 +421,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>תהליך היצירה</p>",
+                "text": "<p>אור שנולד מעץ</p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
