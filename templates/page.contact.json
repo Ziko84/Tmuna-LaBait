@@ -20,7 +20,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
-            "type_preset": "h2",
+            "type_preset": "h1",
             "font": "var(--font-heading--family)",
             "line_height": "normal",
             "letter_spacing": "normal",
@@ -47,8 +47,8 @@
         "vertical_alignment": "center",
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     },
     "section": {
