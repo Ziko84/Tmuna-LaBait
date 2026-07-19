@@ -38,59 +38,16 @@
       %}
       {% for article in blog.articles %}
         {% liquid
-          # Defaults for compact layout
+          # Uniform card grid: every post gets the same size, no featured/hero treatment
           assign col_span = 2
-          assign scale = 0.6
+          assign scale = 0.8
           assign is_horizontal = false
 
-          case items_on_page
-            when 1
-              # Single post: full width hero
-              assign col_span = 6
-              assign scale = 1
-              assign is_horizontal = true
-            when 2
-              # Two posts: both standard side by side
-              assign col_span = 3
-              assign scale = 0.8
-            when 3
-              # Three posts: hero + 2 standard
-              if forloop.index == 1
-                assign col_span = 6
-                assign scale = 1
-                assign is_horizontal = true
-              else
-                assign col_span = 3
-                assign scale = 0.8
-              endif
-            when 4
-              # Four posts: all standard in 2x2 grid
-              assign col_span = 3
-              assign scale = 0.8
-            when 5
-              # Five posts: hero + 4 standard
-              if forloop.index == 1
-                assign col_span = 6
-                assign scale = 1
-                assign is_horizontal = true
-              else
-                assign col_span = 3
-                assign scale = 0.8
-              endif
-            else
-              # 6+ posts: hero, 2 standard, rest compact
-              if forloop.index == 1
-                assign col_span = 6
-                assign scale = 1
-                assign is_horizontal = true
-              elsif forloop.index <= 3
-                assign col_span = 3
-                assign scale = 0.8
-              else
-                assign col_span = 2
-                assign scale = 0.6
-              endif
-          endcase
+          if items_on_page == 1
+            assign col_span = 6
+          elsif items_on_page == 2
+            assign col_span = 3
+          endif
         %}
         {% style %}
           [data-blog-index="{{ section.id }}-{{ forloop.index }}"] {
