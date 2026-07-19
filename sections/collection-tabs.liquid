@@ -8,8 +8,8 @@
   "
 >
   {% liquid
-    assign tab_handles = 'frontpage,נוף-וטבע,ערים-ומפות,רוחניות-ויודאיקה,מופשט-ומינימליסטי,חיות' | split: ','
-    assign tab_labels = 'הכל,נוף וטבע,ערים ומפות,רוחניות ויודאיקה,מופשט ומינימליסטי,חיות' | split: ','
+    assign tab_handles = 'frontpage,חיות,נוף-וטבע,ערים-ומפות,רוחניות-ויודאיקה,מופשט-ומינימליסטי' | split: ','
+    assign tab_labels = 'הכל,חיות,נוף וטבע,ערים ומפות,רוחניות ויודאיקה,מופשט ומינימליסטי' | split: ','
     assign url_prefix = collection.url | split: 'collections/' | first
   %}
   <nav class="collection-tabs">
