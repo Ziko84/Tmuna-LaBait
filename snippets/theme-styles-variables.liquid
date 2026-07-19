@@ -522,10 +522,10 @@
 
     /* View transitions */
     /* View transition old */
-    --view-transition-old-main-content: var(--animation-speed-medium) var(--animation-timing-fade-out) both fadeOut;
+    --view-transition-old-main-content: 0.28s cubic-bezier(0.4, 0, 0.2, 1) both viewTransitionExitPremium;
 
     /* View transition new */
-    --view-transition-new-main-content: 0.35s var(--animation-timing-fade-in) both fadeIn, 0.35s var(--animation-timing-fade-in) both slideInSubtleViewTransition;
+    --view-transition-new-main-content: 0.55s cubic-bezier(0.16, 1, 0.3, 1) both viewTransitionEnterPremium;
 
     /* Focus */
     --focus-outline-width: 0.09375rem;
