@@ -172,99 +172,91 @@
         "padding-block-end": 0
       }
     },
-    "story_craft": {
-      "type": "media-with-content",
+    "story_editorial": {
+      "type": "section",
       "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
+        "text_heading": {
+          "type": "text",
           "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/A2_20_4.png",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
+            "text": "<h2>מהסקיצה הראשונה ועד הקיר שלכם</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#1a1a2e",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {}
         },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
+        "text_body": {
+          "type": "text",
           "settings": {
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
+            "text": "<p>כל יצירה מתחילה בסקיצה. עיפרון על נייר, לפני שהיא הופכת לקובץ, ולפני שהיא הופכת לעץ.</p><p>אנחנו בוחרים עץ בוטיק בקפידה, ולוקחים אותו למכונת הלייזר שלנו. שם, בדיוק של שבריר מילימטר, החריטה נולדת.</p><p>בלב כל יצירה מסתתר פס תאורה. כשמדליקים אותו, האור לא רק מאיר, הוא מספר את הסיפור מחדש בכל ערב.</p><p>אנחנו לא עובדים עם ספקים או מתווכים. כל שלב, מהסקיצה ועד ההרכבה הסופית, קורה כאן, באולפן שלנו.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-primary--family)",
+            "font_size": "1.25rem",
+            "line_height": "loose",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#1a1a2e",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {
-            "text_heading": {
-              "type": "text",
-              "settings": {
-                "text": "<h2>מהסקיצה הראשונה ועד הקיר שלכם</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "right",
-                "type_preset": "h3",
-                "font": "var(--font-heading--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_body": {
-              "type": "text",
-              "settings": {
-                "text": "<p>כל יצירה מתחילה בסקיצה ונחתכת בלייזר דיוק על עץ בוטיק, בדיוק של שבריר מילימטר. כשמדליקים את התאורה מאחור, האור עובר דרך החריטה ומצייר תמונה חיה על הקיר. שילוב של אומנות, טכנולוגיה ואור, שנוצר כולו באולפן שלנו.</p>",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "right",
-                "type_preset": "rte",
-                "font": "var(--font-primary--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_heading",
-            "text_body"
-          ]
+          "blocks": {}
         }
       },
-      "name": "t:names.media_with_text",
+      "block_order": [
+        "text_heading",
+        "text_body"
+      ],
+      "name": "t:names.section",
       "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "50svh",
-        "section_width": "full-width",
-        "extend_media": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
         "background_color": "#f7f5f2",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 96,
+        "padding-block-end": 96
       }
     },
     "story_philosophy": {
@@ -352,7 +344,7 @@
   "order": [
     "banner",
     "story_hero",
-    "story_craft",
+    "story_editorial",
     "story_philosophy"
   ]
 }
