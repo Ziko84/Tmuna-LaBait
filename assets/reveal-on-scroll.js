@@ -11,9 +11,9 @@ class RevealOnScroll extends Component {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!('IntersectionObserver' in window)) return;
 
-    const formatter = this.querySelector('rte-formatter');
-    const items = formatter ? formatter.children : this.children;
-    if (!items || !items.length) return;
+    const formatter = this.querySelector(':scope > rte-formatter');
+    const items = formatter ? Array.from(formatter.children) : [this];
+    if (!items.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
