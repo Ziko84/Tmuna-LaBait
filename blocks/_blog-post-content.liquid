@@ -19,10 +19,32 @@
     max-width: var(--normal-content-width);
     margin: 0 auto;
     color: var(--color, inherit);
+    font-size: 1.25rem;
+    line-height: 1.8;
+  }
+
+  .blog-post-content p {
+    margin-block: 1.6em;
+  }
+
+  .blog-post-content h2 {
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-block: 2.4em 0.9em;
+  }
+
+  .blog-post-content img {
+    border-radius: 20px;
+    margin-block: 2.2em;
   }
 
   .blog-post-content a {
     color: currentcolor;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 {% endstylesheet %}
 
