@@ -351,21 +351,24 @@
   .header-actions__favorites-icon {
     position: relative;
     display: flex;
+    width: 20px;
   }
 
   .header-actions__favorites-count {
     position: absolute;
-    top: -4px;
-    inset-inline-end: -6px;
-    min-width: 14px;
-    height: 14px;
-    padding-inline: 3px;
-    border-radius: 999px;
-    background-color: #1a1a2e;
-    color: #ffffff;
-    font-size: 9px;
-    line-height: 14px;
-    text-align: center;
+    width: 20px;
+    aspect-ratio: 1;
+    top: 4.5px;
+    right: 2.5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+    padding-inline: 0.2em;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    font-size: var(--font-size--3xs);
     font-family: var(--font-paragraph--family);
   }
 {% endstylesheet %}
