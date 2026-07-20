@@ -1,0 +1,126 @@
+{% doc %}
+  Renders the favorites (wishlist) drawer. Items are stored client-side in localStorage
+  and fetched from the storefront's public product JSON endpoint when the drawer opens.
+{% enddoc %}
+
+<script
+  type="module"
+  src="{{ 'favorites.js' | asset_url }}"
+  fetchpriority="low"
+></script>
+
+<theme-drawer id="favorites-drawer" data-skip-node-update>
+  <dialog
+    ref="panel"
+    class="theme-drawer__dialog color-custom-drawer"
+    aria-labelledby="favorites-drawer-heading"
+  >
+    <favorites-drawer-component
+      data-money-format="{{ shop.money_format }}"
+      data-currency="{{ cart.currency.iso_code }}"
+      data-empty-text="{{ 'content.favorites_empty' | t }}"
+      data-remove-text="{{ 'actions.remove' | t }}"
+    >
+      <template data-close-icon>{{- 'icon-close.svg' | inline_asset_content -}}</template>
+
+      {% capture favorites_badge_html %}
+        <favorites-count class="theme-drawer__badge visually-hidden" aria-hidden="true"></favorites-count>
+      {% endcapture %}
+
+      {% render 'theme-drawer-header',
+        title: 'content.favorites_title' | t,
+        drawer_id: 'favorites-drawer',
+        heading_id: 'favorites-drawer-heading',
+        title_append: favorites_badge_html
+      %}
+
+      <div class="favorites-drawer__content">
+        <div class="favorites-drawer__items" ref="list" on:click="/removeItem"></div>
+      </div>
+    </favorites-drawer-component>
+  </dialog>
+</theme-drawer>
+
+{% stylesheet %}
+  .favorites-drawer__content {
+    padding-inline: var(--padding-lg);
+    padding-block-end: var(--padding-lg);
+    overflow-y: auto;
+  }
+
+  .favorites-drawer__empty {
+    color: var(--color-foreground-subdued);
+    padding-block: var(--padding-lg);
+    text-align: center;
+  }
+
+  .favorites-drawer__item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    padding-block: var(--padding-sm);
+    border-bottom: 1px solid rgb(var(--color-border-rgb) / 0.5);
+  }
+
+  .favorites-drawer__item-media {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: var(--style-border-radius-xs, 8px);
+    overflow: hidden;
+    background-color: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .favorites-drawer__item-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .favorites-drawer__item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .favorites-drawer__item-title {
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .favorites-drawer__item-title:hover {
+    text-decoration: underline;
+  }
+
+  .favorites-drawer__item-price {
+    color: var(--color-foreground-subdued);
+    font-size: 0.85rem;
+  }
+
+  .favorites-drawer__item-remove {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--color-foreground-subdued);
+    cursor: pointer;
+  }
+
+  .favorites-drawer__item-remove:hover {
+    color: var(--color-foreground);
+  }
+
+  .favorites-drawer__item-remove .svg-wrapper {
+    width: 14px;
+    height: 14px;
+  }
+{% endstylesheet %}

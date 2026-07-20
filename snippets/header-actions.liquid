@@ -113,6 +113,23 @@
     </div>
   {% endif %}
 
+  <button
+    class="header-actions__action button-unstyled header-actions__favorites"
+    on:click="#favorites-drawer/toggle"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+    aria-controls="favorites-drawer"
+    aria-label="{{ 'accessibility.favorites' | t }}"
+    data-testid="favorites-drawer-trigger"
+  >
+    <span class="header-actions__favorites-icon">
+      <span class="svg-wrapper" aria-hidden="true">
+        {{- 'icon-heart.svg' | inline_asset_content -}}
+      </span>
+      <favorites-count class="header-actions__favorites-count visually-hidden" aria-hidden="true"></favorites-count>
+    </span>
+  </button>
+
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     <button
       class="header-actions__action button-unstyled{% if display_style == 'text' %} header-actions__text-style{% endif %}"
@@ -329,5 +346,26 @@
     .header__column--right .header-actions--text {
       margin-inline-start: 0;
     }
+  }
+
+  .header-actions__favorites-icon {
+    position: relative;
+    display: flex;
+  }
+
+  .header-actions__favorites-count {
+    position: absolute;
+    top: -4px;
+    inset-inline-end: -6px;
+    min-width: 14px;
+    height: 14px;
+    padding-inline: 3px;
+    border-radius: 999px;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    font-size: 9px;
+    line-height: 14px;
+    text-align: center;
+    font-family: var(--font-paragraph--family);
   }
 {% endstylesheet %}

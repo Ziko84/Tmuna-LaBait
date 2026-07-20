@@ -4,6 +4,27 @@
 
 {% capture children %}
   {% unless product == blank %}
+    <script
+      type="module"
+      src="{{ 'favorites.js' | asset_url }}"
+      fetchpriority="low"
+    ></script>
+    <favorite-toggle
+      class="favorite-toggle"
+      data-product-handle="{{ product.handle }}"
+      role="button"
+      tabindex="0"
+      aria-pressed="false"
+      aria-label="{{ 'accessibility.add_to_favorites' | t }}"
+      on:click="/toggle"
+    >
+      <span class="svg-wrapper favorite-toggle__icon favorite-toggle__icon--outline" aria-hidden="true">
+        {{- 'icon-heart.svg' | inline_asset_content -}}
+      </span>
+      <span class="svg-wrapper favorite-toggle__icon favorite-toggle__icon--filled" aria-hidden="true">
+        {{- 'icon-heart-filled.svg' | inline_asset_content -}}
+      </span>
+    </favorite-toggle>
     <div
       class="product-badges product-badges--{{ settings.badge_position }}"
       style="
@@ -44,6 +65,67 @@
 </div>
 
 {% render 'product-badges-styles' %}
+
+{% stylesheet %}
+  .favorite-toggle {
+    position: absolute;
+    top: var(--padding-xs, 10px);
+    inset-inline-end: var(--padding-xs, 10px);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 0.85);
+    backdrop-filter: blur(2px);
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
+      background-color var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+  }
+
+  .favorite-toggle:hover {
+    transform: scale(1.08);
+    background-color: rgb(255 255 255 / 0.95);
+  }
+
+  .favorite-toggle__icon {
+    width: 17px;
+    height: 17px;
+    display: block;
+  }
+
+  .favorite-toggle__icon--filled {
+    display: none;
+    color: #b23b4e;
+  }
+
+  .favorite-toggle.is-favorite .favorite-toggle__icon--outline {
+    display: none;
+  }
+
+  .favorite-toggle.is-favorite .favorite-toggle__icon--filled {
+    display: block;
+  }
+
+  @keyframes favorite-toggle-pulse {
+    0% {
+      transform: scale(1);
+    }
+    35% {
+      transform: scale(1.28);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .favorite-toggle--pulse .favorite-toggle__icon {
+    animation: favorite-toggle-pulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
