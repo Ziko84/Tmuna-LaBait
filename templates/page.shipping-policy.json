@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "eyebrow": "Shipping Policy"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

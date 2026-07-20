@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "eyebrow": "Terms of Use"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
