@@ -421,7 +421,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>אור שנולד מעץ</p>",
+                "text": "<p>מסקיצה לחוויה</p>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
@@ -447,7 +447,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>מסקיצה, אל חוויה של אור</h2>",
+                "text": "<h2>אור שנולד מעץ</h2>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
