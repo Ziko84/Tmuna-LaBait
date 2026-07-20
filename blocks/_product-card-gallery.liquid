@@ -75,22 +75,42 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 0.92);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
     color: #1a1a2e;
     cursor: pointer;
-    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+    opacity: 1;
+    transform: scale(1);
+    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
+      opacity var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
+      background-color var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+  }
+
+  @media (hover: hover) {
+    .favorite-toggle:not(.is-favorite) {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+
+    .card-gallery:hover .favorite-toggle,
+    .favorite-toggle:focus-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .favorite-toggle:hover {
     transform: scale(1.1);
+    background-color: #ffffff;
   }
 
   .favorite-toggle__icon {
-    width: 19px;
-    height: 19px;
+    width: 15px;
+    height: 15px;
     display: block;
-    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.35));
   }
 
   .favorite-toggle__icon--filled {
