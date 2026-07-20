@@ -109,6 +109,27 @@ if (!customElements.get('favorites-count')) {
   customElements.define('favorites-count', FavoritesCount);
 }
 
+class FavoritesIndicator extends Component {
+  connectedCallback() {
+    super.connectedCallback();
+    this.#sync();
+    window.addEventListener(CHANGE_EVENT, this.#sync);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener(CHANGE_EVENT, this.#sync);
+  }
+
+  #sync = () => {
+    this.classList.toggle('has-favorites', Favorites.getAll().length > 0);
+  };
+}
+
+if (!customElements.get('favorites-indicator')) {
+  customElements.define('favorites-indicator', FavoritesIndicator);
+}
+
 /**
  * @typedef {Object} FavoritesDrawerRefs
  * @property {HTMLElement} list

@@ -122,12 +122,14 @@
     aria-label="{{ 'accessibility.favorites' | t }}"
     data-testid="favorites-drawer-trigger"
   >
-    <span class="header-actions__favorites-icon">
-      <span class="svg-wrapper" aria-hidden="true">
+    <favorites-indicator class="header-actions__favorites-icon" aria-hidden="true">
+      <span class="svg-wrapper header-actions__favorites-icon-outline" aria-hidden="true">
         {{- 'icon-heart.svg' | inline_asset_content -}}
       </span>
-      <favorites-count class="header-actions__favorites-count visually-hidden" aria-hidden="true"></favorites-count>
-    </span>
+      <span class="svg-wrapper header-actions__favorites-icon-filled" aria-hidden="true">
+        {{- 'icon-heart-filled.svg' | inline_asset_content -}}
+      </span>
+    </favorites-indicator>
   </button>
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
@@ -349,26 +351,19 @@
   }
 
   .header-actions__favorites-icon {
-    position: relative;
     display: flex;
-    width: 20px;
   }
 
-  .header-actions__favorites-count {
-    position: absolute;
-    width: 20px;
-    aspect-ratio: 1;
-    top: 4.5px;
-    right: 2.5px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: normal;
-    padding-inline: 0.2em;
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-    font-size: var(--font-size--3xs);
-    font-family: var(--font-paragraph--family);
+  .header-actions__favorites-icon-filled {
+    display: none;
+    color: #ec4899;
+  }
+
+  .header-actions__favorites-icon.has-favorites .header-actions__favorites-icon-outline {
+    display: none;
+  }
+
+  .header-actions__favorites-icon.has-favorites .header-actions__favorites-icon-filled {
+    display: block;
   }
 {% endstylesheet %}
