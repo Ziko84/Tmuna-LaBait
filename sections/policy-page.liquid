@@ -6,36 +6,41 @@
   fetchpriority="low"
 ></script>
 
-<div class="policy-page page-width-content">
-  <div class="policy-page__corner-bracket" aria-hidden="true"></div>
-  <svg class="policy-page__circles" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-    <circle cx="130" cy="70" r="55" stroke="currentColor" stroke-width="0.5" />
-    <circle cx="130" cy="70" r="75" stroke="currentColor" stroke-width="0.5" />
-    <circle cx="130" cy="70" r="95" stroke="currentColor" stroke-width="0.5" />
-  </svg>
+<div class="policy-page-shell">
+  <div class="policy-page page-width-content">
+    <div class="policy-page__corner-bracket" aria-hidden="true"></div>
+    <svg class="policy-page__circles" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+      <circle cx="130" cy="70" r="55" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="130" cy="70" r="75" stroke="currentColor" stroke-width="0.5" />
+      <circle cx="130" cy="70" r="95" stroke="currentColor" stroke-width="0.5" />
+    </svg>
 
-  <reveal-on-scroll class="policy-page__intro">
-    {% if section.settings.eyebrow != blank %}
-      <div class="policy-page__eyebrow">{{ section.settings.eyebrow }}</div>
-    {% endif %}
-    <h1 class="policy-page__title">{{ page.title }}</h1>
-    <div class="policy-page__divider" aria-hidden="true"><span></span><i></i><span></span></div>
-  </reveal-on-scroll>
+    <reveal-on-scroll class="policy-page__intro">
+      {% if section.settings.eyebrow != blank %}
+        <div class="policy-page__eyebrow">{{ section.settings.eyebrow }}</div>
+      {% endif %}
+      <h1 class="policy-page__title">{{ page.title }}</h1>
+      <div class="policy-page__divider" aria-hidden="true"><span></span><i></i><span></span></div>
+    </reveal-on-scroll>
 
-  <reveal-on-scroll class="policy-page__content">
-    <rte-formatter>
-      {{ page.content }}
-    </rte-formatter>
-  </reveal-on-scroll>
+    <reveal-on-scroll class="policy-page__content">
+      <rte-formatter>
+        {{ page.content }}
+      </rte-formatter>
+    </reveal-on-scroll>
+  </div>
 </div>
 
 {% stylesheet %}
+  .policy-page-shell {
+    background-color: #fcfbf9;
+  }
+
   .policy-page {
     position: relative;
     max-width: 48rem;
     margin: 0 auto;
     padding: 4.5rem 3.5rem 5.5rem;
-    background-color: #fcfbf9;
     overflow: hidden;
   }
 
