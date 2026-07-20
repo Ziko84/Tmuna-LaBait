@@ -1,0 +1,74 @@
+
+
+<div class="story-philosophy" style="background-color: {{ section.settings.background_color }}; padding-block: {{ section.settings.padding_block }}px;">
+  <div class="story-philosophy__inner page-width-content">
+    {% if section.settings.quote != blank %}
+      <p class="story-philosophy__quote">{{ section.settings.quote }}</p>
+    {% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="button-secondary story-philosophy__button">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .story-philosophy__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .story-philosophy__quote {
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: #1a1a2e;
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Story philosophy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "quote",
+      "label": "Quote"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f7f5f2"
+    },
+    {
+      "type": "range",
+      "id": "padding_block",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+
+
+<div class="story-banner" style="background-color: {{ section.settings.background_color }}; padding-block: {{ section.settings.padding_block }}px;">
+  <div class="story-banner__inner page-width-content">
+    <h1 class="story-banner__title">{{ page.title }}</h1>
+  </div>
+</div>
+
+{% stylesheet %}
+  .story-banner__inner {
+    text-align: center;
+  }
+
+  .story-banner__title {
+    margin: 0;
+    color: #1a1a2e;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Story banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f7f5f2"
+    },
+    {
+      "type": "range",
+      "id": "padding_block",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ]
+}
+{% endschema %}
