@@ -46,7 +46,7 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "#fcfbf9",
         "padding-block-start": 64,
         "padding-block-end": 64
       }
@@ -167,7 +167,7 @@
         "media_height": "42svh",
         "section_width": "full-width",
         "extend_media": false,
-        "background_color": "#ffffff",
+        "background_color": "#fcfbf9",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
