@@ -2,7 +2,9 @@
   "sections": {
     "main": {
       "type": "policy-page",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Returns & Exchanges"
+      }
     }
   },
   "order": [

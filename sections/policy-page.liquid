@@ -1,18 +1,5 @@
 
 
-{% liquid
-  assign policy_eyebrow = ''
-  if request.path contains 'refund-policy'
-    assign policy_eyebrow = 'Returns & Exchanges'
-  elsif request.path contains 'shipping-policy'
-    assign policy_eyebrow = 'Shipping Policy'
-  elsif request.path contains 'terms-of-service'
-    assign policy_eyebrow = 'Terms of Use'
-  elsif request.path contains 'privacy-policy'
-    assign policy_eyebrow = 'Privacy Policy'
-  endif
-%}
-
 <script
   src="{{ 'reveal-on-scroll.js' | asset_url }}"
   type="module"
@@ -28,16 +15,16 @@
   </svg>
 
   <reveal-on-scroll class="policy-page__intro">
-    {% if policy_eyebrow != blank %}
-      <div class="policy-page__eyebrow">{{ policy_eyebrow }}</div>
+    {% if section.settings.eyebrow != blank %}
+      <div class="policy-page__eyebrow">{{ section.settings.eyebrow }}</div>
     {% endif %}
-    <h1 class="policy-page__title">{{ page_title }}</h1>
+    <h1 class="policy-page__title">{{ page.title }}</h1>
     <div class="policy-page__divider" aria-hidden="true"><span></span><i></i><span></span></div>
   </reveal-on-scroll>
 
   <reveal-on-scroll class="policy-page__content">
     <rte-formatter>
-      {{ page_content }}
+      {{ page.content }}
     </rte-formatter>
   </reveal-on-scroll>
 </div>
@@ -222,6 +209,13 @@
 {% schema %}
 {
   "name": "Policy page",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Policy Document"
+    }
+  ]
 }
 {% endschema %}
