@@ -1,0 +1,227 @@
+
+
+{% liquid
+  assign policy_eyebrow = ''
+  if request.path contains 'refund-policy'
+    assign policy_eyebrow = 'Returns & Exchanges'
+  elsif request.path contains 'shipping-policy'
+    assign policy_eyebrow = 'Shipping Policy'
+  elsif request.path contains 'terms-of-service'
+    assign policy_eyebrow = 'Terms of Use'
+  elsif request.path contains 'privacy-policy'
+    assign policy_eyebrow = 'Privacy Policy'
+  endif
+%}
+
+<script
+  src="{{ 'reveal-on-scroll.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<div class="policy-page page-width-content">
+  <div class="policy-page__corner-bracket" aria-hidden="true"></div>
+  <svg class="policy-page__circles" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <circle cx="130" cy="70" r="55" stroke="currentColor" stroke-width="0.5" />
+    <circle cx="130" cy="70" r="75" stroke="currentColor" stroke-width="0.5" />
+    <circle cx="130" cy="70" r="95" stroke="currentColor" stroke-width="0.5" />
+  </svg>
+
+  <reveal-on-scroll class="policy-page__intro">
+    {% if policy_eyebrow != blank %}
+      <div class="policy-page__eyebrow">{{ policy_eyebrow }}</div>
+    {% endif %}
+    <h1 class="policy-page__title">{{ page_title }}</h1>
+    <div class="policy-page__divider" aria-hidden="true"><span></span><i></i><span></span></div>
+  </reveal-on-scroll>
+
+  <reveal-on-scroll class="policy-page__content">
+    <rte-formatter>
+      {{ page_content }}
+    </rte-formatter>
+  </reveal-on-scroll>
+</div>
+
+{% stylesheet %}
+  .policy-page {
+    position: relative;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 4.5rem 3.5rem 5.5rem;
+    background-color: #fcfbf9;
+    overflow: hidden;
+  }
+
+  .policy-page__corner-bracket {
+    position: absolute;
+    top: 2.25rem;
+    inset-inline-start: 2.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-top: 1px solid #ddd7c8;
+    border-inline-start: 1px solid #ddd7c8;
+  }
+
+  .policy-page__circles {
+    position: absolute;
+    top: -7rem;
+    inset-inline-end: -6.5rem;
+    width: 22rem;
+    height: 22rem;
+    color: #e3dcc9;
+    pointer-events: none;
+  }
+
+  .policy-page__intro {
+    position: relative;
+    display: block;
+  }
+
+  .policy-page__eyebrow {
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8a6e46;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .policy-page__title {
+    text-align: center;
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 2.25rem;
+    letter-spacing: -0.01em;
+    color: #1c1916;
+    line-height: 1.25;
+    margin: 0 0 1.25rem;
+  }
+
+  .policy-page__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 9rem;
+    margin: 0 auto 3.5rem;
+  }
+
+  .policy-page__divider span {
+    flex: 1;
+    height: 1px;
+    background-color: #beaf99;
+  }
+
+  .policy-page__divider i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #8a6e46;
+    font-style: normal;
+  }
+
+  .policy-page__content {
+    position: relative;
+    display: block;
+    max-width: 40rem;
+    margin: 0 auto;
+    color: #4a453d;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .policy-page__content h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #1c1916;
+    margin: 2.2em 0 0.5em;
+  }
+
+  .policy-page__content h2:first-child {
+    margin-top: 0;
+  }
+
+  .policy-page__content h2::before {
+    content: '';
+    width: 0.9rem;
+    height: 1px;
+    background-color: #8a6e46;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .policy-page__content p {
+    margin: 0 0 1.4em;
+  }
+
+  .policy-page__content ul,
+  .policy-page__content ol {
+    margin: 0 0 1.4em;
+    padding-inline-start: 1.4em;
+  }
+
+  .policy-page__content li {
+    margin-block: 0.5em;
+  }
+
+  .policy-page__content a {
+    color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .policy-page {
+      padding: 3.5rem 1.5rem 4rem;
+    }
+
+    .policy-page__corner-bracket {
+      top: 1.5rem;
+      inset-inline-start: 1.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .policy-page__circles {
+      top: -5rem;
+      inset-inline-end: -5rem;
+      width: 15rem;
+      height: 15rem;
+    }
+
+    .policy-page__title {
+      font-size: 1.65rem;
+    }
+
+    .policy-page__content {
+      font-size: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .policy-page__intro,
+    .policy-page__content rte-formatter > * {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .policy-page__intro.is-revealed,
+    .policy-page__content rte-formatter > *.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Policy page",
+  "settings": []
+}
+{% endschema %}
