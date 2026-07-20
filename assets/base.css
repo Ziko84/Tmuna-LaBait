@@ -1072,34 +1072,27 @@ ul[product-grid-view='zoom-out'] .product-grid__card > * {
 }
 
 ::view-transition-new(product-grid) {
-  animation-delay: 150ms;
-  animation-name: fadeInUp;
-  animation-duration: var(--animation-speed);
-  animation-timing-function: var(--animation-easing);
+  animation: none;
 }
 
 results-list[initialized] {
   .product-grid__item {
-    transition: opacity var(--animation-speed) var(--animation-easing),
-      transform var(--animation-speed) var(--animation-easing);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
     @starting-style {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(14px);
     }
   }
-}
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .product-grid__item:nth-child(1) { transition-delay: 0ms; }
+  .product-grid__item:nth-child(2) { transition-delay: 30ms; }
+  .product-grid__item:nth-child(3) { transition-delay: 60ms; }
+  .product-grid__item:nth-child(4) { transition-delay: 90ms; }
+  .product-grid__item:nth-child(5) { transition-delay: 120ms; }
+  .product-grid__item:nth-child(6) { transition-delay: 150ms; }
+  .product-grid__item:nth-child(7) { transition-delay: 180ms; }
+  .product-grid__item:nth-child(8) { transition-delay: 210ms; }
 }
 
 /* Collection and product list cards have equal heights */
