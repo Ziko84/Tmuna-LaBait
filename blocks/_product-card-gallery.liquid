@@ -77,24 +77,20 @@
     justify-content: center;
     width: 34px;
     height: 34px;
-    border-radius: 50%;
-    background-color: rgb(255 255 255 / 0.85);
-    backdrop-filter: blur(2px);
     color: #1a1a2e;
     cursor: pointer;
-    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
-      background-color var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
   }
 
   .favorite-toggle:hover {
-    transform: scale(1.08);
-    background-color: rgb(255 255 255 / 0.95);
+    transform: scale(1.1);
   }
 
   .favorite-toggle__icon {
-    width: 17px;
-    height: 17px;
+    width: 19px;
+    height: 19px;
     display: block;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.35));
   }
 
   .favorite-toggle__icon--filled {
