@@ -165,7 +165,7 @@
                 "height": "fit",
                 "custom_height": 100,
                 "background_media": "none",
-                "background_color": "#ffffff",
+                "background_color": "",
                 "video_position": "cover",
                 "background_image_position": "cover",
                 "toggle_overlay": false,
@@ -176,13 +176,13 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_color": "",
-                "border_radius": 24,
+                "border_radius": 0,
                 "open_in_new_tab": false,
                 "placeholder": "",
-                "padding-block-start": 24,
-                "padding-block-end": 24,
-                "padding-inline-start": 20,
-                "padding-inline-end": 20
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "variant_picker_R3rGDr": {
@@ -1423,10 +1423,117 @@
         "padding-block-start": 60,
         "padding-block-end": 72
       }
+    },
+    "group_explore_more": {
+      "type": "section",
+      "blocks": {
+        "text_explore_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>אולי בא לכם לנסות כיוון אחר?</h3>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#1a1a2e",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_explore_body": {
+          "type": "text",
+          "settings": {
+            "text": "<p>לכל בית יש אופי משלו. גלו עוד סגנונות וקולקציות שאולי יתאימו לכם בדיוק.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#1a1a2e",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_explore_more": {
+          "type": "button",
+          "settings": {
+            "label": "לכל הקולקציות",
+            "link": "shopify://collections",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#1a1a2e",
+            "custom_button_text": "#ffffff",
+            "custom_button_border": "#1a1a2e",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_explore_heading",
+        "text_explore_body",
+        "button_explore_more"
+      ],
+      "name": "Explore more",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "small",
+        "background_media": "none",
+        "background_color": "#f7f5f2",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 64,
+        "padding-block-end": 72
+      }
     }
   },
   "order": [
     "main",
-    "product_list_zR9Cym"
+    "product_list_zR9Cym",
+    "group_explore_more"
   ]
 }
