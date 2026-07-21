@@ -5,6 +5,11 @@
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
+
+  assign display_collection = section.settings.collection
+  if display_collection == blank and closest.product != blank
+    assign display_collection = closest.product.collections.first
+  endif
 %}
 
 <div
@@ -30,9 +35,9 @@
   </div>
 
   {% capture list_items %}
-    {% if section.settings.collection != blank and shop.products_count != 0 %}
-      {% paginate section.settings.collection.products by max_items %}
-        {% for product in section.settings.collection.products limit: max_items %}
+    {% if display_collection != blank and shop.products_count != 0 %}
+      {% paginate display_collection.products by max_items %}
+        {% for product in display_collection.products limit: max_items %}
         <div
           class="resource-list__item"
         >
