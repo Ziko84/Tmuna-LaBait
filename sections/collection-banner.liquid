@@ -75,32 +75,46 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
-    align-items: center;
   }
 
   @media screen and (min-width: 750px) {
     .collection-banner__grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
+      grid-template-columns: 3fr 2fr;
+      gap: 48px;
+      align-items: stretch;
     }
   }
 
   .collection-banner__media {
-    aspect-ratio: 1 / 1;
-    border-radius: 24px;
+    min-height: 320px;
+    border-radius: 40px;
     overflow: hidden;
-    box-shadow: 0 12px 28px rgb(0 0 0 / 0.14), 0 3px 10px rgb(0 0 0 / 0.08);
+    box-shadow: 0 8px 18px rgb(0 0 0 / 0.1), 0 2px 6px rgb(0 0 0 / 0.06);
   }
 
   .collection-banner__image {
     display: block;
     width: 100%;
     height: 100%;
+    min-height: 320px;
     object-fit: cover;
     object-position: center;
+    animation: collection-banner-zoom 24s ease-in-out infinite alternate;
+  }
+
+  @keyframes collection-banner-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
   }
 
   .collection-banner__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: right;
   }
 
