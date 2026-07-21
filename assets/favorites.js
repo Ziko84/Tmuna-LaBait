@@ -202,7 +202,7 @@ class FavoritesDrawerComponent extends Component {
               <a href="${url}" class="favorites-drawer__item-title">${product.title}</a>
               <span class="favorites-drawer__item-price">${price}</span>
             </div>
-            <button type="button" class="favorites-drawer__item-remove button-unstyled" data-remove-handle="${handle}" aria-label="${this.dataset.removeText ?? ''}">
+            <button type="button" class="favorites-drawer__item-remove button-unstyled" data-remove-handle="${handle}" aria-label="${this.dataset.removeText ?? ''}" on:click="/removeItem">
               <span class="svg-wrapper">${this.querySelector('template[data-close-icon]')?.innerHTML ?? '×'}</span>
             </button>
           </div>
