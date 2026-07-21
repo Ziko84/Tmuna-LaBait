@@ -153,6 +153,7 @@
         "padding-block-end": 0
       }
     },
+
     "collection_banner_home": {
       "type": "collection-banner",
       "settings": {

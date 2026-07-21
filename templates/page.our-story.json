@@ -39,6 +39,7 @@
         "padding_block": 64
       }
     },
+
     "collection_banner_story": {
       "type": "collection-banner",
       "settings": {

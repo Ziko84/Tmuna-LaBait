@@ -92,6 +92,7 @@
         "padding-block-end": 100
       }
     },
+
     "collection_banner_404": {
       "type": "collection-banner",
       "settings": {

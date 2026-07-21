@@ -221,6 +221,7 @@
         "padding-block-end": 40
       }
     },
+
     "collection_banner_empty": {
       "type": "collection-banner",
       "settings": {

@@ -68,6 +68,7 @@
         "padding-block-end": 96
       }
     },
+
     "collection_banner_article": {
       "type": "collection-banner",
       "settings": {
