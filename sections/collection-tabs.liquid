@@ -8,8 +8,8 @@
   "
 >
   {% liquid
-    assign tab_handles = 'frontpage,חיות,נוף-וטבע,סמלי-עולם,רוחניות-ויודאיקה,מופשט-ומינימליסטי' | split: ','
-    assign tab_labels = 'הכל,חיות,טבע,סמלי עולם,רוחניות,מופשט' | split: ','
+    assign tab_handles = 'frontpage,חיות,נוף-וטבע,סמלי-עולם,מופשט-ומינימליסטי' | split: ','
+    assign tab_labels = 'הכל,חיות,טבע,סמלי עולם,מופשט' | split: ','
     assign url_prefix = collection.url | split: 'collections/' | first
     assign frontpage_url = url_prefix | append: 'collections/frontpage'
   %}
