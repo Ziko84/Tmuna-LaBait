@@ -1,12 +1,5 @@
 {
   "sections": {
-    "banner": {
-      "type": "story-banner",
-      "settings": {
-        "background_color": "#f7f5f2",
-        "padding_block": 64
-      }
-    },
     "story_hero": {
       "type": "story-hero",
       "settings": {
@@ -54,7 +47,6 @@
     }
   },
   "order": [
-    "banner",
     "story_hero",
     "story_editorial",
     "story_philosophy",
