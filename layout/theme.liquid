@@ -347,18 +347,6 @@
         direction: rtl;
       }
 
-      /* Product page: image card + buy-box card, both rounded with a soft drop shadow */
-      [data-template='product'] .product-media-container {
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-      }
-      [data-template='product'] .product-media-gallery__placeholder-image {
-        border-radius: 24px;
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-      }
-      [data-template='product'] [class*='__group_buy_box'] {
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
-      }
-
       /* Announcement bar: dark stripe */
       .announcement-bar,
       .announcement-bar .section-background {
@@ -584,6 +572,23 @@
     <meta name="google-site-verification" content="5ZsG_m--RDRvQmAIEb0Z3KWvUbNx0swQOc-6xgZ0GlQ" />
 
     {{ content_for_header }}
+
+    <style>
+      /* Product page: image card + buy-box card, both rounded with a soft drop shadow.
+         Deliberately placed after content_for_header — Shopify's own per-section/component
+         CSS is injected there, landing after the main <style> block above and beating any
+         !important set earlier via source-order tie-breaking. This block must stay last. */
+      [data-template='product'] .product-media-container {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+      }
+      [data-template='product'] .product-media-gallery__placeholder-image {
+        border-radius: 24px !important;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+      }
+      [data-template='product'] [class*='__group_buy_box'] {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+      }
+    </style>
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
