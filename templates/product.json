@@ -1426,7 +1426,7 @@
       }
     },
     "product_list_explore_more": {
-      "type": "product-list",
+      "type": "product-list-explore",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
