@@ -115,6 +115,10 @@
                   {% render 'cart-products', context: 'drawer' %}
                 </scroll-hint>
 
+                {% if cart.item_count == 1 %}
+                  {% render 'cart-cross-sell' %}
+                {% endif %}
+
                 <div class="cart-drawer__summary">
                   {% render 'cart-summary', section_id: 'cart-drawer-section' %}
                 </div>

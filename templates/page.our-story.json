@@ -38,12 +38,25 @@
         "background_color": "#f7f5f2",
         "padding_block": 64
       }
+    },
+    "collection_banner_story": {
+      "type": "collection-banner",
+      "settings": {
+        "mode": "manual",
+        "collection": "חיות",
+        "eyebrow": "מהסיפור לחנות",
+        "heading": "",
+        "body": "",
+        "cta_label": "לגלות את הקולקציה",
+        "background_color": "#f7f5f2"
+      }
     }
   },
   "order": [
     "banner",
     "story_hero",
     "story_editorial",
-    "story_philosophy"
+    "story_philosophy",
+    "collection_banner_story"
   ]
 }

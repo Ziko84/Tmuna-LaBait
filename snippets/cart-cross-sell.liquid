@@ -1,0 +1,94 @@
+{% doc %}
+  Renders a compact "you might also love" collection link in the cart drawer footer,
+  shown only when the cart has exactly one item. Auto-picks a collection that doesn't
+  already contain that item, so it always points somewhere new.
+{% enddoc %}
+
+{% liquid
+  assign cross_collection = blank
+
+  if cart.item_count == 1
+    assign cart_product = cart.items.first.product
+
+    for c in collections
+      assign is_excluded = false
+
+      if c.handle == 'frontpage' or c.products_count == 0
+        assign is_excluded = true
+      endif
+
+      unless is_excluded
+        for pc in cart_product.collections
+          if pc.handle == c.handle
+            assign is_excluded = true
+          endif
+        endfor
+      endunless
+
+      if is_excluded == false and cross_collection == blank
+        assign cross_collection = c
+      endif
+    endfor
+  endif
+
+  assign cross_image = cross_collection.image | default: cross_collection.products.first.featured_image
+%}
+
+{% if cross_collection != blank %}
+  <a href="{{ cross_collection.url }}" class="cart-cross-sell">
+    <span class="cart-cross-sell__media">
+      {% if cross_image != blank %}
+        {{ cross_image | image_url: width: 96 | image_tag: loading: 'lazy', width: 48, height: 48 }}
+      {% endif %}
+    </span>
+    <span class="cart-cross-sell__text">
+      אולי תאהבו גם: <strong>{{ cross_collection.title }}</strong>
+    </span>
+    <span class="cart-cross-sell__arrow" aria-hidden="true">←</span>
+  </a>
+{% endif %}
+
+{% stylesheet %}
+  .cart-cross-sell {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm, 10px);
+    padding: 10px var(--cart-drawer-summary-padding, 16px);
+    text-decoration: none;
+    color: var(--color-foreground);
+    border-top: 1px solid rgb(var(--color-border-rgb) / 0.5);
+  }
+
+  .cart-cross-sell__media {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .cart-cross-sell__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cart-cross-sell__text {
+    flex: 1;
+    font-size: 0.85rem;
+    color: var(--color-foreground-subdued);
+  }
+
+  .cart-cross-sell__text strong {
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+
+  .cart-cross-sell__arrow {
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--color-foreground-subdued);
+  }
+{% endstylesheet %}

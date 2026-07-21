@@ -220,10 +220,23 @@
         "padding-block-start": 40,
         "padding-block-end": 40
       }
+    },
+    "collection_banner_empty": {
+      "type": "collection-banner",
+      "settings": {
+        "mode": "search_empty",
+        "collection": "frontpage",
+        "eyebrow": "אולי תמצאו כאן",
+        "heading": "כל היצירות שלנו",
+        "body": "",
+        "cta_label": "לגלות את הקולקציה",
+        "background_color": "#f7f5f2"
+      }
     }
   },
   "order": [
     "search",
-    "main"
+    "main",
+    "collection_banner_empty"
   ]
 }

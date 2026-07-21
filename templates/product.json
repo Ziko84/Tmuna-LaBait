@@ -850,6 +850,17 @@
         "padding-block-end": 32
       }
     },
+    "collection_banner_cross_sell": {
+      "type": "collection-banner",
+      "settings": {
+        "mode": "auto_cross_sell",
+        "eyebrow": "אולי תאהבו גם",
+        "heading": "",
+        "body": "",
+        "cta_label": "לגלות את הקולקציה",
+        "background_color": "#f7f5f2"
+      }
+    },
     "section_NaqU9X": {
       "type": "section",
       "blocks": {
@@ -1151,6 +1162,7 @@
   },
   "order": [
     "main",
+    "collection_banner_cross_sell",
     "section_NaqU9X",
     "product_list_zR9Cym"
   ]
