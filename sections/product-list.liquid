@@ -7,10 +7,30 @@
   endif
 
   assign display_collection = section.settings.collection
-  if display_collection == blank and closest.product != blank
+
+  if section.settings.collection_mode == 'same_as_product' and closest.product != blank
+    assign display_collection = blank
     for pc in closest.product.collections
       if pc.handle != 'frontpage' and display_collection == blank
         assign display_collection = pc
+      endif
+    endfor
+  elsif section.settings.collection_mode == 'different_from_product' and closest.product != blank
+    assign display_collection = blank
+    for c in collections
+      assign is_excluded = false
+      if c.handle == 'frontpage' or c.products_count == 0
+        assign is_excluded = true
+      endif
+      unless is_excluded
+        for pc in closest.product.collections
+          if pc.handle == c.handle
+            assign is_excluded = true
+          endif
+        endfor
+      endunless
+      if is_excluded == false and display_collection == blank
+        assign display_collection = c
       endif
     endfor
   endif
@@ -114,6 +134,17 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "select",
+      "id": "collection_mode",
+      "label": "Collection source",
+      "options": [
+        { "value": "manual", "label": "Manual" },
+        { "value": "same_as_product", "label": "Same as product" },
+        { "value": "different_from_product", "label": "Different from product" }
+      ],
+      "default": "manual"
+    },
     {
       "type": "collection",
       "id": "collection",
