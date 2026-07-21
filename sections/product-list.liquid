@@ -8,7 +8,11 @@
 
   assign display_collection = section.settings.collection
   if display_collection == blank and closest.product != blank
-    assign display_collection = closest.product.collections.first
+    for pc in closest.product.collections
+      if pc.handle != 'frontpage' and display_collection == blank
+        assign display_collection = pc
+      endif
+    endfor
   endif
 %}
 
