@@ -574,24 +574,30 @@
     {{ content_for_header }}
 
     <style>
-      /* Product page: the whole top section (image, title, price, variant picker,
-         buy buttons, trust bar, description, accordion) as ONE unified card.
+      /* Product page: image and details as two equal-width sibling cards,
+         each with its own background, rounded corners, shadow and padding.
          Deliberately placed after content_for_header — Shopify's own per-section/component
          CSS is injected there, landing after the main <style> block above and beating any
          !important set earlier via source-order tie-breaking. This block must stay last. */
       [data-template='product'] .product-information__grid {
+        max-width: 85% !important;
+        margin-inline: auto !important;
+      }
+      [data-template='product'] .product-information__media,
+      [data-template='product'] .product-details {
         background: #ffffff !important;
         border-radius: 32px !important;
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
         padding: 32px !important;
-        max-width: 85% !important;
-        margin-inline: auto !important;
       }
       @media screen and (max-width: 749px) {
         [data-template='product'] .product-information__grid {
+          max-width: 100% !important;
+        }
+        [data-template='product'] .product-information__media,
+        [data-template='product'] .product-details {
           border-radius: 20px !important;
           padding: 16px !important;
-          max-width: 100% !important;
         }
       }
 
