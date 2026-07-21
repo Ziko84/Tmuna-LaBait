@@ -153,19 +153,6 @@
         "padding-block-end": 0
       }
     },
-
-    "collection_banner_home": {
-      "type": "collection-banner",
-      "settings": {
-        "mode": "manual",
-        "collection": "נוף-וטבע",
-        "eyebrow": "גלו עוד",
-        "heading": "",
-        "body": "",
-        "cta_label": "לגלות את הקולקציה",
-        "background_color": "#f7f5f2"
-      }
-    },
     "product_list_EDUBdR": {
       "type": "product-list",
       "blocks": {
@@ -713,7 +700,6 @@
   },
   "order": [
     "hero_split_tlb01",
-    "collection_banner_home",
     "product_list_EDUBdR",
     "media_with_content_LfPdEJ",
     "collection_list_xpBxCm"

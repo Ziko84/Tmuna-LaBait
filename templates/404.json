@@ -92,19 +92,6 @@
         "padding-block-end": 100
       }
     },
-
-    "collection_banner_404": {
-      "type": "collection-banner",
-      "settings": {
-        "mode": "manual",
-        "collection": "מופשט-ומינימליסטי",
-        "eyebrow": "בינתיים",
-        "heading": "",
-        "body": "",
-        "cta_label": "לגלות את הקולקציה",
-        "background_color": "#f7f5f2"
-      }
-    },
     "product_list_ed3c8h": {
       "type": "product-list",
       "blocks": {
@@ -335,7 +322,6 @@
   },
   "order": [
     "main",
-    "collection_banner_404",
     "product_list_ed3c8h"
   ]
 }

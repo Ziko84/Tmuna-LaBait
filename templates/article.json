@@ -67,23 +67,9 @@
         "padding-block-start": 56,
         "padding-block-end": 96
       }
-    },
-
-    "collection_banner_article": {
-      "type": "collection-banner",
-      "settings": {
-        "mode": "manual",
-        "collection": "סמלי-עולם",
-        "eyebrow": "מסיפור לקיר",
-        "heading": "",
-        "body": "",
-        "cta_label": "לגלות את הקולקציה",
-        "background_color": "#f7f5f2"
-      }
     }
   },
   "order": [
-    "section",
-    "collection_banner_article"
+    "section"
   ]
 }
