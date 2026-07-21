@@ -626,6 +626,17 @@
           height: 100% !important;
           object-fit: cover !important;
         }
+        /* Left-side thumbnail rail: the theme stretches slideshow-controls to the
+           full image height via the gallery's grid, but its own
+           slideshow-controls__thumbnails-container only sizes to its (few)
+           thumbnails and the outer flex box defaults to justify-content:
+           space-between, which shoves that short stack to the top and leaves
+           the rest of the tall rail empty. Center it instead so a handful of
+           thumbnails read as a deliberate rail, not a layout accident. */
+        [data-template='product'] .product-information__media slideshow-controls[pagination-position='left'] {
+          justify-content: center !important;
+          gap: 14px !important;
+        }
       }
       @media screen and (max-width: 749px) {
         [data-template='product'] .product-information__grid {
