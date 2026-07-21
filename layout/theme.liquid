@@ -598,8 +598,25 @@
           flex-direction: column !important;
           width: 100% !important;
         }
-        [data-template='product'] .product-information__media .product-media-container,
-        [data-template='product'] .product-information__media .product-media-constraint-wrapper {
+        /* The gallery web component nests slideshow-component > slideshow-container >
+           slideshow-slides > .product-media-container (slideshow-slide) before reaching
+           the image. Each of those has to be told to fill height too, or the stretch
+           stops at whichever level is still sized to its content. */
+        [data-template='product'] .product-information__media slideshow-component {
+          flex: 1 1 auto !important;
+          min-height: 0 !important;
+        }
+        [data-template='product'] .product-information__media slideshow-container,
+        [data-template='product'] .product-information__media slideshow-slides {
+          height: 100% !important;
+        }
+        [data-template='product'] .product-information__media .product-media-container {
+          /* Theme's base.css sets aspect-ratio + a max-height capped to ~viewport
+             height on .constrain-height; both override a plain height:100%, so they
+             have to be neutralized explicitly for the image to actually reach the
+             card's full height instead of stopping early. */
+          aspect-ratio: auto !important;
+          max-height: none !important;
           height: 100% !important;
           flex: 1 !important;
           min-height: 0 !important;
