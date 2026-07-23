@@ -657,6 +657,80 @@
         transform: translateY(-3px);
         box-shadow: 0 4px 10px rgba(24, 24, 32, 0.08), 0 16px 30px rgba(24, 24, 32, 0.12) !important;
       }
+
+      /* Sticky quick-add bar: hidden below the viewport until JS (in
+         snippets/sticky-buy-bar.liquid) adds --visible once the real buy
+         box has scrolled out of view. Rendered outside .page-wrapper
+         alongside the other overlays (cart drawer, search modal, etc.) so
+         position: fixed is relative to the real viewport. */
+      .sticky-buy-bar {
+        position: fixed;
+        inset-inline: 0;
+        bottom: 0;
+        z-index: var(--layer-sticky, 5);
+        background: #ffffff;
+        border-top: 1px solid #ececef;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+      .sticky-buy-bar--visible {
+        transform: translateY(0);
+      }
+      .sticky-buy-bar__inner {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        max-width: 85%;
+        margin-inline: auto;
+        padding: 12px 20px;
+      }
+      .sticky-buy-bar__media {
+        flex: 0 0 auto;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #f3f3f5;
+      }
+      .sticky-buy-bar__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .sticky-buy-bar__info {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .sticky-buy-bar__title {
+        font-size: 0.9rem;
+        color: #2f2f3a;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sticky-buy-bar__price {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1c1c24;
+      }
+      .sticky-buy-bar__cta {
+        flex: 0 0 auto;
+      }
+      @media screen and (max-width: 749px) {
+        .sticky-buy-bar__inner {
+          max-width: 100%;
+          padding: 10px 16px;
+        }
+        .sticky-buy-bar__title {
+          display: none;
+        }
+      }
     </style>
   </head>
 
@@ -748,6 +822,10 @@
 
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
+    {% endif %}
+
+    {% if request.page_type == 'product' %}
+      {% render 'sticky-buy-bar' %}
     {% endif %}
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
