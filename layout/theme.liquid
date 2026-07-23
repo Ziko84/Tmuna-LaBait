@@ -666,6 +666,68 @@
         box-shadow: 0 4px 10px rgba(24, 24, 32, 0.08), 0 16px 30px rgba(24, 24, 32, 0.12) !important;
       }
 
+      /* חנות nav dropdown (collection thumbnails): the theme shows/hides
+         this instantly with no transition at all, and stacks the 4
+         collection thumbnails in one narrow column - felt jumpy and
+         cramped, not premium. Adds a soft fade+slide reveal (with a short
+         open delay so a quick pass over the link doesn't trigger it) and
+         lays the thumbnails out as a proper 2x2 grid of square images. */
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu {
+        opacity: 0 !important;
+        transform: translateY(-6px) !important;
+        transition: opacity 0.24s ease-out !important, transform 0.24s ease-out !important,
+          visibility 0s linear 0.24s !important;
+      }
+      .menu-list__list-item:has([aria-expanded='true']) > .menu-list__submenu,
+      .menu-list__submenu:hover {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition-delay: 0.14s, 0.14s, 0s !important;
+      }
+      .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu:has(.mega-menu__link-image) {
+        min-width: 300px !important;
+        max-width: 320px !important;
+      }
+      .menu-list__list-item:where(:not([slot='overflow']))
+        > .menu-list__submenu
+        .menu-list__submenu-inner:has(.mega-menu__link-image) {
+        padding: 16px !important;
+      }
+      .menu-list__list-item:where(:not([slot='overflow']))
+        > .menu-list__submenu
+        .mega-menu__list:has(.mega-menu__link-image) {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+      }
+      /* .mega-menu__column--wide-collection-image spans 2 of the theme's
+         native 8-column desktop grid (its own gap-of-4 mode). Our override
+         above only defines 2 columns total, so left as-is that class would
+         span both of them and force one item per row - override it back to
+         a single column so the 2x2 grid actually lands. */
+      .menu-list__list-item:where(:not([slot='overflow']))
+        > .menu-list__submenu
+        .mega-menu__column:has(.mega-menu__link-image) {
+        display: block !important;
+        grid-column: span 1 !important;
+      }
+      .mega-menu__link-image {
+        display: block !important;
+        width: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        object-fit: cover !important;
+        border-radius: 10px !important;
+      }
+      .mega-menu__list:has(.mega-menu__link-image) .mega-menu__link {
+        display: block !important;
+        text-align: center !important;
+      }
+      .mega-menu__list:has(.mega-menu__link-image) .wrap-text {
+        display: block !important;
+        margin-top: 8px !important;
+        font-size: 0.85rem !important;
+      }
+
       /* Sticky quick-add bar: hidden below the viewport until JS (in
          snippets/sticky-buy-bar.liquid) adds --visible once the real buy
          box has scrolled out of view. Rendered outside .page-wrapper
