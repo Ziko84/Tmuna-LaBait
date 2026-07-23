@@ -33,6 +33,109 @@
   </nav>
 </div>
 
+<script>
+  (function () {
+    // Instant collection switching: clicking a tab normally does a full page
+    // navigation (reload, blank flash, every script re-runs). Instead, fetch
+    // just the 3 sections that actually change via Shopify's native Section
+    // Rendering API (?sections=id1,id2,id3 - no full HTML page fetched), swap
+    // them in with a View Transition crossfade, and push the real URL so
+    // back/forward and bookmarking keep working normally. Tabs are prefetched
+    // on hover so by the time someone clicks, it's already loaded.
+    if (window.collectionTabsAjaxInitialized) return;
+    window.collectionTabsAjaxInitialized = true;
+
+    var titleSuffix = document.title.includes('–')
+      ? document.title.slice(document.title.lastIndexOf('–'))
+      : '';
+    var cache = new Map();
+
+    function getSectionIds() {
+      var ids = [];
+      ['section', 'collection-tabs', 'main'].forEach(function (suffix) {
+        var el = document.querySelector(
+          '[id^="shopify-section-"][id$="__' + suffix + '"]'
+        );
+        if (el) ids.push(el.id.replace('shopify-section-', ''));
+      });
+      return ids;
+    }
+
+    function fetchSections(url) {
+      if (cache.has(url)) return cache.get(url);
+      var ids = getSectionIds();
+      if (!ids.length) return Promise.reject(new Error('no section ids found'));
+      var fetchUrl = url + (url.indexOf('?') === -1 ? '?' : '&') + 'sections=' + ids.join(',');
+      var promise = fetch(fetchUrl, { credentials: 'same-origin' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('bad response: ' + r.status);
+          return r.json();
+        })
+        .catch(function (err) {
+          cache.delete(url);
+          throw err;
+        });
+      cache.set(url, promise);
+      return promise;
+    }
+
+    function applySections(data) {
+      Object.keys(data).forEach(function (sectionId) {
+        var current = document.getElementById('shopify-section-' + sectionId);
+        if (!current) return;
+        var temp = document.createElement('div');
+        temp.innerHTML = data[sectionId];
+        var next = temp.firstElementChild;
+        if (next) current.replaceWith(next);
+      });
+    }
+
+    function swapTo(url, tabLabel, push) {
+      document.body.classList.add('collection-tabs-loading');
+      fetchSections(url)
+        .then(function (data) {
+          var run = function () {
+            applySections(data);
+            if (tabLabel) document.title = tabLabel + ' ' + titleSuffix;
+          };
+          if (document.startViewTransition) {
+            document.startViewTransition(run);
+          } else {
+            run();
+          }
+          if (push) history.pushState({}, '', url);
+          document.body.classList.remove('collection-tabs-loading');
+        })
+        .catch(function () {
+          window.location.href = url;
+        });
+    }
+
+    document.addEventListener('mouseover', function (e) {
+      var tab = e.target.closest && e.target.closest('.collection-tabs__tab');
+      if (tab) fetchSections(tab.href).catch(function () {});
+    });
+
+    document.addEventListener('touchstart', function (e) {
+      var tab = e.target.closest && e.target.closest('.collection-tabs__tab');
+      if (tab) fetchSections(tab.href).catch(function () {});
+    }, { passive: true });
+
+    document.addEventListener('click', function (e) {
+      var tab = e.target.closest && e.target.closest('.collection-tabs__tab');
+      if (!tab) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      if (tab.classList.contains('is-active')) return;
+      swapTo(tab.href, tab.textContent.trim(), true);
+    });
+
+    window.addEventListener('popstate', function () {
+      swapTo(location.href, null, false);
+    });
+  })();
+</script>
+
 {% stylesheet %}
   .collection-tabs-wrapper {
     width: 100%;
@@ -85,6 +188,15 @@
     background-color: #1a1a2e;
     border-color: #1a1a2e;
     color: #ffffff;
+  }
+
+  /* Brief dim on the grid while a (rare, non-prefetched) fetch is in
+     flight - most clicks are already prefetched on hover and feel instant,
+     this only shows up on a genuinely slow/uncached first click. */
+  body.collection-tabs-loading [id^='shopify-section-'][id$='__main'] {
+    opacity: 0.5;
+    transition: opacity 0.15s var(--hover-transition-timing, ease);
+    pointer-events: none;
   }
 {% endstylesheet %}
 
