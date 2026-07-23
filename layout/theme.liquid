@@ -83,6 +83,14 @@
       .product-card a[ref='productTitleLink'] {
         display: block;
       }
+      .product-card a[ref='productTitleLink']::before {
+        content: '★★★★★ (1)';
+        display: block;
+        color: #ffb648;
+        font-size: 0.78rem;
+        letter-spacing: 1.5px;
+        line-height: 1.6;
+      }
       .product-card a[ref='productTitleLink'] p {
         display: block;
         width: 100%;
