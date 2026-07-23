@@ -83,14 +83,6 @@
       .product-card a[ref='productTitleLink'] {
         display: block;
       }
-      .product-card a[ref='productTitleLink']::before {
-        content: '★★★★★ (1)';
-        display: block;
-        color: #ffb648;
-        font-size: 0.78rem;
-        letter-spacing: 1.5px;
-        line-height: 1.6;
-      }
       .product-card a[ref='productTitleLink'] p {
         display: block;
         width: 100%;
@@ -625,6 +617,14 @@
           width: 100% !important;
           height: 100% !important;
           object-fit: cover !important;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* Subtle zoom on hover so the wood grain and laser-cut detail read
+           as tangible, not just a flat photo. .product-media-container
+           already clips overflow, so this can't spill past the rounded
+           corners. */
+        [data-template='product'] .product-information__media .product-media-container:hover img.product-media__image {
+          transform: scale(1.04) !important;
         }
         /* Left-side thumbnail rail: the theme stretches slideshow-controls to the
            full image height via the gallery's grid, but its own
