@@ -17,7 +17,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/A2_20_4_9f52c253-cdf2-4f19-b006-20e6a4b21a94.png",
+            "image": "shopify://shop_images/Nature-7.png",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -117,8 +117,8 @@
               "type": "button",
               "name": "t:names.button",
               "settings": {
-                "label": "גלו את החנות",
-                "link": "shopify://collections/frontpage",
+                "label": "גלו את היצירה",
+                "link": "shopify://products/הרים-בשקיעה",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "#1a1a2e",
