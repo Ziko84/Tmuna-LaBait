@@ -17,7 +17,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/A2_20_12_86b61d46-4b69-4bf3-901c-36d8a87f1302.png",
+            "image": "shopify://shop_images/A2_20_4_9f52c253-cdf2-4f19-b006-20e6a4b21a94.png",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -372,6 +372,7 @@
       },
       "name": "Featured collection",
       "settings": {
+        "collection_mode": "manual",
         "collection": "all",
         "layout_type": "grid",
         "carousel_on_mobile": false,
