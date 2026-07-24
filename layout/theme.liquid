@@ -699,6 +699,43 @@
         padding: 4px 10px !important;
       }
 
+      /* Quick-add button: thick black-ish border read as heavy/cheap,
+         and the theme's default add-to-cart icon is a briefcase shape
+         (same glyph as the header cart icon) rather than a real
+         "add" symbol. Softer floating-pill treatment + a clean drawn
+         plus sign instead. Icon swapped via CSS (not the shared SVG
+         asset) so the main product page's Add to cart button, which
+         reuses the same icon file, is untouched. */
+      .quick-add__button {
+        border: 1px solid rgba(26, 26, 46, 0.1) !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+      }
+      .quick-add__button .add-to-cart-icon svg {
+        display: none !important;
+      }
+      .quick-add__button .add-to-cart-icon {
+        position: relative;
+      }
+      .quick-add__button .add-to-cart-icon::before,
+      .quick-add__button .add-to-cart-icon::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: currentColor;
+        border-radius: 1px;
+      }
+      .quick-add__button .add-to-cart-icon::before {
+        width: 13px;
+        height: 1.5px;
+        transform: translate(-50%, -50%);
+      }
+      .quick-add__button .add-to-cart-icon::after {
+        width: 1.5px;
+        height: 13px;
+        transform: translate(-50%, -50%);
+      }
+
       /* Collections page: match the product-card treatment (rounded, soft shadow, hover lift) */
       [data-template='list-collections'] .collection-card {
         border-radius: 14px !important;
