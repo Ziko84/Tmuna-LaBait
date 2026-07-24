@@ -264,16 +264,6 @@
         box-shadow: 0 6px 18px rgba(26, 26, 46, 0.12);
       }
 
-      /* Drop shadow on product photos (product cards + product page). The
-         shadow has to live on .product-media-container, not .product-media
-         itself - base.css gives .product-media-container position:relative
-         + overflow:hidden with no padding, and .product-media fills it
-         exactly, so a shadow declared on .product-media would have zero
-         room to render before getting clipped by its own parent. */
-      .product-media-container {
-        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-      }
-
       /* LED color swatches (product cards + product page, night-mode
          products only): the tint layer uses the NIGHT photo itself as a
          luminance mask, so a mix-blend-mode:color overlay only recolors the
@@ -972,6 +962,16 @@
       }
       [data-template='product'] .product-form-buttons > .accelerated-checkout-block {
         order: 6;
+      }
+
+      /* Drop shadow on product photos (product cards + product page). The
+         shadow has to live on .product-media-container, not .product-media
+         itself - base.css gives .product-media-container position:relative
+         + overflow:hidden with no padding, and .product-media fills it
+         exactly, so a shadow declared on .product-media would have zero
+         room to render before getting clipped by its own parent. */
+      .product-media-container {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
       }
 
       /* Trust bar (shipping/returns/secure payment) on the product page:
