@@ -269,29 +269,50 @@
       .led-swatches-scope {
         position: relative;
       }
+      /* Floating glass pill, not bare dots on the photo - reads as a
+         deliberate control instead of stray UI debris on top of the image. */
       .led-swatches {
         position: absolute;
         z-index: 3;
-        inset-block-end: 10px;
-        inset-inline-start: 10px;
+        inset-block-end: 12px;
+        inset-inline-start: 12px;
         display: flex;
-        gap: 6px;
+        align-items: center;
+        gap: 8px;
         margin: 0;
-        padding: 0;
+        padding: 6px;
         list-style: none;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(26, 26, 46, 0.08);
+        border-radius: 999px;
+        box-shadow: 0 3px 10px rgba(26, 26, 46, 0.16);
+      }
+      .led-swatches li {
+        display: flex;
+        line-height: 0;
       }
       .led-swatch {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         padding: 0;
         border-radius: 50%;
         border: 2px solid #ffffff;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 0 1px rgba(26, 26, 46, 0.14);
         cursor: pointer;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+      }
+      .led-swatch:hover {
+        transform: scale(1.15);
+      }
+      .led-swatch:focus-visible {
+        outline: 2px solid #1a1a2e;
+        outline-offset: 2px;
       }
       .led-swatch--active {
-        outline: 2px solid #1a1a2e;
-        outline-offset: 1px;
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #1a1a2e;
+        transform: scale(1.08);
       }
 
       /* ============================================================
