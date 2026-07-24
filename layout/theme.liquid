@@ -987,7 +987,10 @@
          that actually renders. */
       [data-template='product'] .product-information__media {
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
-        border-radius: 16px !important;
+        /* Match the photo's own corner rounding (media_radius setting,
+           20px) exactly - a mismatched radius here made the shadow's
+           corners visibly a different shape than the photo's corners. */
+        border-radius: 20px !important;
       }
 
       /* Trust bar (shipping/returns/secure payment) on the product page:
