@@ -63,6 +63,20 @@
       text_fallback: shop.name,
       style: logo_style
     %}
+    {%- comment -%}
+      settings.logo is one flat image with the icon and store name baked
+      together, so a hover effect on .header-logo__image glows the whole
+      thing. This overlay repeats just the icon (assets/header-logo-icon.png,
+      same artwork as the icon-only crop of the logo) positioned over the
+      icon's own corner of the lockup, so only it can glow on hover.
+    {%- endcomment -%}
+    <img
+      src="{{ 'header-logo-icon.png' | asset_url }}"
+      alt=""
+      aria-hidden="true"
+      class="header-logo__icon-glow"
+      loading="lazy"
+    >
   </span>
 
   {% if use_inverse_logo %}
