@@ -161,6 +161,15 @@
 
           capture slideshow_children
             render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
+            if night_media and forloop.first
+              # Nested inside the same .product-media-container as the day
+              # photo (not a sibling of the whole gallery), so it inherits
+              # the exact same box - the card-gallery wrapper has its own
+              # padding around the photo, and sizing this to the outer
+              # wrapper instead made the night image visibly larger than
+              # the day photo it's replacing, reading as a scale-up.
+              echo night_media | image_url: width: 1200 | image_tag: class: 'card-gallery__night-image', loading: 'lazy', alt: '', sizes: sizes
+            endif
           endcapture
 
           render 'slideshow-slide', slide_id: media.id, index: forloop.index0, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit
@@ -192,13 +201,6 @@
         show_arrows: show_arrows,
         attributes: slideshow_attributes
       %}
-      {% if night_media %}
-        {{
-          night_media
-          | image_url: width: 1200
-          | image_tag: class: 'card-gallery__night-image', loading: 'lazy', alt: '', sizes: image_sizes
-        }}
-      {% endif %}
     </a>
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
