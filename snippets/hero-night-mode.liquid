@@ -4,10 +4,10 @@
   Maps a section id suffix to a theme asset filename below - add a new
   entry to cover another banner.
 
-  The top and bottom banners (not the Our Story hero) also get the LED
-  color swatches, bottom-left, same as product images - since their
-  night image is a static theme asset rather than product media, the
-  mask/swatches markup is injected here in JS instead of via Liquid.
+  Every banner listed in nightImages also gets the LED color swatches,
+  bottom-left, same as product images - since their night image is a
+  static theme asset rather than product media, the mask/swatches
+  markup is injected here in JS instead of via Liquid.
 
   @example
   {% render 'hero-night-mode' %}
@@ -20,7 +20,6 @@
       '__media_with_content_LfPdEJ': {{ 'banner-night.png' | asset_url | json }},
       '__story_hero': {{ 'story-night.png' | asset_url | json }}
     };
-    var ledSuffixes = ['__hero_split_tlb01', '__media_with_content_LfPdEJ'];
     var ledColors = [
       { color: '', label: 'לבן חם', active: true, gradient: true },
       { color: '#1e88e5', label: 'כחול' },
@@ -69,10 +68,7 @@
         img.alt = '';
         img.loading = 'lazy';
         container.appendChild(img);
-
-        if (ledSuffixes.indexOf(suffix) !== -1) {
-          addLedSwatches(container, nightImages[suffix]);
-        }
+        addLedSwatches(container, nightImages[suffix]);
       });
     }
 
