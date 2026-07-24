@@ -12,7 +12,10 @@
  * until a choice is made). Clicking commits the color as that new default.
  */
 function getScope(swatch) {
-  return swatch.closest('.product-media-container');
+  // .product-media-container on product images/cards, .media-block on the
+  // homepage banners (their night image is a static theme asset, not
+  // product media, so it's a different container).
+  return swatch.closest('.product-media-container, .media-block');
 }
 
 function getTint(scope) {
