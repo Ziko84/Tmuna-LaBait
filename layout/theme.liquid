@@ -973,14 +973,21 @@
         display: none !important;
       }
 
-      /* Drop shadow on product photos (product cards + product page). The
-         shadow has to live on .product-media-container, not .product-media
-         itself - base.css gives .product-media-container position:relative
-         + overflow:hidden with no padding, and .product-media fills it
-         exactly, so a shadow declared on .product-media would have zero
-         room to render before getting clipped by its own parent. */
-      .product-media-container {
+      /* Drop shadow on the product page's main photo. This can't live on
+         .product-media-container (or .product-media inside it) - the
+         swipeable gallery's slideshow-component ancestor is given
+         overflow: hidden by assets/slideshow.js as a base state (relaxed
+         to scroll/auto only once it's in the viewport, for the swipe
+         mechanic and to cap iOS Safari's compositor layers), and either
+         state clips a shadow on anything nested inside it. Has to go on
+         .product-information__media instead - the wrapper OUTSIDE that
+         scrolling ancestor, so nothing clips its own shadow. This wraps
+         the image and thumbnail rail together as one shadowed block
+         rather than hugging the photo alone, but it's the nearest point
+         that actually renders. */
+      [data-template='product'] .product-information__media {
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+        border-radius: 16px !important;
       }
 
       /* Trust bar (shipping/returns/secure payment) on the product page:
