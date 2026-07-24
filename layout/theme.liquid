@@ -269,8 +269,18 @@
         left: auto;
         right: auto;
         inset-inline-start: 0;
-        top: 100%;
-        clip-path: none;
+        top: 100% !important;
+        /* The theme's native clip-path (rect(header-height, 100%,
+           full-open-header-height, 0)) is coordinates relative to THIS
+           box's own top edge, sized for the old full-width mega-menu
+           whose top tracked the header's expand animation. Since we
+           reposition this box to sit right under its own trigger
+           instead, that native clip window no longer lines up with our
+           box's real content, and silently truncates it (e.g. the 2x2
+           collection-thumbnail grid losing its bottom row). !important
+           needed - same selector, same specificity, native rule is
+           injected later via content_for_header. */
+        clip-path: none !important;
         padding-inline: 0;
         /* NEVER add overflow/content-visibility overrides to this
            specific element again - confirmed three separate times
