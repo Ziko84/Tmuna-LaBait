@@ -282,8 +282,13 @@
          it's the media-gallery element. */
       .led-swatches {
         display: flex;
+        /* Force left-start layout regardless of the page's RTL context -
+           these are just color chips, not text, so LTR reads more natural
+           and consistent left alignment here. */
+        direction: ltr;
+        justify-content: flex-start;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -293,11 +298,11 @@
         line-height: 0;
       }
       .led-swatch {
-        width: 16px;
-        height: 16px;
+        width: 11px;
+        height: 11px;
         padding: 0;
         border: none;
-        border-radius: 50%;
+        border-radius: 3px;
         cursor: pointer;
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
       }
