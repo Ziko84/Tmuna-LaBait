@@ -645,6 +645,14 @@
         margin-inline: auto !important;
         align-items: stretch !important;
       }
+
+      /* Product gallery: slow down the crossfade between images (e.g. day/night
+         pairs) when switching thumbnails. Scoped to just the image transition,
+         not the shared --animation-speed variable, so nothing else on the site
+         (buttons, quick-add reveals, etc.) speeds up or slows down with it. */
+      ::view-transition-group(product-image-transition) {
+        animation-duration: 0.45s !important;
+      }
       @media screen and (min-width: 750px) {
         [data-template='product'] .product-information__media {
           height: 100% !important;
