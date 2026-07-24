@@ -272,19 +272,19 @@
       .product-media-container:hover .led-tint {
         opacity: 1;
       }
-      .led-swatches-scope {
-        position: relative;
-      }
-      /* A normal control row below the photo, not an overlay fighting the
-         image for contrast - the tint effect (.led-tint above) is still
-         only ever visible during the night-mode hover, but the swatches
-         themselves are a persistent, always-visible part of the card, the
-         same way a real color picker would sit next to price/title. */
+      /* Scope marker only (JS query root connecting a swatch click to its
+         .led-tint) - no positioning role now that swatches live in normal
+         flow, in the white content area, not on the photo. On product
+         cards this sits on .product-card__content (the flex column that
+         holds the gallery, this swatch row, and the title/price group as
+         plain siblings, rendered as a sibling right after the gallery so
+         it lands between the image and the price); on the product page
+         it's the media-gallery element. */
       .led-swatches {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin: 10px 0 0;
+        gap: 10px;
+        margin: 0;
         padding: 0;
         list-style: none;
       }
@@ -296,8 +296,8 @@
         width: 16px;
         height: 16px;
         padding: 0;
+        border: none;
         border-radius: 50%;
-        border: 1px solid rgba(26, 26, 46, 0.15);
         cursor: pointer;
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
       }
@@ -309,7 +309,7 @@
         outline-offset: 2px;
       }
       .led-swatch--active {
-        outline: 1.5px solid rgba(26, 26, 46, 0.45);
+        outline: 1.5px solid rgba(26, 26, 46, 0.4);
         outline-offset: 2px;
       }
 

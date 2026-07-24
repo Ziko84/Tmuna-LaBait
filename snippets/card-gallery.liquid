@@ -80,7 +80,7 @@
 
 <div
   ref="cardGallery"
-  class="card-gallery card-gallery-{{ block.id }} spacing-style border-style led-swatches-scope{% if has_badges %} card-gallery--badge-{{ badge_position }}{% endif %}"
+  class="card-gallery card-gallery-{{ block.id }} spacing-style border-style{% if has_badges %} card-gallery--badge-{{ badge_position }}{% endif %}"
   style="
     {% render 'border-override', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}
@@ -206,22 +206,6 @@
         attributes: slideshow_attributes
       %}
     </a>
-    {% if night_media %}
-      <ul class="led-swatches" aria-label="בחר צבע תאורה">
-        <li>
-          <button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#2f8dff" aria-pressed="false" aria-label="כחול" style="background: #2f8dff;"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#ff3b30" aria-pressed="false" aria-label="אדום" style="background: #ff3b30;"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#34c759" aria-pressed="false" aria-label="ירוק" style="background: #34c759;"></button>
-        </li>
-      </ul>
-    {% endif %}
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
       <a
