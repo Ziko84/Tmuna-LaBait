@@ -370,6 +370,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection_mode": "manual",
@@ -678,7 +679,7 @@
       ],
       "name": "Collection list",
       "settings": {
-        "collection_list": ["נוף-וטבע", "חיות", "סמלי-עולם", "מופשט-ומינימליסטי"],
+        "collection_list": [],
         "layout_type": "bento",
         "carousel_on_mobile": true,
         "columns": 4,
@@ -701,6 +702,7 @@
   "order": [
     "hero_split_tlb01",
     "collection_list_xpBxCm",
+    "product_list_EDUBdR",
     "media_with_content_LfPdEJ"
   ]
 }
