@@ -308,7 +308,7 @@
         direction: ltr;
         justify-content: flex-start;
         align-items: center;
-        gap: 5px;
+        gap: 8px;
         margin: 0;
         list-style: none;
       }
@@ -327,13 +327,17 @@
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
       }
       /* Invisible expanded hit area: the dot stays 8px so it reads as a
-         small, unobtrusive chip, but the actual clickable region is a lot
-         bigger (~24px) so a slightly-off tap still lands on the swatch
-         instead of falling through to the image link underneath it. */
+         small, unobtrusive chip, while the actual clickable region is
+         bigger (~14px). Capped at -3px (not the previous -8px) because
+         with only 8px gap between dots, a bigger expansion made
+         neighboring swatches' hit zones overlap - whichever swatch was
+         later in the row won that overlap, making the ones sandwiched
+         between two others (like blue) nearly impossible to actually
+         click since red's zone was eating into blue's from one side. */
       .led-swatch::before {
         content: '';
         position: absolute;
-        inset: -8px;
+        inset: -3px;
       }
       .led-swatch:hover {
         transform: scale(2.2);
