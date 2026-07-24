@@ -92,6 +92,18 @@ export class Scroller {
   #originalScrollBehavior = '';
 
   /**
+   * Same idea as #originalScrollBehavior, for scroll-snap-type. Slideshow
+   * scrollers use `scroll-snap-type: x mandatory` (see slideshow-styles),
+   * which snaps scrollLeft/scrollTop back to the nearest slide boundary on
+   * every one of our manual per-frame assignments - collapsing the whole
+   * eased animation into a single instant jump to whichever slide is
+   * nearest. Has to be suspended for the duration of #animateScroll, same
+   * as the `snap` setter already does for drag interactions.
+   * @type {string}
+   */
+  #originalScrollSnapType = '';
+
+  /**
    * Creates a Scroller instance.
    *
    * @param {HTMLElement} element - The element to apply scrolling to.
@@ -110,6 +122,7 @@ export class Scroller {
     this.element = element;
     this.element.addEventListener('scroll', this.#handleScroll);
     this.#originalScrollBehavior = element.style.scrollBehavior;
+    this.#originalScrollSnapType = element.style.scrollSnapType;
   }
 
   /**
@@ -214,6 +227,15 @@ export class Scroller {
     // for the duration of our manual animation, then restore it.
     this.element.style.scrollBehavior = 'auto';
 
+    // Same problem, worse effect: `scroll-snap-type: x mandatory` snaps
+    // scrollLeft/scrollTop back to the nearest slide boundary on every one
+    // of our per-frame assignments, since each is indistinguishable from a
+    // completed scroll gesture. Confirmed via direct frame-by-frame
+    // measurement - without this, the entire eased animation collapses
+    // into one instant jump to whichever slide is nearest, which reads as
+    // a hard cut with no transition at all.
+    this.element.style.scrollSnapType = 'none';
+
     const step = (/** @type {number} */ now) => {
       // A newer scroll request (e.g. hover-out right after hover-in) has
       // taken over - stop touching the scroll position entirely so this
@@ -227,6 +249,7 @@ export class Scroller {
         requestAnimationFrame(step);
       } else {
         this.element.style.scrollBehavior = this.#originalScrollBehavior;
+        this.element.style.scrollSnapType = this.#originalScrollSnapType;
       }
     };
 
