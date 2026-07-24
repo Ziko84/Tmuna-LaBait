@@ -854,7 +854,15 @@
           aspect-ratio: auto !important;
           max-height: none !important;
           height: 100% !important;
-          flex: 1 !important;
+          /* NOT flex: 1 - the native rule for this element is
+             width: var(--slide-width, 100%), each slide taking the full row
+             width with horizontal scroll-snap between them. flex: 1 sets
+             flex-basis: 0%, which overrides that width entirely - with 2
+             slides in the row they'd each just grow to fill half the
+             available space, rendering side by side instead of full-width
+             with one visible at a time. Height still stretches fine without
+             it (cross-axis stretch doesn't need flex-grow on the main axis). */
+          width: 100% !important;
           min-height: 0 !important;
         }
         [data-template='product'] .product-information__media img.product-media__image {
