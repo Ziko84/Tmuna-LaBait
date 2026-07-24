@@ -275,19 +275,16 @@
       .led-swatches-scope {
         position: relative;
       }
-      /* No boxed background - just small dots sitting directly on the
-         photo, spaced with real breathing room instead of crammed in a
-         corner. Each dot carries its own white ring + shadow for contrast
-         against any photo, so it doesn't need a container to read clearly. */
+      /* A normal control row below the photo, not an overlay fighting the
+         image for contrast - the tint effect (.led-tint above) is still
+         only ever visible during the night-mode hover, but the swatches
+         themselves are a persistent, always-visible part of the card, the
+         same way a real color picker would sit next to price/title. */
       .led-swatches {
-        position: absolute;
-        z-index: 3;
-        inset-block-end: 16px;
-        inset-inline-start: 16px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin: 0;
+        gap: 8px;
+        margin: 10px 0 0;
         padding: 0;
         list-style: none;
       }
@@ -296,25 +293,24 @@
         line-height: 0;
       }
       .led-swatch {
-        width: 13px;
-        height: 13px;
+        width: 16px;
+        height: 16px;
         padding: 0;
         border-radius: 50%;
-        border: 1.5px solid #ffffff;
-        box-shadow: 0 1px 4px rgba(26, 26, 46, 0.35);
+        border: 1px solid rgba(26, 26, 46, 0.15);
         cursor: pointer;
-        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
       }
       .led-swatch:hover {
-        transform: scale(1.2);
+        transform: scale(1.15);
       }
       .led-swatch:focus-visible {
-        outline: 2px solid #1a1a2e;
+        outline: 1.5px solid #1a1a2e;
         outline-offset: 2px;
       }
       .led-swatch--active {
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(26, 26, 46, 0.35);
-        transform: scale(1.15);
+        outline: 1.5px solid rgba(26, 26, 46, 0.45);
+        outline-offset: 2px;
       }
 
       /* ============================================================
