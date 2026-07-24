@@ -973,19 +973,18 @@
         display: none !important;
       }
 
-      /* Drop shadow on the product page's main photo. This can't live on
-         .product-media-container (or .product-media inside it) - the
-         swipeable gallery's slideshow-component ancestor is given
-         overflow: hidden by assets/slideshow.js as a base state (relaxed
-         to scroll/auto only once it's in the viewport, for the swipe
-         mechanic and to cap iOS Safari's compositor layers), and either
-         state clips a shadow on anything nested inside it. Has to go on
-         .product-information__media instead - the wrapper OUTSIDE that
-         scrolling ancestor, so nothing clips its own shadow. This wraps
-         the image and thumbnail rail together as one shadowed block
-         rather than hugging the photo alone, but it's the nearest point
-         that actually renders. */
-      [data-template='product'] .product-information__media {
+      /* Drop shadow on the product page's main photo. Can't live on
+         .product-media-container/.product-media/slideshow-slide - all
+         three sit inside slideshow-slides, which has an unconditional
+         overflow-x: scroll (snippets/slideshow-styles.liquid) for the
+         swipe mechanic; setting one axis to scroll forces the other to
+         clip too, so any shadow declared in there is cut off no matter
+         what. slideshow-container (its parent) has no overflow set at
+         all, and is scoped to just the "container" grid-area - the image
+         alone, not the thumbnail rail, which is a separate sibling grid
+         area - so a shadow here hugs the photo without clipping or
+         pulling in the thumbnails. */
+      [data-template='product'] .product-information__media slideshow-container {
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
         /* Match the photo's own corner rounding (media_radius setting,
            20px) exactly - a mismatched radius here made the shadow's
