@@ -259,6 +259,12 @@
         pointer-events: none;
         opacity: 0;
         mix-blend-mode: color;
+        /* mix-blend-mode:color keeps the backdrop's luminosity, and the
+           glow's highlights sit so close to white that even a fully
+           saturated overlay reads as washed-out/pastel there - boost past
+           100% saturation to compensate and keep the color reading vivid
+           at the brightest part of the glow. */
+        filter: saturate(1.8);
         mask-image: var(--led-mask-url);
         -webkit-mask-image: var(--led-mask-url);
         mask-mode: luminance;
