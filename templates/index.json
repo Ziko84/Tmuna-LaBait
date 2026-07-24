@@ -676,10 +676,9 @@
       "block_order": [
         "group_mfTd9p"
       ],
-      "disabled": true,
       "name": "Collection list",
       "settings": {
-        "collection_list": [],
+        "collection_list": ["נוף-וטבע", "סמלי-עולם", "מופשט-ומינימליסטי", "חיות"],
         "layout_type": "bento",
         "carousel_on_mobile": true,
         "columns": 4,
@@ -701,8 +700,7 @@
   },
   "order": [
     "hero_split_tlb01",
-    "product_list_EDUBdR",
-    "media_with_content_LfPdEJ",
-    "collection_list_xpBxCm"
+    "collection_list_xpBxCm",
+    "media_with_content_LfPdEJ"
   ]
 }
