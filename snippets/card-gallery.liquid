@@ -156,6 +156,12 @@
       if settings.product_card_carousel == false
         assign slideshow_attributes = slideshow_attributes | append: ' disabled="true"'
       endif
+      if settings.show_second_image_on_hover
+        # Same custom-duration animated scroll used on the product page
+        # gallery: the native smooth-scroll has no adjustable duration and
+        # looks abrupt over the short distance of a card hover-preview.
+        assign slideshow_attributes = slideshow_attributes | append: ' scroll-duration="500"'
+      endif
     %}
     <a
       class="contents"

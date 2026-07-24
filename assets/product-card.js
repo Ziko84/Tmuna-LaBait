@@ -408,10 +408,14 @@ export class ProductCard extends ProductCardLink {
 
     this.resetVariant.cancel();
 
+    // Animated (not instant) so the custom scroll-duration set on this
+    // card's slideshow (see snippets/card-gallery.liquid) actually applies -
+    // this is what turns the day/night image swap into a smooth crossfade
+    // instead of an abrupt snap.
     if (this.#previousSlideIndex != null && this.#previousSlideIndex > 0) {
-      slideshow.select(this.#previousSlideIndex, undefined, { animate: false });
+      slideshow.select(this.#previousSlideIndex, undefined, { animate: true });
     } else {
-      slideshow.next(undefined, { animate: false });
+      slideshow.next(undefined, { animate: true });
       setTimeout(() => this.#preloadNextPreviewImage());
     }
   }
@@ -427,7 +431,7 @@ export class ProductCard extends ProductCardLink {
 
     if (!this.variantPicker) {
       if (!slideshow) return;
-      slideshow.previous(undefined, { animate: false });
+      slideshow.previous(undefined, { animate: true });
     } else {
       this.#resetVariant();
     }
