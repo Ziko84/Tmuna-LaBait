@@ -67,6 +67,12 @@
         padding: 14px !important;
         aspect-ratio: 1 / 1 !important;
         overflow: hidden;
+        /* Quick-add button positions itself off these custom properties,
+           not the literal padding above - without matching them it thinks
+           there's zero inset and sits straddling the image/white-padding
+           boundary, where its heavy backdrop-blur looks broken. */
+        --padding-inline-end: 14px !important;
+        --padding-block-end: 14px !important;
       }
       .product-card .product-card__content > *:first-child img,
       .product-card .product-card__content > *:first-child svg {
