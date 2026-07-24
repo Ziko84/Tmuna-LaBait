@@ -74,6 +74,13 @@
         --padding-inline-end: 14px !important;
         --padding-block-end: 14px !important;
       }
+      /* Quick-add pill label: native CSS only pads one side
+         (padding-right), so the letter against the unpadded edge sits
+         flush on .add-to-cart-text's overflow:hidden boundary and gets
+         clipped. Balanced padding on all sides fixes it. */
+      .quick-add__button .add-to-cart-text__content > span > span {
+        padding: 4px 10px !important;
+      }
       .product-card .product-card__content > *:first-child img,
       .product-card .product-card__content > *:first-child svg {
         object-fit: cover !important;
