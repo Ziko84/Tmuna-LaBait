@@ -6,7 +6,19 @@
  * needed. Tint opacity is controlled entirely by CSS :hover on the same
  * container that drives the day/night crossfade - this script only sets
  * which color the tint should be.
+ *
+ * Hovering a swatch previews its color immediately; moving away reverts to
+ * whichever color was last actually clicked (defaulting to warm white/none
+ * until a choice is made). Clicking commits the color as that new default.
  */
+function getScope(swatch) {
+  return swatch.closest('.product-media-container');
+}
+
+function getTint(scope) {
+  return scope.querySelector('.led-tint');
+}
+
 document.addEventListener('click', (event) => {
   const swatchesRow = event.target.closest('.led-swatches');
   if (!swatchesRow) return;
@@ -20,10 +32,10 @@ document.addEventListener('click', (event) => {
   const swatch = event.target.closest('.led-swatch');
   if (!swatch) return;
 
-  const scope = swatch.closest('.product-media-container');
+  const scope = getScope(swatch);
   if (!scope) return;
 
-  const tint = scope.querySelector('.led-tint');
+  const tint = getTint(scope);
   if (!tint) return;
 
   scope.querySelectorAll('.led-swatch').forEach((button) => {
@@ -33,5 +45,33 @@ document.addEventListener('click', (event) => {
   swatch.classList.add('led-swatch--active');
   swatch.setAttribute('aria-pressed', 'true');
 
+  const color = swatch.dataset.ledColor || 'transparent';
+  tint.style.backgroundColor = color;
+  scope.dataset.ledSelectedColor = color;
+});
+
+document.addEventListener('pointerover', (event) => {
+  const swatch = event.target.closest('.led-swatch');
+  if (!swatch) return;
+
+  const scope = getScope(swatch);
+  if (!scope) return;
+
+  const tint = getTint(scope);
+  if (!tint) return;
+
   tint.style.backgroundColor = swatch.dataset.ledColor || 'transparent';
+});
+
+document.addEventListener('pointerout', (event) => {
+  const swatch = event.target.closest('.led-swatch');
+  if (!swatch) return;
+
+  const scope = getScope(swatch);
+  if (!scope) return;
+
+  const tint = getTint(scope);
+  if (!tint) return;
+
+  tint.style.backgroundColor = scope.dataset.ledSelectedColor || 'transparent';
 });
