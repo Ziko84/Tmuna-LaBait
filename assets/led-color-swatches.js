@@ -1,8 +1,11 @@
 /**
- * LED color swatches on product cards and the product page.
- * Recolors only the bright glow in the photo (not the whole image) by using
- * the photo itself as a luminance mask under a mix-blend-mode:color overlay,
- * so no per-color product photography is needed.
+ * LED color swatches on product cards and the product page (night-mode
+ * products only). Recolors only the bright glow in the photo (not the whole
+ * image) by using the night photo itself as a luminance mask under a
+ * mix-blend-mode:color overlay, so no per-color product photography is
+ * needed. Tint opacity is controlled entirely by CSS :hover on the same
+ * container that drives the day/night crossfade - this script only sets
+ * which color the tint should be.
  */
 document.addEventListener('click', (event) => {
   const swatch = event.target.closest('.led-swatch');
@@ -24,11 +27,5 @@ document.addEventListener('click', (event) => {
   swatch.classList.add('led-swatch--active');
   swatch.setAttribute('aria-pressed', 'true');
 
-  const color = swatch.dataset.ledColor;
-  if (color) {
-    tint.style.backgroundColor = color;
-    tint.style.opacity = '1';
-  } else {
-    tint.style.opacity = '0';
-  }
+  tint.style.backgroundColor = swatch.dataset.ledColor || 'transparent';
 });

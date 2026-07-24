@@ -243,12 +243,15 @@
         box-shadow: 0 6px 18px rgba(26, 26, 46, 0.12);
       }
 
-      /* LED color swatches (product cards + product page): the tint layer
-         uses the product photo itself as a luminance mask, so a
-         mix-blend-mode:color overlay only recolors the bright LED glow and
-         leaves the wood/wall/props alone - no per-color photography needed.
-         data-led-color="" (warm white) means no overlay, showing the real
-         photo untouched. */
+      /* LED color swatches (product cards + product page, night-mode
+         products only): the tint layer uses the NIGHT photo itself as a
+         luminance mask, so a mix-blend-mode:color overlay only recolors the
+         bright LED glow and leaves the wood/wall/props alone - no per-color
+         photography needed. Opacity is driven purely by :hover on the same
+         container that triggers the day/night crossfade, so a color choice
+         is only ever visible together with the night image - never on the
+         day photo. data-led-color="" (warm white) leaves the tint
+         transparent, showing the night photo's real glow color untouched. */
       .led-tint {
         position: absolute;
         inset: 0;
@@ -264,7 +267,10 @@
         -webkit-mask-size: cover;
         mask-position: center;
         -webkit-mask-position: center;
-        transition: opacity 0.35s ease, background-color 0.35s ease;
+        transition: opacity 0.8s ease, background-color 0.35s ease;
+      }
+      .product-media-container:hover .led-tint {
+        opacity: 1;
       }
       .led-swatches-scope {
         position: relative;
@@ -307,7 +313,7 @@
         outline-offset: 2px;
       }
       .led-swatch--active {
-        box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 3.5px #1a1a2e, 0 1px 4px rgba(26, 26, 46, 0.35);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(26, 26, 46, 0.35);
         transform: scale(1.15);
       }
 
