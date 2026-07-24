@@ -47,9 +47,6 @@
         </div>
       {%- endif -%}
     </div>
-    {%  if settings.quick_add or settings.mobile_quick_add %}
-      {% render 'quick-add', product: product, section_id: section.id %}
-    {% endif %}
   {% endunless %}
 {% endcapture %}
 
@@ -63,6 +60,15 @@
     <h3 class="h4">{{ product.title }}</h3>
   {% endif %}
 </div>
+
+{% # Add to cart: on the card itself, not floating over the photo %}
+{% unless product == blank %}
+  {% if settings.quick_add or settings.mobile_quick_add %}
+    <div class="product-card__quick-add-row">
+      {% render 'quick-add', product: product, section_id: section.id %}
+    </div>
+  {% endif %}
+{% endunless %}
 
 {% render 'product-badges-styles' %}
 

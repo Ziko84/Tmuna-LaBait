@@ -1031,6 +1031,38 @@
         height: var(--icon-size-md);
       }
 
+      /* Add to cart on product cards: moved out of the photo overlay
+         (blocks/_product-card-gallery.liquid renders it in
+         .product-card__quick-add-row now, below the image) into a normal
+         row on the card. The native component is built as a hover-reveal
+         floating pill though - position:absolute over the whole photo,
+         opacity:0 until hover, icon-only until hover expands the text - so
+         all of that has to be undone for it to read as an ordinary
+         always-visible button. */
+      .product-card__quick-add-row {
+        display: flex;
+      }
+      .product-card__quick-add-row .quick-add {
+        position: static;
+        inset: auto;
+        pointer-events: auto;
+        width: 100%;
+      }
+      .product-card__quick-add-row .quick-add__button {
+        position: static;
+        opacity: 1 !important;
+        display: flex !important;
+        width: 100%;
+      }
+      .product-card__quick-add-row .quick-add__button .add-to-cart-text__content {
+        grid-template-columns: 1fr !important;
+      }
+      .product-card__quick-add-row .quick-add__button .add-to-cart-text__content span span {
+        opacity: 1 !important;
+        filter: none !important;
+        translate: 0 !important;
+      }
+
       /* Product page night-mode hover crossfade (same idea as the homepage
          banners): snippets/product-media-gallery-content.liquid renders this
          overlay only on the first slide, only when the product has a gallery
