@@ -934,6 +934,36 @@
         }
       }
 
+      /* Add to Cart above the quantity stepper on the product page. Reordering
+         the content_for calls in blocks/buy-buttons.liquid alone wasn't
+         reliably reflected in the rendered markup, so this pins the visual
+         order directly on the flex row instead - guaranteed to apply
+         regardless of DOM source order. */
+      [data-template='product'] .product-form-buttons {
+        display: flex !important;
+      }
+      [data-template='product'] .product-form-buttons > .product-form-text__error {
+        order: 0;
+      }
+      [data-template='product'] .product-form-buttons > span:has(> .add-to-cart-button) {
+        order: 1;
+      }
+      [data-template='product'] .product-form-buttons > .quantity-label {
+        order: 2;
+      }
+      [data-template='product'] .product-form-buttons > .quantity-selector-wrapper {
+        order: 3;
+      }
+      [data-template='product'] .product-form-buttons > .quantity-rules {
+        order: 4;
+      }
+      [data-template='product'] .product-form-buttons > .volume-pricing {
+        order: 5;
+      }
+      [data-template='product'] .product-form-buttons > .accelerated-checkout-block {
+        order: 6;
+      }
+
       /* Trust bar (shipping/returns/secure payment) on the product page:
          each of the 3 boxes is height:auto, sized to its own content, and
          the row's default align-items:center leaves them free to differ in
