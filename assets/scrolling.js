@@ -73,6 +73,25 @@ export class Scroller {
   #isScrolling = false;
 
   /**
+   * Incremented on every #scroll() call. A running #animateScroll() loop
+   * checks its captured value against this each frame and stops as soon as
+   * a newer scroll request supersedes it - without this, rapid back-to-back
+   * requests (e.g. hover in/out) start overlapping rAF loops that fight
+   * over scrollLeft/scrollTop, producing jumpy motion or getting stuck
+   * partway when one loop "wins" arbitrarily.
+   * @type {number}
+   */
+  #scrollToken = 0;
+
+  /**
+   * The element's own inline scroll-behavior, captured once up front so
+   * #animateScroll always restores the true original value - not whatever
+   * a since-superseded overlapping animation last left it as.
+   * @type {string}
+   */
+  #originalScrollBehavior = '';
+
+  /**
    * Creates a Scroller instance.
    *
    * @param {HTMLElement} element - The element to apply scrolling to.
@@ -90,6 +109,7 @@ export class Scroller {
 
     this.element = element;
     this.element.addEventListener('scroll', this.#handleScroll);
+    this.#originalScrollBehavior = element.style.scrollBehavior;
   }
 
   /**
@@ -141,6 +161,7 @@ export class Scroller {
    */
   #scroll(options) {
     const { method, value, instant = prefersReducedMotion(), duration } = options;
+    const scrollToken = ++this.#scrollToken;
 
     this.#reset();
     this.#ignore = instant;
@@ -161,7 +182,7 @@ export class Scroller {
     // Native `behavior: 'smooth'` has no adjustable duration, so when a custom
     // duration is requested we drive the scroll position manually instead.
     if (!instant && duration) {
-      this.#animateScroll(currentPosition, targetPosition, duration);
+      this.#animateScroll(currentPosition, targetPosition, duration, scrollToken);
       return;
     }
 
@@ -177,8 +198,10 @@ export class Scroller {
    * @param {number} from - The starting scroll position.
    * @param {number} to - The target scroll position.
    * @param {number} duration - The duration of the animation in ms.
+   * @param {number} scrollToken - Snapshot of #scrollToken at request time; the loop
+   *   bails out the moment a newer #scroll() call bumps #scrollToken past this value.
    */
-  #animateScroll(from, to, duration) {
+  #animateScroll(from, to, duration, scrollToken) {
     const property = this.#edge === 'Left' ? 'scrollLeft' : 'scrollTop';
     const startTime = performance.now();
     const ease = (/** @type {number} */ t) => 1 - Math.pow(1 - t, 3);
@@ -189,17 +212,21 @@ export class Scroller {
     // intermediate value we set, fighting our easing every frame and
     // producing a jumpy result instead of one clean animation. Suspend it
     // for the duration of our manual animation, then restore it.
-    const previousScrollBehavior = this.element.style.scrollBehavior;
     this.element.style.scrollBehavior = 'auto';
 
     const step = (/** @type {number} */ now) => {
+      // A newer scroll request (e.g. hover-out right after hover-in) has
+      // taken over - stop touching the scroll position entirely so this
+      // stale loop can't fight the new one.
+      if (scrollToken !== this.#scrollToken) return;
+
       const progress = Math.min((now - startTime) / duration, 1);
       this.element[property] = from + (to - from) * ease(progress);
 
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        this.element.style.scrollBehavior = previousScrollBehavior;
+        this.element.style.scrollBehavior = this.#originalScrollBehavior;
       }
     };
 
