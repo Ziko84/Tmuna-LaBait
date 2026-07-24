@@ -300,6 +300,7 @@
         line-height: 0;
       }
       .led-swatch {
+        position: relative;
         width: 8px;
         height: 8px;
         padding: 0;
@@ -307,6 +308,15 @@
         border-radius: 2px;
         cursor: pointer;
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
+      }
+      /* Invisible expanded hit area: the dot stays 8px so it reads as a
+         small, unobtrusive chip, but the actual clickable region is a lot
+         bigger (~24px) so a slightly-off tap still lands on the swatch
+         instead of falling through to the image link underneath it. */
+      .led-swatch::before {
+        content: '';
+        position: absolute;
+        inset: -8px;
       }
       .led-swatch:hover {
         transform: scale(1.15);
