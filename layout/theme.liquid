@@ -964,6 +964,15 @@
         order: 6;
       }
 
+      /* "More payment options" link under the PayPal button: it's rendered
+         by Shopify's own accelerated-checkout web component, not theme
+         text, so it can't be translated from here - it shows in English
+         regardless of the storefront's language. Hidden since there's no
+         way to make it match the rest of the (Hebrew) page. */
+      .shopify-payment-button__more-options {
+        display: none !important;
+      }
+
       /* Drop shadow on product photos (product cards + product page). The
          shadow has to live on .product-media-container, not .product-media
          itself - base.css gives .product-media-container position:relative
