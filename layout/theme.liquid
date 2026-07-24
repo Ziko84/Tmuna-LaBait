@@ -504,6 +504,25 @@
         border-width: 0 1px 1px 0;
       }
 
+      /* Homepage hero: night-mode crossfade on hover (snippets/hero-night-mode.liquid
+         injects the .hero-night-image element once a matching file exists). Day shot
+         underneath, night shot fades in over it - both pixel-aligned so it reads as
+         the lights turning off, not a slideshow swap. */
+      [id$="__hero_split_tlb01"] .hero-night-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+      [id$="__hero_split_tlb01"] .media-with-content:hover .hero-night-image {
+        opacity: 1;
+      }
+
       /* Premium pill buttons with lift on hover */
       .button, a.button, .button-secondary, .button-custom {
         border-radius: 999px !important;
@@ -992,6 +1011,10 @@
 
     {% if request.page_type == 'product' %}
       {% render 'sticky-buy-bar' %}
+    {% endif %}
+
+    {% if request.page_type == 'index' %}
+      {% render 'hero-night-mode' %}
     {% endif %}
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
