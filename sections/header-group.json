@@ -20,9 +20,9 @@
             "text": "משלוח חינם בהזמנה מעל 500 ש\"ח",
             "link": "shopify://collections/all",
             "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
+            "font_size": "0.8125rem",
             "weight": "400",
-            "letter_spacing": "loose",
+            "letter_spacing": "normal",
             "case": "none",
             "text_color": "#f0ece3"
           },
