@@ -169,8 +169,14 @@ export class CartItemsComponent extends createViewEventElement(Component) {
       ...this.refs.cartItemRows.filter((row) => row.dataset.parentKey === cartItemRowToRemove.dataset.key),
     ];
 
-    // If the cart item row is the last row, optimistically trigger the cart empty state
+    // If the cart item row is the last row, the cart is now empty.
     const isEmptyCart = rowsToRemove.length == this.refs.cartItemRows.length;
+
+    // In the drawer, close it instead of leaving it open on an empty state.
+    if (isEmptyCart && this.isDrawer) {
+      this.closest('theme-drawer')?.close();
+      return;
+    }
 
     const template = document.getElementById('empty-cart-template');
     if (isEmptyCart && template instanceof HTMLTemplateElement) {
@@ -179,7 +185,7 @@ export class CartItemsComponent extends createViewEventElement(Component) {
       startViewTransition(() => {
         document.getElementById('cart-drawer-heading')?.remove();
         this.replaceChildren(clone);
-      }, [this.isDrawer ? 'empty-cart-drawer' : 'empty-cart-page']);
+      }, ['empty-cart-page']);
 
       return;
     }
