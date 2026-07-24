@@ -295,7 +295,7 @@ export class Slideshow extends Component {
     slide.setAttribute('aria-hidden', 'false');
 
     if (this.#scroll) {
-      this.#scroll.to(slide, { instant });
+      this.#scroll.to(slide, { instant, duration: instant ? undefined : this.scrollDuration });
     }
 
     this.current = this.slides?.indexOf(slide) || 0;
@@ -434,6 +434,17 @@ export class Slideshow extends Component {
 
   get infinite() {
     return this.getAttribute('infinite') != null;
+  }
+
+  /**
+   * Optional custom duration (in ms) for the slide-to-slide scroll animation,
+   * set via the `scroll-duration` attribute. Falls back to the browser's
+   * native smooth-scroll timing when absent.
+   * @type {number | undefined}
+   */
+  get scrollDuration() {
+    const value = parseInt(`${this.getAttribute('scroll-duration')}`, 10);
+    return Number.isNaN(value) ? undefined : value;
   }
 
   get visibleSlides() {

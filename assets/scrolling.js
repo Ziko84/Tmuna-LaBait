@@ -97,6 +97,7 @@ export class Scroller {
    * @param {number | HTMLElement} input - The position in pixels or an element to scroll to.
    * @param {Object} [options] - Options for the scroll.
    * @param {boolean} [options.instant] - Whether to scroll instantly.
+   * @param {number} [options.duration] - Custom animation duration in ms (overrides native smooth scroll timing).
    */
   async to(input, options) {
     let value;
@@ -136,9 +137,10 @@ export class Scroller {
    * @param {'scrollTo' | 'scrollBy'} options.method - The method to use to scroll.
    * @param {number} options.value - The value to scroll to.
    * @param {boolean} [options.instant] - Whether to scroll instantly.
+   * @param {number} [options.duration] - Custom animation duration in ms (overrides native smooth scroll timing).
    */
   #scroll(options) {
-    const { method, value, instant = prefersReducedMotion() } = options;
+    const { method, value, instant = prefersReducedMotion(), duration } = options;
 
     this.#reset();
     this.#ignore = instant;
@@ -156,10 +158,41 @@ export class Scroller {
 
     if (!instant) this.#setup();
 
+    // Native `behavior: 'smooth'` has no adjustable duration, so when a custom
+    // duration is requested we drive the scroll position manually instead.
+    if (!instant && duration) {
+      this.#animateScroll(currentPosition, targetPosition, duration);
+      return;
+    }
+
     this.element[method]({
       [this.#edge.toLowerCase()]: value,
       behavior: instant ? 'instant' : 'smooth',
     });
+  }
+
+  /**
+   * Animates the scroll position over a fixed duration, firing native 'scroll'
+   * events along the way so the existing scroll-end detection keeps working.
+   * @param {number} from - The starting scroll position.
+   * @param {number} to - The target scroll position.
+   * @param {number} duration - The duration of the animation in ms.
+   */
+  #animateScroll(from, to, duration) {
+    const property = this.#edge === 'Left' ? 'scrollLeft' : 'scrollTop';
+    const startTime = performance.now();
+    const ease = (/** @type {number} */ t) => 1 - Math.pow(1 - t, 3);
+
+    const step = (/** @type {number} */ now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      this.element[property] = from + (to - from) * ease(progress);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
   }
 
   /**
