@@ -1015,10 +1015,15 @@
       }
 
       /* Product card favorite/like heart: drop the native white circular
-         backdrop, just the icon floating on the photo. */
+         backdrop and auto-contrast the icon against whatever photo it
+         sits on instead - white icon + mix-blend-mode: difference inverts
+         per-pixel, so it reads black on light backgrounds and white on
+         dark ones without knowing the photo's colors in advance. */
       .favorite-toggle {
         background: transparent !important;
         box-shadow: none !important;
+        color: #fff;
+        mix-blend-mode: difference;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
