@@ -284,11 +284,20 @@
          - NOT .card-gallery, which carries its own ~14px padding around
          the photo, so anchoring there landed the chips in that padding
          gutter instead of on the image. */
+      /* The row's own box used to be exactly as tall as the 8px dots and
+         nothing more, so a tap even a couple px above/below the dots fell
+         straight through to the image link - the per-button ::before
+         expansion doesn't help there since the click never even reaches a
+         button. Padding pushes the row's real hit box (and therefore what
+         "click inside .led-swatches" in the JS covers) well past the
+         dots on every side; inset is reduced by the same amount so the
+         dots still land visually where they did before. */
       .led-swatches {
         position: absolute;
         z-index: 3;
-        inset-block-end: 8px;
-        inset-inline-start: 8px;
+        inset-block-end: 0;
+        inset-inline-start: 0;
+        padding: 12px;
         display: flex;
         /* Force left-start layout regardless of the page's RTL context -
            these are just color chips, not text, so LTR reads more natural
@@ -298,7 +307,6 @@
         align-items: center;
         gap: 5px;
         margin: 0;
-        padding: 0;
         list-style: none;
       }
       .led-swatches li {
@@ -325,7 +333,7 @@
         inset: -8px;
       }
       .led-swatch:hover {
-        transform: scale(1.15);
+        transform: scale(2.2);
       }
       .led-swatch:focus-visible {
         outline: 1px solid #ffffff;
