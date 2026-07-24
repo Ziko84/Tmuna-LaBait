@@ -10,14 +10,127 @@
 {
   "sections": {
     "story_hero": {
-      "type": "story-hero",
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/A2_20_3.png",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "text_intro": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>מי אנחנו</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "h6",
+                "font": "var(--font-accent--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "0.08em",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_main": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h1>הסיפור שנחתך באור</h1>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "h1",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_desc": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>תמונה לבית נולדה מתוך אהבה לעיצוב ולפרטים הקטנים. כל יצירה מתחילה בסקיצה, עוברת בין ידיים, ומסתיימת באור.</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "right",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#1a1a2e",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_intro",
+            "text_main",
+            "text_desc"
+          ]
+        }
+      },
+      "name": "t:names.media_with_text",
       "settings": {
-        "image": "shopify://shop_images/A2_20_3.png",
-        "eyebrow": "מי אנחנו",
-        "heading": "הסיפור שנחתך באור",
-        "intro": "<p>תמונה לבית נולדה מתוך אהבה לעיצוב ולפרטים הקטנים. כל יצירה מתחילה בסקיצה, עוברת בין ידיים, ומסתיימת באור.</p>",
+        "media_position": "right",
+        "media_width": "wide",
         "media_height": "42svh",
-        "background_color": "#f7f5f2"
+        "section_width": "full-width",
+        "extend_media": false,
+        "background_color": "#f7f5f2",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "story_editorial": {
