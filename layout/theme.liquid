@@ -272,15 +272,15 @@
       .product-media-container:hover .led-tint {
         opacity: 1;
       }
-      /* Scope marker only (JS query root connecting a swatch click to its
-         .led-tint) - no positioning role now that swatches live in normal
-         flow, in the white content area, not on the photo. On product
-         cards this sits on .product-card__content (the flex column that
-         holds the gallery, this swatch row, and the title/price group as
-         plain siblings, rendered as a sibling right after the gallery so
-         it lands between the image and the price); on the product page
-         it's the media-gallery element. */
+      .led-swatches-scope {
+        position: relative;
+      }
+      /* Tiny color chips anchored to the photo's bottom-left corner. */
       .led-swatches {
+        position: absolute;
+        z-index: 3;
+        inset-block-end: 8px;
+        inset-inline-start: 8px;
         display: flex;
         /* Force left-start layout regardless of the page's RTL context -
            these are just color chips, not text, so LTR reads more natural
@@ -288,7 +288,7 @@
         direction: ltr;
         justify-content: flex-start;
         align-items: center;
-        gap: 8px;
+        gap: 5px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -298,11 +298,11 @@
         line-height: 0;
       }
       .led-swatch {
-        width: 11px;
-        height: 11px;
+        width: 8px;
+        height: 8px;
         padding: 0;
         border: none;
-        border-radius: 3px;
+        border-radius: 2px;
         cursor: pointer;
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
       }
@@ -310,12 +310,13 @@
         transform: scale(1.15);
       }
       .led-swatch:focus-visible {
-        outline: 1.5px solid #1a1a2e;
-        outline-offset: 2px;
+        outline: 1px solid #ffffff;
+        outline-offset: 1px;
       }
       .led-swatch--active {
-        outline: 1.5px solid rgba(26, 26, 46, 0.4);
-        outline-offset: 2px;
+        outline: 1px solid #ffffff;
+        outline-offset: 1px;
+        box-shadow: 0 0 0 2px rgba(26, 26, 46, 0.45);
       }
 
       /* ============================================================

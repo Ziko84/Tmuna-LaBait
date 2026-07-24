@@ -1,22 +1,6 @@
 
 
-{% liquid
-  assign product = closest.product
-
-  # Same night-image convention as card-gallery.liquid: any gallery image
-  # tagged "...לילה" makes this a night-mode product, and only night-mode
-  # products get the LED color swatches (the tint only ever shows during
-  # the night-mode hover, so a color choice is meaningless without one).
-  assign night_media = null
-  if product != blank
-    for media in product.media
-      if media.alt contains 'לילה'
-        assign night_media = media
-        break
-      endif
-    endfor
-  endif
-%}
+{% assign product = closest.product %}
 
 {% capture children %}
   {% unless product == blank %}
@@ -70,26 +54,6 @@
 {% endcapture %}
 
 {% render 'card-gallery', children: children %}
-
-{% if night_media %}
-  <ul class="led-swatches" aria-label="בחר צבע תאורה">
-    <li>
-      <button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);"></button>
-    </li>
-    <li>
-      <button type="button" class="led-swatch" data-led-color="#74a0c9" aria-pressed="false" aria-label="כחול" style="background: #74a0c9;"></button>
-    </li>
-    <li>
-      <button type="button" class="led-swatch" data-led-color="#cf7f66" aria-pressed="false" aria-label="אדום" style="background: #cf7f66;"></button>
-    </li>
-    <li>
-      <button type="button" class="led-swatch" data-led-color="#8fb17c" aria-pressed="false" aria-label="ירוק" style="background: #8fb17c;"></button>
-    </li>
-    <li>
-      <button type="button" class="led-swatch" data-led-color="#dea0b6" aria-pressed="false" aria-label="ורוד" style="background: #dea0b6;"></button>
-    </li>
-  </ul>
-{% endif %}
 
 {% # Title and price for the zoomed out grid view %}
 <div class="product-grid-view-zoom-out--details">
