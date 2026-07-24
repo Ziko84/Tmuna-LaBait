@@ -1025,6 +1025,11 @@
         color: #fff;
         mix-blend-mode: difference;
       }
+      /* One size step up the theme's own icon scale (sm -> md). */
+      .favorite-toggle__icon {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+      }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
          banners): snippets/product-media-gallery-content.liquid renders this
