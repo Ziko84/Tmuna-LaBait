@@ -256,6 +256,15 @@
   .card-gallery:hover .card-gallery__night-image {
     opacity: 1;
   }
+  /* The site-wide card-hover-effect setting (subtle-zoom/scale, see
+     base.css) scales .card-gallery or .product-card on hover. On cards with
+     a night image that zoom was compounding with the crossfade into a
+     jittery combined motion - the ask here is just the opacity swap, so
+     hover on these specific cards is locked to no transform at all. */
+  .card-gallery:has(.card-gallery__night-image),
+  .product-card:has(.card-gallery__night-image) {
+    transform: none !important;
+  }
 
   .card-gallery__placeholder svg {
     height: 100%;
