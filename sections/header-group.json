@@ -16,16 +16,15 @@
       "blocks": {
         "announcement_mxxhta": {
           "type": "_announcement",
-          "disabled": true,
           "settings": {
-            "text": "משלוח חינם בהזמנה מעל 500 ש\"ח.",
+            "text": "משלוח חינם בהזמנה מעל 500 ש\"ח",
             "link": "shopify://collections/all",
-            "font": "var(--font-body--family)",
-            "font_size": "var(--font-size--body-md)",
-            "weight": "",
-            "letter_spacing": "normal",
+            "font": "var(--font-accent--family)",
+            "font_size": "0.75rem",
+            "weight": "300",
+            "letter_spacing": "loose",
             "case": "none",
-            "text_color": "#ffffff"
+            "text_color": "#f0ece3"
           },
           "blocks": {}
         }

@@ -355,13 +355,19 @@
         direction: rtl;
       }
 
-      /* Announcement bar: dark stripe */
+      /* Announcement bar: dark stripe, editorial label treatment
+         (small tracked-out accent type instead of a loud promo banner) */
       .announcement-bar,
       .announcement-bar .section-background {
         background: #1a1a2e !important;
+        border-bottom: 1px solid rgba(196, 164, 108, 0.35) !important;
       }
       .announcement-bar, .announcement-bar * {
-        color: #ffffff !important;
+        color: #f0ece3 !important;
+      }
+      .announcement-bar .announcement-bar__text {
+        letter-spacing: 0.14em !important;
+        opacity: 0.92;
       }
 
       /* ============================================================
