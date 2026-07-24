@@ -269,50 +269,46 @@
       .led-swatches-scope {
         position: relative;
       }
-      /* Floating glass pill, not bare dots on the photo - reads as a
-         deliberate control instead of stray UI debris on top of the image. */
+      /* No boxed background - just small dots sitting directly on the
+         photo, spaced with real breathing room instead of crammed in a
+         corner. Each dot carries its own white ring + shadow for contrast
+         against any photo, so it doesn't need a container to read clearly. */
       .led-swatches {
         position: absolute;
         z-index: 3;
-        inset-block-end: 12px;
-        inset-inline-start: 12px;
+        inset-block-end: 16px;
+        inset-inline-start: 16px;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         margin: 0;
-        padding: 6px;
+        padding: 0;
         list-style: none;
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1px solid rgba(26, 26, 46, 0.08);
-        border-radius: 999px;
-        box-shadow: 0 3px 10px rgba(26, 26, 46, 0.16);
       }
       .led-swatches li {
         display: flex;
         line-height: 0;
       }
       .led-swatch {
-        width: 18px;
-        height: 18px;
+        width: 13px;
+        height: 13px;
         padding: 0;
         border-radius: 50%;
-        border: 2px solid #ffffff;
-        box-shadow: 0 0 0 1px rgba(26, 26, 46, 0.14);
+        border: 1.5px solid #ffffff;
+        box-shadow: 0 1px 4px rgba(26, 26, 46, 0.35);
         cursor: pointer;
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
       }
       .led-swatch:hover {
-        transform: scale(1.15);
+        transform: scale(1.2);
       }
       .led-swatch:focus-visible {
         outline: 2px solid #1a1a2e;
         outline-offset: 2px;
       }
       .led-swatch--active {
-        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #1a1a2e;
-        transform: scale(1.08);
+        box-shadow: 0 0 0 1.5px #ffffff, 0 0 0 3.5px #1a1a2e, 0 1px 4px rgba(26, 26, 46, 0.35);
+        transform: scale(1.15);
       }
 
       /* ============================================================
