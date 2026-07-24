@@ -263,8 +263,14 @@
            glow's highlights sit so close to white that even a fully
            saturated overlay reads as washed-out/pastel there - boost past
            100% saturation to compensate and keep the color reading vivid
-           at the brightest part of the glow. */
-        filter: saturate(1.8);
+           at the brightest part of the glow. Blue/green need this more
+           than red/orange/pink: forced up to near-white luminosity, warm
+           hues can stay vivid but blue/green are inherently closer to
+           white at that brightness regardless of input saturation - the
+           swatch hex values were also picked to sit nearer their own
+           brightness ceiling (cyan-leaning blue, lime-leaning green) to
+           help the same problem from the other side. */
+        filter: saturate(2.4);
         mask-image: var(--led-mask-url);
         -webkit-mask-image: var(--led-mask-url);
         mask-mode: luminance;
