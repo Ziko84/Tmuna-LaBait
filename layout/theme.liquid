@@ -504,16 +504,16 @@
         border-width: 0 1px 1px 0;
       }
 
-      /* Homepage banners: night-mode crossfade on hover (snippets/hero-night-mode.liquid
-         injects the .hero-night-image element once a matching file exists), scoped to
+      /* Night-mode crossfade on hover (snippets/hero-night-mode.liquid injects the
+         .hero-night-image element once a matching file exists), scoped to
          .media-block (the photo column only) so it doesn't wash out the text side.
          Day shot underneath, night shot fades in over it - both pixel-aligned so it
-         reads as the lights turning off, not a slideshow swap. Covers both the hero
-         and the second "אור שנולד מעץ" banner. */
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-block {
+         reads as the lights turning off, not a slideshow swap. Covers the homepage
+         hero, the second "אור שנולד מעץ" banner, and the Our Story hero. */
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-block {
         position: relative;
       }
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .hero-night-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -524,7 +524,7 @@
         pointer-events: none;
         z-index: 1;
       }
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-with-content:hover .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-with-content:hover .hero-night-image {
         opacity: 1;
       }
 
@@ -1018,9 +1018,7 @@
       {% render 'sticky-buy-bar' %}
     {% endif %}
 
-    {% if request.page_type == 'index' %}
-      {% render 'hero-night-mode' %}
-    {% endif %}
+    {% render 'hero-night-mode' %}
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
