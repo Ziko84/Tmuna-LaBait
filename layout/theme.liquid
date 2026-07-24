@@ -1004,6 +1004,15 @@
         align-items: stretch !important;
       }
 
+      /* Header logo icon: blue LED-style glow on hover only, text/slogan
+         untouched since .header-logo__image is the icon alone. */
+      .header-logo__image {
+        transition: filter 0.3s ease;
+      }
+      .header-logo:hover .header-logo__image {
+        filter: drop-shadow(0 0 6px #00b0ff) drop-shadow(0 0 14px #00b0ff);
+      }
+
       /* Product page night-mode hover crossfade (same idea as the homepage
          banners): snippets/product-media-gallery-content.liquid renders this
          overlay only on the first slide, only when the product has a gallery
