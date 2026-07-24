@@ -351,6 +351,7 @@
     class="
       spacing-style
       sticky-content
+      led-swatches-scope
       {% if media_presentation == 'grid' %}
         media-gallery--{{ block_settings.media_columns }}-column
         {% if block_settings.media_columns == "two" and block_settings.large_first_image%}media-gallery--large-first-image{% endif %}
@@ -391,6 +392,10 @@
               | image_url: width: 1600
               | image_tag: class: 'product-media__night-image', loading: 'lazy', alt: '', sizes: media_sizes
             }}
+          {% endif %}
+          {% if forloop.first %}
+            {% assign led_mask_url = media.preview_image | image_url: width: 1600 %}
+            <div class="led-tint" style="--led-mask-url: url({{ led_mask_url }});"></div>
           {% endif %}
         {% endcapture %}
         {% capture class %}
@@ -464,6 +469,18 @@
       controls: controls,
       attributes: 'scroll-duration="800"'
     %}
+
+    <ul class="led-swatches" aria-label="בחר צבע תאורה">
+      <li>
+        <button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);"></button>
+      </li>
+      <li>
+        <button type="button" class="led-swatch" data-led-color="#2f8dff" aria-pressed="false" aria-label="כחול" style="background: #2f8dff;"></button>
+      </li>
+      <li>
+        <button type="button" class="led-swatch" data-led-color="#ff3b30" aria-pressed="false" aria-label="אדום" style="background: #ff3b30;"></button>
+      </li>
+    </ul>
 
     {% if media_presentation == 'grid' %}
       <ul

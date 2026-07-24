@@ -1,0 +1,34 @@
+/**
+ * LED color swatches on product cards and the product page.
+ * Recolors only the bright glow in the photo (not the whole image) by using
+ * the photo itself as a luminance mask under a mix-blend-mode:color overlay,
+ * so no per-color product photography is needed.
+ */
+document.addEventListener('click', (event) => {
+  const swatch = event.target.closest('.led-swatch');
+  if (!swatch) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const scope = swatch.closest('.led-swatches-scope');
+  if (!scope) return;
+
+  const tint = scope.querySelector('.led-tint');
+  if (!tint) return;
+
+  scope.querySelectorAll('.led-swatch').forEach((button) => {
+    button.classList.remove('led-swatch--active');
+    button.setAttribute('aria-pressed', 'false');
+  });
+  swatch.classList.add('led-swatch--active');
+  swatch.setAttribute('aria-pressed', 'true');
+
+  const color = swatch.dataset.ledColor;
+  if (color) {
+    tint.style.backgroundColor = color;
+    tint.style.opacity = '1';
+  } else {
+    tint.style.opacity = '0';
+  }
+});
