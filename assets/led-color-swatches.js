@@ -8,11 +8,17 @@
  * which color the tint should be.
  */
 document.addEventListener('click', (event) => {
-  const swatch = event.target.closest('.led-swatch');
-  if (!swatch) return;
+  const swatchesRow = event.target.closest('.led-swatches');
+  if (!swatchesRow) return;
 
+  // Block the underlying product image link for ANY click that lands
+  // inside the swatches row - including the small gaps between dots, not
+  // just the dots themselves - so a near-miss never opens the product page.
   event.preventDefault();
   event.stopPropagation();
+
+  const swatch = event.target.closest('.led-swatch');
+  if (!swatch) return;
 
   const scope = swatch.closest('.product-media-container');
   if (!scope) return;
