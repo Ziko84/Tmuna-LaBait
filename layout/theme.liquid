@@ -215,7 +215,11 @@
         outline: 1px solid rgba(26, 26, 46, 0);
         outline-offset: 6px;
         border-radius: 16px;
-        transition: outline-color 0.15s ease-in;
+        /* !important: a higher-specificity native rule
+           (.card-hover-effect-lift .product-card) fully replaces this
+           shorthand otherwise, silently dropping the outline-color
+           transition since it isn't merged, just overwritten. */
+        transition: outline-color 0.15s ease-in, transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out !important;
       }
       .product-card:hover {
         outline-color: rgba(26, 26, 46, 1);
