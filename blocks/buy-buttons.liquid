@@ -94,6 +94,13 @@
             endif
           -%}
 
+          {% content_for 'block',
+            type: 'add-to-cart',
+            id: 'add-to-cart',
+            can_add_to_cart: can_add_to_cart,
+            add_to_cart_text: add_to_cart_text
+          %}
+
           {%- if has_quantity_rules -%}
             {%- assign cart_quantity = cart | item_count_for_variant: variant.id -%}
             <div
@@ -221,12 +228,6 @@
               </div>
             </volume-pricing>
           {%- endif -%}
-          {% content_for 'block',
-            type: 'add-to-cart',
-            id: 'add-to-cart',
-            can_add_to_cart: can_add_to_cart,
-            add_to_cart_text: add_to_cart_text
-          %}
 
           {% content_for 'block',
             type: 'accelerated-checkout',

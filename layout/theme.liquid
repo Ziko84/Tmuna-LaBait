@@ -934,6 +934,18 @@
         }
       }
 
+      /* Trust bar (shipping/returns/secure payment) on the product page:
+         each of the 3 boxes is height:auto, sized to its own content, and
+         the row's default align-items:center leaves them free to differ in
+         height instead of matching each other. "תשלום מאובטח" is a couple
+         characters longer than the other two labels and was wrapping to a
+         second line while its siblings stayed on one, making that box
+         visibly taller. Stretching the row makes every box match the
+         tallest one instead. */
+      [data-template='product'] .group-block-content.layout-panel-flex--row:has(> .group-block .icon-block) {
+        align-items: stretch !important;
+      }
+
       /* Product page night-mode hover crossfade (same idea as the homepage
          banners): snippets/product-media-gallery-content.liquid renders this
          overlay only on the first slide, only when the product has a gallery
