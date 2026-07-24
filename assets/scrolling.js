@@ -183,12 +183,23 @@ export class Scroller {
     const startTime = performance.now();
     const ease = (/** @type {number} */ t) => 1 - Math.pow(1 - t, 3);
 
+    // The scroller (e.g. slideshow-slides) has CSS `scroll-behavior: smooth`
+    // for native drag/keyboard scrolling. Setting scrollLeft/scrollTop while
+    // that's active triggers the browser's OWN smooth-scroll to each
+    // intermediate value we set, fighting our easing every frame and
+    // producing a jumpy result instead of one clean animation. Suspend it
+    // for the duration of our manual animation, then restore it.
+    const previousScrollBehavior = this.element.style.scrollBehavior;
+    this.element.style.scrollBehavior = 'auto';
+
     const step = (/** @type {number} */ now) => {
       const progress = Math.min((now - startTime) / duration, 1);
       this.element[property] = from + (to - from) * ease(progress);
 
       if (progress < 1) {
         requestAnimationFrame(step);
+      } else {
+        this.element.style.scrollBehavior = previousScrollBehavior;
       }
     };
 

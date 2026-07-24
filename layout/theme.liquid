@@ -534,7 +534,10 @@
         pointer-events: none;
         z-index: 1;
       }
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-with-content:hover .hero-night-image {
+      /* Trigger on hovering the photo itself, not the whole split section -
+         .media-with-content:hover also fires while hovering the text/button
+         column, which shouldn't flip the image to night mode. */
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-block:hover .hero-night-image {
         opacity: 1;
       }
 
