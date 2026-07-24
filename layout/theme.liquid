@@ -33,7 +33,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Varela+Round&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
     <style data-v="{{ 'now' | date: '%s' }}">
       :root {
         --font-body--family: 'Heebo', sans-serif !important;
@@ -187,7 +187,6 @@
         z-index: var(--layer-sticky) !important;
       }
 
-      /* Menu hover: animated underline left-to-right */
       .menu-list__link {
         padding: 0 !important;
         margin: 0 32px !important;
@@ -197,21 +196,8 @@
         display: inline;
         padding: 0 !important;
         width: fit-content;
-      }
-      .menu-list__link-title::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        right: 0;
-        width: 130%;
-        height: 1px;
-        background: #2c4a6e;
-        transform: scaleY(0.6);
-        transform-origin: bottom;
-        transition: width 0.3s ease;
-      }
-      .menu-list__link:hover .menu-list__link-title::after {
-        width: 65%;
+        font-family: 'Frank Ruhl Libre', 'Heebo', serif !important;
+        letter-spacing: 0.04em;
       }
 
       /* Product cards: thin navy frame on hover only, slow luxury fade.
@@ -307,6 +293,12 @@
         background: var(--color-background);
         border-radius: 16px;
         overflow: hidden;
+        /* Native rule translates this box down by (full-open-header-height
+           minus submenu-height), a leftover from the old mega-menu's header
+           expand animation. Our compact dropdown never grows the header, so
+           those two vars mismatch and this pushed the card down, leaving a
+           blank gap between the nav row and the card. */
+        transform: none !important;
         /* Shadow removed entirely, temporarily, as a clean test: if
            the gray is gone now, it was the shadow. If it's still
            there with zero shadow, it's confirmed to be something
