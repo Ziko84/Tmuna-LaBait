@@ -338,23 +338,37 @@
         gap: 8.4px;
         list-style: none;
         /* Only appear together with night mode, everywhere this feature is
-           used (cards, product page, banners) - same hover trigger and
-           timing as .led-tint/.hero-night-image, so the swatches fade in
-           right alongside the lights turning on instead of sitting there
-           the whole time. */
-        opacity: 0;
+           used (cards, product page, banners) - same hover trigger as
+           .led-tint/.hero-night-image. Opacity itself now lives on each
+           <li> below (staggered one-by-one), the row only gates
+           pointer-events so clicks can't land on invisible dots. */
         pointer-events: none;
-        transition: opacity 0.8s ease;
       }
       .product-media-container:hover .led-swatches,
       .media-block:hover .led-swatches {
-        opacity: 1;
         pointer-events: auto;
       }
       .led-swatches li {
         display: flex;
         line-height: 0;
+        /* Each dot fades/slides in on its own instead of the whole row
+           appearing at once - transition-delay is set per nth-child below
+           and applies in both directions, so the dots also cascade off
+           in the same left-to-right order when night mode ends. */
+        opacity: 0;
+        transform: translateY(3px) scale(0.6);
+        transition: opacity 0.35s ease, transform 0.35s ease;
       }
+      .product-media-container:hover .led-swatches li,
+      .media-block:hover .led-swatches li {
+        opacity: 1;
+        transform: none;
+      }
+      .led-swatches li:nth-child(1) { transition-delay: 0s; }
+      .led-swatches li:nth-child(2) { transition-delay: 0.07s; }
+      .led-swatches li:nth-child(3) { transition-delay: 0.14s; }
+      .led-swatches li:nth-child(4) { transition-delay: 0.21s; }
+      .led-swatches li:nth-child(5) { transition-delay: 0.28s; }
       .led-swatch {
         position: relative;
         width: 10px;
@@ -888,6 +902,26 @@
         [data-template='product'] .product-information__media slideshow-controls[pagination-position='left'] {
           justify-content: center !important;
           gap: 14px !important;
+        }
+        /* RTL grid-template swap: the native grid-template for
+           pagination-position="left"/"right" names its first track/area at
+           the layout's inline-start edge, which under this document's
+           dir="rtl" is the physical RIGHT, not the left the setting name
+           implies (and vice versa for "right") - so "left" was rendering
+           the thumbnail rail on the physical right. Swapping which
+           template string each value uses puts the rail back on the side
+           the setting actually says. */
+        .media-gallery--carousel slideshow-component:has(slideshow-controls[thumbnails]):has(slideshow-controls[pagination-position='left']) {
+          grid-template:
+            'container controls' auto
+            'arrows controls' min-content
+            / 1fr auto !important;
+        }
+        .media-gallery--carousel slideshow-component:has(slideshow-controls[thumbnails]):has(slideshow-controls[pagination-position='right']) {
+          grid-template:
+            'controls container' auto
+            'controls arrows' min-content
+            / auto 1fr !important;
         }
       }
       @media screen and (max-width: 749px) {
