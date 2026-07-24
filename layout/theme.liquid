@@ -722,6 +722,27 @@
         }
       }
 
+      /* Product page night-mode hover crossfade (same idea as the homepage
+         banners): snippets/product-media-gallery-content.liquid renders this
+         overlay only on the first slide, only when the product has a gallery
+         image tagged "...לילה" in its alt text. .product-media-container
+         already has position:relative + overflow:hidden natively, so it's
+         the correct scope for both the absolute overlay and the :hover. */
+      .product-media__night-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .product-media-container:hover .product-media__night-image {
+        opacity: 1;
+      }
+
       /* Quick-add pill label: native CSS only pads one side
          (padding-right), so the letter against the unpadded edge sits
          flush on .add-to-cart-text's overflow:hidden boundary and gets

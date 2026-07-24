@@ -120,6 +120,19 @@
   endif
   assign has_image_drop = sorted_media | has: 'media_type', 'image'
 
+  # Night-mode hover crossfade on the main product image (mirrors the homepage
+  # banner effect): any gallery image whose alt text is tagged "...לילה" is
+  # treated as this product's night companion shot and overlaid on the first
+  # slide only, fading in on hover. Products without a tagged night image are
+  # unaffected.
+  assign night_media = null
+  for media in sorted_media
+    if media.alt contains 'לילה'
+      assign night_media = media
+      break
+    endif
+  endfor
+
   # Determine if we're in single column mode (carousel or grid with one column)
   assign is_single_column = false
   if media_presentation == 'carousel' or sorted_media.size == 1 or media_presentation == 'grid' and block_settings.media_columns == 'one'
@@ -371,6 +384,13 @@
             </div>
           {% else %}
             {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+          {% endif %}
+          {% if night_media and forloop.first and media.id != night_media.id %}
+            {{
+              night_media
+              | image_url: width: 1600
+              | image_tag: class: 'product-media__night-image', loading: 'lazy', alt: '', sizes: media_sizes
+            }}
           {% endif %}
         {% endcapture %}
         {% capture class %}
