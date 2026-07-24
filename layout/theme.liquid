@@ -504,11 +504,12 @@
         border-width: 0 1px 1px 0;
       }
 
-      /* Homepage hero: night-mode crossfade on hover (snippets/hero-night-mode.liquid
+      /* Homepage banners: night-mode crossfade on hover (snippets/hero-night-mode.liquid
          injects the .hero-night-image element once a matching file exists). Day shot
          underneath, night shot fades in over it - both pixel-aligned so it reads as
-         the lights turning off, not a slideshow swap. */
-      [id$="__hero_split_tlb01"] .hero-night-image {
+         the lights turning off, not a slideshow swap. Covers both the hero and the
+         second "אור שנולד מעץ" banner. */
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .hero-night-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -519,7 +520,7 @@
         pointer-events: none;
         z-index: 1;
       }
-      [id$="__hero_split_tlb01"] .media-with-content:hover .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-with-content:hover .hero-night-image {
         opacity: 1;
       }
 

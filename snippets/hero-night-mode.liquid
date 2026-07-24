@@ -1,37 +1,37 @@
 {%- doc -%}
-  Hover crossfade for the homepage hero: swaps the day shot for a
+  Hover crossfade for the homepage banners: swaps the day shot for a
   pixel-aligned night version (lights off / LED glow on) on hover.
-  Looks for a file named "hero-night.png" in the Files library - upload
-  one with that exact name and it picks it up automatically, no further
-  changes needed.
+  Maps a section id suffix to a theme asset filename below - add a new
+  entry to cover another banner.
 
   @example
   {% render 'hero-night-mode' %}
 {%- enddoc -%}
 
-{%- assign night_image = images['hero-night.png'] -%}
-{%- if night_image != blank -%}
-  <script>
-    (function () {
-      function initHeroNightMode() {
-        var container = document.querySelector('[id$="__hero_split_tlb01"] .media-with-content');
+<script>
+  (function () {
+    var nightImages = {
+      '__hero_split_tlb01': {{ 'hero-night.png' | asset_url | json }},
+      '__media_with_content_LfPdEJ': {{ 'banner-night.png' | asset_url | json }}
+    };
+
+    function initBannerNightMode() {
+      Object.keys(nightImages).forEach(function (suffix) {
+        var container = document.querySelector('[id$="' + suffix + '"] .media-with-content');
         if (!container || container.querySelector('.hero-night-image')) return;
         var img = document.createElement('img');
         img.className = 'hero-night-image';
-        img.src = {{ night_image | image_url: width: 1600 | json }};
-        img.srcset =
-          {{ night_image | image_url: width: 800 | json }} + ' 800w, ' +
-          {{ night_image | image_url: width: 1600 | json }} + ' 1600w, ' +
-          {{ night_image | image_url: width: 2400 | json }} + ' 2400w';
+        img.src = nightImages[suffix];
         img.alt = '';
         img.loading = 'lazy';
         container.appendChild(img);
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHeroNightMode);
-      } else {
-        initHeroNightMode();
-      }
-    })();
-  </script>
-{%- endif -%}
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBannerNightMode);
+    } else {
+      initBannerNightMode();
+    }
+  })();
+</script>
