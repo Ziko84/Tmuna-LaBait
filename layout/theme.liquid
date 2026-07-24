@@ -202,24 +202,26 @@
         font-size: 1.25rem !important;
         letter-spacing: 0.1em;
       }
-      /* Short underline: persistent on the current page's nav item, and a
-         subtle grow-in on hover for any item. Scaled from 0 rather than
-         width/opacity so it's a smooth, cheap transform-only animation. */
+      /* Short underline, right-aligned: shown only on the current page's
+         nav item - never on hover of other items. Hovering the active
+         item itself gives a small scale pulse, just for feedback. */
       .menu-list__link-title::after {
         content: '';
         position: absolute;
-        left: 50%;
+        right: 0;
         bottom: -4px;
         width: 55%;
         height: 1.5px;
         background: currentColor;
-        transform: translateX(-50%) scaleX(0);
-        transform-origin: center;
+        transform: scaleX(0);
+        transform-origin: right;
         transition: transform 0.25s ease;
       }
-      .menu-list__link:hover .menu-list__link-title::after,
       .menu-list__link--active .menu-list__link-title::after {
-        transform: translateX(-50%) scaleX(1);
+        transform: scaleX(1);
+      }
+      .menu-list__link--active:hover .menu-list__link-title::after {
+        transform: scaleX(1.15);
       }
       /* Submenu links: same boutique font as the top-level nav, but with
          tighter tracking since these sit in a compact dropdown card. */

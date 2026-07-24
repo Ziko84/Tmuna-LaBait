@@ -70,7 +70,12 @@
   assign night_media = null
   if product != blank
     for media in product.media
-      if media.alt contains 'לילה'
+      # Match the specific closing phrase used by the night-image alt-text
+      # convention, not just the word "לילה" anywhere - a plain "contains"
+      # check false-matches whenever a product's own name happens to
+      # contain that word too (e.g. "זאב הלילה"), which made the DAY
+      # image's alt match first and get mistaken for the night companion.
+      if media.alt contains 'במצב לילה'
         assign night_media = media
         break
       endif
