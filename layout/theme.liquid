@@ -44,6 +44,7 @@
       }
       body {
         font-family: 'Heebo', sans-serif;
+        letter-spacing: 0.015em;
       }
 
       /* Toylvia-style product cards */
@@ -199,7 +200,7 @@
         font-family: 'Assistant', 'Heebo', sans-serif !important;
         font-weight: 300 !important;
         font-size: 1.25rem !important;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.1em;
       }
       /* Submenu links: same boutique font as the top-level nav, but with
          tighter tracking since these sit in a compact dropdown card. */
@@ -232,6 +233,14 @@
         border-style: solid;
         border-color: rgba(0, 0, 0, 0.14);
         border-width: 0 1px 1px 0;
+      }
+
+      /* Missing-image placeholder on product cards: round it and lift it
+         off the page like a real photo instead of a flat gray box. */
+      .card-gallery__placeholder {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(26, 26, 46, 0.12);
       }
 
       /* ============================================================
