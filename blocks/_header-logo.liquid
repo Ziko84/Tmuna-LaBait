@@ -51,47 +51,41 @@
     assign inverse_logo_style = '--header-logo-image-width: ' | append: inverse_logo_width | append: 'px;' | append: '--header-logo-image-width-mobile: ' | append: inverse_logo_width_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
   %}
 
+  {%- comment -%}
+    settings.logo is one flat image with the icon and store name baked
+    together, which made a hover glow on it light up the whole lockup,
+    text included. Rendered as two real pieces instead - the icon image
+    (assets/header-logo-icon.png, same artwork as the icon-only export)
+    plus the store name as actual text - so the icon alone can glow on
+    hover, and the name stays sharp text instead of a flattened image.
+  {%- endcomment -%}
   <span
     class="header-logo__image-container header-logo__image-container--original"
     data-testid="header-logo"
+    style="{{ logo_style }}"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
-    {%- comment -%}
-      settings.logo is one flat image with the icon and store name baked
-      together, so a hover effect on .header-logo__image glows the whole
-      thing. This overlay repeats just the icon (assets/header-logo-icon.png,
-      same artwork as the icon-only crop of the logo) positioned over the
-      icon's own corner of the lockup, so only it can glow on hover.
-    {%- endcomment -%}
     <img
       src="{{ 'header-logo-icon.png' | asset_url }}"
-      alt=""
-      aria-hidden="true"
-      class="header-logo__icon-glow"
+      alt="{{ alt_text_fallback | escape }}"
+      class="header-logo__icon"
       loading="lazy"
     >
+    <span class="header-logo__name">{{ shop.name }}</span>
   </span>
 
   {% if use_inverse_logo %}
     <span
       class="header-logo__image-container header-logo__image-container--inverse"
       data-testid="header-logo-inverse"
+      style="{{ inverse_logo_style }}"
     >
-      {% render 'image',
-        image: inverse_logo,
-        class: 'header-logo__image',
-        height: settings.logo_height,
-        alt_text_fallback: alt_text_fallback,
-        text_fallback: shop.name,
-        style: inverse_logo_style
-      %}
+      <img
+        src="{{ 'header-logo-icon-white.png' | asset_url }}"
+        alt="{{ alt_text_fallback | escape }}"
+        class="header-logo__icon"
+        loading="lazy"
+      >
+      <span class="header-logo__name">{{ shop.name }}</span>
     </span>
   {% endif %}
 </a>
@@ -134,15 +128,25 @@
     }
   }
 
-  .header-logo__image {
+  .header-logo__image-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .header-logo__icon {
     object-fit: contain;
     height: var(--header-logo-image-height-mobile);
-    width: var(--header-logo-image-width-mobile);
+    width: auto;
+    aspect-ratio: 1;
 
     @media screen and (min-width: 750px) {
       height: var(--header-logo-image-height);
-      width: var(--header-logo-image-width);
     }
+  }
+
+  .header-logo__name {
+    white-space: nowrap;
   }
 
   .header-logo:has(.header-logo__image-container--inverse) .header-logo__image-container--original {

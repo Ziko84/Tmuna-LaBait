@@ -1004,28 +1004,21 @@
         align-items: stretch !important;
       }
 
-      /* Header logo icon: blue LED-style glow on hover only. settings.logo
-         is one flat image (icon + store name baked together), so the glow
-         can't target it directly without lighting up the text too - instead
-         blocks/_header-logo.liquid overlays a second copy of just the icon
-         (assets/header-logo-icon.png) positioned over the icon's own corner
-         of the lockup, invisible/identical until hover, when it alone gets
-         the glow. Icon sits at the inline-start end of the lockup (Hebrew
-         reads right-to-left), a square matching the logo's own height. */
-      .header-logo__image-container--original {
-        position: relative;
-      }
-      .header-logo__icon-glow {
-        position: absolute;
-        inset-block: 0;
-        inset-inline-start: 0;
-        height: 100%;
-        aspect-ratio: 1;
-        pointer-events: none;
+      /* Header logo icon: blue LED-style glow on hover only. The icon now
+         renders as its own <img> separate from the store name text (see
+         blocks/_header-logo.liquid), so this can target it directly. */
+      .header-logo__icon {
         transition: filter 0.3s ease;
       }
-      .header-logo:hover .header-logo__icon-glow {
+      .header-logo:hover .header-logo__icon {
         filter: drop-shadow(0 0 6px #00b0ff) drop-shadow(0 0 14px #00b0ff);
+      }
+
+      /* Product card favorite/like heart: drop the native white circular
+         backdrop, just the icon floating on the photo. */
+      .favorite-toggle {
+        background: transparent !important;
+        box-shadow: none !important;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
