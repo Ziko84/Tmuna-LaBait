@@ -17,7 +17,7 @@
 
     function initBannerNightMode() {
       Object.keys(nightImages).forEach(function (suffix) {
-        var container = document.querySelector('[id$="' + suffix + '"] .media-with-content');
+        var container = document.querySelector('[id$="' + suffix + '"] .media-block');
         if (!container || container.querySelector('.hero-night-image')) return;
         var img = document.createElement('img');
         img.className = 'hero-night-image';

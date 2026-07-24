@@ -505,10 +505,14 @@
       }
 
       /* Homepage banners: night-mode crossfade on hover (snippets/hero-night-mode.liquid
-         injects the .hero-night-image element once a matching file exists). Day shot
-         underneath, night shot fades in over it - both pixel-aligned so it reads as
-         the lights turning off, not a slideshow swap. Covers both the hero and the
-         second "אור שנולד מעץ" banner. */
+         injects the .hero-night-image element once a matching file exists), scoped to
+         .media-block (the photo column only) so it doesn't wash out the text side.
+         Day shot underneath, night shot fades in over it - both pixel-aligned so it
+         reads as the lights turning off, not a slideshow swap. Covers both the hero
+         and the second "אור שנולד מעץ" banner. */
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-block {
+        position: relative;
+      }
       :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .hero-night-image {
         position: absolute;
         inset: 0;
