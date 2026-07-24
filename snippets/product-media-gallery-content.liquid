@@ -351,7 +351,6 @@
     class="
       spacing-style
       sticky-content
-      led-swatches-scope
       {% if media_presentation == 'grid' %}
         media-gallery--{{ block_settings.media_columns }}-column
         {% if block_settings.media_columns == "two" and block_settings.large_first_image%}media-gallery--large-first-image{% endif %}
@@ -396,6 +395,23 @@
           {% if night_media and forloop.first %}
             {% assign led_mask_url = night_media.preview_image | image_url: width: 1600 %}
             <div class="led-tint" style="--led-mask-url: url({{ led_mask_url }});"></div>
+            <ul class="led-swatches" aria-label="בחר צבע תאורה">
+              <li>
+                <button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);"></button>
+              </li>
+              <li>
+                <button type="button" class="led-swatch" data-led-color="#74a0c9" aria-pressed="false" aria-label="כחול" style="background: #74a0c9;"></button>
+              </li>
+              <li>
+                <button type="button" class="led-swatch" data-led-color="#cf7f66" aria-pressed="false" aria-label="אדום" style="background: #cf7f66;"></button>
+              </li>
+              <li>
+                <button type="button" class="led-swatch" data-led-color="#8fb17c" aria-pressed="false" aria-label="ירוק" style="background: #8fb17c;"></button>
+              </li>
+              <li>
+                <button type="button" class="led-swatch" data-led-color="#dea0b6" aria-pressed="false" aria-label="ורוד" style="background: #dea0b6;"></button>
+              </li>
+            </ul>
           {% endif %}
         {% endcapture %}
         {% capture class %}
@@ -469,26 +485,6 @@
       controls: controls,
       attributes: 'scroll-duration="800"'
     %}
-
-    {% if night_media %}
-      <ul class="led-swatches" aria-label="בחר צבע תאורה">
-        <li>
-          <button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#74a0c9" aria-pressed="false" aria-label="כחול" style="background: #74a0c9;"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#cf7f66" aria-pressed="false" aria-label="אדום" style="background: #cf7f66;"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#8fb17c" aria-pressed="false" aria-label="ירוק" style="background: #8fb17c;"></button>
-        </li>
-        <li>
-          <button type="button" class="led-swatch" data-led-color="#dea0b6" aria-pressed="false" aria-label="ורוד" style="background: #dea0b6;"></button>
-        </li>
-      </ul>
-    {% endif %}
 
     {% if media_presentation == 'grid' %}
       <ul

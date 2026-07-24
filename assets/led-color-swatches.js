@@ -14,7 +14,7 @@ document.addEventListener('click', (event) => {
   event.preventDefault();
   event.stopPropagation();
 
-  const scope = swatch.closest('.led-swatches-scope');
+  const scope = swatch.closest('.product-media-container');
   if (!scope) return;
 
   const tint = scope.querySelector('.led-tint');

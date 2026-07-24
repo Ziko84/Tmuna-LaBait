@@ -272,10 +272,12 @@
       .product-media-container:hover .led-tint {
         opacity: 1;
       }
-      .led-swatches-scope {
-        position: relative;
-      }
-      /* Tiny color chips anchored to the photo's bottom-left corner. */
+      /* Tiny color chips anchored to the photo's bottom-left corner.
+         Nested inside .product-media-container itself (same element the
+         tint and night-image use, native position:relative from base.css)
+         - NOT .card-gallery, which carries its own ~14px padding around
+         the photo, so anchoring there landed the chips in that padding
+         gutter instead of on the image. */
       .led-swatches {
         position: absolute;
         z-index: 3;
