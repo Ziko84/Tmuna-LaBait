@@ -124,6 +124,10 @@
     object-fit: contain;
     height: var(--header-logo-image-height-mobile);
     width: var(--header-logo-image-width-mobile);
+    /* Warm backlit glow behind the logo shape itself (drop-shadow follows
+       the image's own alpha silhouette, not a plain rectangle), matching
+       the LED-backlight look used on the products. */
+    filter: drop-shadow(0 0 4px rgba(255, 179, 71, 0.55)) drop-shadow(0 0 10px rgba(255, 179, 71, 0.3));
 
     @media screen and (min-width: 750px) {
       height: var(--header-logo-image-height);
