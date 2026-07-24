@@ -678,7 +678,7 @@
       ],
       "name": "Collection list",
       "settings": {
-        "collection_list": ["נוף-וטבע", "סמלי-עולם", "מופשט-ומינימליסטי", "חיות"],
+        "collection_list": ["נוף-וטבע", "חיות", "סמלי-עולם", "מופשט-ומינימליסטי"],
         "layout_type": "bento",
         "carousel_on_mobile": true,
         "columns": 4,
