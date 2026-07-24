@@ -316,6 +316,19 @@
         align-items: center;
         gap: 8.4px;
         list-style: none;
+        /* Only appear together with night mode, everywhere this feature is
+           used (cards, product page, banners) - same hover trigger and
+           timing as .led-tint/.hero-night-image, so the swatches fade in
+           right alongside the lights turning on instead of sitting there
+           the whole time. */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease;
+      }
+      .product-media-container:hover .led-swatches,
+      .media-block:hover .led-swatches {
+        opacity: 1;
+        pointer-events: auto;
       }
       .led-swatches li {
         display: flex;
