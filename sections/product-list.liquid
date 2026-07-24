@@ -60,11 +60,30 @@
 
   {% capture list_items %}
     {% if display_collection != blank and shop.products_count != 0 %}
-      {% paginate display_collection.products by max_items %}
-        {% for product in display_collection.products limit: max_items %}
-        <div
-          class="resource-list__item"
-        >
+      {% comment %}
+        Fetch one extra so the grid still fills max_items slots after the
+        current product (closest.product) is skipped below - without this,
+        viewing a product from this same collection would show it in its
+        own "discover the collection" grid, and the grid would come up one
+        item short whenever that happens.
+      {% endcomment %}
+      {% assign fetch_limit = max_items | plus: 1 %}
+      {% paginate display_collection.products by fetch_limit %}
+        {% assign shown_count = 0 %}
+        {% for product in display_collection.products %}
+          {% if closest.product != blank and product.id == closest.product.id %}
+            {% continue %}
+          {% endif %}
+          {% if shown_count >= max_items %}
+            {% break %}
+          {% endif %}
+          {% if shown_count > 0 %}
+            <!--@list/split-->
+          {% endif %}
+          {% assign shown_count = shown_count | plus: 1 %}
+          <div
+            class="resource-list__item"
+          >
             {% content_for 'block',
               type: '_product-card',
               id: 'static-product-card',
@@ -72,10 +91,6 @@
               product_view_context: 'collection'
             %}
           </div>
-
-          {% unless forloop.last %}
-            <!--@list/split-->
-          {% endunless %}
         {% endfor %}
       {% endpaginate %}
     {% else %}
