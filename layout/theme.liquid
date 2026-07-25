@@ -1048,7 +1048,18 @@
         pointer-events: auto;
         width: 100%;
       }
-      .product-card__quick-add-row .quick-add__button {
+      /* The component always renders BOTH an "Add" and a "Choose" button
+         in the DOM and shows only one, keyed off data-quick-add-button on
+         <quick-add-component> - forcing both visible at once (an earlier
+         version of this rule did exactly that) rendered them stacked on
+         top of each other as a garbled double pill. Keep that toggle,
+         just stop the shown one from being hover-only. */
+      .product-card__quick-add-row quick-add-component[data-quick-add-button='add'] .quick-add__button--choose,
+      .product-card__quick-add-row quick-add-component[data-quick-add-button='choose'] .quick-add__button--add {
+        display: none !important;
+      }
+      .product-card__quick-add-row quick-add-component[data-quick-add-button='add'] .quick-add__button--add,
+      .product-card__quick-add-row quick-add-component[data-quick-add-button='choose'] .quick-add__button--choose {
         position: static;
         opacity: 1 !important;
         display: flex !important;
