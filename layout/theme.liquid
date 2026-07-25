@@ -1055,6 +1055,23 @@
         display: none;
       }
 
+      /* Generous padding across product cards: more room between cards in
+         the grid, more room between the photo and the text block below
+         it, and more room between the title/price/swatches lines inside
+         that block - the default spacing read as cramped. */
+      [product-grid-view] {
+        --product-grid-gap: 32px !important;
+      }
+      .product-card__content {
+        gap: 20px !important;
+      }
+      .product-card .group-block-content {
+        gap: 10px !important;
+      }
+      .product-card .group-block {
+        padding: 20px !important;
+      }
+
       /* Product page night-mode hover crossfade (same idea as the homepage
          banners): snippets/product-media-gallery-content.liquid renders this
          overlay only on the first slide, only when the product has a gallery
