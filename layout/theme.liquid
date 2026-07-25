@@ -1035,21 +1035,20 @@
          button, instead of the native quick-add component (that one
          renders two buttons at once as a hover-only floating pill over
          the photo). blocks/_product-card-gallery.liquid renders it right
-         after the image in the DOM, but .product-card__content is a flex
-         column (all of gallery's + group's top-level output are direct
-         siblings in it) with group (title/price/swatches) at the default
-         order:0, so giving this row order:1 moves it after price without
-         touching the DOM or the group block. Small/fit-content instead of
-         full-width - a full-width bar read as too heavy for a card. */
+         after the image in the DOM, which is also where it stays
+         visually (no order override) - before the group block, so above
+         the title and price rather than below them. Small/fit-content,
+         tight padding - a full-width bar read as too heavy for a card. */
       .product-card__quick-add-row {
         display: flex;
-        order: 1;
-        margin-block-start: 8px;
+        margin-block-end: 4px;
       }
       .product-card__add-to-cart-button {
         width: fit-content;
-        padding-inline: 16px;
-        font-size: 0.8125rem;
+        padding-inline: 10px;
+        padding-block: 4px;
+        font-size: 0.75rem;
+        height: auto;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
