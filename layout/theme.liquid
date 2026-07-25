@@ -1071,6 +1071,15 @@
       .product-card .group-block {
         padding: 20px !important;
       }
+      /* The add-to-cart row had no side padding of its own, unlike
+         .group-block above (20px), so it sat flush against the card's
+         edge instead of inset like the title/price - reading as if it
+         were sliding off the card. Match the same inset. */
+      .product-card__quick-add-row {
+        padding-inline: 20px;
+        box-sizing: border-box;
+        width: 100%;
+      }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
          banners): snippets/product-media-gallery-content.liquid renders this
