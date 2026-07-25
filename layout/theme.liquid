@@ -1032,16 +1032,24 @@
       }
 
       /* Add to cart on product cards: a plain always-visible "הוסף לסל"
-         button rendered directly in blocks/_product-card-gallery.liquid
-         (below the image, above title/price), instead of the native
-         quick-add component - that one renders two buttons at once
-         (Add/Choose) as a hover-only floating pill over the photo, which
-         didn't fit what was actually wanted here. */
+         button, instead of the native quick-add component (that one
+         renders two buttons at once as a hover-only floating pill over
+         the photo). blocks/_product-card-gallery.liquid renders it right
+         after the image in the DOM, but .product-card__content is a flex
+         column (all of gallery's + group's top-level output are direct
+         siblings in it) with group (title/price/swatches) at the default
+         order:0, so giving this row order:1 moves it after price without
+         touching the DOM or the group block. Small/fit-content instead of
+         full-width - a full-width bar read as too heavy for a card. */
       .product-card__quick-add-row {
         display: flex;
+        order: 1;
+        margin-block-start: 8px;
       }
       .product-card__add-to-cart-button {
-        width: 100%;
+        width: fit-content;
+        padding-inline: 16px;
+        font-size: 0.8125rem;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
