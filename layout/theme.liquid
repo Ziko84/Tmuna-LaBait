@@ -1031,47 +1031,17 @@
         height: var(--icon-size-md);
       }
 
-      /* Add to cart on product cards: moved out of the photo overlay
-         (blocks/_product-card-gallery.liquid renders it in
-         .product-card__quick-add-row now, below the image) into a normal
-         row on the card. The native component is built as a hover-reveal
-         floating pill though - position:absolute over the whole photo,
-         opacity:0 until hover, icon-only until hover expands the text - so
-         all of that has to be undone for it to read as an ordinary
-         always-visible button. */
+      /* Add to cart on product cards: a plain always-visible "הוסף לסל"
+         button rendered directly in blocks/_product-card-gallery.liquid
+         (below the image, above title/price), instead of the native
+         quick-add component - that one renders two buttons at once
+         (Add/Choose) as a hover-only floating pill over the photo, which
+         didn't fit what was actually wanted here. */
       .product-card__quick-add-row {
         display: flex;
       }
-      .product-card__quick-add-row .quick-add {
-        position: static;
-        inset: auto;
-        pointer-events: auto;
+      .product-card__add-to-cart-button {
         width: 100%;
-      }
-      /* The component always renders BOTH an "Add" and a "Choose" button
-         in the DOM and shows only one, keyed off data-quick-add-button on
-         <quick-add-component> - forcing both visible at once (an earlier
-         version of this rule did exactly that) rendered them stacked on
-         top of each other as a garbled double pill. Keep that toggle,
-         just stop the shown one from being hover-only. */
-      .product-card__quick-add-row quick-add-component[data-quick-add-button='add'] .quick-add__button--choose,
-      .product-card__quick-add-row quick-add-component[data-quick-add-button='choose'] .quick-add__button--add {
-        display: none !important;
-      }
-      .product-card__quick-add-row quick-add-component[data-quick-add-button='add'] .quick-add__button--add,
-      .product-card__quick-add-row quick-add-component[data-quick-add-button='choose'] .quick-add__button--choose {
-        position: static;
-        opacity: 1 !important;
-        display: flex !important;
-        width: 100%;
-      }
-      .product-card__quick-add-row .quick-add__button .add-to-cart-text__content {
-        grid-template-columns: 1fr !important;
-      }
-      .product-card__quick-add-row .quick-add__button .add-to-cart-text__content span span {
-        opacity: 1 !important;
-        filter: none !important;
-        translate: 0 !important;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage

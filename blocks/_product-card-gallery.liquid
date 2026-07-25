@@ -61,13 +61,32 @@
   {% endif %}
 </div>
 
-{% # Add to cart: on the card itself, not floating over the photo %}
+{% # Add to cart: a plain always-visible button on the card, not the native quick-add's two-button (Add/Choose) hover pill %}
+{% liquid
+  assign card_variant = product.selected_or_first_available_variant
+  assign card_can_add_to_cart = false
+  if card_variant.available
+    assign card_can_add_to_cart = true
+  endif
+%}
 {% unless product == blank %}
-  {% if settings.quick_add or settings.mobile_quick_add %}
-    <div class="product-card__quick-add-row">
-      {% render 'quick-add', product: product, section_id: section.id %}
-    </div>
-  {% endif %}
+  <div class="product-card__quick-add-row">
+    <product-form-component
+      data-section-id="{{ section.id }}"
+      data-product-id="{{ product.id }}"
+      on:submit="/handleSubmit"
+    >
+      {%- form 'product', product, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        <input type="hidden" name="id" value="{{ card_variant.id }}">
+        {% render 'add-to-cart-button',
+          add_to_cart_text: 'הוסף לסל',
+          class: 'product-card__add-to-cart-button',
+          can_add_to_cart: card_can_add_to_cart,
+          product: product
+        %}
+      {%- endform -%}
+    </product-form-component>
+  </div>
 {% endunless %}
 
 {% render 'product-badges-styles' %}
