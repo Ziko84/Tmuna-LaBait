@@ -4057,7 +4057,7 @@ product-card .product-card__add-to-cart-button {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 5px 5px !important;
+    padding: 12px 20px !important;
     height: auto !important;
 }
 
