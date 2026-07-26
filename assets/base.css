@@ -4136,3 +4136,9 @@ product-card .contents.user-select-text {
     transform: translateY(-8px) !important; /* Slightly higher lift */
     box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
 }
+/* Reduce the padding inside the Add to Cart button */
+product-card .button.product-card__add-to-cart-button {
+    padding: 6px 12px !important; /* Smaller internal space */
+    min-height: unset !important;  /* Allows the button to shrink */
+    height: auto !important;       /* Ensures height is based on the new padding */
+}
