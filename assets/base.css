@@ -4127,9 +4127,9 @@ product-card .contents.user-select-text {
 
 /* Slower, smoother levitation effect */
 .resource-list__item product-card {
-    /* Changed from 0.3s to 0.6s for a smoother feel */
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    /* Changed from 0.3s to 0.9s for a smoother feel */
+    transition: transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
 }
 
 .resource-list__item:hover product-card {
