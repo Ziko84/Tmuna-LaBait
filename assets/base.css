@@ -1262,12 +1262,12 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .button:not(.button-secondary,.button-unstyled) {
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  min-height: unset;
+padding: 12px 20px !important;
+display: inline-flex !important;
+align-items: center !important;
+justify-content: center !important;
+height: auto !important;
+min-height: auto !important;
 }
 
 .button-secondary {
