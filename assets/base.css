@@ -4106,3 +4106,23 @@ product-card .contents.user-select-text::before {
     margin-bottom: 0 !important;
 }
 
+/* Move the divider line below the price */
+product-card product-price {
+    display: block !important;
+    border-top: none !important;            /* Remove the line above */
+    border-bottom: 1px solid #f1f2f5 !important; /* Add the line below */
+    
+    padding-top: 0 !important;
+    padding-bottom: 12px !important;       /* Space between price and the line */
+    margin-bottom: 12px !important;        /* Space after the line */
+    margin-top: 4px !important;            /* Small gap from the stars above */
+}
+
+/* Ensure title and stars are still stacked above */
+product-card .contents.user-select-text {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 0 !important;
+}
+
+
