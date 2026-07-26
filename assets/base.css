@@ -4082,3 +4082,27 @@ product-card .contents.user-select-text::before {
     font-size: 12.48px !important;
     color: #f1c40f !important; /* Optional: Make the stars gold */
 }
+/* 1. Remove the gap above the separator line completely */
+product-card product-price {
+    display: block !important;
+    border-top: 1px solid #f1f2f5 !important;
+    margin-top: 0 !important;      /* No space above the line */
+    padding-top: 8px !important;   /* Small space below the line for the price */
+}
+
+/* 2. Tighten the stars container */
+product-card .contents.user-select-text {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 3. Ensure no flex gap is adding space */
+product-card .group-block-content {
+    gap: 0 !important;
+}
+
+/* 4. Ensure stars don't have bottom margin */
+product-card .contents.user-select-text::before {
+    margin-bottom: 0 !important;
+}
+
