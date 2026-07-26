@@ -4060,3 +4060,25 @@ product-card .product-card__add-to-cart-button {
     padding: 12px 20px !important;
     height: auto !important;
 }
+
+/* 1. Set the container to Flexbox column layout */
+product-card .contents.user-select-text {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 2. Move the Title (the div inside) to the first position */
+product-card .contents.user-select-text > div[class*="product_title"] {
+    order: 1 !important;
+}
+
+/* 3. Move the stars (the ::before element) to the second position */
+product-card .contents.user-select-text::before {
+    order: 2 !important;
+    content: "★★★★★ (1)" !important; /* Ensures the stars stay */
+    display: block !important;
+    margin-top: 4px !important;  /* Space between title and stars */
+    margin-bottom: 8px !important;
+    font-size: 12.48px !important;
+    color: #f1c40f !important; /* Optional: Make the stars gold */
+}
