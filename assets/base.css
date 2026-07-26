@@ -4125,4 +4125,13 @@ product-card .contents.user-select-text {
     margin-bottom: 0 !important;
 }
 
+/* Force all product cards to lift on hover */
+.resource-list__item product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
 
+.resource-list__item:hover product-card {
+    transform: translateY(-5px) !important; /* The 'levitate' movement */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; /* Adds a shadow to emphasize the lift */
+    z-index: 10 !important; /* Ensures it stays above neighboring cards */
+}
