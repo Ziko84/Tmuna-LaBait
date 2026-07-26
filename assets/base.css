@@ -4016,49 +4016,47 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
 }
-/* 1. Remove space above the title and handle the separator */
-.product-card__content {
-    gap: 0 !important; /* Removes layout spacing between image and text */
+/* Target the product card container */
+product-card .product-card__content {
+    gap: 0 !important;
 }
 
-/* 2. Adjust the container that holds the title and stars */
-.group-block {
-    border-top: none !important; /* Removes the line from above the title */
-    padding-top: 0 !important;   /* Pulls title up towards the image */
+/* Target the block containing title and stars */
+product-card .group-block {
+    border-top: none !important;
+    padding-top: 0 !important;
     margin-top: 0 !important;
 }
 
-/* 3. Hide redundant containers between image and title */
-.product-grid-view-zoom-out--details,
-.group-block__media-wrapper {
+/* Target the Title (using a partial match for the dynamic class) */
+product-card div[class*="product_title"] {
+    margin-bottom: 0 !important;
+}
+
+/* Target the Redundant Details block */
+product-card .product-grid-view-zoom-out--details {
     display: none !important;
 }
 
-/* 4. Remove padding from the gallery container */
-.card-gallery {
+/* Target the Image Gallery */
+product-card .card-gallery {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
 }
 
-/* 5. Add the separator line above the Price instead */
-product-price {
+/* Target the Price and add the line */
+product-card product-price {
     display: block !important;
-    border-top: 1px solid #f1f2f5 !important; /* The original separator color */
+    border-top: 1px solid #f1f2f5 !important;
     padding-top: 12px !important;
     margin-top: 12px !important;
 }
 
-/* 6. Tighten spacing between title and stars */
-.text-block--AdFQ1Rm5vZXBHclIwa__product_title_gH3cpy {
-    margin-bottom: 0 !important;
-}
-
-/* 7. Button Padding (from our earlier steps) */
-.button.product-card__add-to-cart-button {
+/* Target the Add to Cart Button */
+product-card .product-card__add-to-cart-button {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     padding: 12px 20px !important;
     height: auto !important;
-    min-height: auto !important;
 }
