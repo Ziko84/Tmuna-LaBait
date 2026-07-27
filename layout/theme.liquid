@@ -1023,23 +1023,20 @@
         height: var(--icon-size-md);
       }
       /* Cart drawer/page line-item delete (trash) icon reads as too
-         small/hard to notice for a destructive action button. Unlike
-         every other icon in this theme, snippets/cart-products.liquid
-         renders this one's <svg> directly inside the button with no
-         .svg-wrapper span around it, so it was never on the theme's
-         --icon-size-* scale - it's just the native 20px from the
-         hardcoded width="20" height="20" HTML attributes in
-         assets/icon-delete.svg.
-         The actual bug (found via getComputedStyle in the live page,
-         which reported 4px): base.css has a blanket
-         `svg { max-width: 100% }` reset, and max-width always caps
-         width in the browser's layout algorithm regardless of
-         !important - so every previous width bump here was being
-         capped down to whatever sliver of space the flex row actually
-         had left, not the value set below. Removing the cap and
-         locking the button's own flex sizing so it can't get squeezed
-         in the first place. */
-      .cart-items__remove {
+         small/hard to notice for a destructive action button. The real
+         cause, found via getComputedStyle in the live console: the
+         generic .button:not(.button-secondary,.button-unstyled) rule
+         sets padding: 12px 20px !important, which beats this button's
+         own padding: 0 (not !important, lower specificity). Inside a
+         44px-wide border-box button, 40px of horizontal padding leaves
+         only ~4px of content-box width for anything inside - the icon
+         was never actually shrinking to fit a real constraint, there
+         was just no room to begin with, no matter what size CSS asked
+         for. Raising this rule's own specificity (two-class selector,
+         matching the competing rule's (0,2,0,0)) to reclaim that space
+         with real !important priority. */
+      .cart-items__quantity-controls .cart-items__remove {
+        padding: 4px !important;
         flex-shrink: 0;
       }
       .cart-items__remove svg {
