@@ -1097,8 +1097,13 @@
          *:last-child) - that's .group-block, so left alone the line
          lands above the title, the very top of the text block. There's
          no divider inside the text block anymore (price now shares the
-         star-rating line below), so just cancel it. */
-      .product-card .product-card__content > .group-block {
+         star-rating line below), so cancel it everywhere it could
+         plausibly still land - the group block itself, its inner
+         content wrapper, and price/swatches individually. */
+      .product-card .product-card__content > .group-block,
+      .product-card .group-block-content,
+      .product-card .group-block product-price,
+      .product-card .group-block product-swatches {
         border-top: none !important;
       }
       /* Save a full line: instead of price sitting in its own row below
