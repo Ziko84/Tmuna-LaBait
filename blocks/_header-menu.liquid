@@ -435,19 +435,9 @@
 
   .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu,
   .overflow-menu::part(overflow) {
-    /* Plain fade in/out. visibility stays for accessibility (hidden
-       elements shouldn't be focusable/clickable) - it switches to
-       hidden only after the fade-out finishes (transition-delay
-       below), and instantly on fade-in (transition-delay: 0 in the
-       open state below), so it never cuts the animation short.
-       top depends on --submenu-height, which assets/header-menu.js
-       sets to 0px closed / the real measured content height open -
-       that's a real value change on every open/close, not a static
-       number, and it was missing from the transition list, so this
-       element's own position was snapping instantly while opacity
-       faded smoothly alongside it. That mismatch was the "half jump
-       half fade". Animating top too fixes it. */
-    opacity: 0;
+    --submenu-content-opacity: 0;
+    --submenu-content-animation: opacity calc(var(--submenu-animation-speed) * 0.75) var(--animation-easing);
+
     visibility: hidden;
     position: absolute;
     width: 100%;
@@ -457,7 +447,7 @@
     padding-inline: var(--padding-inline);
     /* Clip path starts at header height so it doesn't mess with the pointer events in the header */
     clip-path: rect(var(--header-height) 100% var(--full-open-header-height) 0); /* stylelint-disable-line */
-    transition: opacity 0.4s ease, top 0.4s ease, visibility 0s linear 0.4s;
+    transition: clip-path var(--submenu-animation-speed) var(--ease-out-cubic); /* stylelint-disable-line */
   }
 
   [data-submenu-overlap-bottom-row] {
@@ -474,9 +464,9 @@
   /* Keep the submenus open when they are hovered */
   .menu-list__submenu:is(:hover),
   .overflow-menu::part(overflow):hover {
-    opacity: 1;
+    --submenu-content-opacity: 1;
+
     visibility: visible;
-    transition-delay: 0s;
   }
 
   .overflow-menu::part(overflow) {
@@ -546,14 +536,8 @@
     padding-block-start: var(--submenu-padding-block-start);
     padding-block-end: var(--submenu-padding-block-end);
     padding-inline: var(--section-padding-inline);
-    /* Was its own independent opacity fade (--submenu-content-opacity,
-       a different duration/easing than the outer container's fade
-       below) - two overlapping fades finishing at different times is
-       what read as "half jumps half fades". Always fully opaque here
-       now; the outer .menu-list__submenu opacity fade is the only
-       animation and it already covers this content since opacity
-       multiplies down through children. */
-    opacity: 1;
+    opacity: var(--submenu-content-opacity);
+    transition: var(--submenu-content-animation);
     transform: translateY(calc(var(--full-open-header-height) - var(--submenu-height)));
 
     /* Make overflow menu scrollable when content exceeds viewport */
@@ -604,7 +588,7 @@
       /* Site is RTL-only (dir="rtl") - grow from the visual right,
          matching reading direction, same edge as inset-inline-start. */
       transform-origin: right;
-      transition: transform 0.25s ease;
+      transition: transform 0.5s ease;
     }
 
     &:hover .wrap-text::after {
