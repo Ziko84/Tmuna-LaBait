@@ -420,10 +420,8 @@
   /** mega menu **/
   .menu-list__submenu,
   .overflow-menu::part(overflow) {
-    /* Was --padding-3xl (28px) - the space between the nav bar and the
-       dropdown's own content, reading as a gap. Tightened just this
-       top inset; bottom padding is unrelated to that and left alone. */
-    --submenu-padding-block-start: var(--padding-md);
+    /* Zero - no gap between the nav word and the dropdown, at all. */
+    --submenu-padding-block-start: 0px;
     --submenu-padding-block-end: var(--padding-3xl);
 
     background-color: transparent;
@@ -445,7 +443,9 @@
     position: absolute;
     width: 100%;
     left: 0;
-    top: calc(100% - 1px + var(--border-bottom-width) - (var(--full-open-header-height) - var(--submenu-height)) - 15px);
+    /* Flush against the nav item's own bottom edge - no calc, no
+       offset, zero gap. */
+    top: 100%;
     z-index: var(--layer-header-menu);
     padding-inline: var(--padding-inline);
     /* Clip path starts at header height so it doesn't mess with the pointer events in the header */
