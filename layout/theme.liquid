@@ -144,7 +144,8 @@
       }
 
       /* ============================================================
-         Header: smooth boutique reveal on scroll-up only.
+         Header: stays visible while scrolling down, hides while
+         scrolling up.
          `sticky="always"` keeps the header permanently position:sticky
          (native theme CSS, unconditional). Show/hide is driven directly
          by JS setting an inline transform further down this file —
@@ -1511,10 +1512,10 @@
               show();
             } else if (current > lastScrollTop + 2) {
               header.classList.add('header--scrolled');
-              hide();
+              show();
             } else if (current < lastScrollTop - 2) {
               header.classList.add('header--scrolled');
-              show();
+              hide();
             }
 
             lastScrollTop = current;
