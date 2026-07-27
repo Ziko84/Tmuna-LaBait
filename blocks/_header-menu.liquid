@@ -576,9 +576,32 @@
     text-decoration: none;
     display: inline-flex;
     padding: var(--padding-2xs) 0;
+    /* Anchor for the ::after underline indicator below. */
+    position: relative;
 
     &:hover {
       color: var(--menu-child-active-font-color);
+    }
+
+    /* Navy indicator under whichever submenu item is currently
+       hovered: a thin underline that grows in from the start edge. */
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #1a1a2e;
+      transform: scaleX(0);
+      /* Site is RTL-only (dir="rtl") - grow from the visual right,
+         matching reading direction, same edge as inset-inline-start. */
+      transform-origin: right;
+      transition: transform 0.25s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
     }
   }
 
