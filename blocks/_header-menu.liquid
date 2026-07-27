@@ -435,8 +435,6 @@
 
   .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu,
   .overflow-menu::part(overflow) {
-    --submenu-content-opacity: 0;
-
     /* Plain fade in/out. visibility stays for accessibility (hidden
        elements shouldn't be focusable/clickable) - it switches to
        hidden only after the fade-out finishes (transition-delay
@@ -469,8 +467,6 @@
   /* Keep the submenus open when they are hovered */
   .menu-list__submenu:is(:hover),
   .overflow-menu::part(overflow):hover {
-    --submenu-content-opacity: 1;
-
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
@@ -543,8 +539,14 @@
     padding-block-start: var(--submenu-padding-block-start);
     padding-block-end: var(--submenu-padding-block-end);
     padding-inline: var(--section-padding-inline);
-    opacity: var(--submenu-content-opacity);
-    transition: var(--submenu-content-animation);
+    /* Was its own independent opacity fade (--submenu-content-opacity,
+       a different duration/easing than the outer container's fade
+       below) - two overlapping fades finishing at different times is
+       what read as "half jumps half fades". Always fully opaque here
+       now; the outer .menu-list__submenu opacity fade is the only
+       animation and it already covers this content since opacity
+       multiplies down through children. */
+    opacity: 1;
     transform: translateY(calc(var(--full-open-header-height) - var(--submenu-height)));
 
     /* Make overflow menu scrollable when content exceeds viewport */
