@@ -1046,8 +1046,8 @@
       }
       .product-card__add-to-cart-button {
         width: fit-content;
-        padding-inline: 10px;
-        padding-block: 0 !important;
+        padding-inline: 14px;
+        padding-block: 8px !important;
         font-size: 0.75rem;
         height: auto;
       }
@@ -1063,23 +1063,41 @@
         --product-grid-gap: 32px !important;
       }
       .product-card__content {
-        gap: 20px !important;
+        gap: 14px !important;
       }
       .product-card .group-block-content {
-        gap: 10px !important;
+        gap: 8px !important;
       }
       .product-card .group-block {
-        padding: 20px !important;
+        padding: 16px !important;
       }
       /* The add-to-cart row had no side padding of its own, unlike
          .group-block above (20px), so it sat flush against the card's
          edge instead of inset like the title/price - reading as if it
          were sliding off the card. Match the same inset. */
       .product-card__quick-add-row {
-        padding-inline: 20px;
-        padding-block-end: 20px;
+        padding-inline: 16px;
+        padding-block-end: 16px;
         box-sizing: border-box;
         width: 100%;
+      }
+
+      /* Card content divider: the theme auto-draws a border-top on
+         whichever element is DOM-last inside .product-card__content
+         (.product-card .product-card__content > :last-child in base.css).
+         That's .group-block (title/swatches/price), so by default the
+         line lands above the title - the very top of the text block.
+         Blocks were reordered to title, swatches, price (was title,
+         price, swatches) so the line can instead separate title+stars
+         from price, matching the card's title+rating / price+cart-button
+         grouping. Cancel the native divider on the whole group block and
+         redraw it immediately above the price line specifically. */
+      .product-card .product-card__content > .group-block {
+        border-top: none !important;
+      }
+      .product-card .group-block product-price {
+        border-top: 1px solid #f1f2f5;
+        padding-top: 8px;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
