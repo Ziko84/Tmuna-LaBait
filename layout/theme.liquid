@@ -1022,6 +1022,15 @@
         width: var(--icon-size-md);
         height: var(--icon-size-md);
       }
+      /* Cart drawer/page line-item delete (trash) icon: same default
+         --icon-size-xs as every other small icon in the theme, which
+         reads as too small/hard to notice for a destructive action
+         button specifically. One size step up, matching the favorite
+         icon fix above. */
+      .cart-items__remove .svg-wrapper {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+      }
 
       /* Add to cart on product cards: a plain always-visible "הוסף לסל"
          button, instead of the native quick-add component (that one
