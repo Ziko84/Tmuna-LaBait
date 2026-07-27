@@ -576,23 +576,30 @@
     text-decoration: none;
     display: inline-flex;
     padding: var(--padding-2xs) 0;
-    /* Anchor for the ::after underline indicator below. */
-    position: relative;
 
     &:hover {
       color: var(--menu-child-active-font-color);
     }
 
     /* Navy indicator under whichever submenu item is currently
-       hovered: a thin underline that grows in from the start edge. */
-    &::after {
+       hovered: a thin underline that grows in from the start edge.
+       Anchored to .wrap-text (the text itself), not the link's own
+       box, so it hugs the label's actual width instead of stretching
+       across the whole flex item. */
+    .wrap-text {
+      position: relative;
+    }
+
+    .wrap-text::after {
       content: '';
       position: absolute;
       inset-inline-start: 0;
-      bottom: 0;
+      bottom: -2px;
       width: 100%;
-      height: 2px;
-      background-color: #1a1a2e;
+      height: 1px;
+      /* Distinct navy-blue, not near-black, fading to transparent at
+         the far end instead of a hard-cut edge. */
+      background: linear-gradient(to left, #2c4a7c 70%, transparent);
       transform: scaleX(0);
       /* Site is RTL-only (dir="rtl") - grow from the visual right,
          matching reading direction, same edge as inset-inline-start. */
@@ -600,7 +607,7 @@
       transition: transform 0.25s ease;
     }
 
-    &:hover::after {
+    &:hover .wrap-text::after {
       transform: scaleX(1);
     }
   }
