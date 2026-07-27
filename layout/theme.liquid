@@ -1022,23 +1022,19 @@
         width: var(--icon-size-md);
         height: var(--icon-size-md);
       }
-      /* Cart drawer/page line-item delete (trash) icon: same default
-         --icon-size-xs as every other small icon in the theme, which
-         reads as too small/hard to notice for a destructive action
-         button specifically. One size step up, matching the favorite
-         icon fix above. */
-      .cart-items__remove .svg-wrapper {
-        width: var(--icon-size-md);
-        height: var(--icon-size-md);
-      }
-      /* The wrapper span above only resizes an invisible box - the SVG
-         itself carries its own hardcoded width="20" height="20" HTML
-         attributes (assets/icon-delete.svg), which override the
-         wrapper's size and keep the visible icon fixed at 20px
-         regardless. Force it to actually fill the resized wrapper. */
-      .cart-items__remove .svg-wrapper svg {
-        width: 100%;
-        height: 100%;
+      /* Cart drawer/page line-item delete (trash) icon reads as too
+         small/hard to notice for a destructive action button. Unlike
+         every other icon in this theme, snippets/cart-products.liquid
+         renders this one's <svg> directly inside the button with no
+         .svg-wrapper span around it (confirmed by reading the actual
+         markup) - targeting .svg-wrapper, and later forcing width/height
+         on a .svg-wrapper svg that doesn't exist here, matched nothing.
+         The svg itself has hardcoded width="20" height="20" HTML
+         attributes (assets/icon-delete.svg) which override plain CSS
+         width/height, so this needs !important to actually win. */
+      .cart-items__remove svg {
+        width: var(--icon-size-md) !important;
+        height: var(--icon-size-md) !important;
       }
 
       /* Add to cart on product cards: a plain always-visible "הוסף לסל"
