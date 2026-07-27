@@ -439,7 +439,14 @@
        elements shouldn't be focusable/clickable) - it switches to
        hidden only after the fade-out finishes (transition-delay
        below), and instantly on fade-in (transition-delay: 0 in the
-       open state below), so it never cuts the animation short. */
+       open state below), so it never cuts the animation short.
+       top depends on --submenu-height, which assets/header-menu.js
+       sets to 0px closed / the real measured content height open -
+       that's a real value change on every open/close, not a static
+       number, and it was missing from the transition list, so this
+       element's own position was snapping instantly while opacity
+       faded smoothly alongside it. That mismatch was the "half jump
+       half fade". Animating top too fixes it. */
     opacity: 0;
     visibility: hidden;
     position: absolute;
@@ -450,7 +457,7 @@
     padding-inline: var(--padding-inline);
     /* Clip path starts at header height so it doesn't mess with the pointer events in the header */
     clip-path: rect(var(--header-height) 100% var(--full-open-header-height) 0); /* stylelint-disable-line */
-    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    transition: opacity 0.4s ease, top 0.4s ease, visibility 0s linear 0.4s;
   }
 
   [data-submenu-overlap-bottom-row] {
