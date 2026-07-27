@@ -1031,6 +1031,15 @@
         width: var(--icon-size-md);
         height: var(--icon-size-md);
       }
+      /* The wrapper span above only resizes an invisible box - the SVG
+         itself carries its own hardcoded width="20" height="20" HTML
+         attributes (assets/icon-delete.svg), which override the
+         wrapper's size and keep the visible icon fixed at 20px
+         regardless. Force it to actually fill the resized wrapper. */
+      .cart-items__remove .svg-wrapper svg {
+        width: 100%;
+        height: 100%;
+      }
 
       /* Add to cart on product cards: a plain always-visible "הוסף לסל"
          button, instead of the native quick-add component (that one
