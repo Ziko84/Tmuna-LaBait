@@ -1027,14 +1027,17 @@
          every other icon in this theme, snippets/cart-products.liquid
          renders this one's <svg> directly inside the button with no
          .svg-wrapper span around it (confirmed by reading the actual
-         markup) - targeting .svg-wrapper, and later forcing width/height
-         on a .svg-wrapper svg that doesn't exist here, matched nothing.
-         The svg itself has hardcoded width="20" height="20" HTML
-         attributes (assets/icon-delete.svg) which override plain CSS
-         width/height, so this needs !important to actually win. */
+         markup), so it was never on the theme's --icon-size-* scale at
+         all - it's just rendering at its own native 20px (the hardcoded
+         width="20" height="20" HTML attributes in assets/icon-delete.svg).
+         --icon-size-md is only ~22px, a 2px difference nobody could
+         actually see - that's why bumping it there didn't read as a
+         fix. The button itself is a 44px touch target (--minimum-
+         touch-target) with room to spare, so go straight to a size
+         that's actually, visibly bigger. */
       .cart-items__remove svg {
-        width: var(--icon-size-md) !important;
-        height: var(--icon-size-md) !important;
+        width: 28px !important;
+        height: 28px !important;
       }
 
       /* Add to cart on product cards: a plain always-visible "הוסף לסל"
