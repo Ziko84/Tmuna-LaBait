@@ -435,8 +435,14 @@
 
   .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu,
   .overflow-menu::part(overflow) {
+    /* Scoped override, not a global --submenu-animation-speed change:
+       the default .36s + the theme's generic --ease-out-cubic read as
+       an abrupt snap open. Slower + a gentler ease-out-expo curve
+       (same motion language as the header reveal and nav hover
+       elsewhere in this file) for a calmer, more boutique feel. */
+    --submenu-animation-speed: 0.55s;
     --submenu-content-opacity: 0;
-    --submenu-content-animation: opacity calc(var(--submenu-animation-speed) * 0.75) var(--animation-easing);
+    --submenu-content-animation: opacity calc(var(--submenu-animation-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1);
 
     visibility: hidden;
     position: absolute;
@@ -447,7 +453,7 @@
     padding-inline: var(--padding-inline);
     /* Clip path starts at header height so it doesn't mess with the pointer events in the header */
     clip-path: rect(var(--header-height) 100% var(--full-open-header-height) 0); /* stylelint-disable-line */
-    transition: clip-path var(--submenu-animation-speed) var(--ease-out-cubic); /* stylelint-disable-line */
+    transition: clip-path var(--submenu-animation-speed) cubic-bezier(0.16, 1, 0.3, 1); /* stylelint-disable-line */
   }
 
   [data-submenu-overlap-bottom-row] {
