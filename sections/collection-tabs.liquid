@@ -13,6 +13,7 @@
     assign url_prefix = collection.url | split: 'collections/' | first
     assign frontpage_url = url_prefix | append: 'collections/frontpage'
   %}
+  <p class="collection-tabs__subtitle">קולקציות</p>
   <nav class="collection-tabs">
     {%- for handle in tab_handles -%}
       {%- liquid
@@ -139,6 +140,15 @@
 {% stylesheet %}
   .collection-tabs-wrapper {
     width: 100%;
+  }
+
+  .collection-tabs__subtitle {
+    margin: 0 0 12px;
+    text-align: center;
+    font-family: var(--font-body--family);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: rgb(var(--color-foreground-rgb) / 60%);
   }
 
   .collection-tabs {
