@@ -464,8 +464,14 @@
            own shadow, most likely, since the dropdown floats right
            above it). Painting the exact same white as the inner card
            makes the square-vs-rounded-corner seam invisible without
-           needing overflow:hidden on this element at all. */
+           needing overflow:hidden on this element at all. Still visible
+           against a non-white backdrop (e.g. a hero photo behind the
+           dropdown), so round this box's own corners too - a plain
+           border-radius (no overflow:hidden) just changes how its own
+           background paints, it doesn't affect child clipping at all,
+           so it's safe alongside the note above. */
         background-color: var(--color-background) !important;
+        border-radius: 16px;
       }
       .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .menu-list__submenu-inner {
         display: block;
