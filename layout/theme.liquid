@@ -90,14 +90,6 @@
       .product-card a[ref='productTitleLink'] {
         display: block;
       }
-      .product-card a[ref='productTitleLink']::before {
-        content: '★★★★★ (1)';
-        display: block;
-        color: #ffb648;
-        font-size: 0.78rem;
-        letter-spacing: 1.5px;
-        line-height: 1.6;
-      }
       .product-card a[ref='productTitleLink'] p {
         display: block;
         width: 100%;
@@ -1106,13 +1098,10 @@
       .product-card .group-block product-swatches {
         border-top: none !important;
       }
-      /* Save a full line: instead of price sitting in its own row below
-         the title, float it up onto the star-rating line. That rating
-         text is a ::before pseudo-element glued to the title link itself
-         (a[ref='productTitleLink']::before, above), not a separate flex
-         item - so it can't be paired with price via flex/grid, only by
-         pulling price out of the stacked flow and overlaying it at the
-         top of the same block. */
+      /* Save a full line: instead of price sitting in its own stacked
+         row, pull it out of flow and overlay it at the top-left of the
+         text block, sharing space with the title's first line instead
+         of taking a row of its own. */
       .product-card .group-block-content {
         position: relative;
       }
