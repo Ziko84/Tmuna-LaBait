@@ -115,7 +115,12 @@
             {% endif %}
             ref="menuitem"
           >
-            <span class="menu-list__link-title">{{- link.title -}}</span>
+            <span class="menu-list__link-title">
+              <span class="menu-list__link-title-track">
+                <span class="menu-list__link-title-line">{{- link.title -}}</span>
+                <span class="menu-list__link-title-line" aria-hidden="true">{{- link.title -}}</span>
+              </span>
+            </span>
           </a>
           {%- if link.links != blank -%}
             <div class="menu-list__submenu{{ background_color_classes }}" ref="submenu[]">
@@ -327,9 +332,33 @@
 
   .menu-list__link-title {
     padding-inline: calc(var(--gap-xl) / 2);
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
   }
   [slot='overflow'] .menu-list__link-title {
     padding-inline: 0;
+  }
+
+  /* Slot-machine hover: two identical copies of the label stacked in a
+     column inside a clipped window showing exactly one line. Default
+     state shows the second (bottom) copy via translateY(-50%) of the
+     track's own 200%-tall box, i.e. shifted up by exactly one line. On
+     hover, sliding the track back down to translateY(0%) reveals the
+     first copy sliding down into view while the currently-shown copy
+     slides down and out - same word, replaced by itself. */
+  .menu-list__link-title-track {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-50%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .menu-list__link-title-line {
+    display: block;
+  }
+  .menu-list__list-item:hover .menu-list__link-title-track,
+  .menu-list__list-item:focus-within .menu-list__link-title-track {
+    transform: translateY(0%);
   }
 
   .menu-list__list-item:not([slot='overflow']) {
