@@ -277,6 +277,13 @@ class HeaderMenu extends Component {
   deactivate(event) {
     if (!(event.target instanceof Element)) return;
 
+    // A pointerleave/blur can arrive late (after the pointer has already
+    // entered a different item) when the cursor moves quickly across the
+    // nav row. Ignore it unless it actually belongs to the item that's
+    // currently open, otherwise it closes whatever opened after it.
+    const leavingItem = findMenuItem(event.target);
+    if (leavingItem && leavingItem !== this.#state.activeItem) return;
+
     const menu = findSubmenu(this.#state.activeItem);
     const isMovingWithinMenu = event.relatedTarget instanceof Node && menu?.contains(document.activeElement);
     const isMovingToSubmenu =
