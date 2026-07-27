@@ -420,7 +420,10 @@
   /** mega menu **/
   .menu-list__submenu,
   .overflow-menu::part(overflow) {
-    --submenu-padding-block-start: var(--padding-3xl);
+    /* Was --padding-3xl (28px) - the space between the nav bar and the
+       dropdown's own content, reading as a gap. Tightened just this
+       top inset; bottom padding is unrelated to that and left alone. */
+    --submenu-padding-block-start: var(--padding-md);
     --submenu-padding-block-end: var(--padding-3xl);
 
     background-color: transparent;
