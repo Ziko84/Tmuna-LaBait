@@ -1084,6 +1084,11 @@
         padding-block-end: 16px;
         box-sizing: border-box;
         width: 100%;
+        /* .product-card__content's flex gap (14px) applies uniformly
+           between every stacked child, but the price sits right above
+           this row - pull it up so that specific gap is tighter without
+           touching the image-to-content spacing. */
+        margin-block-start: -8px;
       }
 
       /* Card content divider: the "Toylvia-style product cards" rule
