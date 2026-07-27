@@ -1026,18 +1026,27 @@
          small/hard to notice for a destructive action button. Unlike
          every other icon in this theme, snippets/cart-products.liquid
          renders this one's <svg> directly inside the button with no
-         .svg-wrapper span around it (confirmed by reading the actual
-         markup), so it was never on the theme's --icon-size-* scale at
-         all - it's just rendering at its own native 20px (the hardcoded
-         width="20" height="20" HTML attributes in assets/icon-delete.svg).
-         --icon-size-md is only ~22px, a 2px difference nobody could
-         actually see - that's why bumping it there didn't read as a
-         fix. The button itself is a 44px touch target (--minimum-
-         touch-target) with room to spare, so go straight to a size
-         that's actually, visibly bigger. */
+         .svg-wrapper span around it, so it was never on the theme's
+         --icon-size-* scale - it's just the native 20px from the
+         hardcoded width="20" height="20" HTML attributes in
+         assets/icon-delete.svg.
+         The actual bug (found via getComputedStyle in the live page,
+         which reported 4px): base.css has a blanket
+         `svg { max-width: 100% }` reset, and max-width always caps
+         width in the browser's layout algorithm regardless of
+         !important - so every previous width bump here was being
+         capped down to whatever sliver of space the flex row actually
+         had left, not the value set below. Removing the cap and
+         locking the button's own flex sizing so it can't get squeezed
+         in the first place. */
+      .cart-items__remove {
+        flex-shrink: 0;
+      }
       .cart-items__remove svg {
-        width: 40px !important;
-        height: 40px !important;
+        width: 28px !important;
+        height: 28px !important;
+        max-width: none !important;
+        max-height: none !important;
       }
 
       /* Add to cart on product cards: a plain always-visible "הוסף לסל"
