@@ -1091,23 +1091,30 @@
         margin-block-start: -8px;
       }
 
-      /* Card content divider: the "Toylvia-style product cards" rule
-         earlier in this file draws a border-top on whichever element is
-         DOM-last inside .product-card__content (.product-card
-         .product-card__content > *:last-child). That's .group-block
-         (title/swatches/price), so by default the line lands above the
-         title - the very top of the text block.
-         Blocks were reordered to title, swatches, price (was title,
-         price, swatches) so the line can instead separate title+stars
-         from price, matching the card's title+rating / price+cart-button
-         grouping. Cancel the native divider on the whole group block and
-         redraw it immediately above the price line specifically. */
+      /* The "Toylvia-style product cards" rule earlier in this file
+         draws a border-top on whichever element is DOM-last inside
+         .product-card__content (.product-card .product-card__content >
+         *:last-child) - that's .group-block, so left alone the line
+         lands above the title, the very top of the text block. There's
+         no divider inside the text block anymore (price now shares the
+         star-rating line below), so just cancel it. */
       .product-card .product-card__content > .group-block {
         border-top: none !important;
       }
+      /* Save a full line: instead of price sitting in its own row below
+         the title, float it up onto the star-rating line. That rating
+         text is a ::before pseudo-element glued to the title link itself
+         (a[ref='productTitleLink']::before, above), not a separate flex
+         item - so it can't be paired with price via flex/grid, only by
+         pulling price out of the stacked flow and overlaying it at the
+         top of the same block. */
+      .product-card .group-block-content {
+        position: relative;
+      }
       .product-card .group-block product-price {
-        border-top: 1px solid #f1f2f5;
-        padding-top: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
