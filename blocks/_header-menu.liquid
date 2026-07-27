@@ -335,6 +335,13 @@
     display: inline-block;
     overflow: hidden;
     vertical-align: top;
+    /* overflow:hidden alone does nothing without a height smaller than
+       the content - the track below is 2 lines tall, and without this
+       the wrapper was auto-sizing to fit both, showing both stacked
+       copies at once instead of clipping to one, which also pushed the
+       whole menu bar taller. */
+    height: 1em;
+    line-height: 1em;
   }
   [slot='overflow'] .menu-list__link-title {
     padding-inline: 0;
@@ -355,6 +362,7 @@
   }
   .menu-list__link-title-line {
     display: block;
+    line-height: 1em;
   }
   .menu-list__list-item:hover .menu-list__link-title-track,
   .menu-list__list-item:focus-within .menu-list__link-title-track {
