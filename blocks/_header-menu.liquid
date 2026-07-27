@@ -444,6 +444,17 @@
     --submenu-content-opacity: 0;
     --submenu-content-animation: opacity calc(var(--submenu-animation-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1);
 
+    /* This container's own background is transparent (below), so
+       nothing about IT visibly pops - all visible content lives in
+       .menu-list__submenu-inner, which already fades via
+       --submenu-content-animation above. But this element's own
+       visibility still switches hidden -> visible instantly (not
+       itself transitionable), and clip-path here is a static crop
+       that never changes value between states, not an animated
+       reveal - so this element contributes no smoothing on its own.
+       Giving it a real opacity fade in sync with the inner content
+       instead of an instant visibility snap. */
+    opacity: 0;
     visibility: hidden;
     position: absolute;
     width: 100%;
@@ -453,7 +464,9 @@
     padding-inline: var(--padding-inline);
     /* Clip path starts at header height so it doesn't mess with the pointer events in the header */
     clip-path: rect(var(--header-height) 100% var(--full-open-header-height) 0); /* stylelint-disable-line */
-    transition: clip-path var(--submenu-animation-speed) cubic-bezier(0.16, 1, 0.3, 1); /* stylelint-disable-line */
+    transition: clip-path var(--submenu-animation-speed) cubic-bezier(0.16, 1, 0.3, 1), /* stylelint-disable-line */
+      opacity calc(var(--submenu-animation-speed) * 0.9) cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear calc(var(--submenu-animation-speed) * 0.9);
   }
 
   [data-submenu-overlap-bottom-row] {
@@ -472,7 +485,9 @@
   .overflow-menu::part(overflow):hover {
     --submenu-content-opacity: 1;
 
+    opacity: 1;
     visibility: visible;
+    transition-delay: 0s;
   }
 
   .overflow-menu::part(overflow) {
