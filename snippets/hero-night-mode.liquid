@@ -7,7 +7,10 @@
   Every banner listed in nightImages also gets the LED color swatches,
   bottom-left, same as product images - since their night image is a
   static theme asset rather than product media, the mask/swatches
-  markup is injected here in JS instead of via Liquid.
+  markup is injected here in JS instead of via Liquid. Exception:
+  media_with_content_LfPdEJ (the bottom homepage banner) - swatches
+  removed there per request, so it keeps just the day/night hover
+  crossfade with no color picker.
 
   @example
   {% render 'hero-night-mode' %}
@@ -68,7 +71,9 @@
         img.alt = '';
         img.loading = 'lazy';
         container.appendChild(img);
-        addLedSwatches(container, nightImages[suffix]);
+        if (suffix !== '__media_with_content_LfPdEJ') {
+          addLedSwatches(container, nightImages[suffix]);
+        }
       });
     }
 
