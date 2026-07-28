@@ -51,6 +51,11 @@
         button.dataset.ledColor = entry.color;
         button.setAttribute('aria-pressed', entry.active ? 'true' : 'false');
         button.setAttribute('aria-label', entry.label);
+        // Empty on:click makes the theme's own component framework treat
+        // this button as its own resolved click target instead of
+        // bubbling up via closest() to whatever on:click a wrapping
+        // container (e.g. a zoom-dialog trigger) might carry.
+        button.setAttribute('on:click', '');
         button.style.background = entry.gradient
           ? 'linear-gradient(135deg, #fff3d6, #ffb347)'
           : entry.color;
