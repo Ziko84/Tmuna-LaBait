@@ -60,6 +60,19 @@
       box-shadow var(--hover-transition-duration) var(--hover-transition-timing);
   }
 
+  @media screen and (max-width: 749px) {
+    .blog-post-card {
+      --text-align: center !important;
+      align-items: center;
+    }
+    /* The date/author row uses its own justify-{alignment} utility class
+       (baked in at render time from the same setting) rather than
+       inheriting --text-align, so it needs its own override here too. */
+    .blog-post-card .blog-post-details {
+      justify-content: center !important;
+    }
+  }
+
   @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
     .blog-post-card:hover {
       transform: translateY(-4px);

@@ -14,24 +14,36 @@
     assign frontpage_url = url_prefix | append: 'collections/frontpage'
   %}
   <p class="collection-tabs__subtitle">קולקציות</p>
-  <nav class="collection-tabs">
-    {%- for handle in tab_handles -%}
-      {%- liquid
-        assign label = tab_labels[forloop.index0]
-        assign is_current = false
-        assign tab_url = url_prefix | append: 'collections/' | append: handle
-        if collection.handle == handle
-          assign is_current = true
-          assign tab_url = collection.url
-          if handle != 'frontpage'
-            assign tab_url = frontpage_url
+  <div class="collection-tabs-scroll-wrapper">
+    <nav class="collection-tabs">
+      {%- for handle in tab_handles -%}
+        {%- liquid
+          assign label = tab_labels[forloop.index0]
+          assign is_current = false
+          assign tab_url = url_prefix | append: 'collections/' | append: handle
+          if collection.handle == handle
+            assign is_current = true
+            assign tab_url = collection.url
+            if handle != 'frontpage'
+              assign tab_url = frontpage_url
+            endif
           endif
-        endif
-      -%}
-      {%- capture tab_classes -%}collection-tabs__tab{% if is_current %} is-active{% endif %}{%- endcapture -%}
-      <a id="collection-tab-{{ forloop.index0 }}" href="{{ tab_url }}" class="{{ tab_classes | strip }}"{% if is_current %} aria-current="page"{% endif %}>{{- label | strip -}}</a>
-    {%- endfor -%}
-  </nav>
+        -%}
+        {%- capture tab_classes -%}collection-tabs__tab{% if is_current %} is-active{% endif %}{%- endcapture -%}
+        <a id="collection-tab-{{ forloop.index0 }}" href="{{ tab_url }}" class="{{ tab_classes | strip }}"{% if is_current %} aria-current="page"{% endif %}>{{- label | strip -}}</a>
+      {%- endfor -%}
+    </nav>
+    {%- comment -%}
+      Mobile-only swipe hint - the fade alone was too subtle to read as
+      "scrollable" vs. "that's the whole list." A drifting chevron is an
+      unambiguous, well-understood affordance and needs no explanation text.
+    {%- endcomment -%}
+    <span class="collection-tabs__scroll-hint" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
 </div>
 
 <script>
@@ -182,6 +194,45 @@
         #000 calc(100% - 20px),
         transparent 100%
       );
+    }
+  }
+
+  .collection-tabs-scroll-wrapper {
+    position: relative;
+  }
+
+  .collection-tabs__scroll-hint {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-tabs__scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset-block: 0;
+      inset-inline-end: 0;
+      width: 26px;
+      color: rgb(var(--color-foreground-rgb) / 45%);
+      background: linear-gradient(
+        to left,
+        transparent 0,
+        var(--color-background) 60%
+      );
+      pointer-events: none;
+      animation: collection-tabs-scroll-hint 1.6s ease-in-out infinite;
+    }
+  }
+
+  @keyframes collection-tabs-scroll-hint {
+    0%, 100% {
+      transform: translateX(0);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateX(-4px);
+      opacity: 0.4;
     }
   }
 

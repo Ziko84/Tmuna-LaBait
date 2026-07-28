@@ -130,6 +130,14 @@
     flex-direction: column;
     align-items: var(--horizontal-alignment);
     color: var(--color, var(--color-foreground));
+    /* Falls back to the child rule below (.text-block > *) for any real
+       content, but plain-text field values (e.g. a collection description
+       with no rich-text formatting) render as a bare text node with no
+       wrapping element at all, so that child selector never matches and
+       this text was silently defaulting to the browser's own alignment
+       instead of the block's actual alignment/wrap setting. */
+    text-align: var(--text-align, var(--text-align-default));
+    text-wrap: var(--text-wrap);
   }
 
   .text-block > * {
