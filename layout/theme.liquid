@@ -407,6 +407,29 @@
         outline-offset: 1px;
         box-shadow: 0 0 0 2px rgba(26, 26, 46, 0.45);
       }
+      /* The :hover-driven 2.2x zoom that makes these easy to hit with a
+         mouse never fires on touch - there's no hover state, so the real
+         tap target on mobile is just the raw dot plus its small expanded
+         zone, well under the ~44px a thumb needs. Bigger dots and a much
+         bigger invisible hit zone here, sized to actually be tappable. */
+      @media (max-width: 749px) {
+        .led-swatch,
+        .card-gallery .led-swatch {
+          width: 18px;
+          height: 18px;
+        }
+        /* Kept modest enough that neighboring dots' hit zones can't
+           overlap given the gap below (each side eats 9px into a 20px
+           gap, leaving a 2px buffer) - a bigger expansion here would
+           recreate the old bug where an overlapping zone made whichever
+           swatch came later in the row eat the earlier one's taps. */
+        .led-swatch::before {
+          inset: -9px;
+        }
+        .led-swatches {
+          gap: 20px;
+        }
+      }
 
       /* ============================================================
          Header submenus: compact dropdown anchored to its own trigger,
