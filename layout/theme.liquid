@@ -1266,15 +1266,16 @@
         border-top: none !important;
       }
       /* Save a full line: instead of price sitting in its own stacked
-         row, pull it out of flow and overlay it at the top-left of the
-         text block, sharing space with the title's first line instead
-         of taking a row of its own. */
+         row, pull it out of flow and overlay it sharing space with the
+         stars row (title stays on its own line now, stars sit right
+         under it) instead of taking a row of its own. top offset is the
+         title's own line height + its margin before the stars line. */
       .product-card .group-block-content {
         position: relative;
       }
       .product-card .group-block product-price {
         position: absolute;
-        top: 0;
+        top: 28px;
         left: 0;
         border: none !important;
         box-shadow: none !important;
@@ -1286,15 +1287,6 @@
         box-shadow: none !important;
         outline: none !important;
         text-decoration: none !important;
-      }
-      /* Keep price sharing the title's line on mobile too - reserve room
-         for it on the title's own line so its ellipsis truncates before
-         the text ever reaches the price sitting on top of it, instead of
-         dropping the overlay entirely like the previous fix did. */
-      @media screen and (max-width: 749px) {
-        .product-card a[ref='productTitleLink'] p {
-          padding-inline-end: 88px;
-        }
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
