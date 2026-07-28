@@ -1141,15 +1141,17 @@
       }
 
       /* Product card favorite/like heart: drop the native white circular
-         backdrop and auto-contrast the icon against whatever photo it
-         sits on instead - white icon + mix-blend-mode: difference inverts
-         per-pixel, so it reads black on light backgrounds and white on
-         dark ones without knowing the photo's colors in advance. */
+         backdrop. Previously used mix-blend-mode: difference to
+         auto-contrast against the photo, but that inverts per pixel -
+         white flips to black on light backgrounds, so it didn't actually
+         stay white. Plain white now, with a soft drop shadow instead so
+         it still reads clearly against light photos without changing
+         color. */
       .favorite-toggle {
         background: transparent !important;
         box-shadow: none !important;
         color: #fff;
-        mix-blend-mode: difference;
+        filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
       }
       /* One size step up the theme's own icon scale (sm -> md). */
       .favorite-toggle__icon {
