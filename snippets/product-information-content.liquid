@@ -321,8 +321,9 @@
     }
   }
 
-  /* If the header is sticky, make product details content stick underneath the header */
+  /* If the header is sticky, make product details content stick underneath the header
+     (and underneath the also-sticky announcement bar above it, if present). */
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
-    --sticky-header-offset: var(--header-height);
+    --sticky-header-offset: calc(var(--header-height) + var(--announcement-bar-sticky-height, 0px));
   }
 {% endstylesheet %}

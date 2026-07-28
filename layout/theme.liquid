@@ -211,6 +211,25 @@
         z-index: var(--layer-sticky) !important;
       }
 
+      /* Announcement bar: pin it to the very top on scroll too, same as
+         the header below it. Its wrapper (#header-group's first child)
+         is what actually needs position:sticky - .section-background,
+         a sibling of .announcement-bar that paints its background, is
+         absolutely positioned relative to that same wrapper, so
+         stickying the wrapper keeps both moving together. The header's
+         own sticky top is then pushed down by the announcement bar's
+         measured height (set on body by JS below) instead of 0, so it
+         docks right underneath instead of overlapping it. */
+      #header-group > *:first-child {
+        position: sticky;
+        top: 0;
+        z-index: var(--layer-sticky);
+      }
+      .header-section:has(> #header-component[sticky='always']),
+      .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
+        top: var(--announcement-bar-sticky-height, -1px) !important;
+      }
+
       .menu-list__link {
         padding: 0 !important;
         margin: 0 32px !important;
@@ -1607,6 +1626,22 @@
             const hasReachedMinimum = overflowList && overflowList.hasAttribute('minimum-reached');
             headerComponent.dataset.menuStyle = isTouchDevice || hasReachedMinimum ? 'drawer' : 'menu';
           }
+        })();
+
+        (function setAnnouncementBarStickyHeight() {
+          const headerGroup = document.querySelector('#header-group');
+          const announcementBarWrapper = headerGroup?.firstElementChild;
+          if (!headerGroup || !announcementBarWrapper || !headerGroup.querySelector('header-component[sticky]')) {
+            return;
+          }
+          function update() {
+            const height = announcementBarWrapper.classList.contains('header-section')
+              ? 0
+              : announcementBarWrapper.offsetHeight;
+            document.body.style.setProperty('--announcement-bar-sticky-height', `${height - 1}px`);
+          }
+          update();
+          window.addEventListener('resize', update);
         })();
       </script>
 
