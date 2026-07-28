@@ -103,6 +103,12 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+      /* Star ratings hidden for now, everywhere they appear (product
+         cards, product page) - not removed, just toggled off. Delete
+         this rule to bring them back. */
+      .rating-wrapper {
+        display: none !important;
+      }
       .product-card product-price,
       .product-card product-price .price {
         font-weight: 400;
