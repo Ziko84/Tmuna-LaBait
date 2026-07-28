@@ -171,6 +171,17 @@
   @media screen and (max-width: 749px) {
     .collection-tabs {
       justify-content: flex-start;
+      /* Nothing signals this row scrolls - a pill can sit flush against
+         the edge with no visual cut, so it reads like "that's all of
+         them" instead of "swipe for more." A soft fade on both edges
+         hints there's more without needing a visible scrollbar or JS. */
+      mask-image: linear-gradient(
+        to left,
+        transparent 0,
+        #000 20px,
+        #000 calc(100% - 20px),
+        transparent 100%
+      );
     }
   }
 

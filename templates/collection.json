@@ -108,7 +108,7 @@
                 "line_height": "loose",
                 "letter_spacing": "normal",
                 "case": "none",
-                "wrap": "nowrap",
+                "wrap": "pretty",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
