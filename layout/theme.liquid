@@ -109,6 +109,17 @@
       .rating-wrapper {
         display: none !important;
       }
+      /* The actual visible "★★★★★ (1)" on cards isn't this rating-wrapper
+         system at all - it's a hardcoded fake generated directly in
+         assets/base.css (product-card .contents.user-select-text::before
+         { content: "★★★★★ (1)" }), unconditional and the same regardless
+         of real product data. Left that file alone (not the place for
+         customizations) and neutralize it here instead, same reversible
+         "delete to bring back" approach. */
+      product-card .contents.user-select-text::before {
+        content: none !important;
+        display: none !important;
+      }
       .product-card product-price,
       .product-card product-price .price {
         font-weight: 400;
