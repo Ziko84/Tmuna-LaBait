@@ -17,16 +17,32 @@
 </a>
 
 {% stylesheet %}
+  /* Visually hidden without moving off-screen - an element parked
+     thousands of pixels away (the old left: -99999px) can make some
+     mobile browsers miscalculate the page's real layout width and
+     render the whole site zoomed out to fit it. This keeps the link in
+     its normal position but invisible until focused, which can never
+     inflate the page's width. */
   .skip-to-content-link {
     position: absolute;
-    left: -99999px;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .skip-to-content-link:focus {
     z-index: var(--layer-temporary);
-    overflow: auto;
     width: auto;
     height: auto;
+    margin: 0;
+    overflow: auto;
+    clip: auto;
+    white-space: normal;
     padding: var(--padding-lg) var(--padding-4xl);
     left: var(--margin-lg);
     top: var(--margin-lg);
