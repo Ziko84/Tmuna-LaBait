@@ -936,6 +936,12 @@
         [data-template='product'] .product-details {
           margin-top: 40px !important;
         }
+        /* Pulls the Add to Cart row closer to the variant picker above it -
+           the group's own block gap read as too much empty space directly
+           over the button. */
+        [data-template='product'] .product-form-buttons {
+          margin-top: -8px !important;
+        }
       }
 
       /* Add to Cart above the quantity stepper on the product page. Reordering
