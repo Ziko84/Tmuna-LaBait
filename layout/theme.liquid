@@ -59,7 +59,6 @@
         transition: transform 0.18s ease, box-shadow 0.18s ease;
       }
       .product-card:hover {
-        transform: translateY(-3px);
         box-shadow: 0 4px 10px rgba(24, 24, 32, 0.08), 0 16px 30px rgba(24, 24, 32, 0.12);
       }
       .product-card .product-card__content {
@@ -256,6 +255,13 @@
       }
       .product-card:hover {
         outline-color: rgba(26, 26, 46, 0.45);
+      }
+      /* Cancel the lift-on-hover: the theme's own card_hover_effect
+         setting (body.card-hover-effect-lift) translateY's the card up
+         on hover on desktop - this beats it in the cascade so the card
+         stays put, keeping the navy outline/shadow hover cues only. */
+      .card-hover-effect-lift .product-card:hover {
+        transform: none !important;
       }
 
       /* Experiment: same hairline stroke used on the hero card and nav
