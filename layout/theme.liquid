@@ -802,6 +802,12 @@
           }
           .media-with-content {
             border-radius: 24px;
+            /* The right+bottom-only hairline stroke (added for the hero
+               card specifically) reads fine tucked against a wide desktop
+               photo, but on a narrow stacked mobile card it shows up as a
+               stray line down one edge with nothing balancing it - drop it
+               here so all four corners read the same. */
+            border: none;
           }
           .section-background {
             border-radius: 24px;
