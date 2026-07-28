@@ -840,6 +840,15 @@
       }
 
       @media screen and (min-width: 750px) {
+        /* Native theme CSS (.product-details product-price > * { text-align:
+           left }) has slightly higher specificity than the .text-right
+           utility class the price block's own alignment setting relies on,
+           so it was silently winning over the "align right" choice made in
+           the theme editor - force it here instead. */
+        [data-template='product'] .product-details product-price,
+        [data-template='product'] .product-details product-price > * {
+          text-align: right !important;
+        }
         [data-template='product'] .product-information__media {
           height: 100% !important;
           display: flex !important;
@@ -943,9 +952,21 @@
           margin-top: -8px !important;
         }
         [data-template='product'] .product-form-buttons .add-to-cart-button {
-          padding-block: 20px !important;
-          padding-inline: 24px !important;
-          font-size: 1.1rem !important;
+          padding-block: 26px !important;
+          padding-inline: 30px !important;
+          font-size: 1.25rem !important;
+        }
+        /* Price shares the title's own line instead of taking a row of
+           its own below it, matching how tight the desktop layout reads -
+           same overlay technique already used on the product-card price. */
+        [data-template='product'] .product-details .group-block-content {
+          position: relative;
+        }
+        [data-template='product'] .product-details product-price {
+          position: absolute !important;
+          top: 4px;
+          left: 0;
+          width: auto !important;
         }
       }
 
