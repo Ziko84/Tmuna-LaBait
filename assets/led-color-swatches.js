@@ -22,6 +22,51 @@ function getTint(scope) {
   return scope.querySelector('.led-tint');
 }
 
+/**
+ * The night-mode crossfade and swatch reveal are driven by :hover in CSS,
+ * which touch browsers only fake by applying :hover on tap - inconsistently,
+ * and often without playing the actual CSS transition, so the reveal reads
+ * as an abrupt jump on mobile instead of the smooth fade desktop gets.
+ * .night-mode-active mirrors :hover everywhere it matters (see theme.liquid)
+ * so touch gets the exact same transition, just triggered explicitly by us
+ * instead of left to each browser's own tap-hover emulation.
+ *
+ * First tap on a night-mode image/banner opens it instead of following the
+ * link/navigating; a second tap on it proceeds normally (open + navigating
+ * away both end up closing it), and tapping anywhere else closes it too.
+ */
+document.addEventListener(
+  'click',
+  (event) => {
+    if (!window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+    const scope = event.target.closest('.product-media-container, .media-block');
+    if (!scope || !scope.querySelector('.led-swatches, .hero-night-image, .product-media__night-image')) return;
+
+    // Let the color-selection handler below manage taps on the swatches themselves.
+    if (event.target.closest('.led-swatches')) return;
+
+    if (scope.classList.contains('night-mode-active')) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    document.querySelectorAll('.night-mode-active').forEach((openScope) => {
+      if (openScope !== scope) openScope.classList.remove('night-mode-active');
+    });
+    scope.classList.add('night-mode-active');
+  },
+  true
+);
+
+document.addEventListener('click', (event) => {
+  if (!window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+  document.querySelectorAll('.night-mode-active').forEach((scope) => {
+    if (!scope.contains(event.target)) scope.classList.remove('night-mode-active');
+  });
+});
+
 document.addEventListener('click', (event) => {
   const swatchesRow = event.target.closest('.led-swatches');
   if (!swatchesRow) return;

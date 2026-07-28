@@ -298,8 +298,8 @@
         -webkit-mask-position: center;
         transition: opacity 0.8s ease, background-color 0.35s ease;
       }
-      .product-media-container:hover .led-tint,
-      .media-block:hover .led-tint {
+      .product-media-container:is(:hover, .night-mode-active) .led-tint,
+      .media-block:is(:hover, .night-mode-active) .led-tint {
         opacity: 1;
       }
       /* Tiny color chips anchored to the photo's bottom-left corner.
@@ -340,8 +340,8 @@
            pointer-events so clicks can't land on invisible dots. */
         pointer-events: none;
       }
-      .product-media-container:hover .led-swatches,
-      .media-block:hover .led-swatches {
+      .product-media-container:is(:hover, .night-mode-active) .led-swatches,
+      .media-block:is(:hover, .night-mode-active) .led-swatches {
         pointer-events: auto;
       }
       .led-swatches li {
@@ -355,8 +355,8 @@
         transform: translateY(3px) scale(0.6);
         transition: opacity 0.35s ease, transform 0.35s ease;
       }
-      .product-media-container:hover .led-swatches li,
-      .media-block:hover .led-swatches li {
+      .product-media-container:is(:hover, .night-mode-active) .led-swatches li,
+      .media-block:is(:hover, .night-mode-active) .led-swatches li {
         opacity: 1;
         transform: none;
       }
@@ -741,7 +741,7 @@
       /* Trigger on hovering the photo itself, not the whole split section -
          .media-with-content:hover also fires while hovering the text/button
          column, which shouldn't flip the image to night mode. */
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-block:hover .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-block:is(:hover, .night-mode-active) .hero-night-image {
         opacity: 1;
       }
 
@@ -1242,7 +1242,7 @@
         pointer-events: none;
         z-index: 1;
       }
-      .product-media-container:hover .product-media__night-image {
+      .product-media-container:is(:hover, .night-mode-active) .product-media__night-image {
         opacity: 1;
       }
 
