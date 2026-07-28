@@ -67,36 +67,44 @@ document.addEventListener('click', (event) => {
   });
 });
 
-document.addEventListener('click', (event) => {
-  const swatchesRow = event.target.closest('.led-swatches');
-  if (!swatchesRow) return;
+document.addEventListener(
+  'click',
+  (event) => {
+    const swatchesRow = event.target.closest('.led-swatches');
+    if (!swatchesRow) return;
 
-  // Block the underlying product image link for ANY click that lands
-  // inside the swatches row - including the small gaps between dots, not
-  // just the dots themselves - so a near-miss never opens the product page.
-  event.preventDefault();
-  event.stopPropagation();
+    // The whole .product-media-container has its own native on:click that
+    // opens the image zoom dialog, bound directly on that element. A
+    // bubble-phase listener on document (the old approach) fires AFTER
+    // that ancestor's own listener already ran, so by the time this code
+    // got a chance to stop it, the zoom dialog had already opened - only
+    // catching it here, in the capture phase, runs before ANY bubble
+    // listener does, including that one.
+    event.preventDefault();
+    event.stopPropagation();
 
-  const swatch = event.target.closest('.led-swatch');
-  if (!swatch) return;
+    const swatch = event.target.closest('.led-swatch');
+    if (!swatch) return;
 
-  const scope = getScope(swatch);
-  if (!scope) return;
+    const scope = getScope(swatch);
+    if (!scope) return;
 
-  const tint = getTint(scope);
-  if (!tint) return;
+    const tint = getTint(scope);
+    if (!tint) return;
 
-  scope.querySelectorAll('.led-swatch').forEach((button) => {
-    button.classList.remove('led-swatch--active');
-    button.setAttribute('aria-pressed', 'false');
-  });
-  swatch.classList.add('led-swatch--active');
-  swatch.setAttribute('aria-pressed', 'true');
+    scope.querySelectorAll('.led-swatch').forEach((button) => {
+      button.classList.remove('led-swatch--active');
+      button.setAttribute('aria-pressed', 'false');
+    });
+    swatch.classList.add('led-swatch--active');
+    swatch.setAttribute('aria-pressed', 'true');
 
-  const color = swatch.dataset.ledColor || 'transparent';
-  tint.style.backgroundColor = color;
-  scope.dataset.ledSelectedColor = color;
-});
+    const color = swatch.dataset.ledColor || 'transparent';
+    tint.style.backgroundColor = color;
+    scope.dataset.ledSelectedColor = color;
+  },
+  true
+);
 
 document.addEventListener('pointerover', (event) => {
   const swatch = event.target.closest('.led-swatch');
