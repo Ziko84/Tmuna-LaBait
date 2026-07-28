@@ -881,9 +881,33 @@
         border-radius: 32px !important;
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06) !important;
         padding: 32px !important;
-        max-width: 85% !important;
         margin-inline: auto !important;
         align-items: stretch !important;
+      }
+      /* max-width:85% here was unconditional, only ever undone by the
+         max-width:100% further down scoped to <=749px. Tablet widths
+         (roughly 750-989px) got neither: 85% of an already-narrow tablet
+         viewport, combined with the native grid's sidebar-width-based
+         column math, squeezed the image column down to a sliver (~24px -
+         effectively invisible) since the details column claims a near-
+         fixed width first and the image only gets whatever's left over.
+         Only apply the narrower card width once the viewport is wide
+         enough (matching this theme's own desktop breakpoint) that 85%
+         still leaves the image a real column. */
+      @media screen and (min-width: 990px) {
+        [data-template='product'] .product-information__grid {
+          max-width: 85% !important;
+        }
+      }
+      /* Even with the 85% cap gone below 990px, the grid was still only
+         claiming part of its own column track (subgrid sizing to some
+         intrinsic width instead of the full track) - explicit 100% forces
+         it to actually fill the space it has, which is what gives the
+         image column room to exist instead of collapsing to a sliver. */
+      @media screen and (max-width: 989px) {
+        [data-template='product'] .product-information__grid {
+          width: 100% !important;
+        }
       }
 
       @media screen and (min-width: 750px) {
@@ -1430,7 +1454,15 @@
         display: flex;
         align-items: center;
         gap: 14px;
-        max-width: 85%;
+        /* 85% of a tablet/desktop-width viewport is far more room than
+           a thumbnail + price + button actually need - .sticky-buy-bar__info
+           grows to fill it (flex:1), but its own text content stays
+           hugging the thumbnail, so the leftover grown space becomes a
+           big empty gap that reads as two disconnected floating pieces
+           instead of one bar. Capping the width keeps them close
+           together at any viewport size, same as it already looks on
+           mobile where 85% is naturally small. */
+        max-width: min(85%, 480px);
         margin-inline: auto;
         padding: 12px 20px;
       }
