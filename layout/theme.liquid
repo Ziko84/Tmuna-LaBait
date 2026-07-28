@@ -253,13 +253,10 @@
            transition since it isn't merged, just overwritten. */
         transition: outline-color 0.45s ease-in, transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out !important;
       }
-      .product-card:hover {
-        outline-color: rgba(26, 26, 46, 0.45);
-      }
       /* Cancel the lift-on-hover: the theme's own card_hover_effect
          setting (body.card-hover-effect-lift) translateY's the card up
          on hover on desktop - this beats it in the cascade so the card
-         stays put, keeping the navy outline/shadow hover cues only. */
+         stays put, keeping only the shadow hover cue. */
       .card-hover-effect-lift .product-card:hover {
         transform: none !important;
       }
