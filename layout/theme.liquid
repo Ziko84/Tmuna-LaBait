@@ -103,22 +103,19 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      /* Star ratings hidden for now, everywhere they appear (product
-         cards, product page) - not removed, just toggled off. Delete
-         this rule to bring them back. */
       .rating-wrapper {
         display: none !important;
       }
-      /* The actual visible "★★★★★ (1)" on cards isn't this rating-wrapper
-         system at all - it's a hardcoded fake generated directly in
-         assets/base.css (product-card .contents.user-select-text::before
-         { content: "★★★★★ (1)" }), unconditional and the same regardless
-         of real product data. Left that file alone (not the place for
-         customizations) and neutralize it here instead, same reversible
-         "delete to bring back" approach. */
+      /* Stars are back, but honest this time: the hardcoded rule in
+         assets/base.css (product-card .contents.user-select-text::before)
+         claimed a fake "(1)" review unconditionally on every card. Outline
+         stars + a real "(0)" instead - still reads as decorative rather
+         than a review count that isn't real. Everything else about the
+         rule (position, spacing, order) is still base.css's own, only
+         content/color are overridden here. */
       product-card .contents.user-select-text::before {
-        content: none !important;
-        display: none !important;
+        content: "☆☆☆☆☆ (0)" !important;
+        color: #c9c9ce !important;
       }
       .product-card product-price,
       .product-card product-price .price {
