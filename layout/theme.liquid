@@ -159,11 +159,25 @@
         fill: currentColor !important;
       }
 
-      /* Top bar (header) background: white at 95% opacity, regardless
+      /* Top bar (header) background: white at 80% opacity, regardless
          of whatever color the theme editor's row settings are set to. */
       #header-component {
         --color-background-top-row: rgba(255, 255, 255, 0.8) !important;
         --color-background-bottom-row: rgba(255, 255, 255, 0.8) !important;
+      }
+      /* Thick-glass distortion behind the top bar: the underlay is the
+         actual element painting that background (see header.liquid),
+         so it's the right place for a backdrop blur + a warped-glass
+         effect via the SVG filter defined right after <body>. Second
+         backdrop-filter declaration is a progressive enhancement -
+         browsers that don't understand url() filter references in
+         backdrop-filter drop that whole declaration as invalid and
+         keep the plain blur+saturate one above it. */
+      .header__underlay-closed,
+      .header__underlay-open {
+        backdrop-filter: blur(14px) saturate(1.4);
+        -webkit-backdrop-filter: blur(14px) saturate(1.4);
+        backdrop-filter: url(#header-glass-distortion) blur(10px) saturate(1.4);
       }
 
       /* ============================================================
@@ -1540,6 +1554,13 @@
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+      <filter id="header-glass-distortion" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="2" result="blurred-noise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurred-noise" scale="35" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
 
     {% render 'chat-drawer' %}
