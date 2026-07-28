@@ -61,15 +61,29 @@
   }
 
   @media screen and (max-width: 749px) {
+    /* text-align:center alone is enough here - every direct child
+       (image, content) is already meant to be full width, so there's
+       nothing that actually needs align-items:center. That was tried
+       first and centering-by-shrinking took the image down with it
+       (every flex child sizes to its own content instead of stretching),
+       leaving visible gaps on both sides instead of filling the card. */
     .blog-post-card {
       --text-align: center !important;
-      align-items: center;
     }
     /* The date/author row uses its own justify-{alignment} utility class
        (baked in at render time from the same setting) rather than
        inheriting --text-align, so it needs its own override here too. */
     .blog-post-card .blog-post-details {
       justify-content: center !important;
+    }
+    /* The heading block has its own "alignment" setting (defaults to
+       left, never set to center in this template) which renders
+       --text-align directly on its own element - a declared value always
+       wins over an inherited one no matter how it got there, so the
+       --text-align:center above never reaches it. Needs !important since
+       it's overriding a real inline style, not just inheritance. */
+    .blog-post-card .blog-post-card__title-link .text-block {
+      --text-align: center !important;
     }
   }
 
