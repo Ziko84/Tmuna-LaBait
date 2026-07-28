@@ -995,6 +995,13 @@
           padding-inline: 30px !important;
           font-size: 1.25rem !important;
         }
+        /* The PayPal/accelerated-checkout button sat right in the same
+           tight gap as the rest of the row's controls, with nothing of
+           its own setting it apart - gave it real breathing room above
+           and below instead. */
+        [data-template='product'] .product-form-buttons > .accelerated-checkout-block {
+          margin-block: 14px 8px !important;
+        }
       }
 
       /* Add to Cart above the quantity stepper on the product page. Reordering
