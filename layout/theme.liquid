@@ -1188,16 +1188,13 @@
         outline: none !important;
         text-decoration: none !important;
       }
-      /* The overlap trick above only has room on wide cards - on mobile's
-         narrower columns the title's text reaches far enough left that it
-         runs straight into the absolutely-positioned price sitting on top
-         of it. Below tablet width, drop the overlay and let price sit in
-         normal flow as its own row under the title, like before the trick. */
+      /* Keep price sharing the title's line on mobile too - reserve room
+         for it on the title's own line so its ellipsis truncates before
+         the text ever reaches the price sitting on top of it, instead of
+         dropping the overlay entirely like the previous fix did. */
       @media screen and (max-width: 749px) {
-        .product-card .group-block product-price {
-          position: static;
-          display: block;
-          margin-top: 2px;
+        .product-card a[ref='productTitleLink'] p {
+          padding-inline-end: 88px;
         }
       }
 
