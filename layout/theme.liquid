@@ -1155,6 +1155,9 @@
         box-shadow: none !important;
         color: #fff;
         filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+        /* Nudged 5px further in from the image edges on both axes. */
+        top: calc(var(--padding-sm, 16px) + 5px) !important;
+        inset-inline-end: calc(var(--padding-sm, 16px) + 5px) !important;
       }
       /* One size step up the theme's own icon scale (sm -> md). */
       .favorite-toggle__icon {
