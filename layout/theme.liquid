@@ -395,8 +395,16 @@
         position: absolute;
         inset: -3px;
       }
-      .led-swatch:hover {
-        transform: scale(2.2);
+      /* Touch has no real "unhover" gesture - tapping a swatch leaves it
+         stuck in :hover (the last-tapped element keeps it until something
+         else is tapped), so this 2.2x zoom-in-place never shrinks back
+         down and physically overlaps/covers the neighboring swatches,
+         making the next one hard to hit. Scope it to devices that can
+         actually hover with a pointer that isn't a finger. */
+      @media (hover: hover) and (pointer: fine) {
+        .led-swatch:hover {
+          transform: scale(2.2);
+        }
       }
       .led-swatch:focus-visible {
         outline: 1px solid #ffffff;
