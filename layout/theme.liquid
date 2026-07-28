@@ -1133,16 +1133,6 @@
         align-items: stretch !important;
       }
 
-      /* Header logo icon: blue LED-style glow on hover only. The icon now
-         renders as its own <img> separate from the store name text (see
-         blocks/_header-logo.liquid), so this can target it directly. */
-      .header-logo__icon {
-        transition: filter 0.3s ease;
-      }
-      .header-logo:hover .header-logo__icon {
-        filter: drop-shadow(0 0 6px #00b0ff) drop-shadow(0 0 14px #00b0ff);
-      }
-
       /* Product card favorite/like heart: drop the native white circular
          backdrop. Previously used mix-blend-mode: difference to
          auto-contrast against the photo, but that inverts per pixel -
