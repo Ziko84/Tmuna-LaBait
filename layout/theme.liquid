@@ -159,22 +159,6 @@
         fill: currentColor !important;
       }
 
-      /* Header nav font size, doubled from the theme's default 14px.
-         The block setting (type_font_primary_size) is a schema "select"
-         capped at 18px - any larger value written to the setting gets
-         silently clamped back down at render time, so this can't be done
-         through the setting itself. Overriding font-size (not the
-         --menu-top-level-font-size-desktop custom property) directly is
-         required here too: the custom property is set inline on the nav
-         element from that same clamped setting, and an element's own
-         inline declaration for a custom property always wins over an
-         external stylesheet's override for it. */
-      @media screen and (min-width: 750px) {
-        #header-component .menu-list__link {
-          font-size: 1.75rem !important;
-        }
-      }
-
       /* Top bar (header) background: white at 70% opacity, regardless
          of whatever color the theme editor's row settings are set to. */
       #header-component {
@@ -246,7 +230,7 @@
         width: fit-content;
         font-family: 'Assistant', 'Heebo', sans-serif !important;
         font-weight: 300 !important;
-        font-size: 1.25rem !important;
+        font-size: 2.5rem !important;
         letter-spacing: 0.03em;
       }
       /* Short underline, right-aligned: shown only on the current page's
