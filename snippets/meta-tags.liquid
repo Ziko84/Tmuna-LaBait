@@ -143,6 +143,29 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ collection.title | json }},
+    "url": {{ collection.url | prepend: request.origin | json }},
+    {%- if collection.description != blank -%}
+      "description": {{ collection.description | strip_html | json }},
+    {%- endif -%}
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {%- for product in collection.products limit: 20 -%}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "url": {{ product.url | prepend: request.origin | json }}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  }
+  </script>
 {%- elsif request.page_type == 'product' and product -%}
   <script type="application/ld+json">
   {
