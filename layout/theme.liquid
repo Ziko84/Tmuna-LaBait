@@ -174,25 +174,14 @@
       }
 
       /* ============================================================
-         Header: stays visible while scrolling down, hides while
-         scrolling up.
+         Header: always visible while sticky, no hide-on-scroll. Only a
+         drop shadow toggles in once the page has scrolled away from the
+         top (class set by the small script near the end of <body>).
          `sticky="always"` keeps the header permanently position:sticky
-         (native theme CSS, unconditional). Show/hide is driven directly
-         by JS setting an inline transform further down this file —
-         inline styles always win the cascade, removing any dependency
-         on attribute-selector specificity or theme JS state timing.
-         Transform-only (no opacity): translateY(-100%) alone is already
-         fully invisible, and a second opacity transition running at the
-         same time was an extra animated property to cause repaints.
+         (native theme CSS, unconditional).
          ============================================================ */
       #header-component[sticky='always'] {
-        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-        /* Permanent compositing layer: this animates on every scroll
-           direction change, so without will-change the browser keeps
-           creating/destroying its layer, which was clipping the hero
-           card's shadow (a sibling further down the same scroll
-           container) each time it happened. */
-        will-change: transform;
+        transition: box-shadow 0.3s ease;
       }
       #header-component.header--scrolled {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -1680,7 +1669,7 @@
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
-        function initHeaderAutoHide() {
+        function initHeaderScrolledShadow() {
           var header = document.getElementById('header-component');
           if (!header) return;
 
@@ -1694,31 +1683,9 @@
           }
 
           var scrollEl = getScrollEl();
-          var lastScrollTop = scrollEl.scrollTop;
-
-          function show() {
-            header.style.transform = 'translateY(0)';
-          }
-
-          function hide() {
-            header.style.transform = 'translateY(-100%)';
-          }
 
           function onScroll() {
-            var current = scrollEl.scrollTop;
-
-            if (current <= 4) {
-              header.classList.remove('header--scrolled');
-              show();
-            } else if (current > lastScrollTop + 2) {
-              header.classList.add('header--scrolled');
-              show();
-            } else if (current < lastScrollTop - 2) {
-              header.classList.add('header--scrolled');
-              hide();
-            }
-
-            lastScrollTop = current;
+            header.classList.toggle('header--scrolled', scrollEl.scrollTop > 4);
           }
 
           scrollEl.addEventListener('scroll', onScroll, { passive: true });
@@ -1726,15 +1693,15 @@
           desktopQuery.addEventListener('change', function () {
             scrollEl.removeEventListener('scroll', onScroll);
             scrollEl = getScrollEl();
-            lastScrollTop = scrollEl.scrollTop;
+            onScroll();
             scrollEl.addEventListener('scroll', onScroll, { passive: true });
           });
         }
 
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initHeaderAutoHide);
+          document.addEventListener('DOMContentLoaded', initHeaderScrolledShadow);
         } else {
-          initHeaderAutoHide();
+          initHeaderScrolledShadow();
         }
       })();
     </script>
