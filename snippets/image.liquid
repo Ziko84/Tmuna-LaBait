@@ -13,9 +13,22 @@
   {% render 'image', image: product.featured_image, height: 300, class: 'product-image' %}
 {%- enddoc -%}
 {% if image != blank %}
-  {% assign image_height = height | default: image.height %}
-  {% assign image_height_2x = height | default: image_height | times: 2 %}
-  {% assign image_height_3x = height | default: image_height | times: 3 %}
+  {% if height %}
+    {% assign image_height = height %}
+  {% else %}
+    {% comment %}
+      No explicit height given - falls back to the source image's own
+      native height. Uncapped, this requested full-resolution originals
+      for large uploaded photos regardless of how small they actually
+      render (a 6MB+ hero image at native res was the biggest LCP
+      bottleneck on the homepage). Capping the fallback keeps every
+      existing explicit height: param untouched while preventing any
+      no-height caller from ever requesting more than needed.
+    {% endcomment %}
+    {% assign image_height = image.height | at_most: 1200 %}
+  {% endif %}
+  {% assign image_height_2x = image_height | times: 2 %}
+  {% assign image_height_3x = image_height | times: 3 %}
   {% assign image_alt_text = image.alt | default: alt_text_fallback | default: '' %}
 
   {% capture image_srcset -%}
