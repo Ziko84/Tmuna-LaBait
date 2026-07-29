@@ -940,6 +940,32 @@
         }
       }
 
+      /* Hallmark redesign - scroll progress indicator (assets/scroll-progress.js).
+         A hairline bar fixed to the very top of the viewport, above
+         everything else, that fills left-to-right as the page is
+         scrolled. Purely decorative and additive: assets/scroll-progress.js
+         creates its own element and appends it to <body>, so if the
+         script never loads nothing is missing - there's simply no bar,
+         same as before this feature existed. Easy to revert: delete
+         this block, the script include near the end of <body>, and
+         assets/scroll-progress.js. */
+      .scroll-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: #1a1a2e;
+        z-index: 9999;
+        transition: width 0.1s linear;
+        pointer-events: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-progress-bar {
+          transition: none;
+        }
+      }
+
     </style>
 
     {% if request.design_mode %}
@@ -1707,6 +1733,7 @@
     {% render 'hero-night-mode' %}
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
     <script src="{{ 'magnetic-buttons.js' | asset_url }}" defer></script>
+    <script src="{{ 'scroll-progress.js' | asset_url }}" defer></script>
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
