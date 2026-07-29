@@ -33,6 +33,15 @@
   );
 
   targets.forEach(function (el) {
-    observer.observe(el);
+    // Anything already on/near screen at load time is revealed
+    // immediately (no fade, no observer wait) so there is never a
+    // window where already-visible content sits at opacity:0 waiting
+    // on an async IntersectionObserver callback. Only genuinely
+    // below-the-fold sections get the scroll-triggered fade.
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      el.classList.add('is-revealed');
+    } else {
+      observer.observe(el);
+    }
   });
 })();
