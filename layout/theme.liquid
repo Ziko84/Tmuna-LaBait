@@ -902,10 +902,10 @@
       }
 
       /* Floating bottom nav (snippets/floating-bottom-nav.liquid) - styled
-         here rather than in the snippet itself: a <style> tag placed
-         inside rendered snippet output gets silently stripped from the
-         final page (confirmed by diffing the live HTML), while one
-         written directly in theme.liquid survives. */
+         here rather than in the snippet itself: an inline style block
+         placed inside rendered snippet output gets silently stripped
+         from the final page (confirmed by diffing the live HTML), while
+         one written directly in theme.liquid survives. */
       .floating-bottom-nav {
         position: fixed;
         left: 50%;
@@ -992,7 +992,7 @@
       /* Product page: the whole top section (image, title, price, variant picker,
          buy buttons, trust bar, description, accordion) as ONE unified card.
          Deliberately placed after content_for_header — Shopify's own per-section/component
-         CSS is injected there, landing after the main <style> block above and beating any
+         CSS is injected there, landing after the main style block above and beating any
          !important set earlier via source-order tie-breaking. This block must stay last. */
       [data-template='product'] .product-information__grid {
         background: #ffffff !important;
