@@ -323,6 +323,19 @@
   }
 </script>
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": {{ request.origin | json }},
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {{ routes.search_url | append: '?q={search_term_string}' | prepend: request.origin | json }},
+      "query-input": "required name=search_term_string"
+    }
+  }
+</script>
+
 <header-component
   id="header-component"
   class="{{ class }}"
