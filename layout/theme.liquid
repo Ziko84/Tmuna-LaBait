@@ -921,13 +921,19 @@
         align-items: center;
         width: 100%;
         height: 60px;
-        background: #ffffff;
-        border: 1px solid rgb(26 26 46 / 8%);
+        background: #f7f5f2;
+        border: 1px solid rgba(255, 255, 255, 0.6);
         border-radius: 999px;
         padding-inline: 6px;
-        box-shadow: 0 10px 30px rgba(26, 26, 46, 0.15);
+        box-shadow: 0 10px 30px rgba(26, 26, 46, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.7);
       }
 
+      /* Glass-neumorphic highlight: translucent + blurred (the "glass"
+         half) sitting in a soft raised shape defined by a light/dark
+         shadow pair rather than a flat fill (the "neumorphic" half). A
+         slower, gentler easing curve than a typical UI transition -
+         previous version felt jumpy/too fast when hopping between items
+         in quick succession. */
       .floating-bottom-nav__pill {
         position: absolute;
         top: 6px;
@@ -935,10 +941,16 @@
         height: calc(100% - 12px);
         width: 0;
         border-radius: 999px;
-        background: #1a1a2e;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow:
+          5px 5px 10px rgba(26, 26, 46, 0.12),
+          -5px -5px 10px rgba(255, 255, 255, 0.85),
+          inset 0 1px 1px rgba(255, 255, 255, 0.8);
         opacity: 0;
-        transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-          opacity 0.2s ease;
+        transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1), width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.4s ease;
         pointer-events: none;
       }
 
@@ -955,11 +967,11 @@
         font-family: 'Assistant', 'Heebo', sans-serif;
         font-weight: 400;
         font-size: 1rem;
-        transition: color 0.3s ease;
+        transition: font-weight 0.3s ease;
       }
 
       .floating-bottom-nav__item.is-active {
-        color: #ffffff;
+        font-weight: 600;
       }
 
       @media screen and (max-width: 749px) {
@@ -968,6 +980,20 @@
         }
         .floating-bottom-nav__item {
           font-size: 0.875rem;
+        }
+      }
+
+      /* Breathing room below the sticky header before the page's first
+         section (hero banner, etc.) - also clears the floating nav bar
+         above, which is position:fixed and so doesn't push content down
+         on its own. */
+      #MainContent {
+        padding-top: 100px;
+      }
+
+      @media screen and (max-width: 749px) {
+        #MainContent {
+          padding-top: 90px;
         }
       }
 
