@@ -14,13 +14,5 @@
     "theme": "preserved project tokens",
     "enrichment": "none",
     "brief": "Tmuna LaBait premium UX feature - pill buttons nudge toward the cursor on hover (pointer:fine only), capped pull, respects prefers-reduced-motion, pure progressive enhancement (CSS var defaults to 0px so nothing changes if JS is absent)"
-  },
-  {
-    "date": "2026-07-29",
-    "scope": "component: scroll progress bar",
-    "macrostructure": "n/a (site-wide interaction enhancement, not a page)",
-    "theme": "ink #1a1a2e",
-    "enrichment": "none",
-    "brief": "Tmuna LaBait premium UX feature - hairline bar fixed to the top of the viewport fills as the page is scrolled, purely additive DOM element created by JS (no bar if script absent, never hides existing content)"
   }
 ]
