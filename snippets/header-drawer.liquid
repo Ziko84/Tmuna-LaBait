@@ -109,11 +109,18 @@
             {% assign animation_index = 0 %}
             {%- for link in linklist.links -%}
               {% assign animation_index = animation_index | plus: 1 %}
+              {%- comment -%}
+                The "Store" item's submenu is hidden (not deleted) at the
+                user's request - the underlying menu data still has its
+                child links, this just skips rendering the dropdown for
+                that one top-level item.
+              {%- endcomment -%}
+              {%- assign hide_submenu = link.title == 'חנות' -%}
               <li
                 style="--menu-drawer-animation-index: {{ animation_index }};"
                 class="{%- if block_settings.drawer_accordion -%}menu-drawer__list-item--deep{%- else -%}menu-drawer__list-item--flat{%- endif -%}{% if block_settings.drawer_dividers %} menu-drawer__list-item--divider{% endif %}"
               >
-                {% if block_settings.drawer_accordion and link.links != blank %}
+                {% if block_settings.drawer_accordion and link.links != blank and hide_submenu == false %}
                   {%- comment -%}
                     Accordion for links with children, in menus with fewer than 3 levels of links
                   {%- endcomment -%}
@@ -194,7 +201,7 @@
                     children: accordion_children,
                     open_by_default_on_mobile: should_open_first
                   %}
-                {% elsif block_settings.drawer_accordion == false and link.links != blank %}
+                {% elsif block_settings.drawer_accordion == false and link.links != blank and hide_submenu == false %}
                   {%- comment -%}
                     Flat menus for links with children, in menus with fewer than 3 levels of links
                   {%- endcomment -%}

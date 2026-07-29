@@ -93,6 +93,12 @@
 
     {% capture children %}
       {% for link in block_settings.menu.links %}
+        {%- comment -%}
+          The "Store" item's submenu is hidden (not deleted) at the user's
+          request - the underlying menu data still has its child links, this
+          just skips rendering the dropdown for that one top-level item.
+        {%- endcomment -%}
+        {%- assign hide_submenu = link.title == 'חנות' -%}
         <li
           role="presentation"
           class="menu-list__list-item"
@@ -105,7 +111,7 @@
             href="{{ link.url }}"
             data-skip-node-update="true"
             class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
-            {%- if link.links != blank -%}
+            {%- if link.links != blank and hide_submenu == false -%}
               aria-controls="submenu-{{ forloop.index }}"
               aria-haspopup="true"
               aria-expanded="false"
@@ -122,7 +128,7 @@
               </span>
             </span>
           </a>
-          {%- if link.links != blank -%}
+          {%- if link.links != blank and hide_submenu == false -%}
             <div class="menu-list__submenu{{ background_color_classes }}" ref="submenu[]">
               <div
                 id="submenu-{{ forloop.index }}"
