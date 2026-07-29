@@ -189,15 +189,35 @@
       /* The theme sets the sticky header's own section to the SAME
          z-index as the cart drawer (both var(--layer-menu-drawer)),
          relying on DOM order (drawer renders after the header) to
-         break the tie so the drawer naturally wins. The will-change
-         above promotes the header to its own compositor layer, which
-         disrupts that DOM-order tiebreak for equal z-index siblings -
-         that's why the logo started painting over the open cart
-         drawer. Giving the header an explicitly lower z-index removes
-         the ambiguity instead of relying on paint-order luck. */
+         break the tie so the drawer naturally wins. Giving the header
+         an explicitly higher, dedicated z-index removes the ambiguity
+         instead of relying on paint-order luck. */
       .header-section:has(> #header-component[sticky='always']),
       .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
         z-index: var(--layer-sticky) !important;
+      }
+
+      /* Header shrinks smoothly once the page scrolls away from the
+         top, grows back once you scroll all the way back to it - rides
+         the same .header--scrolled class the drop shadow above already
+         uses, so no extra scroll listener is needed. --header-padding
+         is the theme's own native row-padding variable (also what the
+         "Compact" section-height editor setting sets it to); the logo
+         height variables are consumed by .header-logo__icon and are
+         normally only ever set once, inline, per page load, so this
+         needs !important to win over that inline declaration. */
+      #header-component.header--scrolled {
+        --header-padding: var(--padding-2xs);
+      }
+      #header-component .header__columns {
+        transition: padding-block 0.3s ease;
+      }
+      .header-logo__icon {
+        transition: height 0.3s ease;
+      }
+      #header-component.header--scrolled .header-logo {
+        --header-logo-image-height: 32px !important;
+        --header-logo-image-height-mobile: 28px !important;
       }
 
       /* Announcement bar: pin it to the very top on scroll too, same as
