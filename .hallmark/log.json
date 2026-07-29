@@ -6,13 +6,5 @@
     "theme": "preserved project tokens (paper #f7f5f2, ink #1a1a2e)",
     "enrichment": "none",
     "brief": "Tmuna LaBait × header nav redesign - frosted-glass scroll, dropdown shadow, focus-visible states"
-  },
-  {
-    "date": "2026-07-29",
-    "scope": "component: scroll-reveal micro-interaction",
-    "macrostructure": "n/a (site-wide progressive enhancement, not a page)",
-    "theme": "preserved project tokens",
-    "enrichment": "none",
-    "brief": "Tmuna LaBait premium UX feature - sections fade and rise into view on scroll, skips first section, respects prefers-reduced-motion, progressive enhancement with no-FOUC guard"
   }
 ]

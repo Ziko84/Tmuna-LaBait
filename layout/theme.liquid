@@ -10,17 +10,6 @@
     <meta name="google-site-verification" content="5ZsG_m--RDRvQmAIEb0Z3KWvUbNx0swQOc-6xgZ0GlQ" />
     <meta name="p:domain_verify" content="f0f72d18a0d2f6cf9e31215f7c6f590c"/>
 
-    {%- comment -%}
-      Hallmark redesign - premium scroll-reveal micro-interaction. This
-      tiny synchronous script must run before first paint (hence: no
-      `defer`, placed at the very top of <head>) so the has-scroll-reveal
-      class is already on <html> by the time the CSS below is applied -
-      otherwise sections would flash visible then jump to hidden. Easy to
-      revert: delete this script tag, the CSS block later in <head>, and
-      the assets/scroll-reveal.js include near the end of <body>.
-    {%- endcomment -%}
-    <script>document.documentElement.classList.add('has-scroll-reveal');</script>
-
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -943,34 +932,6 @@
         }
       }
 
-      /* Hallmark redesign - premium scroll-reveal micro-interaction.
-         Progressive enhancement: sections stay visible by default and
-         only hide-then-reveal once assets/scroll-reveal.js confirms
-         it's running (adds has-scroll-reveal to <html> - see the
-         synchronous script at the top of <head>, which prevents any
-         flash-of-hidden-content). If JS never loads, nothing is ever
-         hidden. The :not(:first-of-type) scope matters: scroll-reveal.js
-         deliberately never observes the first section (to protect LCP),
-         so that section must never be put into the opacity:0 state to
-         begin with, or it would stay invisible forever. Easy to revert:
-         delete this block, the <html> script tag above, and the script
-         include near the end of <body>. */
-      html.has-scroll-reveal #MainContent > .shopify-section:not(:first-of-type) .section {
-        opacity: 0;
-        transform: translateY(28px);
-        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-          transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      html.has-scroll-reveal .section.is-revealed {
-        opacity: 1;
-        transform: none;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html.has-scroll-reveal #MainContent > .shopify-section:not(:first-of-type) .section {
-          transform: none;
-          transition: opacity 0.15s linear;
-        }
-      }
     </style>
 
     {% if request.design_mode %}
@@ -1737,7 +1698,6 @@
 
     {% render 'hero-night-mode' %}
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
-    <script src="{{ 'scroll-reveal.js' | asset_url }}" defer></script>
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
