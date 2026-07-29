@@ -207,17 +207,32 @@
          normally only ever set once, inline, per page load, so this
          needs !important to win over that inline declaration. */
       #header-component.header--scrolled {
-        --header-padding: var(--padding-2xs);
+        --header-padding: 0px;
       }
       #header-component .header__columns {
-        transition: padding-block 0.3s ease;
+        transition: padding-block 0.35s ease;
       }
       .header-logo__icon {
-        transition: height 0.3s ease;
+        transition: height 0.35s ease;
       }
       #header-component.header--scrolled .header-logo {
-        --header-logo-image-height: 32px !important;
-        --header-logo-image-height-mobile: 28px !important;
+        --header-logo-image-height: 22px !important;
+        --header-logo-image-height-mobile: 18px !important;
+      }
+      /* Menu links and action icons shrink too, so the whole bar
+         visibly compresses rather than just the logo/padding. */
+      #header-component .menu-list__link,
+      #header-component .header-actions__action .svg-wrapper,
+      #header-component .header__icon--menu {
+        transition: font-size 0.35s ease, width 0.35s ease, height 0.35s ease;
+      }
+      #header-component.header--scrolled .menu-list__link {
+        font-size: 0.78em !important;
+      }
+      #header-component.header--scrolled .header-actions__action .svg-wrapper,
+      #header-component.header--scrolled .header__icon--menu {
+        width: var(--icon-size-sm) !important;
+        height: var(--icon-size-sm) !important;
       }
 
       /* Announcement bar: pin it to the very top on scroll too, same as
