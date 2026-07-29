@@ -202,22 +202,32 @@
          the same .header--scrolled class the drop shadow above already
          uses, so no extra scroll listener is needed. --header-padding
          is the theme's own native row-padding variable (also what the
-         "Compact" section-height editor setting sets it to); the logo
-         height variables are consumed by .header-logo__icon and are
-         normally only ever set once, inline, per page load, so this
-         needs !important to win over that inline declaration. */
+         "Compact" section-height editor setting sets it to).
+         The logo image (blocks/_header-logo.liquid) is *meant* to size
+         itself off --header-logo-image-height via an inline style, but
+         that inline style never actually renders in the live HTML (the
+         image snippet's `style:` param is silently dropped) - verified
+         by inspecting the rendered <img>, it carries no style attribute
+         at all, only plain width/height attributes. Overriding the
+         custom property therefore did nothing. Setting height/width
+         directly here bypasses that broken mechanism entirely. */
       #header-component.header--scrolled {
         --header-padding: 0px;
       }
       #header-component .header__columns {
         transition: padding-block 0.35s ease;
       }
-      .header-logo__icon {
+      .header-logo__image {
         transition: height 0.35s ease;
       }
-      #header-component.header--scrolled .header-logo {
-        --header-logo-image-height: 18px !important;
-        --header-logo-image-height-mobile: 15px !important;
+      #header-component.header--scrolled .header-logo__image {
+        height: 18px !important;
+        width: auto !important;
+      }
+      @media screen and (max-width: 749px) {
+        #header-component.header--scrolled .header-logo__image {
+          height: 15px !important;
+        }
       }
       /* Menu links and action icons shrink too, so the whole bar
          visibly compresses rather than just the logo/padding. */
