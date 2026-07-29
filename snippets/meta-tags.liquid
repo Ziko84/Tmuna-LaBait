@@ -57,7 +57,7 @@
 {%- if page_image -%}
   <meta
     property="og:image"
-    content="http:{{ page_image | image_url }}"
+    content="https:{{ page_image | image_url }}"
   >
   <meta
     property="og:image:secure_url"
@@ -121,3 +121,62 @@
     content="{{ page_description | escape }}"
   >
 {% endif %}
+
+{%- if request.page_type == 'collection' and collection -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": {{ shop.name | json }},
+        "item": {{ request.origin | json }}
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": {{ collection.title | json }},
+        "item": {{ collection.url | prepend: request.origin | json }}
+      }
+    ]
+  }
+  </script>
+{%- elsif request.page_type == 'product' and product -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": {{ shop.name | json }},
+        "item": {{ request.origin | json }}
+      },
+      {%- if product.collections.first -%}
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.collections.first.title | json }},
+          "item": {{ product.collections.first.url | prepend: request.origin | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": {{ product.url | prepend: request.origin | json }}
+        }
+      {%- else -%}
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": {{ product.url | prepend: request.origin | json }}
+        }
+      {%- endif -%}
+    ]
+  }
+  </script>
+{%- endif -%}

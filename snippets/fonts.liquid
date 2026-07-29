@@ -1,12 +1,14 @@
-{%- unless settings.type_body_font.system? -%}
-  {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low' }}
-{%- endunless -%}
-{%- unless settings.type_subheading_font.system? -%}
-  {{ settings.type_subheading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low' }}
-{%- endunless -%}
-{%- unless settings.type_heading_font.system? -%}
-  {{ settings.type_heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low' }}
-{%- endunless -%}
-{%- unless settings.type_accent_font.system? -%}
-  {{ settings.type_accent_font | font_url | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low' }}
-{%- endunless -%}
+{%- liquid
+  assign preloaded_font_urls = '' | split: ','
+  for font in settings.type_body_font, settings.type_subheading_font, settings.type_heading_font, settings.type_accent_font
+    if font.system?
+      continue
+    endif
+    assign font_url_value = font | font_url
+    if preloaded_font_urls contains font_url_value
+      continue
+    endif
+    assign preloaded_font_urls = preloaded_font_urls | push: font_url_value
+    echo font_url_value | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low'
+  endfor
+-%}
