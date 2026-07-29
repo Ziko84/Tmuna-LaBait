@@ -189,52 +189,15 @@
       /* The theme sets the sticky header's own section to the SAME
          z-index as the cart drawer (both var(--layer-menu-drawer)),
          relying on DOM order (drawer renders after the header) to
-         break the tie so the drawer naturally wins. Giving the header
-         an explicitly higher, dedicated z-index removes the ambiguity
-         instead of relying on paint-order luck. */
+         break the tie so the drawer naturally wins. The will-change
+         above promotes the header to its own compositor layer, which
+         disrupts that DOM-order tiebreak for equal z-index siblings -
+         that's why the logo started painting over the open cart
+         drawer. Giving the header an explicitly lower z-index removes
+         the ambiguity instead of relying on paint-order luck. */
       .header-section:has(> #header-component[sticky='always']),
       .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
         z-index: var(--layer-sticky) !important;
-      }
-
-      /* Header shrinks continuously as you scroll - size tracks scroll
-         position 1:1 (not a threshold + CSS transition), so it's tied
-         directly to the scroll gesture instead of catching up after it.
-         --header-shrink is a 0-to-1 progress value the script near the
-         end of <body> writes on every scroll frame (0 at the top, 1
-         after 160px of scroll), and every size below is a calc() off
-         that single number.
-         --header-padding is the theme's own native row-padding variable
-         (also what the "Compact" section-height editor setting uses).
-         The logo <img> (blocks/_header-logo.liquid) does carry its
-         sizing as an inline style (--header-logo-image-height etc.),
-         but that's set directly ON the img itself - an ancestor rule,
-         even with !important, can't win against a value the element
-         already has its own inline declaration for. Setting height on
-         .header-logo__image directly here, on the same element,
-         bypasses that instead of fighting it. Width is forced to auto
-         so it scales proportionally rather than distorting. */
-      #header-component .header__columns {
-        --header-padding: calc(0.7rem * (1 - var(--header-shrink, 0)));
-      }
-      .header-logo__image {
-        height: calc(70px - 52px * var(--header-shrink, 0)) !important;
-        width: auto !important;
-      }
-      @media screen and (max-width: 749px) {
-        .header-logo__image {
-          height: calc(50px - 35px * var(--header-shrink, 0)) !important;
-        }
-      }
-      /* Menu links and action icons shrink too, so the whole bar
-         visibly compresses rather than just the logo/padding. */
-      #header-component .menu-list__link {
-        font-size: calc(1em - 0.5em * var(--header-shrink, 0)) !important;
-      }
-      #header-component .header-actions__action .svg-wrapper,
-      #header-component .header__icon--menu {
-        width: calc(var(--icon-size-md) - 10px * var(--header-shrink, 0)) !important;
-        height: calc(var(--icon-size-md) - 10px * var(--header-shrink, 0)) !important;
       }
 
       /* Announcement bar: pin it to the very top on scroll too, same as
@@ -1710,9 +1673,7 @@
           var header = document.getElementById('header-component');
           if (!header) return;
 
-          var SHRINK_DISTANCE = 160; // px of scroll to go from full size to fully shrunk
           var desktopQuery = window.matchMedia('(min-width: 990px)');
-          var ticking = false;
 
           function getScrollEl() {
             if (desktopQuery.matches) {
@@ -1723,31 +1684,16 @@
 
           var scrollEl = getScrollEl();
 
-          function applyScrollState() {
-            ticking = false;
-            var top = scrollEl.scrollTop;
-            var progress = Math.max(0, Math.min(1, top / SHRINK_DISTANCE));
-            // Written every frame while scrolling, so header size tracks
-            // scroll position directly instead of snapping at a fixed
-            // threshold - see --header-shrink usage further up this file.
-            header.style.setProperty('--header-shrink', progress);
-            header.classList.toggle('header--scrolled', top > 4);
-          }
-
           function onScroll() {
-            if (!ticking) {
-              ticking = true;
-              window.requestAnimationFrame(applyScrollState);
-            }
+            header.classList.toggle('header--scrolled', scrollEl.scrollTop > 4);
           }
 
-          applyScrollState();
           scrollEl.addEventListener('scroll', onScroll, { passive: true });
 
           desktopQuery.addEventListener('change', function () {
             scrollEl.removeEventListener('scroll', onScroll);
             scrollEl = getScrollEl();
-            applyScrollState();
+            onScroll();
             scrollEl.addEventListener('scroll', onScroll, { passive: true });
           });
         }
