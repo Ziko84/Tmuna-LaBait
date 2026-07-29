@@ -197,52 +197,44 @@
         z-index: var(--layer-sticky) !important;
       }
 
-      /* Header shrinks smoothly once the page scrolls away from the
-         top, grows back once you scroll all the way back to it - rides
-         the same .header--scrolled class the drop shadow above already
-         uses, so no extra scroll listener is needed. --header-padding
-         is the theme's own native row-padding variable (also what the
-         "Compact" section-height editor setting sets it to).
-         The logo image (blocks/_header-logo.liquid) is *meant* to size
-         itself off --header-logo-image-height via an inline style, but
-         that inline style never actually renders in the live HTML (the
-         image snippet's `style:` param is silently dropped) - verified
-         by inspecting the rendered <img>, it carries no style attribute
-         at all, only plain width/height attributes. Overriding the
-         custom property therefore did nothing. Setting height/width
-         directly here bypasses that broken mechanism entirely. */
-      #header-component.header--scrolled {
-        --header-padding: 0px;
-      }
+      /* Header shrinks continuously as you scroll - size tracks scroll
+         position 1:1 (not a threshold + CSS transition), so it's tied
+         directly to the scroll gesture instead of catching up after it.
+         --header-shrink is a 0-to-1 progress value the script near the
+         end of <body> writes on every scroll frame (0 at the top, 1
+         after 160px of scroll), and every size below is a calc() off
+         that single number.
+         --header-padding is the theme's own native row-padding variable
+         (also what the "Compact" section-height editor setting uses).
+         The logo <img> (blocks/_header-logo.liquid) does carry its
+         sizing as an inline style (--header-logo-image-height etc.),
+         but that's set directly ON the img itself - an ancestor rule,
+         even with !important, can't win against a value the element
+         already has its own inline declaration for. Setting height on
+         .header-logo__image directly here, on the same element,
+         bypasses that instead of fighting it. Width is forced to auto
+         so it scales proportionally rather than distorting. */
       #header-component .header__columns {
-        transition: padding-block 0.35s ease;
+        --header-padding: calc(0.7rem * (1 - var(--header-shrink, 0)));
       }
       .header-logo__image {
-        transition: height 0.35s ease;
-      }
-      #header-component.header--scrolled .header-logo__image {
-        height: 18px !important;
+        height: calc(70px - 52px * var(--header-shrink, 0)) !important;
         width: auto !important;
       }
       @media screen and (max-width: 749px) {
-        #header-component.header--scrolled .header-logo__image {
-          height: 15px !important;
+        .header-logo__image {
+          height: calc(50px - 35px * var(--header-shrink, 0)) !important;
         }
       }
       /* Menu links and action icons shrink too, so the whole bar
          visibly compresses rather than just the logo/padding. */
-      #header-component .menu-list__link,
+      #header-component .menu-list__link {
+        font-size: calc(1em - 0.5em * var(--header-shrink, 0)) !important;
+      }
       #header-component .header-actions__action .svg-wrapper,
       #header-component .header__icon--menu {
-        transition: font-size 0.35s ease, width 0.35s ease, height 0.35s ease;
-      }
-      #header-component.header--scrolled .menu-list__link {
-        font-size: 0.65em !important;
-      }
-      #header-component.header--scrolled .header-actions__action .svg-wrapper,
-      #header-component.header--scrolled .header__icon--menu {
-        width: var(--icon-size-xs) !important;
-        height: var(--icon-size-xs) !important;
+        width: calc(var(--icon-size-md) - 10px * var(--header-shrink, 0)) !important;
+        height: calc(var(--icon-size-md) - 10px * var(--header-shrink, 0)) !important;
       }
 
       /* Announcement bar: pin it to the very top on scroll too, same as
@@ -1718,7 +1710,9 @@
           var header = document.getElementById('header-component');
           if (!header) return;
 
+          var SHRINK_DISTANCE = 160; // px of scroll to go from full size to fully shrunk
           var desktopQuery = window.matchMedia('(min-width: 990px)');
+          var ticking = false;
 
           function getScrollEl() {
             if (desktopQuery.matches) {
@@ -1729,25 +1723,31 @@
 
           var scrollEl = getScrollEl();
 
+          function applyScrollState() {
+            ticking = false;
+            var top = scrollEl.scrollTop;
+            var progress = Math.max(0, Math.min(1, top / SHRINK_DISTANCE));
+            // Written every frame while scrolling, so header size tracks
+            // scroll position directly instead of snapping at a fixed
+            // threshold - see --header-shrink usage further up this file.
+            header.style.setProperty('--header-shrink', progress);
+            header.classList.toggle('header--scrolled', top > 4);
+          }
+
           function onScroll() {
-            // Hysteresis gap (shrink past 80px, only grow back below 40px)
-            // instead of a single toggle point - a single threshold
-            // flickers the class on/off rapidly (and the transition along
-            // with it) whenever scroll position hovers right around it,
-            // which reads as jagged instead of one smooth animation.
-            if (scrollEl.scrollTop > 80) {
-              header.classList.add('header--scrolled');
-            } else if (scrollEl.scrollTop < 40) {
-              header.classList.remove('header--scrolled');
+            if (!ticking) {
+              ticking = true;
+              window.requestAnimationFrame(applyScrollState);
             }
           }
 
+          applyScrollState();
           scrollEl.addEventListener('scroll', onScroll, { passive: true });
 
           desktopQuery.addEventListener('change', function () {
             scrollEl.removeEventListener('scroll', onScroll);
             scrollEl = getScrollEl();
-            onScroll();
+            applyScrollState();
             scrollEl.addEventListener('scroll', onScroll, { passive: true });
           });
         }
