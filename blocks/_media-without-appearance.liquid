@@ -4,9 +4,23 @@
   if block.settings.image_position == 'contain'
     assign unset_image_tag = true
   endif
+
+  # When the parent section opts in via the priority_media setting, load this
+  # media eagerly with a high fetch priority (used for the LCP hero image).
+  # Defaults to empty strings so no attributes change when the setting is off.
+  assign media_loading = ''
+  assign media_fetchpriority = ''
+  if section.settings.priority_media
+    assign media_loading = 'eager'
+    assign media_fetchpriority = 'high'
+  endif
 %}
 
-{% render 'media', unset_image_tag: unset_image_tag %}
+{% render 'media',
+  unset_image_tag: unset_image_tag,
+  loading: media_loading,
+  fetchpriority: media_fetchpriority
+%}
 
 {% schema %}
 {

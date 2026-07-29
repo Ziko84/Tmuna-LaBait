@@ -3,6 +3,8 @@
 
   @param {object} [block] - The block object
   @param {boolean} [unset_image_tag] - if true, ignores the image focal point in the image
+  @param {string} [loading] - optional loading hint forwarded to the image snippet ('eager' or 'lazy'). When omitted, default behavior is kept.
+  @param {string} [fetchpriority] - optional fetchpriority hint forwarded to the image snippet ('high', 'low' or 'auto'). When omitted, no fetchpriority attribute is emitted.
 {%- enddoc -%}
 
 {% liquid
@@ -46,7 +48,9 @@
         {% render 'image',
           image: block_settings.image,
           class: 'media-block__media border-style',
-          unset_image_tag: unset_image_tag
+          unset_image_tag: unset_image_tag,
+          loading: loading,
+          fetchpriority: fetchpriority
         %}
       {% else %}
         <div class="media-block__media border-style">

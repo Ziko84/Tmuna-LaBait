@@ -6,6 +6,8 @@
   fetchpriority="low"
 ></script>
 
+{% render 'breadcrumb-schema' %}
+
 {% javascript %}
   const url = new URL(window.location.href);
   if (url.hash) {

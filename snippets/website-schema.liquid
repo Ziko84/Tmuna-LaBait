@@ -1,0 +1,18 @@
+{%- doc -%}
+  Emits WebSite + SearchAction JSON-LD. Homepage only.
+  Rendered from the <head> in layout/theme.liquid.
+{%- enddoc -%}
+{%- if request.page_type == 'index' -%}
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": {{ shop.url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }},
+    "query-input": "required name=search_term_string"
+  }
+}
+  </script>
+{%- endif -%}
