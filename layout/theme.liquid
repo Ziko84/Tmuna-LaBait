@@ -943,12 +943,25 @@
       /* Hallmark redesign - scroll progress indicator (assets/scroll-progress.js).
          A hairline bar fixed to the very top of the viewport, above
          everything else, that fills left-to-right as the page is
-         scrolled. Purely decorative and additive: assets/scroll-progress.js
-         creates its own element and appends it to <body>, so if the
-         script never loads nothing is missing - there's simply no bar,
-         same as before this feature existed. Easy to revert: delete
-         this block, the script include near the end of <body>, and
-         assets/scroll-progress.js. */
+         scrolled. The faint full-width track is what makes the feature
+         visible before any scrolling happens - the fill alone starts at
+         0% width, which is literally invisible at the top of the page.
+         Purely decorative and additive: assets/scroll-progress.js
+         creates both elements and appends them to <body>, so if the
+         script never loads nothing is missing - there's simply no
+         track/bar, same as before this feature existed. Easy to
+         revert: delete this block, the script include near the end of
+         <body>, and assets/scroll-progress.js. */
+      .scroll-progress-track {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: rgba(26, 26, 46, 0.08);
+        z-index: 9998;
+        pointer-events: none;
+      }
       .scroll-progress-bar {
         position: fixed;
         top: 0;

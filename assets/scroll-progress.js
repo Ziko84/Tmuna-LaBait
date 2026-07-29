@@ -5,6 +5,10 @@
 // just means no bar, never a missing or hidden piece of real content.
 // See .scroll-progress-bar in layout/theme.liquid for the styling half.
 (function () {
+  var track = document.createElement('div');
+  track.className = 'scroll-progress-track';
+  document.body.appendChild(track);
+
   var bar = document.createElement('div');
   bar.className = 'scroll-progress-bar';
   document.body.appendChild(bar);
