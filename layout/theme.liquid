@@ -216,8 +216,8 @@
         transition: height 0.35s ease;
       }
       #header-component.header--scrolled .header-logo {
-        --header-logo-image-height: 22px !important;
-        --header-logo-image-height-mobile: 18px !important;
+        --header-logo-image-height: 18px !important;
+        --header-logo-image-height-mobile: 15px !important;
       }
       /* Menu links and action icons shrink too, so the whole bar
          visibly compresses rather than just the logo/padding. */
@@ -227,12 +227,12 @@
         transition: font-size 0.35s ease, width 0.35s ease, height 0.35s ease;
       }
       #header-component.header--scrolled .menu-list__link {
-        font-size: 0.78em !important;
+        font-size: 0.65em !important;
       }
       #header-component.header--scrolled .header-actions__action .svg-wrapper,
       #header-component.header--scrolled .header__icon--menu {
-        width: var(--icon-size-sm) !important;
-        height: var(--icon-size-sm) !important;
+        width: var(--icon-size-xs) !important;
+        height: var(--icon-size-xs) !important;
       }
 
       /* Announcement bar: pin it to the very top on scroll too, same as
@@ -1720,7 +1720,16 @@
           var scrollEl = getScrollEl();
 
           function onScroll() {
-            header.classList.toggle('header--scrolled', scrollEl.scrollTop > 4);
+            // Hysteresis gap (shrink past 80px, only grow back below 40px)
+            // instead of a single toggle point - a single threshold
+            // flickers the class on/off rapidly (and the transition along
+            // with it) whenever scroll position hovers right around it,
+            // which reads as jagged instead of one smooth animation.
+            if (scrollEl.scrollTop > 80) {
+              header.classList.add('header--scrolled');
+            } else if (scrollEl.scrollTop < 40) {
+              header.classList.remove('header--scrolled');
+            }
           }
 
           scrollEl.addEventListener('scroll', onScroll, { passive: true });
