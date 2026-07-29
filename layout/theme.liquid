@@ -159,18 +159,22 @@
         fill: currentColor !important;
       }
 
-      /* Top bar (header) background: white at 70% opacity, regardless
-         of whatever color the theme editor's row settings are set to. */
+      /* Top bar (header) background - frosted cream instead of plain
+         white, regardless of whatever color the theme editor's row
+         settings are set to. (Hallmark redesign, easy to revert: this
+         block only, values below.) */
       #header-component {
-        --color-background-top-row: rgba(255, 255, 255, 0.65) !important;
-        --color-background-bottom-row: rgba(255, 255, 255, 0.65) !important;
+        --color-background-top-row: rgba(247, 245, 242, 0.72) !important;
+        --color-background-bottom-row: rgba(247, 245, 242, 0.72) !important;
       }
-      /* Light blur behind the top bar - the underlay is the actual
-         element painting that background (see header.liquid). */
+      /* Frosted-glass blur behind the top bar - the underlay is the
+         actual element painting that background (see header.liquid).
+         Saturate boost is what makes it read as "glass" rather than
+         just "blurry". */
       .header__underlay-closed,
       .header__underlay-open {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(16px) saturate(160%);
+        -webkit-backdrop-filter: blur(16px) saturate(160%);
       }
 
       /* ============================================================
@@ -558,11 +562,14 @@
            those two vars mismatch and this pushed the card down, leaving a
            blank gap between the nav row and the card. */
         transform: none !important;
-        /* Shadow removed entirely, temporarily, as a clean test: if
-           the gray is gone now, it was the shadow. If it's still
-           there with zero shadow, it's confirmed to be something
-           else entirely and shadow tuning was never the answer. */
-        box-shadow: none;
+        /* Shadow was removed entirely during an earlier debugging pass
+           that traced a gray-corner rendering bug to this card's
+           background-color mismatch (fixed above via the explicit
+           background-color: var(--color-background) match) - the
+           shadow itself was ruled out as the cause. Safe to bring
+           back now that the real fix is in place. (Hallmark redesign,
+           easy to revert: this one declaration.) */
+        box-shadow: 0 12px 32px -12px rgba(26, 26, 46, 0.22), 0 2px 8px rgba(26, 26, 46, 0.06);
         border: 1px solid rgba(0, 0, 0, 0.08);
       }
       /* .mega-menu carries the generic .section class, which sets up a
@@ -618,6 +625,30 @@
           background: rgba(0, 0, 0, 0.04);
         }
       }
+
+      /* ============================================================
+         Hallmark redesign - header nav, modern-minimal genre, N1b
+         archetype (centered link cluster + hover dropdowns).
+         Additive only - nothing above this block was restructured.
+         Easy to revert: delete this block, and the header falls back
+         to its pre-redesign focus/hover behavior. Full stamp below.
+         ============================================================ */
+
+      /* Nav links and mega-menu items had no visible focus state at
+         all - keyboard users got nothing. Ring shows instantly (never
+         animated in, per accessibility discipline), navy at full
+         opacity against the cream header for solid contrast. */
+      #header-component .menu-list__link:focus-visible,
+      #header-component .mega-menu__link:focus-visible {
+        outline: 2px solid #1a1a2e;
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* Hallmark · macrostructure: component-scope (header nav) · genre: modern-minimal
+       * nav: N1b · knobs: centre-links=4, dropdowns=2, scroll=frost-on-scroll, cta-pair=icons-only
+       * theme: preserved project tokens (paper #f7f5f2, ink #1a1a2e) · studied: no
+       */
 
       /* Product page: keep image left, details/buttons right */
       .product-information__grid {

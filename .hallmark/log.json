@@ -1,0 +1,10 @@
+[
+  {
+    "date": "2026-07-29",
+    "scope": "component: header-nav",
+    "macrostructure": "N1b (canonical SaaS three-section)",
+    "theme": "preserved project tokens (paper #f7f5f2, ink #1a1a2e)",
+    "enrichment": "none",
+    "brief": "Tmuna LaBait × header nav redesign - frosted-glass scroll, dropdown shadow, focus-visible states"
+  }
+]
