@@ -1,0 +1,207 @@
+{%- doc -%}
+  Floating bottom navigation (Home / Shop / Blog / Contact) with a
+  "rolling ball" indicator that pops the active item's icon up above the
+  bar, echoing a bump-nav reference design. The 4 items are always real,
+  crawlable <a> links - the ball is a decorative, aria-hidden overlay
+  driven by --notch-x (a plain percentage custom property), so the bar
+  still works with no JS, just without the hover roll.
+{%- enddoc -%}
+
+{%- liquid
+  assign active_index = 0
+  if request.page_type == 'index'
+    assign active_index = 0
+  elsif request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'search' or request.page_type == 'list-collections'
+    assign active_index = 1
+  elsif request.page_type == 'blog' or request.page_type == 'article'
+    assign active_index = 2
+  elsif request.page_type == 'page' and page.handle == 'contact'
+    assign active_index = 3
+  endif
+
+  assign notch_positions = '12.5,37.5,62.5,87.5' | split: ','
+  assign notch_x = notch_positions[active_index]
+-%}
+
+{%- capture icon_home -%}
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.47 3.84a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.06l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.69Z"/><path d="M12 5.432 20.159 13.591c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.43Z"/></svg>
+{%- endcapture -%}
+
+{%- capture icon_shop -%}
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clip-rule="evenodd"/></svg>
+{%- endcapture -%}
+
+{%- capture icon_blog -%}
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z"/></svg>
+{%- endcapture -%}
+
+{%- capture icon_contact -%}
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 4.5c0-1.125.9-2.25 2.25-2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5c0 1.125-.9 2.25-2.25 2.25a2.25 2.25 0 0 1-.372-.031C9.42 20.913 3.087 14.58 2.28 6.622A2.25 2.25 0 0 1 1.5 4.5Z" clip-rule="evenodd"/></svg>
+{%- endcapture -%}
+
+<nav
+  class="floating-bottom-nav"
+  aria-label="{{ 'accessibility.header_navigation_label' | t }}"
+  style="--notch-x: {{ notch_x }}%;"
+  data-floating-bottom-nav
+  data-active-index="{{ active_index }}"
+>
+  <div class="floating-bottom-nav__bar">
+    <a href="/" class="floating-bottom-nav__item{% if active_index == 0 %} is-active{% endif %}">
+      <span class="floating-bottom-nav__icon">{{ icon_home }}</span>
+      <span class="visually-hidden">בית</span>
+    </a>
+    <a href="/collections/frontpage" class="floating-bottom-nav__item{% if active_index == 1 %} is-active{% endif %}">
+      <span class="floating-bottom-nav__icon">{{ icon_shop }}</span>
+      <span class="visually-hidden">חנות</span>
+    </a>
+    <a href="/blogs/news" class="floating-bottom-nav__item{% if active_index == 2 %} is-active{% endif %}">
+      <span class="floating-bottom-nav__icon">{{ icon_blog }}</span>
+      <span class="visually-hidden">בלוג</span>
+    </a>
+    <a href="/pages/contact" class="floating-bottom-nav__item{% if active_index == 3 %} is-active{% endif %}">
+      <span class="floating-bottom-nav__icon">{{ icon_contact }}</span>
+      <span class="visually-hidden">צרו קשר</span>
+    </a>
+
+    <div class="floating-bottom-nav__ball" aria-hidden="true">
+      <span class="floating-bottom-nav__ball-icon{% if active_index == 0 %} is-visible{% endif %}" data-ball-icon="0">{{ icon_home }}</span>
+      <span class="floating-bottom-nav__ball-icon{% if active_index == 1 %} is-visible{% endif %}" data-ball-icon="1">{{ icon_shop }}</span>
+      <span class="floating-bottom-nav__ball-icon{% if active_index == 2 %} is-visible{% endif %}" data-ball-icon="2">{{ icon_blog }}</span>
+      <span class="floating-bottom-nav__ball-icon{% if active_index == 3 %} is-visible{% endif %}" data-ball-icon="3">{{ icon_contact }}</span>
+    </div>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var nav = document.querySelector('[data-floating-bottom-nav]');
+    if (!nav) return;
+
+    var positions = [12.5, 37.5, 62.5, 87.5];
+    var items = nav.querySelectorAll('.floating-bottom-nav__item');
+    var ballIcons = nav.querySelectorAll('[data-ball-icon]');
+    var activeIndex = parseInt(nav.dataset.activeIndex, 10) || 0;
+
+    function setNotch(index) {
+      nav.style.setProperty('--notch-x', positions[index] + '%');
+      ballIcons.forEach(function (icon) {
+        icon.classList.toggle('is-visible', parseInt(icon.dataset.ballIcon, 10) === index);
+      });
+    }
+
+    items.forEach(function (item, index) {
+      item.addEventListener('pointerenter', function (event) {
+        if (event.pointerType === 'mouse') setNotch(index);
+      });
+      item.addEventListener('focus', function () {
+        setNotch(index);
+      });
+    });
+
+    nav.addEventListener('pointerleave', function (event) {
+      if (event.pointerType === 'mouse') setNotch(activeIndex);
+    });
+    nav.addEventListener('focusout', function (event) {
+      if (!nav.contains(event.relatedTarget)) setNotch(activeIndex);
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .floating-bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    width: min(90vw, 340px);
+    z-index: var(--layer-sticky, 5);
+    transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  body:has(.sticky-buy-bar--visible) .floating-bottom-nav {
+    bottom: 96px;
+  }
+
+  .floating-bottom-nav__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    background: #1a1a2e;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(26, 26, 46, 0.35);
+  }
+
+  .floating-bottom-nav__item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .floating-bottom-nav__icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    transition: opacity 0.3s ease;
+  }
+
+  .floating-bottom-nav__item.is-active .floating-bottom-nav__icon {
+    opacity: 0;
+  }
+
+  .floating-bottom-nav__ball {
+    position: absolute;
+    top: 0;
+    left: var(--notch-x, 12.5%);
+    transform: translate(-50%, -58%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    box-shadow:
+      0 0 0 6px #ffffff,
+      0 6px 14px rgba(26, 26, 46, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .floating-bottom-nav__ball-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .floating-bottom-nav__ball-icon.is-visible {
+    opacity: 1;
+  }
+
+  .floating-bottom-nav__icon svg,
+  .floating-bottom-nav__ball-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .floating-bottom-nav__bar {
+      height: 60px;
+    }
+    .floating-bottom-nav__ball {
+      width: 48px;
+      height: 48px;
+    }
+  }
+{% endstylesheet %}
