@@ -6,5 +6,13 @@
     "theme": "preserved project tokens (paper #f7f5f2, ink #1a1a2e)",
     "enrichment": "none",
     "brief": "Tmuna LaBait × header nav redesign - frosted-glass scroll, dropdown shadow, focus-visible states"
+  },
+  {
+    "date": "2026-07-29",
+    "scope": "component: magnetic button hover",
+    "macrostructure": "n/a (interaction enhancement, not a page)",
+    "theme": "preserved project tokens",
+    "enrichment": "none",
+    "brief": "Tmuna LaBait premium UX feature - pill buttons nudge toward the cursor on hover (pointer:fine only), capped pull, respects prefers-reduced-motion, pure progressive enhancement (CSS var defaults to 0px so nothing changes if JS is absent)"
   }
 ]
