@@ -949,9 +949,13 @@
          it's running (adds has-scroll-reveal to <html> - see the
          synchronous script at the top of <head>, which prevents any
          flash-of-hidden-content). If JS never loads, nothing is ever
-         hidden. Easy to revert: delete this block, the <html> script
-         tag above, and the script include near the end of <body>. */
-      html.has-scroll-reveal .section {
+         hidden. The :not(:first-of-type) scope matters: scroll-reveal.js
+         deliberately never observes the first section (to protect LCP),
+         so that section must never be put into the opacity:0 state to
+         begin with, or it would stay invisible forever. Easy to revert:
+         delete this block, the <html> script tag above, and the script
+         include near the end of <body>. */
+      html.has-scroll-reveal #MainContent > .shopify-section:not(:first-of-type) .section {
         opacity: 0;
         transform: translateY(28px);
         transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
@@ -962,7 +966,7 @@
         transform: none;
       }
       @media (prefers-reduced-motion: reduce) {
-        html.has-scroll-reveal .section {
+        html.has-scroll-reveal #MainContent > .shopify-section:not(:first-of-type) .section {
           transform: none;
           transition: opacity 0.15s linear;
         }
