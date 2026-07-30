@@ -870,6 +870,14 @@
         }
       }
 
+      /* Tighter spacing between main menu nav items. Scoped to the header
+         menu's own --menu-horizontal-gap variable (used by .menu-list in
+         blocks/_header-menu.liquid), not the shared --gap-xl variable, so
+         other header spacing (logo/search/actions columns) is unaffected. */
+      #header-component .menu-list {
+        --menu-horizontal-gap: 10px !important;
+      }
+
       /* Media-with-content: image hover zoom + fade-up reveal */
       .media-with-content img {
         transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
