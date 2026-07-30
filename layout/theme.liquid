@@ -886,6 +886,27 @@
         border: 0;
       }
 
+      /* Quantity stepper and size dropdown: both already had a 1px
+         border via theme input tokens, but --color-input-border /
+         --color-variant-border are very light (near --color-background),
+         so the outline was barely visible. Strengthening it to a subtle
+         ink-tinted line, keeping the width at 1px (thinnest), and
+         rounding to match the page-wrapper's own 18px card radius used
+         throughout this redesign. */
+      .quantity-selector,
+      .variant-option__select-wrapper {
+        border: 1px solid rgba(26, 26, 46, 0.16) !important;
+        border-radius: 18px !important;
+      }
+      .quantity-selector .quantity-minus {
+        border-start-start-radius: 18px !important;
+        border-end-start-radius: 18px !important;
+      }
+      .quantity-selector .quantity-plus {
+        border-start-end-radius: 18px !important;
+        border-end-end-radius: 18px !important;
+      }
+
       /* Media-with-content: image hover zoom + fade-up reveal */
       .media-with-content img {
         transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
