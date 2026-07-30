@@ -841,6 +841,35 @@
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
       }
 
+      /* Shine sweep on button hover: pure CSS, no JS. A diagonal highlight
+         glides across the button on :hover via a transform transition on an
+         ::after pseudo-element, then resets instantly (no transition) once
+         the pointer leaves so it is ready to sweep again next hover. */
+      .button, a.button, .button-secondary, .button-custom {
+        position: relative;
+        overflow: hidden;
+      }
+      .button::after, a.button::after, .button-secondary::after, .button-custom::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+        transform: skewX(-20deg) translateX(0);
+        pointer-events: none;
+      }
+      .button:hover::after, a.button:hover::after, .button-secondary:hover::after, .button-custom:hover::after {
+        transform: skewX(-20deg) translateX(320%);
+        transition: transform 0.65s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .button::after, a.button::after, .button-secondary::after, .button-custom::after {
+          display: none;
+        }
+      }
+
       /* Media-with-content: image hover zoom + fade-up reveal */
       .media-with-content img {
         transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
