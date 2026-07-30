@@ -225,7 +225,7 @@
 
       .menu-list__link {
         padding: 0 !important;
-        margin: 0 44px !important;
+        margin: 0 16px !important;
       }
       .menu-list__link-title {
         position: relative;
@@ -868,16 +868,6 @@
         .button::after, a.button::after, .button-secondary::after, .button-custom::after {
           display: none;
         }
-      }
-
-      /* Tighter spacing between main menu nav items. The desktop nav's
-         actual per-item spacing comes from .menu-list__link-title's
-         padding-inline (blocks/_header-menu.liquid), which reads the
-         shared --gap-xl variable directly, not --menu-horizontal-gap.
-         Overriding padding-inline here directly, scoped to this class,
-         keeps --gap-xl itself untouched elsewhere in the header. */
-      #header-component .menu-list__link-title {
-        padding-inline: 10px !important;
       }
 
       /* Media-with-content: image hover zoom + fade-up reveal */
