@@ -188,7 +188,7 @@
                 "variant_picker_R3rGDr": {
                   "type": "variant-picker",
                   "settings": {
-                    "variant_style": "buttons",
+                    "variant_style": "dropdowns",
                     "show_swatches": true,
                     "option_label_text_color": "",
                     "variant_style_class": "default",
@@ -206,6 +206,10 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "custom_size_field": {
+                  "type": "custom-size-input",
+                  "settings": {}
                 },
                 "buy_buttons_eYQEYi": {
                   "type": "buy-buttons",
@@ -270,6 +274,7 @@
               },
               "block_order": [
                 "variant_picker_R3rGDr",
+                "custom_size_field",
                 "buy_buttons_eYQEYi"
               ]
             },

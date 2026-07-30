@@ -1,0 +1,98 @@
+{% liquid
+  assign field_id = 'CustomSizeField-' | append: block.id
+%}
+
+<div class="custom-size-field" data-custom-size-field hidden {{ block.shopify_attributes }}>
+  <label class="custom-size-field__label" for="{{ field_id }}">מידה מדויקת (עד 120x120 ס״מ)</label>
+  <input
+    type="text"
+    class="custom-size-field__input"
+    id="{{ field_id }}"
+    name="properties[מידה מותאמת]"
+    placeholder="לדוגמה: 100x90"
+    disabled
+  >
+  <p class="custom-size-field__hint">נשמח לדייק עבורכם. ציינו רוחב וגובה בסנטימטרים.</p>
+</div>
+
+<script>
+  (function () {
+    function toggleCustomSizeFields() {
+      document.querySelectorAll('[data-custom-size-field]').forEach(function (field) {
+        var form = field.closest('form');
+        var picker = form ? form.querySelector('variant-picker') : null;
+        if (!picker || typeof picker.getAllSelectedOptions !== 'function') return;
+
+        var options = picker.getAllSelectedOptions();
+        var sizeOption = options.find(function (option) {
+          return option.name === 'מידה';
+        });
+        var isCustom = !!(sizeOption && sizeOption.value.indexOf('התאמה אישית') !== -1);
+        var input = field.querySelector('input');
+
+        field.hidden = !isCustom;
+        if (input) {
+          input.disabled = !isCustom;
+          input.required = isCustom;
+        }
+      });
+    }
+
+    document.addEventListener('change', toggleCustomSizeFields);
+    document.addEventListener('DOMContentLoaded', toggleCustomSizeFields);
+    toggleCustomSizeFields();
+  })();
+</script>
+
+{% stylesheet %}
+  .custom-size-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    padding-block-start: 4px;
+  }
+
+  .custom-size-field[hidden] {
+    display: none;
+  }
+
+  .custom-size-field__label {
+    font-family: var(--font-body--family);
+    font-size: 0.9rem;
+    color: var(--color-foreground);
+  }
+
+  .custom-size-field__input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: var(--style-border-radius-inputs, 10px);
+    border: 1px solid var(--color-variant-border, #d8d8d8);
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .custom-size-field__input:focus-visible {
+    outline: none;
+    border-color: var(--color-foreground);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .custom-size-field__hint {
+    font-family: var(--font-body--family);
+    font-size: 0.8rem;
+    color: var(--color-foreground);
+    opacity: 0.65;
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "שדה מידה מותאמת",
+  "tag": null
+}
+{% endschema %}
