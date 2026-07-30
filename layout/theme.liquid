@@ -870,6 +870,22 @@
         }
       }
 
+      /* Hide the option-name label ("מידה") above the size dropdown.
+         Visually hidden, not removed, so screen readers still get it -
+         the store only has one option (size), so the label is
+         redundant once the values themselves name the size. */
+      .variant-option--dropdowns > label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
       /* Media-with-content: image hover zoom + fade-up reveal */
       .media-with-content img {
         transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);

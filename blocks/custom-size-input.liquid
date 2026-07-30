@@ -1,5 +1,6 @@
 {% liquid
   assign field_id = 'CustomSizeField-' | append: block.id
+  assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id
 %}
 
 <div class="custom-size-field" data-custom-size-field hidden {{ block.shopify_attributes }}>
@@ -9,6 +10,7 @@
     class="custom-size-field__input"
     id="{{ field_id }}"
     name="properties[מידה מותאמת]"
+    form="{{ product_form_id }}"
     placeholder="לדוגמה: 100x90"
     disabled
   >
@@ -18,18 +20,17 @@
 <script>
   (function () {
     function toggleCustomSizeFields() {
+      var picker = document.querySelector('variant-picker');
+      if (!picker || typeof picker.getAllSelectedOptions !== 'function') return;
+
+      var options = picker.getAllSelectedOptions();
+      var sizeOption = options.find(function (option) {
+        return option.name === 'מידה';
+      });
+      var isCustom = !!(sizeOption && sizeOption.value.indexOf('התאמה אישית') !== -1);
+
       document.querySelectorAll('[data-custom-size-field]').forEach(function (field) {
-        var form = field.closest('form');
-        var picker = form ? form.querySelector('variant-picker') : null;
-        if (!picker || typeof picker.getAllSelectedOptions !== 'function') return;
-
-        var options = picker.getAllSelectedOptions();
-        var sizeOption = options.find(function (option) {
-          return option.name === 'מידה';
-        });
-        var isCustom = !!(sizeOption && sizeOption.value.indexOf('התאמה אישית') !== -1);
         var input = field.querySelector('input');
-
         field.hidden = !isCustom;
         if (input) {
           input.disabled = !isCustom;

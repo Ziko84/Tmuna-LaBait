@@ -575,7 +575,7 @@
               "name": "t:names.product_description",
               "settings": {
                 "text": "{{ closest.product.description }}",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
                 "alignment": "right",
                 "type_preset": "rte",
