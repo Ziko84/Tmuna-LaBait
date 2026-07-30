@@ -8,7 +8,11 @@
   if (!window.matchMedia('(pointer: fine)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var buttons = document.querySelectorAll('.button, a.button, .button-secondary, .button-custom');
+  // Add-to-cart is excluded: the playful magnet pull read as too
+  // casual for this store's tone on the primary purchase action.
+  var buttons = document.querySelectorAll(
+    '.button:not(.add-to-cart-button), a.button:not(.add-to-cart-button), .button-secondary:not(.add-to-cart-button), .button-custom:not(.add-to-cart-button)'
+  );
   if (!buttons.length) return;
 
   var STRENGTH = 0.25;
