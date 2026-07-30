@@ -870,12 +870,14 @@
         }
       }
 
-      /* Tighter spacing between main menu nav items. Scoped to the header
-         menu's own --menu-horizontal-gap variable (used by .menu-list in
-         blocks/_header-menu.liquid), not the shared --gap-xl variable, so
-         other header spacing (logo/search/actions columns) is unaffected. */
-      #header-component .menu-list {
-        --menu-horizontal-gap: 10px !important;
+      /* Tighter spacing between main menu nav items. The desktop nav's
+         actual per-item spacing comes from .menu-list__link-title's
+         padding-inline (blocks/_header-menu.liquid), which reads the
+         shared --gap-xl variable directly, not --menu-horizontal-gap.
+         Overriding padding-inline here directly, scoped to this class,
+         keeps --gap-xl itself untouched elsewhere in the header. */
+      #header-component .menu-list__link-title {
+        padding-inline: 10px !important;
       }
 
       /* Media-with-content: image hover zoom + fade-up reveal */
