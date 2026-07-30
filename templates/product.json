@@ -577,7 +577,7 @@
                 "text": "{{ closest.product.description }}",
                 "width": "fit-content",
                 "max_width": "normal",
-                "alignment": "left",
+                "alignment": "right",
                 "type_preset": "rte",
                 "font": "var(--font-primary--family)",
                 "font_size": "1rem",
