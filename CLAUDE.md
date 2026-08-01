@@ -25,3 +25,14 @@ specificity theories) and asking the user to keep testing/screenshotting wastes
 their time and is a worse experience than just searching. Only fall back to
 asking the user for more info (a screenshot, a devtools inspection) after a
 real search of the repo for the described symptom has come up empty.
+
+**Never blame caching/CDN lag as an explanation.** It has been wrong every
+single time it was used as an excuse on this project. Do not say "this is
+probably a cache issue," "give it a minute to sync," or similar, as a way to
+explain away a discrepancy the user is reporting. If something looks
+different between two views (theme editor vs. live site, before vs. after a
+push), find the actual concrete reason — check which theme is published,
+diff the actual deployed file, check for a second theme, check app embeds,
+etc. Only state "it's cached" if you have directly confirmed the deployed
+file/data is already correct and unmistakably different from what's being
+shown.
