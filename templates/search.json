@@ -170,7 +170,7 @@
                     "show_tax_info": false,
                     "type_preset": "paragraph",
                     "width": "fit-content",
-                    "alignment": "center",
+                    "alignment": "left",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
