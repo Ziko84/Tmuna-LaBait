@@ -1388,18 +1388,12 @@
       .product-card .group-block product-swatches {
         border-top: none !important;
       }
-      /* Save a full line: instead of price sitting in its own stacked
-         row, pull it out of flow and overlay it sharing space with the
-         stars row (title stays on its own line now, stars sit right
-         under it) instead of taking a row of its own. top offset is the
-         title's own line height + its margin before the stars line. */
-      .product-card .group-block-content {
-        position: relative;
-      }
+      /* Price used to be pulled out of flow (position: absolute) with a
+         hardcoded top offset to overlay it on the fake star-rating row.
+         That fake row is gone now, so the hardcoded offset no longer
+         lines up with anything - removed, letting price sit in normal
+         flow on its own line below the title again. */
       .product-card .group-block product-price {
-        position: absolute;
-        top: 28px;
-        left: 2px;
         border: none !important;
         box-shadow: none !important;
         outline: none !important;
@@ -1410,11 +1404,6 @@
         box-shadow: none !important;
         outline: none !important;
         text-decoration: none !important;
-      }
-      @media screen and (max-width: 749px) {
-        .product-card .group-block product-price {
-          left: 10px !important;
-        }
       }
 
       /* Product page night-mode hover crossfade (same idea as the homepage
