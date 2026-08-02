@@ -105,24 +105,15 @@
       .rating-wrapper {
         display: none !important;
       }
-      /* Stars are back, but honest this time: the hardcoded rule in
-         assets/base.css (product-card .contents.user-select-text::before)
-         claimed a fake "(1)" review unconditionally on every card. Outline
-         stars + a real "(0)" instead - still reads as decorative rather
-         than a review count that isn't real. Everything else about the
-         rule (position, spacing, order) is still base.css's own, only
-         content/color are overridden here.
-
-         Overlap fix: base.css has three separate edits stacked on this
-         same element setting margin-bottom: 0 (to tighten the gap before
-         the price), leaving no real separation between the stars line
-         and the price below it - they were colliding. Restoring a
-         deliberate gap here instead of trusting base.css's margin. */
+      /* Fake star-rating decoration removed (was a hardcoded CSS ::before
+         claiming "☆☆☆☆☆ (0)" on every card - never real review data).
+         Judge.me is now installed; its own Star Rating Badge block
+         should be added per product card section via the theme editor
+         instead, so the rating shown is tied to real (if empty) review
+         data rather than fabricated content. */
       product-card .contents.user-select-text::before {
-        content: "☆☆☆☆☆ (0)" !important;
-        color: #c9c9ce !important;
-        display: block !important;
-        margin-bottom: 10px !important;
+        display: none !important;
+        content: none !important;
       }
       .product-card product-price,
       .product-card product-price .price {
