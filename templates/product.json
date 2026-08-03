@@ -584,32 +584,6 @@
                 "group_trust_secure"
               ]
             },
-            "product_description_LfDYCg": {
-              "type": "product-description",
-              "name": "t:names.product_description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "right",
-                "type_preset": "rte",
-                "font": "var(--font-primary--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "accordion_g8EVVp": {
               "type": "accordion",
               "name": "Accordion",
@@ -631,6 +605,45 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "accordion_row_description": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "תיאור",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_description": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.description }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "right",
+                        "type_preset": "rte",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_description"
+                  ]
+                },
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
                   "settings": {
@@ -711,6 +724,7 @@
                 }
               },
               "block_order": [
+                "accordion_row_description",
                 "accordion_row_VyFryh",
                 "accordion_row_aaFerA"
               ]
@@ -722,7 +736,6 @@
             "price_a7krng",
             "group_buy_box",
             "group_trust_bar",
-            "product_description_LfDYCg",
             "accordion_g8EVVp"
           ]
         }
