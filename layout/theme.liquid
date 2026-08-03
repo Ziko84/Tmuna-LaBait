@@ -1368,6 +1368,14 @@
       }
       .product-card .group-block-content {
         gap: 8px !important;
+        /* assets/base.css sets height: 100% globally on this class,
+           stretching it to fill .group-block's full box regardless of
+           actual content size - confirmed via devtools that this
+           stretched box was the real element overlapping the top of
+           the add-to-cart button below, not .group-block itself
+           (which the earlier padding fix correctly sized). Sizing to
+           actual content instead. */
+        height: auto !important;
       }
       /* Matches the specificity of the older "Toylvia-style product
          cards" rule earlier in this file (.product-card
