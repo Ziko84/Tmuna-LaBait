@@ -59,3 +59,12 @@ you changed. If it's not there, do not report progress or blame caching -
 identify which system is actually rendering that page/element (theme
 section vs. Shopify native page vs. navigation menu vs. automated policy)
 and fix that one.
+
+## Follow the user's exact instructions before anything else
+
+Do what the user explicitly asked, exactly as they asked it, before adding
+your own judgment calls, alternative approaches, or scope. Do not substitute
+a guess about what they "probably meant" for what they actually said. If an
+instruction is ambiguous, ask a short clarifying question instead of picking
+an interpretation and running with it. Guessing at intent instead of asking
+or confirming has repeatedly wasted this user's time and trust.
