@@ -849,13 +849,12 @@
          across the button on :hover via a transform transition on an
          ::after pseudo-element, then resets instantly (no transition) once
          the pointer leaves so it is ready to sweep again next hover.
-         Scoped to product-card add-to-cart buttons only, not every
-         .button on the site (banners/hero CTAs are excluded on purpose). */
-      .product-card__add-to-cart-button {
+         Unified across every .button on the site - same effect everywhere. */
+      .button, a.button, .button-secondary, .button-custom {
         position: relative;
         overflow: hidden;
       }
-      .product-card__add-to-cart-button::after {
+      .button::after, a.button::after, .button-secondary::after, .button-custom::after {
         content: "";
         position: absolute;
         top: 0;
@@ -866,12 +865,12 @@
         transform: skewX(-20deg) translateX(0);
         pointer-events: none;
       }
-      .product-card__add-to-cart-button:hover::after {
+      .button:hover::after, a.button:hover::after, .button-secondary:hover::after, .button-custom:hover::after {
         transform: skewX(-20deg) translateX(320%);
         transition: transform 0.65s ease;
       }
       @media (prefers-reduced-motion: reduce) {
-        .product-card__add-to-cart-button::after {
+        .button::after, a.button::after, .button-secondary::after, .button-custom::after {
           display: none;
         }
       }
@@ -1332,16 +1331,6 @@
         padding-block: 8px !important;
         font-size: 0.75rem;
         height: auto;
-      }
-      /* .product-card has overflow: hidden (for the rounded image corners),
-         which clips the generic .button:hover box-shadow entirely - the
-         most visible part of that effect. What's left, translateY(-2px)
-         scale(1.02), is too subtle to read on a button this small. Bumped
-         just for card buttons so the hover is still visibly noticeable
-         without the shadow. Placed after the generic .button:hover rule
-         (same specificity), so it wins by source order alone. */
-      .product-card__add-to-cart-button:hover {
-        transform: translateY(-4px) scale(1.08);
       }
       .product-card__add-to-cart-button .add-to-cart-icon {
         display: none;
