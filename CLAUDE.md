@@ -36,3 +36,26 @@ diff the actual deployed file, check for a second theme, check app embeds,
 etc. Only state "it's cached" if you have directly confirmed the deployed
 file/data is already correct and unmistakably different from what's being
 shown.
+
+## Verify a fix against the live rendered output, not just the source edit
+
+The recurring root cause of this project's worst sessions: editing a theme
+file, confirming the edit looks right in the repo, and reporting the fix as
+done - without ever confirming that file is actually the thing rendering
+the page in question. It repeatedly wasn't. Concretely: `/policies/*` URLs
+are Shopify's own fixed platform chrome (class `shopify-policy__title`),
+completely separate from theme sections - editing `sections/policy-page.liquid`
+to fix that page's title did nothing, for several rounds, because that
+section was never in the render path for that URL. The same "edited the
+wrong layer" mistake also happened with menus (editing theme JSON when the
+content actually lives in Shopify Navigation menus, edited via the
+`menu`/`menuUpdate` GraphQL objects) and with policy bodies (editing text
+without first checking whether Shopify's newer automated-policy system
+even allows a direct body edit for that policy type).
+
+Before declaring any fix done, pull the actual live HTML (curl, or the
+Admin API's live data) and check for the exact class name, text, or field
+you changed. If it's not there, do not report progress or blame caching -
+identify which system is actually rendering that page/element (theme
+section vs. Shopify native page vs. navigation menu vs. automated policy)
+and fix that one.
