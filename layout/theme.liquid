@@ -827,16 +827,8 @@
         border-radius: 999px !important;
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.25s ease !important;
       }
-      /* Magnetic pull (assets/magnetic-buttons.js): on pointer:fine devices
-         the button nudges toward the cursor within its own bounds, capped
-         to a few px. --magnet-x/--magnet-y default to 0px, so with JS
-         absent or on touch this is identical to the lift-only hover it
-         always was - pure progressive enhancement, nothing is ever hidden
-         or gated on the script loading. Easy to revert: remove the
-         translate() term below, the script include near the end of
-         <body>, and delete assets/magnetic-buttons.js. */
       .button:hover, a.button:hover, .button-secondary:hover, .button-custom:hover {
-        transform: translateY(-2px) scale(1.02) translate(var(--magnet-x, 0px), var(--magnet-y, 0px));
+        transform: translateY(-2px) scale(1.02);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
       }
 
@@ -1759,7 +1751,6 @@
 
     {% render 'hero-night-mode' %}
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
-    <script src="{{ 'magnetic-buttons.js' | asset_url }}" defer></script>
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
