@@ -1333,6 +1333,16 @@
         font-size: 0.75rem;
         height: auto;
       }
+      /* .product-card has overflow: hidden (for the rounded image corners),
+         which clips the generic .button:hover box-shadow entirely - the
+         most visible part of that effect. What's left, translateY(-2px)
+         scale(1.02), is too subtle to read on a button this small. Bumped
+         just for card buttons so the hover is still visibly noticeable
+         without the shadow. Placed after the generic .button:hover rule
+         (same specificity), so it wins by source order alone. */
+      .product-card__add-to-cart-button:hover {
+        transform: translateY(-4px) scale(1.08);
+      }
       .product-card__add-to-cart-button .add-to-cart-icon {
         display: none;
       }
