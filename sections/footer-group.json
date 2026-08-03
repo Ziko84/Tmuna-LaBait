@@ -142,7 +142,7 @@
           "type": "menu",
           "settings": {
             "menu": "footer-service",
-            "heading": "שירות לקוחות",
+            "heading": "מדיניות",
             "menu_spacing": 12,
             "show_as_accordion": false,
             "accordion_icon": "caret",
