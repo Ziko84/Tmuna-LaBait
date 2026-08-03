@@ -4113,9 +4113,9 @@ product-card product-price {
     border-bottom: 1px solid #f1f2f5 !important; /* Add the line below */
     
     padding-top: 0 !important;
-    padding-bottom: 12px !important;       /* Space between price and the line */
-    margin-bottom: 12px !important;        /* Space after the line */
-    margin-top: 4px !important;            /* Small gap from the stars above */
+    padding-bottom: 6px !important;        /* Space between price and the line */
+    margin-bottom: 4px !important;         /* Space after the line */
+    margin-top: 4px !important;            /* Small gap from the title above */
 }
 
 /* Ensure title and stars are still stacked above */
