@@ -1383,6 +1383,17 @@
       .product-card__quick-add-row {
         padding-inline: 16px;
         padding-block-end: 16px;
+        /* Headroom for the button's own hover lift (translateY(-2px)
+           scale(1.02)) to happen inside this row's box. Hit-testing
+           follows the actual transformed/painted position, not the
+           pre-transform layout box - with zero top padding the lifted
+           button poked above this row's real (never-resized) top edge,
+           so a stationary cursor near the top of the button ended up
+           outside the row's hit-area mid-hover and the lift snapped
+           back off, even though visually still "on" the button.
+           margin-block-start below is widened by this same 6px so the
+           button's visual resting position is unchanged. */
+        padding-block-start: 6px;
         box-sizing: border-box;
         width: 100%;
         /* .product-card__content's flex gap (14px) applies uniformly
@@ -1397,7 +1408,7 @@
            the DOM it then paints on top and silently swallows every
            real hover/click on this button. Removed the bottom padding
            above instead of overlapping into it. */
-        margin-block-start: -14px;
+        margin-block-start: -20px;
       }
 
       /* The "Toylvia-style product cards" rule earlier in this file
