@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "eyebrow": "מדיניות פרטיות"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
