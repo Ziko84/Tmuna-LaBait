@@ -19,7 +19,20 @@
       {% if section.settings.eyebrow != blank %}
         <div class="policy-page__eyebrow">{{ section.settings.eyebrow }}</div>
       {% endif %}
-      <h1 class="policy-page__title">{{ page.title }}</h1>
+      {% liquid
+        assign policy_title = page.title
+        case page.title
+          when 'Privacy policy'
+            assign policy_title = 'מדיניות פרטיות'
+          when 'Refund policy'
+            assign policy_title = 'מדיניות החזרות'
+          when 'Shipping'
+            assign policy_title = 'מדיניות משלוחים'
+          when 'Terms of service'
+            assign policy_title = 'תנאי שימוש'
+        endcase
+      %}
+      <h1 class="policy-page__title">{{ policy_title }}</h1>
       <div class="policy-page__divider" aria-hidden="true"><span></span><i></i><span></span></div>
     </reveal-on-scroll>
 
