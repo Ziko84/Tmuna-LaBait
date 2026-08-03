@@ -835,6 +835,34 @@
         opacity: 1;
       }
 
+      /* Neumorphic edge highlight on banner sections: a thin light line
+         along the right portion of the bottom edge, plus one up the
+         lower half of the right edge, both fading out as they travel
+         away from the bottom-right corner. Physical right/bottom on
+         purpose (not inline-start/end) so it stays visually bottom-right
+         in this RTL store. Drawn as two no-repeat gradient layers on a
+         single ::after so it never touches the sections' own
+         backgrounds, and pointer-events: none so it can't intercept
+         clicks on anything underneath. */
+      .hero,
+      .media-with-content,
+      .story-banner {
+        position: relative;
+      }
+      .hero::after,
+      .media-with-content::after,
+      .story-banner::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        border-radius: inherit;
+        background:
+          linear-gradient(to left, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0)) right bottom / 55% 1px no-repeat,
+          linear-gradient(to top, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0)) right bottom / 1px 50% no-repeat;
+      }
+
       /* Premium pill buttons with lift on hover */
       .button, a.button, .button-secondary, .button-custom {
         border-radius: 999px !important;
