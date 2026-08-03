@@ -9,7 +9,7 @@
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var SHRINK_DISTANCE = 300; // px of scroll to reach the minimum size
+  var SHRINK_DISTANCE = 1200; // px of scroll to reach the minimum size
   var root = document.documentElement;
   var pageWrapper = document.querySelector('.page-wrapper');
   var ticking = false;
