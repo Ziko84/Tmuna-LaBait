@@ -1640,6 +1640,15 @@
         }
       }
 
+      /* Header top-level menu links, one type-scale step up (14px -> 16px).
+         Overrides --menu-top-level-font-size directly rather than the
+         shared --menu-font-sm--size preset it draws from, since that
+         preset is also used by the submenu column headings - this way
+         only the top-level nav bar text changes, nothing else. */
+      .menu-list__link {
+        --menu-top-level-font-size: 1rem;
+      }
+
       /* Drawer slide-in used the shared --animation-speed token (0.125s),
          fast enough on this large a panel to read as an instant snap with
          no animation at all. Slowed down just for the drawer, without
