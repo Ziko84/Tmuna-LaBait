@@ -847,14 +847,13 @@
         transform: translateY(-2px) scale(1.02);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
       }
-      /* Card add-to-cart buttons are small enough that translateY(-2px)
-         moving the button's OWN box could push it just past the cursor,
-         toggling :hover off mid-hover, which reverts the move, which puts
-         the cursor back inside, re-triggering it - a flicker loop. Trigger
-         from the stable, non-moving row that wraps the button instead, so
-         the hit-test area never shifts regardless of the button's own
-         transform. */
-      .product-card__quick-add-row:hover .product-card__add-to-cart-button {
+      /* Confirmed via element.matches(':hover') logging that native :hover
+         on .product-card__quick-add-row genuinely dropped mid-hover here
+         even though the row's own position never moved - a transform vs.
+         hover-geometry re-evaluation glitch, not a layout bug. Driven by
+         assets/product-card-cta-hover.js's JS-toggled .is-hovering class
+         instead, which only fires once per real mouseenter/mouseleave. */
+      .product-card__quick-add-row.is-hovering .product-card__add-to-cart-button {
         transform: translateY(-2px) scale(1.02);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
       }
@@ -1804,6 +1803,7 @@
     {% render 'hero-night-mode' %}
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
+    <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
