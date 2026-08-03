@@ -840,7 +840,21 @@
         border-radius: 999px !important;
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.25s ease !important;
       }
-      .button:hover, a.button:hover, .button-secondary:hover, .button-custom:hover {
+      .button:hover:not(.product-card__add-to-cart-button),
+      a.button:hover:not(.product-card__add-to-cart-button),
+      .button-secondary:hover:not(.product-card__add-to-cart-button),
+      .button-custom:hover:not(.product-card__add-to-cart-button) {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+      /* Card add-to-cart buttons are small enough that translateY(-2px)
+         moving the button's OWN box could push it just past the cursor,
+         toggling :hover off mid-hover, which reverts the move, which puts
+         the cursor back inside, re-triggering it - a flicker loop. Trigger
+         from the stable, non-moving row that wraps the button instead, so
+         the hit-test area never shifts regardless of the button's own
+         transform. */
+      .product-card__quick-add-row:hover .product-card__add-to-cart-button {
         transform: translateY(-2px) scale(1.02);
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
       }
