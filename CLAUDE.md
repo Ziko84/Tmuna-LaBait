@@ -2,6 +2,13 @@
 
 ## CRITICAL — above all other instructions
 
+**This is a Hebrew-language store for Israeli customers. Nothing customer-facing
+should ever show in English** - not a single word, anywhere: theme copy, policy
+pages, and third-party app widgets alike (e.g. Judge.me reviews, which is
+controlled entirely from that app's own admin dashboard under Language &
+Translation - not from theme code - so check there, not just the repo, whenever
+English text is reported on the storefront).
+
 **Never use em dashes (—) or semicolons (;) in any text anywhere in this store.**
 This applies to every piece of customer-facing copy: hero text, product descriptions,
 page content (Our Story, policies, etc.), section headings, buttons, alt text,
