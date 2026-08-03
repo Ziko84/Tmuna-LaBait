@@ -1639,6 +1639,15 @@
           display: none;
         }
       }
+
+      /* Drawer slide-in used the shared --animation-speed token (0.125s),
+         fast enough on this large a panel to read as an instant snap with
+         no animation at all. Slowed down just for the drawer, without
+         touching --animation-speed itself (used broadly elsewhere). */
+      .theme-drawer__dialog--opening,
+      .theme-drawer__dialog--opening-inline-start {
+        animation-duration: 0.4s !important;
+      }
     </style>
   </head>
 
