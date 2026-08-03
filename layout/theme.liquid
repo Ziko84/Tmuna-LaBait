@@ -233,8 +233,12 @@
         width: fit-content;
         font-family: 'Assistant', 'Heebo', sans-serif !important;
         font-weight: 300 !important;
-        font-size: 30px !important;
+        /* --menu-scroll-shrink (assets/menu-scroll-shrink.js) goes from 0
+           at the top of the page to 1 after 300px of scroll, continuously
+           shrinking this down to 50% of its base 30px. */
+        font-size: calc(30px * (1 - (var(--menu-scroll-shrink, 0) * 0.5))) !important;
         letter-spacing: 0.04em;
+        transition: font-size 0.15s linear;
       }
       /* Short underline, right-aligned: shown only on the current page's
          nav item - never on hover of other items. Hovering the active
@@ -1769,6 +1773,7 @@
 
     {% render 'hero-night-mode' %}
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
+    <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
