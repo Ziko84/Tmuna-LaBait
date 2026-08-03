@@ -69,7 +69,7 @@
   },
   "actions": {
     "add": "הוספה",
-    "add_to_cart": "הוספה לעגלה",
+    "add_to_cart": "הוסף לסל",
     "added": "נוסף",
     "apply": "החלה",
     "back": "חזרה",
@@ -339,7 +339,7 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "הוספה לעגלה",
+      "add_to_cart": "הוסף לסל",
       "adding_to_cart": "מוסיף...",
       "added_to_cart": "נוסף לעגלה",
       "add_to_cart_error": "שגיאה בהוספה לעגלה",
