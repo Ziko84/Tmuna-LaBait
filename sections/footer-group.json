@@ -122,7 +122,7 @@
           "type": "menu",
           "settings": {
             "menu": "footer",
-            "heading": "חנות",
+            "heading": "קולקציות",
             "menu_spacing": 12,
             "show_as_accordion": false,
             "accordion_icon": "caret",

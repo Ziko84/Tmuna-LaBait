@@ -148,7 +148,7 @@
       "type": "story-philosophy",
       "settings": {
         "quote": "אנחנו מאמינים שאמנות טובה לא צריכה לצעוק. היא נוכחת בשקט, מדויקת, ונשארת רלוונטית שנים קדימה.",
-        "button_label": "למעבר לחנות",
+        "button_label": "למעבר לקולקציות",
         "button_link": "shopify://collections/frontpage",
         "background_color": "#f7f5f2",
         "padding_block": 64
