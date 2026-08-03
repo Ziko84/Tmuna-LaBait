@@ -4106,15 +4106,15 @@ product-card .contents.user-select-text::before {
     margin-bottom: 0 !important;
 }
 
-/* Move the divider line below the price */
+/* No divider line around the price on product cards */
 product-card product-price {
     display: block !important;
-    border-top: none !important;            /* Remove the line above */
-    border-bottom: 1px solid #f1f2f5 !important; /* Add the line below */
-    
+    border-top: none !important;
+    border-bottom: none !important;
+
     padding-top: 0 !important;
-    padding-bottom: 6px !important;        /* Space between price and the line */
-    margin-bottom: 4px !important;         /* Space after the line */
+    padding-bottom: 0 !important;
+    margin-bottom: 8px !important;         /* Space before the add-to-cart button */
     margin-top: 4px !important;            /* Small gap from the title above */
 }
 
