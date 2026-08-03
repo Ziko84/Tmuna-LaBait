@@ -241,6 +241,15 @@
         letter-spacing: 0.04em;
         transition: font-size 0.15s linear;
       }
+      /* Header bar's own vertical padding shrinks in the same proportion
+         (down to 60%, matching the 30px -> 18px font ratio) as
+         --menu-scroll-shrink increases, so the white header rectangle
+         gets shorter alongside the menu text instead of staying fixed
+         height around now-smaller text. */
+      .header {
+        --header-padding: calc(var(--padding-sm) * (1 - (var(--menu-scroll-shrink, 0) * 0.4))) !important;
+        transition: padding 0.15s linear;
+      }
       /* Short underline, right-aligned: shown only on the current page's
          nav item - never on hover of other items. Hovering the active
          item itself gives a small scale pulse, just for feedback. */
