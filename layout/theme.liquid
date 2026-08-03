@@ -1384,6 +1384,24 @@
       .product-card .product-card__content > .group-block {
         padding: 12px 16px 0px !important;
       }
+      /* Measured: with no negative margin the quick-add row already sits
+         flush (0px gap) against .group-block, so any tightening at all
+         necessarily overlaps it - and .group-block/.group-block-content
+         come later in the DOM, so they paint on top and silently ate
+         hover/clicks on whatever part of the button they covered (the
+         long-running "top half of the button is dead" bug).
+         Fixed structurally rather than by pixel-juggling: the two
+         container elements are made transparent to the pointer, while
+         their real content (title link, price, swatches) keeps normal
+         hit-testing. Overlap can no longer steal input from the button
+         underneath, which is what makes the negative margin below safe. */
+      .product-card .product-card__content > .group-block,
+      .product-card .group-block-content {
+        pointer-events: none;
+      }
+      .product-card .group-block-content > * {
+        pointer-events: auto;
+      }
       /* The add-to-cart row had no side padding of its own, unlike
          .group-block above (20px), so it sat flush against the card's
          edge instead of inset like the title/price - reading as if it
@@ -1409,6 +1427,12 @@
         padding-block-start: 3px;
         box-sizing: border-box;
         width: 100%;
+        /* Tightens the price-to-button spacing. Only safe because the
+           two container elements above are pointer-events: none (see
+           their rule) - otherwise this overlap is exactly what killed
+           hover on the top half of the button. Keep them in sync: never
+           increase this without confirming that rule is still in place. */
+        margin-block-start: -8px;
       }
 
       /* The "Toylvia-style product cards" rule earlier in this file
