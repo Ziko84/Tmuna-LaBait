@@ -1743,6 +1743,38 @@
         --menu-top-level-font-size: 50px;
       }
 
+      /* Price change feedback on the product page: picking a bigger size
+         flashes the price red, a cheaper one flashes it green. Driven by
+         assets/price-change-flash.js, which sets --price-flash-base to the
+         element's own resolved colour first so the keyframes return to
+         exactly that (using `inherit` here would resolve to the parent's
+         colour and jump on the first frame). Three pulses each; green runs
+         longer since a price drop is the friendlier news to dwell on. */
+      @keyframes price-flash-up {
+        0%, 100% { color: var(--price-flash-base, currentColor); }
+        12%, 36%, 60% { color: #d93025; }
+        24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
+      }
+      @keyframes price-flash-down {
+        0%, 100% { color: var(--price-flash-base, currentColor); }
+        12%, 36%, 60% { color: #1e8e3e; }
+        24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
+      }
+      .price-flash--up {
+        animation: price-flash-up 1.2s ease-in-out;
+      }
+      .price-flash--down {
+        animation: price-flash-down 1.6s ease-in-out;
+      }
+      /* The price digits sit in child spans that set their own colour, so
+         they would ignore the animation on the container without this. */
+      .price-flash--up .price,
+      .price-flash--down .price,
+      .price-flash--up .price-item,
+      .price-flash--down .price-item {
+        color: inherit !important;
+      }
+
       /* Drawer slide-in used the shared --animation-speed token (0.125s),
          fast enough on this large a panel to read as an instant snap with
          no animation at all. Slowed down just for the drawer, without
@@ -1865,6 +1897,9 @@
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
+    {% if request.page_type == 'product' %}
+      <script src="{{ 'price-change-flash.js' | asset_url }}" defer></script>
+    {% endif %}
     <style>html,body,*{scrollbar-width:none!important;-ms-overflow-style:none!important}::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}</style>
     <script>
       (function () {
