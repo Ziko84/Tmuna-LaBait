@@ -2722,7 +2722,102 @@
         "items": {
           "one": "{{count}} פריט",
           "other": "{{count}} פריטים"
-        }
+        },
+        "no_filtered_results_description": "הסר או התאם מסננים כדי לראות את ההזמנות שלך",
+        "no_filtered_results_title": "אין תוצאות מסוננות",
+        "order_link": "צפייה בהזמנה {{name}}",
+        "order_number": "הזמן {{name}}",
+        "orders_title": "אושר",
+        "pagination": {
+          "nav_accessibility_label": "לחצני ניווט בהזמנות",
+          "next": "הבא",
+          "next_accessibility_label": "הזמנות הבאות",
+          "previous": "קודם",
+          "previous_accessibility_label": "הזמנות קודמות",
+          "load_more": "הצג עוד",
+          "load_more_accessibility_label": "הצג הזמנות נוספות"
+        },
+        "order_status_message": {
+          "list_view": {
+            "view_order_for_details": "להצגת פרטי הזמנה",
+            "estimated_delivery": "צפוי ב-{{date}}",
+            "last_updated": "עודכן לאחרונה {{date}}"
+          },
+          "table_view": {
+            "estimated_delivery": "הערכת משלוח: {{date}}"
+          }
+        },
+        "payment_status": {
+          "gallery_view": {
+            "overdue": "התשלום בפיגור",
+            "due": "תאריך יעד לתשלום: {{date}}",
+            "due_today": "תשלום מגיע היום",
+            "due_without_date": "תשלום במועד",
+            "due_on_fulfillment": "התשלום מגיע עם המסירה",
+            "pay_to_confirm": "שלם כדי לאשר",
+            "payment_not_due": "תשלום טרם נדרש"
+          },
+          "list_view": {
+            "overdue": "לאחר מועד הפירעון",
+            "due": "תאריך יעד {{date}}",
+            "due_today": "לתשלום היום",
+            "paid": "שולם",
+            "due_without_date": "בשל",
+            "due_on_fulfillment": "בשל עם המילוי",
+            "pay_to_confirm": "שלם כדי לאשר",
+            "payment_not_due": "טרם נפרע"
+          }
+        },
+        "sort_by": "מיין לפי: {{option}}",
+        "sort_options_accessibility_label": "אפשרויות מיון להזמנות מאושרות",
+        "sort_hide_options_accessibility_label": "הסתר את אפשרויות המיון להזמנות מאושרות.",
+        "sort_show_options_accessibility_label": "הצג אפשרויות מיון להזמנות מאושרות.",
+        "sort_currently_sorted_by_accessibility_label": "ממוין כרגע לפי: {{option}}",
+        "sort_title": "מיין",
+        "sort": {
+          "date": {
+            "newest": "מהחדש לישן",
+            "oldest": "מדור הישן לחדש"
+          },
+          "location": {
+            "ascending": "מיקום (א-ת)",
+            "descending": "מיקום (א-י)"
+          },
+          "order_number": {
+            "ascending": "מספר הזמנה (מהנמוך לגבוה)",
+            "descending": "מספר הזמנה (גבוה לנמוך)"
+          },
+          "order_total": {
+            "ascending": "סכום הזמנה כולל (מהנמוך לגבוה)",
+            "descending": "סה\"כ הזמנה (מהגבוה לנמוך)"
+          }
+        },
+        "location_filter_picker": {
+          "all_location": "כל המיקומים",
+          "current_location": "מיקום נוכחי",
+          "switch_view": "החלף תצוגה"
+        },
+        "filter_title": "סינון",
+        "filter": {
+          "clear_section": "נקה קטע",
+          "clear_all": "נקה הכל",
+          "apply": "הגש",
+          "date_section_accessibility_label": "סינון לפי {{sectionTitle}}",
+          "date": {
+            "start_date": "תאריך התחלה",
+            "end_date": "תאריך סיום",
+            "title": "תאריך ההזמנה",
+            "today": "היום",
+            "last_7_days": "7 ימים אחרונים",
+            "last_30_days": "30 הימים האחרונים",
+            "last_90_days": "90 הימים האחרונים",
+            "last_365_days": "12 החודשים האחרונים",
+            "custom": "מותאם אישית"
+          }
+        },
+        "show_order_actions_accessibility_label": "הצג פעולות הזמנה עבור הזמנה {{name}}",
+        "view_order": "הצג הזמנה",
+        "view_order_accessibility_label": "הצגת הזמנה {{orderName}}"
       },
       "order_status": {
         "status_timestamp": "עודכן לאחרונה ב-{{date}}",
@@ -2842,7 +2937,58 @@
         "delivery_exception_returning_to_sender_title": "לא נמסר",
         "delivery_exception_shop_promise_delivered_late_description": "ההזמנה שלך מגובה על ידי Shop Promise. מכיוון שהיא הגיעה באיחור, תבע/י {{amount}} ב-Shop Cash.",
         "delivery_exception_shop_promise_delivered_late_title": "נמסר באיחור",
-        "predicted_by_shop": "חזוי על ידי Shop"
+        "predicted_by_shop": "חזוי על ידי Shop",
+        "attempted_delivery_label": "ניסיון מסירה",
+        "attempted_to_deliver_label": "ניסיון מסירה",
+        "preparing_for_shipping_label": "מתכוננים למשלוח",
+        "ready_for_pickup_label": "מוכן לאיסוף",
+        "ready_for_pickup_description": "פריטים אלו מוכנים לאיסוף. אנא הצג את אישור ההזמנה שלך בעת האיסוף.",
+        "ready_for_pickup_location": "ההזמנה שלך מוכנה לאיסוף ב-location",
+        "picked_up_label": "נאסף",
+        "canceled_label": "בוטל",
+        "canceled_title": "ההזמנה שלך בוטלה",
+        "come_back": "חזור לדף זה כדי לקבל עדכונים לגבי סטטוס המשלוח שלך.",
+        "company_tracking_number": "{{company}} מספר מעקב:",
+        "confirmed_label": "אושר",
+        "confirmed_title": "ההזמנה שלך אושרה",
+        "confirmed_description_pickup": "אנחנו מכינים את הפריטים הללו לאיסוף.",
+        "confirmed_description_shipping": "אנחנו מכינים את הפריטים האלה למשלוח.",
+        "confirmed_description_digital": "תקבלו אימייל כשההזמנה שלכם תהיה מוכנה.",
+        "confirmed_description_gift_card_text": "תקבל הודעה כשההזמנה שלך תהיה מוכנה.",
+        "complete_label": "הושלם",
+        "delivered_label": "נמסר",
+        "delivered_description_gift_card": {
+          "one": "הגיפט קארד נשלח למייל.",
+          "other": "כרטיסי המתנה נשלחו במייל."
+        },
+        "delivered_description_gift_card_text": {
+          "one": "כרטיס מתנה נשלח בהודעת טקסט.",
+          "other": "כרטיסי מתנה נשלחו ב-SMS."
+        },
+        "gift_card_label": {
+          "one": "גיפט קארד",
+          "other": "כרטיסי מתנה"
+        },
+        "gift_card_resend_button": {
+          "one": "שלח שוב גיפט קארד",
+          "other": "שלח שוב כרטיסי מתנה"
+        },
+        "gift_resend_success": {
+          "one": "הכרטיס נשלח מחדש",
+          "other": "כרטיסי מתנה נשלחו שוב"
+        },
+        "gift_resend_failure": {
+          "one": "אירעה שגיאה בשליחה מחדש של כרטיס המתנה שלך. נסה שוב או צור איתנו קשר.",
+          "other": "הייתה בעיה בשליחה מחדש של כרטיסי המתנה שלך. נסה/נסי שוב או צור/צרי קשר."
+        },
+        "confirmed_gift_card_additional_description": {
+          "one": "כרטיס המתנה יישלח במייל נפרד.",
+          "other": "כל גיפט קארד יישלח במייל נפרד."
+        },
+        "confirmed_gift_card_additional_description_text": {
+          "one": "כרטיס המתנה יישלח בהודעת טקסט נפרדת.",
+          "other": "כל כרטיס מתנה יישלח בהודעת טקסט נפרדת."
+        }
       },
       "status_mark_as_delivered": "סמן כנמסר",
       "fulfillment_status_title": "סטטוס מימוש: {{status}}",
