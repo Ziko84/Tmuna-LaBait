@@ -2426,8 +2426,103 @@
         "hide_events_label": "הסתר פרטים",
         "ineligible_return_message": "אף פריט בהזמנה זו אינו זכאי להחזרה.",
         "ineligible_return_message_when_returned": "פריטים נוספים בהזמנה זו אינם זכאים להחזרה.",
-        "print_shipping_label": "הדפס תווית משלוח"
-      }
+        "print_shipping_label": "הדפס תווית משלוח",
+        "return_and_refund_modal_header": "מדיניות החזרים",
+        "tracking_number": "מספר מעקב:",
+        "exchange_header": "החלף פריטים",
+        "exchange_subheader": "פריטי ההחלפה יתווספו להזמנה לאחר השלמת ההחזרה."
+      },
+      "shipping": {
+        "address": "כתובת למשלוח",
+        "address_map_marker": "כתובת למשלוח",
+        "method": "שיטת משלוח",
+        "method_short": "שיטה",
+        "ship_to": "לשלוח ל/אל",
+        "summary": "משלוח",
+        "free": "חינם",
+        "free_shipping_discount": "משלוח חינם",
+        "one_time": "משלוח חד פעמי",
+        "subscription": "משלוח למנויים"
+      },
+      "pickup": {
+        "pickup": "איסוף",
+        "pickup_location": "נקודת איסוף",
+        "pickup_point": "נקודת איסוף"
+      },
+      "show_items": "הצג פריטים",
+      "total_savings": "חיסכון כולל",
+      "show_order_summary": "הצג סיכום הזמנה",
+      "hide_order_summary": "הסתר סיכום הזמנה",
+      "subtitle": "אושר ב-{{date}}",
+      "subtotal": "סיכום ביניים",
+      "subtotal_label_with_quantity": {
+        "one": "סיכום ביניים",
+        "other": "סכום ביניים · {{count}} פריטים"
+      },
+      "summary_list_title_accessibility_label": "הזמנת פריטים",
+      "summary_title": "סיכום הזמנה",
+      "summary_totals_title_accessibility_label": "סכומי הזמנה",
+      "shop_order_tracking": {
+        "download_shop_to_track": "הורד את Shop כדי לעקוב אחר החבילה",
+        "track_order_with_shop": "עקוב אחר הזמנה באמצעות Shop",
+        "title_header": "סרוק באמצעות הטלפון שלך",
+        "real_time_delivery_updates": "Shop ישלחו לך עדכוני משלוח בזמן אמת ברגע שההזמנה שלך תישלח.",
+        "real_time_delivery_updates_with_gift": "קבלו עדכוני משלוח בזמן אמת ומתנה בשווי {{promoAmount}} למימוש באפליקציית Shop.",
+        "shop_app_promo_amount_off": "קבל מתנה בסך {{promoAmount}}",
+        "shop_app_promo_text": "{{amountOff}} לבזבוז באפליקציית Shop"
+      },
+      "edit_summary": {
+        "added": "נוסף",
+        "added_with_quantity": "נוסף {{quantity}}",
+        "removed": "הוסר",
+        "removed_with_quantity": "הוסר {{quantity}}",
+        "updated_at": "ההזמנה שלך עודכנה ב-{{date}}",
+        "returned": "הוחזר",
+        "returned_with_quantities": "הוחזר {{delta}} מתוך {{total}}",
+        "removed_with_quantities": "הוסרו {{delta}} מתוך {{total}}",
+        "return_line_item_removed": "הוסר מהחזרה",
+        "return_line_item_removed_with_quantities": "הוסר {{delta}} מהחזר"
+      },
+      "shop_pay": {
+        "order_completed_with": "ההזמנה הושלמה ביום",
+        "learn_more": "מידע נוסף",
+        "usdc_rewards_terms": "הצגת תנאי תגמול USDC"
+      },
+      "taxes": "מיסים",
+      "taxes_included": "כולל {{amount}} מיסים",
+      "duties_and_taxes_included": "המחיר כולל מכסים ומיסים. ללא חיובים נוספים במשלוח.",
+      "duties": "תחומי אחריות",
+      "ok_duties_tooltip": "הזמנה זו נשלחת ממדינה אחרת, ולכן נוספו מכסים לסכום ההזמנה הכולל.",
+      "error_duties_tooltip": "הזמנה זו נשלחת ממדינה אחרת, ולכן ייתכנו חיובי מכס ומסים בעת המסירה.",
+      "zero_duties_tooltip": "הזמנה זו נשלחת ממדינה אחרת. לא ייגבו מכסים עבור הזמנות בערך זה.",
+      "tip": "טיפ",
+      "title": "הזמן {{name}}",
+      "total": "סך הכל",
+      "unit_price": "{{price}} ליחידה",
+      "pagination": {
+        "load_more": "הצג עוד",
+        "load_more_accessibility_label": "הצג פריטים נוספים",
+        "loading_accessibility_label": "טוען פריטים"
+      },
+      "login_to_view_all_order_details": "היכנס כדי להציג את כל פרטי ההזמנה.",
+      "log_in": "התחבר",
+      "logged_in_account_no_permission_to_order": "<p>אתה מחובר כ {{email}}. לחשבון זה אין הרשאות לנהל הזמנה זו.</p>",
+      "log_in_to_a_different_account": "היכנס לחשבון אחר",
+      "fees": {
+        "restocking_fee": "דמי חידוש מלאי",
+        "return_shipping_fee": "משלוח חזרה"
+      },
+      "vat_invoices": {
+        "label": "מע\"מ",
+        "title": "חשבוניות מע\"מ"
+      },
+      "link_sent": "הקישור נשלח",
+      "cash_rounding": "עיגול מזומן",
+      "adjusted_payment": "תשלום מותאם",
+      "adjusted_total": "סך הכל מתואם",
+      "due_on_date": "תאריך יעד {{date}}",
+      "due_on_fulfillment": "בשל עם המילוי",
+      "due_on_receipt": "יש לשלם עם קבלת החשבון"
     },
     "B2B": {
       "payment_methods": {
@@ -2871,7 +2966,32 @@
       },
       "save_new_address_accessibility_label": "שמור כתובת",
       "title": "כתובות",
-      "billing_address_dropdown_placeholder": "כתובת לחיוב"
+      "billing_address_dropdown_placeholder": "כתובת לחיוב",
+      "add_button": "הוסף כתובת",
+      "add_button_text": "הוסף",
+      "add_button_accessibility_label": "הוסף כתובת",
+      "back_button": "חזרה",
+      "back_button_accessibility_label": "חזרה לעריכת כתובת {{address}}",
+      "add_address_banner": "הוסף כתובות לשימוש בתשלום",
+      "no_addresses_banner": "לא נוספו כתובות",
+      "address_deleted_notification": "הכתובת נמחקה",
+      "cancel_adding_address_accessibility_label": "בטל הוספת כתובת",
+      "cancel_deletion_button": "ביטול",
+      "cancel_deletion_button_accessibility_label": "בטל מחיקה של {{address}}",
+      "default_address": {
+        "badge_label": "ברירת מחדל",
+        "title": "כתובת ברירת מחדל",
+        "title_accessibility_label": "כתובת ברירת מחדל: {{address}}"
+      },
+      "delete_button": "מחק",
+      "delete_button_accessibility_label": "מחק {{address}}",
+      "delete_confirmation_button": "מחק כתובת",
+      "delete_confirmation_button_accessibility_label": "מחק {{address}}",
+      "delete_confirmation_message": "למחוק כתובת? הזמנות קיימות אינן מושפעות.",
+      "delete_confirmation_title": "למחוק כתובת?",
+      "delete_confirmation_description": "הזמנות קיימות אינן מושפעות.",
+      "edit_button": "ערוך",
+      "edit_button_accessibility_label": "ערוך את {{address}}"
     },
     "address_form": {
       "attention": "תשומת לב",
