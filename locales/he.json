@@ -962,7 +962,65 @@
         "subscriptions_management": {
           "title": "מנוי",
           "description": "המשך לחשבונך כדי להציג ולנהל את המנויים שלך."
-        }
+        },
+        "title": "תודה על הרכישה!",
+        "confirmation_email_sent_text": "אימייל אישור נשלח אל %{email}",
+        "return_to_store_link_label": "המשך קנייה",
+        "print_link_label": "הדפס קבלה",
+        "payment_information_title": "פרטי תשלום",
+        "shipping_information_title": "פרטי משלוח",
+        "page_title": "תודה, %{display_name}!",
+        "page_title_no_name": "תודה!",
+        "purchase_order_number_title": "מספר הזמנת רכש #%{purchase_order_number}",
+        "cancelled_page_title": "הזמנה בוטלה",
+        "failed_pending_payment_page_title": "יש בעיה עם התשלום שלך",
+        "customer_information_title": "פרטי הזמנה",
+        "contact_information_title": "פרטי התקשרות",
+        "billing_address_title": "כתובת לחיוב",
+        "cashback_notice": "הכסף יוחזר לך (קאשבק) לאחר 30 יום.",
+        "company_location_title": "מיקום",
+        "shipping_address_title": "כתובת למשלוח",
+        "shipping_address_map_title": "מפת גוגל המציגה מיקום מדויק של כתובת המשלוח: %{address}",
+        "payment_method_title": "אמצעי תשלום",
+        "payment_method_not_charged": "לא חויב",
+        "shipping_method_title": "שיטת משלוח",
+        "tracking_number": "מספר מעקב:",
+        "company_tracking_number": "מספר מעקב של %{company}:",
+        "estimated_arrival": "תאריך מסירה משוער: ",
+        "estimated_delivery": "אומדן משלוח נוכחי:",
+        "re-order": "סדר מחדש את אותם פריטים",
+        "confirmed": "אושר",
+        "confirmed_items_count": "%{confirmed_count} מתוך %{total_count} פריטים אושרו",
+        "items_fulfilled_by_store": {
+          "one": "פריטים שרכשת יגיעו מ- %{remote_shop_name}.",
+          "other": "פריטים שרכשת יגיעו מחנויות אחרות."
+        },
+        "gift_card_confirmation_by_text": "אם לא קיבלתם, אנא שלחו שוב את ההודעה או צרו עמנו קשר.",
+        "gift_card_confirmation_by_email": "אם לא קיבלתם אותו, אנא שלחו את המייל שנית או צרו עמנו קשר.",
+        "gift_card_title": "כרטיסי מתנה",
+        "resend_gift_cards": "שלח שוב כרטיסי מתנה",
+        "thank_you_title": "ההזמנה שלך אושרה",
+        "thank_you_title_payment": "התשלום שלך אושר",
+        "thank_you_title_review": "ההזמנה שלך נשלחה לבדיקה",
+        "thank_you_title_payments_app_pending_default": "התשלום שלך מעובד",
+        "thank_you_title_payments_app_pending_buyer_action_required": "ההזמנה שלך התקבלה",
+        "thank_you_title_payments_app_failed_pending_payment": "התשלום שלך לא עבר",
+        "thank_you_confirmed_with_email_description": {
+          "single_store": "תקבל בקרוב אימייל אישור",
+          "multi_store": "בקרוב תקבל/י הודעות אימייל נפרדות לאישור מכל חנות."
+        },
+        "thank_you_confirmed_with_phone_description": {
+          "single_store": "תקבל/י הודעת אישור בקרוב",
+          "multi_store": "במהרה תקבלו הודעות אישור נפרדות מכל חנות"
+        },
+        "thank_you_confirmed_with_email_and_phone_description": {
+          "single_store": "תקבל בקרוב אימייל אישור",
+          "multi_store": "בקרוב תקבל/י הודעות אימייל נפרדות לאישור מכל חנות."
+        },
+        "thank_you_confirmed_order_with_email": "תקבל/י אימייל אישור עם מספר ההזמנה שלך בקרוב.",
+        "thank_you_confirmed_order_with_phone": "בתוך זמן קצר תקבל/י הודעת אישור עם מספר ההזמנה שלך.",
+        "thank_you_confirmed_order_with_email_and_phone": "תקבל/י אימייל אישור עם מספר ההזמנה שלך בקרוב.",
+        "thank_you_confirmed_orders_with_email": "בקרוב תקבל/י הודעות אימייל נפרדות עם מספרי ההזמנות שלך"
       },
       "shipping": {
         "arrives_time": "מגיע ב-%{time}",
@@ -1458,8 +1516,72 @@
           "medium": {
             "one": "ההזמנה שלך בתהליך. זמן ההמתנה המשוער הוא %{count} דקה.",
             "other": "ההזמנה שלך בתהליך. זמן ההמתנה המשוער הוא %{count} דקות."
+          },
+          "long": "תקבלו אימייל מיד כשההזמנה שלכם תטופל. יש כרגע נפח גבוה של הזמנות.",
+          "no_auto_refresh_html": "אם אינך מופנה אוטומטית, %{link}.",
+          "refresh_this_page": "רענן את הדף"
+        },
+        "remote_shops_payments_processing": "עיבוד תשלומים",
+        "action_required": "נדרשת פעולה",
+        "modal_notice": "אנו יוצרים קשר עם {{paymentMethod}}",
+        "remote_checkout_count": "%{current} מתוך %{total}"
+      },
+      "payment_challenge_modal": {
+        "instructions": "השלם את הרכישה שלך באמצעות קוד {{paymentMethod}} שלך",
+        "timer_message": "נותרו לך {{timeLeft}} לתשלום",
+        "copy_text": "העתקת קוד {{paymentMethod}}",
+        "open_app_text": "פתח את אפליקציית {{paymentMethod}}",
+        "header": "שלם באמצעות {{paymentMethod}}",
+        "qr_code": {
+          "instructions": "השלם את הרכישה שלך באמצעות קוד {{paymentMethod}} שלך",
+          "wechat_instructions": "סרוק קוד QR זה באמצעות אפליקציית WeChat בטלפון שלך כדי להשלים את הרכישה",
+          "wechat_instructions_mobile": "סרוק/י קוד QR זה באמצעות אפליקציית WeChat במכשיר אחר כדי להשלים את הרכישה"
+        },
+        "external": {
+          "instructions": "אשר את התשלום באפליקציה שלך להשלמת הרכישה הזו"
+        },
+        "close": "סגור את האתגר"
+      },
+      "failed_payment": {
+        "page_title": "התשלום לא עובד",
+        "title": "התשלום לא עובד",
+        "payment_not_processed_title": "התשלום שלך לא עבר",
+        "payment_not_processed_text": "לא חויבת. חזור לעגלה שלך כדי להשלים את הרכישה.",
+        "return_to_cart_button_label": "חזרה לעגלה"
+      },
+      "payment_gateway": {
+        "credit_card_label": "כרטיס אשראי",
+        "bogus_label": "מערכת סליקה לבדיקה",
+        "bank_deposit_label": "הפקדה בנקאית",
+        "bank_account_label": "חשבון בנק",
+        "cash_on_delivery_label": "מזומן בעת מסירה (COD)",
+        "money_order_label": "העברת כספים",
+        "debit_card_label": "כרטיס חיוב",
+        "credit_or_debit_card_label": "כרטיס אשראי/חיוב",
+        "deferred_payment_label": "בחרו אמצעי תשלום מאוחר יותר",
+        "fixed_payment_label": "התשלום שלך יגיע לתאריך {{dueDate}}.",
+        "generic_payment_terms": "התשלום שלך הוא ב-{{translatedName}}. התשלום יחול ב-{{dueDate}}.",
+        "login_prompt": {
+          "no_access": {
+            "message": "{{logIn}} לחשבון עם גישה למיקום זה כדי להוסיף או להשתמש בשיטות תשלום שמורות.",
+            "link": "התחבר"
           }
-        }
+        },
+        "direct_payment_terms": "החיוב שלך מתבצע בהתאם ל-{{translatedName}}. כרטיסך יחויב ב-{{dueDate}}.",
+        "fixed_direct_payment_terms": "הכרטיס שלך יחויב בתאריך {{dueDate}}.",
+        "order_due_on_fulfillment_choose_later": "התשלום יידרש לאחר השלמת ההזמנה.",
+        "order_due_on_fulfillment_payment": "הכרטיס שלך יחויב רק לאחר השלמת ההזמנה.",
+        "order_due_on_receipt_choose_later": "התשלום יידרש עם הקבלה.",
+        "order_deposit_due_now": "{{depositAmount}} נדרשים לתשלום היום. היתרה היא בתנאים של {{translatedName}} ומועד פרעונה הוא ב-{{dueDate}}.",
+        "order_deposit_due_on_fulfillment": "{{depositAmount}} יש לשלם היום. היתרה תשולם לאחר השלמת הזמנתך.",
+        "order_deposit_due_on_receipt": "{{depositAmount}} יש לשלם היום. היתרה תשולם במועד מאוחר יותר.",
+        "order_deposit_due_on_fixed_date": "{{depositAmount}} יש לשלם היום. היתרה תשולם בתאריך {{dueDate}}.",
+        "draft_order_payment_due_later_no_terms": "התשלום שלך יגיע לתשלום לאחר אישור ההזמנה.",
+        "draft_order_payment_due_later_no_terms_payment_selected": "כרטיס האשראי שלך יחויב ברגע שההזמנה תאושר.",
+        "draft_order_payment_due_later_terms": "אתה תהיה בתנאי {{translatedName}} לאחר אישור ההזמנה שלך.",
+        "draft_order_payment_due_on_fulfillment": "התשלום שלך יגיע לתשלום לאחר אישור הזמנתך ומימושה.",
+        "draft_order_deposit_due_later": "{{depositAmount}} ישולם עם אישור ההזמנה. היתרה תהיה בתנאי {{translatedName}}.",
+        "draft_order_deposit_due_on_fulfillment": "{{depositAmount}} ישולם כאשר הזמנתך תאושר. היתרה תשולם לאחר ביצוע הזמנתך."
       }
     }
   },
@@ -1601,7 +1723,59 @@
     },
     "orders": {
       "group_title_label": "חלק מתוך: {{groupTitle}}",
-      "group_title_label_with_parent": "עבור: {{groupTitle}}"
+      "group_title_label_with_parent": "עבור: {{groupTitle}}",
+      "list_layout_accessibility_label": "אפשרויות פריסה",
+      "list_title": "הזמנות",
+      "list_title_with_pending_orders": "הזמנות:",
+      "list_title_confirmed_orders_accessibility_label": "הזמנות: אושרו",
+      "list_title_pending_orders_accessibility_label": "הזמנות: ממתינות",
+      "switch_order_type_pending_orders_accessibility_label": "שנה סוג הזמנה, כרגע צופה בהזמנות ממתינות",
+      "switch_order_type_confirmed_orders_accessibility_label": "שנה סוג הזמנה, כרגע מוצגות הזמנות מאושרות",
+      "order_list": {
+        "column_headers": {
+          "order": "הזמן",
+          "total": "סך הכל",
+          "actions_accessibility_label": "פעולות",
+          "products_accessibility_label": "מוצרים"
+        },
+        "delivered": "נשלח {{date}}",
+        "empty_state_order_source_description": "רק הזמנות שבוצעו על ידי {{email}} יופיעו כאן.",
+        "empty_state_redesign_cta": "קנה עכשיו",
+        "empty_state_redesign_subtitle": "מוכנים לקניות?",
+        "empty_state_redesign_welcome": "ברוך הבא",
+        "empty_state_redesign_welcome_with_name": "ברוך הבא, {{firstName}}",
+        "empty_state_subtitle": "לך לחנות כדי לבצע הזמנה.",
+        "empty_state_title": "אין עדיין הזמנות",
+        "empty_state_with_location_title": "אין הזמנות עבור {{locationName}}",
+        "empty_state_title_for_pending_orders": "אין הזמנות ממתינות",
+        "no_order_banner": "כדי לבדוק את התוסף שלך בדף סטטוס ההזמנה, צור הזמנה.",
+        "estimated_shortform": "אומדן. {{date}}",
+        "estimated_delivery": "צפוי ב-{{date}}",
+        "one_images_accessibility_label": "ההזמנה כוללת {{lineItemName1}}",
+        "two_images_accessibility_label": "ההזמנה כוללת {{lineItemName1}}, {{lineItemName2}}",
+        "three_images_accessibility_label": "ההזמנה כוללת: {{lineItemName1}}, {{lineItemName2}}, {{lineItemName3}}",
+        "four_images_accessibility_label": "ההזמנה כוללת: {{lineItemName1}}, {{lineItemName2}}, {{lineItemName3}}, {{lineItemName4}}",
+        "more_than_three_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}}, {{lineItemName2}}, ו- {{numberOfAdditionalProducts}} מוצרים נוספים",
+        "more_than_four_products_accessibility_label": "ההזמנה כוללת: {{lineItemName1}}, {{lineItemName2}}, {{lineItemName3}}, ו- {{numberOfAdditionalProducts}} מוצרים נוספים",
+        "plus_more": "+{{numberOfAdditionalProducts}}",
+        "plus_more_products": "+{{numberOfAdditionalProducts}} מוצרים",
+        "carousel": {
+          "one_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} כמות {{lineItemQuantity1}}",
+          "two_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} בכמות {{lineItemQuantity1}}, {{lineItemName2}} בכמות {{lineItemQuantity2}}",
+          "three_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} כמות {{lineItemQuantity1}}, {{lineItemName2}} כמות {{lineItemQuantity2}}, {{lineItemName3}} כמות {{lineItemQuantity3}}",
+          "four_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} כמות {{lineItemQuantity1}}, {{lineItemName2}} כמות {{lineItemQuantity2}}, {{lineItemName3}} כמות {{lineItemQuantity3}}, {{lineItemName4}} כמות {{lineItemQuantity4}}",
+          "five_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} כמות {{lineItemQuantity1}}, {{lineItemName2}} כמות {{lineItemQuantity2}}, {{lineItemName3}} כמות {{lineItemQuantity3}}, {{lineItemName4}} כמות {{lineItemQuantity4}}, {{lineItemName5}} כמות {{lineItemQuantity5}}",
+          "six_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} בכמות {{lineItemQuantity1}}, {{lineItemName2}} בכמות {{lineItemQuantity2}}, {{lineItemName3}} בכמות {{lineItemQuantity3}}, {{lineItemName4}} בכמות {{lineItemQuantity4}}, {{lineItemName5}} בכמות {{lineItemQuantity5}}, {{lineItemName6}} בכמות {{lineItemQuantity6}}",
+          "six_and_more_products_accessibility_label": "ההזמנה כוללת {{lineItemName1}} כמות {{lineItemQuantity1}}, {{lineItemName2}} כמות {{lineItemQuantity2}}, {{lineItemName3}} כמות {{lineItemQuantity3}}, {{lineItemName4}} כמות {{lineItemQuantity4}}, {{lineItemName5}} כמות {{lineItemQuantity5}}, {{lineItemName6}} כמות {{lineItemQuantity6}} ועוד",
+          "view_order_details": "הצג פרטי הזמנה",
+          "previous": "קודם",
+          "next": "הבא"
+        },
+        "items": {
+          "one": "{{count}} פריט",
+          "other": "{{count}} פריטים"
+        }
+      }
     },
     "order_details": {
       "shipment_timeline": {
@@ -2033,6 +2207,84 @@
     },
     "privacy_banner": {
       "cookie_preferences_link": "העדפות קובצי Cookie"
+    },
+    "account_information": {
+      "profile_card": {
+        "cancel_accessibility_label": "ביטול עריכת פרופיל",
+        "edit": "ערוך",
+        "edit_accessibility_label": "ערוך פרופיל",
+        "email_help_text": "לא ניתן לערוך אימייל",
+        "editable_email_help_text": "כתובת דוא\"ל זו משמשת לכניסה ולעדכוני הזמנות.",
+        "first_name": "שם פרטי",
+        "last_name": "שם משפחה",
+        "email": "דוא\"ל",
+        "no_name_provided_accessibility_label": "לא נוסף שם",
+        "phone_number_help_text": "לא ניתן לערוך את מספר הטלפון",
+        "save": "שמור",
+        "save_accessibility_label": "שמירת פרופיל",
+        "title": "פרופיל",
+        "errors": {
+          "name_too_long": "{{fieldName}} ארוך מדי (מקסימום 255 תווים)",
+          "name_cannot_contain_url": "{{fieldName}} לא יכול להכיל כתובת אתר (URL)",
+          "name_cannot_contain_html_tags": "{{fieldName}} לא יכול להכיל תגי HTML",
+          "email_cant_be_blank": "אימייל לא יכול להיות ריק",
+          "invalid_email_format": "הזן אימייל תקין"
+        }
+      },
+      "verify_current_email_modal": {
+        "cancel_button": "ביטול",
+        "cancel_button_accessibility_label": "ביטול עריכת פרופיל",
+        "description": "הזן את הקוד בן 6 הספרות שנשלח למייל המקורי שלך:",
+        "email_resend_button_accessibility_label": "שלח/י קוד אימות מחדש",
+        "title": "אמת/אשר שזה אתה",
+        "verify_button": "הבא",
+        "verify_button_accessibility_label": "אמת את כתובת הדוא\"ל הנוכחית שלך"
+      },
+      "verify_new_email_modal": {
+        "title": "אמת את כתובת הדוא\"ל החדשה שלך",
+        "description": "כעת, הזן את קוד בן 6 הספרות שנשלח לכתובת הדוא\"ל החדשה שלך:",
+        "one_time_password_label": "קוד בן 6 ספרות",
+        "email_resend_button": "שלח קוד מחדש",
+        "email_resend_button_accessibility_label": "שלח/י קוד אימות מחדש",
+        "verify_button": "וודא",
+        "verify_button_accessibility_label": "אמת סיסמה חד-פעמית",
+        "cancel_button": "ביטול",
+        "cancel_button_accessibility_label": "ביטול עריכת פרופיל",
+        "email_resend_button_success_toast_message": "קוד האימות נשלח",
+        "email_resend_button_failure_banner_message": "לא ניתן לשלוח קוד אימות"
+      },
+      "marketing_preferences": {
+        "email_label": "דוא\"ל",
+        "pending_confirmation": "לחצו על הקישור במייל כדי לאשר.",
+        "resend_email": "שלח/י אימייל מחדש",
+        "resend_email_success": "הקישור נשלח",
+        "title": "העדפות שיווקיות",
+        "unsubscribe_confirmation": {
+          "cancel": "ביטול",
+          "description": "<span dir=\"rtl\">לא תקבל יותר דיוורים מ-{{shopName}}</span>",
+          "title": "לבטל הרשמה למיילים?",
+          "unsubscribe": "הסר מנוי"
+        },
+        "update_error": {
+          "description": "הייתה בעיה בעדכון העדפות השיווק שלך. נסה לרענן את הדף או לבדוק את חיבור האינטרנט שלך."
+        },
+        "update_success": "העדפות השיווק עודכנו בהצלחה"
+      },
+      "email_update_success_modal": {
+        "title": "אמת אימייל",
+        "description": "האימייל עודכן בהצלחה. מועבר לעמוד ההתחברות."
+      },
+      "profile_update_confirmation_message": "הפרופיל עודכן",
+      "email_update_confirmation_message": "האימייל עודכן לכתובת {{email}}",
+      "title": "פרופיל",
+      "people": {
+        "pagination": {
+          "load_more": "הצג עוד",
+          "load_more_accessibility_label": "הצג אנשים נוספים",
+          "loading_accessibility_label": "טוען אנשים"
+        }
+      },
+      "add_button": "הוסף"
     }
   }
 }
