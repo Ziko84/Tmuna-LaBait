@@ -614,5 +614,135 @@
         }
       }
     }
+  },
+  "customer_accounts": {
+    "ui_components": {
+      "processing": "מעבד…",
+      "increase": "הגדל את {{type}}",
+      "decrease": "הפחת {{type}}",
+      "minimumReached": "מינימום של {{value}} הושג",
+      "maximumReached": "{{value}} מירבי הושג",
+      "january": "ינואר",
+      "february": "פברואר",
+      "march": "מרץ",
+      "april": "אפריל",
+      "may": "מאי",
+      "june": "יוני",
+      "july": "יולי",
+      "august": "אוגוסט",
+      "september": "ספטמבר",
+      "october": "אוקטובר",
+      "november": "נובמבר",
+      "december": "דצמבר",
+      "monday": "יום שני",
+      "tuesday": "יום שלישי",
+      "wednesday": "יום רביעי",
+      "thursday": "יום חמישי",
+      "friday": "יום שישי",
+      "saturday": "שבת",
+      "sunday": "יום ראשון",
+      "mondayAbbreviation": "מו",
+      "tuesdayAbbreviation": "אתה",
+      "wednesdayAbbreviation": "אנו",
+      "thursdayAbbreviation": "ה-",
+      "fridayAbbreviation": "יום ו'",
+      "saturdayAbbreviation": "סא",
+      "sundayAbbreviation": "סה\"כ",
+      "showNextMonth": "הצג חודש הבא, {{month}} {{year}}",
+      "showPreviousMonth": "הצג חודש קודם, {{month}} {{year}}",
+      "rangeStart": "תחילת טווח",
+      "inRange": "בטווח",
+      "rangeEnd": "סוף הטווח",
+      "autocompleteOptionsAvailable": {
+        "one": "{{count}} פריטים זמינים",
+        "other": "{{count}} פריטים זמינים"
+      },
+      "removeItem": "הסר את {{label}}",
+      "removeTag": "הסר תגית",
+      "mapClusterTitle": {
+        "one": "אשכול של {{number}} סמנים",
+        "other": "מקבץ של {{number}} סמנים"
+      },
+      "expandSheet": "הגדלה",
+      "qrCode": "קוד QR",
+      "addFile": "הוספת קובץ",
+      "dropzoneInvalidFileType": "סוג קובץ אינו נתמך",
+      "dropzoneDraggedOver": "גרור קובץ להעלאה",
+      "external": "פותח אתר חיצוני.",
+      "externalNewWindow": "פותח אתר חיצוני בחלון חדש.",
+      "loading": "טוען…",
+      "moneyLinesHeaderItem": "פריט",
+      "moneyLinesHeaderValue": "ערך",
+      "newWindow": "נפתח בחלון חדש.",
+      "productThumbnailQuantityLabel": "כמות",
+      "removeChip": "הסר פריט",
+      "reviewItemHeaderChangeValue": "שנה ערך",
+      "reviewItemHeaderSection": "סעיף",
+      "reviewItemHeaderValue": "ערך"
+    },
+    "profile_preview_bar": {
+      "badge_active": "פעיל",
+      "badge_draft": "טיוטה",
+      "badge_launches": "השקה ב-{{date}}",
+      "badge_paused": "מושהה",
+      "badge_scheduled": "נקבעה",
+      "badge_traffic": "{{percentage}} מהתעבורה",
+      "edit": "ערוך",
+      "exit_preview": "צא מתצוגה מקדימה",
+      "hide_bar_action": "הסתר סרגל",
+      "rollout_label": "השקה",
+      "customize_button": "התאמה אישית",
+      "hide_bar": "הסתר סרגל",
+      "navigate_to_admin": "נווט למנהל מערכת",
+      "close_preview": "סגור תצוגה מקדימה",
+      "previewing": "אתם צופים בתצוגה מקדימה של:",
+      "saved_at": "נשמר ב-{{date}} בשעה {{time}}",
+      "viewing": "אתה צופה ב:",
+      "not_available": "נתוני פרופיל לא זמינים",
+      "actions_button": "פעולות"
+    },
+    "active_inspector": {
+      "extension": {
+        "select": "בחר את התוסף בשם {{extensionName}}",
+        "unselect": "בטל את הבחירה בתוסף בשם {{extensionName}}",
+        "move_down": "העבר את התוסף למיקום הבא",
+        "move_up": "העבר את התוסף למיקום הקודם",
+        "remove": "הסר סיומת",
+        "move_down_tooltip": "עבור למיקום הבא",
+        "move_up_tooltip": "עבור למיקום קודם",
+        "remove_tooltip": "הסר"
+      }
+    },
+    "editor": {
+      "link_new_tab_confirmation": "לא ניתן לפתוח קישור זה בתוך העורך. הוא ייפתח בחלון חדש ({{resolved_to_link}}). לחץ על אישור כדי להמשיך."
+    },
+    "settings": {
+      "title": "הגדרות",
+      "loading_accessibility_message": "טוען דף הגדרות",
+      "log_out_everywhere": {
+        "title": "התנתק מכל המכשירים",
+        "description": "אם איבדת מכשיר או אם יש לך חששות אבטחה, צא/צאי מכל המכשירים כדי להבטיח את אבטחת חשבונך.",
+        "button": "התנתק מכל המכשירים",
+        "warning_message": "היציאה מהחשבון תחול גם במכשיר זה."
+      }
+    },
+    "shop_ads": {
+      "title": "מוצרים נוספים שאולי תאהב/י",
+      "subtitle": "זמין לזמן מוגבל",
+      "button": "חקור בחנות",
+      "previous_button": "קודם",
+      "next_button": "הבא"
+    },
+    "knowledge_base": {
+      "self_serve_returns": {
+        "enabled": "לקוחות יכולים לבקש ולנהל החזרות בעצמם.",
+        "disabled": "על הלקוחות לפנות לסוחר כדי לבקש החזרה."
+      }
+    },
+    "subscriptions": {
+      "update_payment_instrument": {
+        "title": "החלף אמצעי תשלום"
+      }
+    }
   }
 }
