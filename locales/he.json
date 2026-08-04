@@ -1407,7 +1407,147 @@
           "one": "הצג עוד %{count}",
           "other": "הצג עוד %{count}"
         },
-        "gift_card_code_label": "קוד כרטיס מתנה"
+        "gift_card_code_label": "קוד כרטיס מתנה",
+        "card_fields": {
+          "errors": {
+            "invalid": {
+              "verification_value": "הזן קוד אבטחה או CVV חוקי"
+            }
+          }
+        },
+        "simulated_checkout": "תצוגה מקדימה בקרוב",
+        "simulated_express_checkout": "ארנקים אינם זמינים בתצוגה המקדימה של העורך עקב האזור או הדפדפן שלך",
+        "vaulting_agreement_label": "שמירת פרטי התשלום שלי עם %{company} לתשלום מהיר יותר.",
+        "business_customer_vaulting_payment_label": "שמור אמצעי תשלום זה בקופה ואשר ל-%{company} לחייב אותו עבור רכישות עתידיות עבור מיקום זה. כל אנשי הקשר המשויכים למיקום זה יוכלו להשתמש באמצעי התשלום.",
+        "business_customer_with_bank_account_vaulting_payment_label": "שמור אמצעי תשלום זה בקופה ואשר ל-%{company} לחייב את חשבונך עבור רכישות עתידיות שתאשר למיקום זה, עד שתבטל. כל אנשי הקשר המשויכים למיקום זה יוכלו להשתמש באמצעי התשלום.",
+        "purchase_options_and_vaulting_agreement_label": "פריט אחד או יותר בעגלה שלך הוא רכישה עתידית או מנוי. בהמשך התשלום, הינך מאשר/ת ששיטת התשלום שלך תחויב באופן אוטומטי במחיר ובתדירות המפורטים בדף זה עד לסיומו או ביטולו. כל הביטולים כפופים ל%{cancellation_policy_label}.",
+        "purchase_options_cancellation_policy_label": "מדיניות ביטולים",
+        "use_different_credit_card_label": "השתמשו בכרטיס אחר",
+        "saved_credit_card": "כרטיס האשראי השמור שלך",
+        "saved_credit_card_info": "ארבע הספרות האחרונות",
+        "saved_credit_card_cvv_verification": "לצורך אימות, אנא הזן/הזיני את קוד האבטחה של כרטיס האשראי שלך.",
+        "saved_credit_card_actions": {
+          "edit": "ערוך",
+          "delete": "מחק"
+        },
+        "saved_credit_cards_modal": {
+          "view_all_label": "הצגת כל הכרטיסים השמורים",
+          "done": "בוצע",
+          "cancel": "ביטול"
+        },
+        "add_credit_card_modal": {
+          "title": "הוספת כרטיס",
+          "save": "שמור",
+          "cancel": "ביטול"
+        },
+        "delete_credit_card_modal": {
+          "title": "מחק כרטיס",
+          "confirmation": "האם אתה בטוח שברצונך למחוק את {{brandName}} שמסתיים ב-{{lastDigits}}?",
+          "cancel": "ביטול",
+          "delete": "מחק"
+        },
+        "edit_credit_card_modal": {
+          "title": "ערוך כרטיס",
+          "done": "בוצע",
+          "cancel": "ביטול",
+          "description": "באפשרותך לשנות את כתובת החיוב של הכרטיס בלבד.",
+          "fields": {
+            "default": "הגדר כברירת מחדל",
+            "card_number": "מספר כרטיס",
+            "expiry": "תאריך תפוגה",
+            "security_code": "קוד אבטחה",
+            "name": "שם על הכרטיס",
+            "billing": "לחתום על הצעת חוק"
+          }
+        },
+        "expired_cards_info": {
+          "one": "קיימים %{count} כרטיסים שפג תוקפם, אותם ניתן להציג ולערוך בחשבון שלך.",
+          "other": "קיימים %{count} כרטיסים שפג תוקפם, ואותם ניתן להציג ולערוך בחשבונך."
+        },
+        "local_payment_method_receiver_notice": "לאחר ביצוע ההזמנה, יישלחו אליך פרטי התשלום. אנא בצע/י את התשלום בכספומט או אונליין בתוך {{dueDays}} ימים.",
+        "order_edit_banner_title": "נדרש תשלום של {{amount_owed}}",
+        "order_edit_banner_subtitle": "ההזמנה שלך {{order_number}} עודכנה. עיין בשינויים, ולאחר מכן בצע תשלום כדי לאשר את ההזמנה שלך.",
+        "order_edit_banner_items_added": {
+          "one": "נוסף",
+          "other": "נוסף %{count}"
+        },
+        "order_edit_banner_items_removed": {
+          "in_full": "הוסר",
+          "with_quantities": "הוסר {{delta}} מתוך {{quantity}}"
+        },
+        "order_edit_banner_items_returned": {
+          "in_full": "הוחזר {{quantity}}",
+          "with_quantities": "הוחזרו {{delta}} מתוך {{quantity}}"
+        },
+        "order_edit_banner_items_return_line_item_removed": {
+          "in_full": "הוסר מהחזרה",
+          "with_quantities": "הוסר {{delta}} מהחזר"
+        },
+        "order_edit_banner_single_item_added": "נוסף",
+        "order_edit_banner_multiple_items_added": "נוסף {{amount}}",
+        "order_edit_banner_single_item_removed": "הוסר",
+        "order_edit_banner_multiple_items_removed": "הוסר {{amount}}",
+        "order_edit_banner_single_item_returned": "הוחזר",
+        "order_edit_banner_multiple_items_returned": "הוחזרו {{amount}}",
+        "order_edit_banner_single_item_return_line_item_removed": "הוסר מהחזרה",
+        "order_edit_banner_multiple_items_return_line_item_removed": "הוסר {{amount}} מההחזר",
+        "order_edit_banner_single_item_updated": "עודכן",
+        "order_edit_banner_updated_order_label": "הזמנה מעודכנת",
+        "order_edit_banner_previous_taxes_label": "מיסים קודמים:",
+        "order_edit_banner_new_taxes_label": "מיסים חדשים:",
+        "order_edit_banner_no_taxes_label": "אין",
+        "gift_card_wrapper": {
+          "heading": "גיפט קארד",
+          "apply_gift_card_label": "החלת גיפט קארד",
+          "apply_another_gift_card_label": "החל/י כרטיס מתנה נוסף",
+          "gift_card_label": "כרטיס מתנה %{identifier}",
+          "payment_tag": "גיפט קארד",
+          "add_label": "הוספת כרטיס מתנה",
+          "manage_label": "נהל כרטיסי מתנה"
+        },
+        "gift_card_store_credit": {
+          "add_label": "הוספת כרטיס מתנה או זיכוי לחנות",
+          "manage_label": "ניהול גיפט קארדס או זיכויים לחנות"
+        },
+        "gift_card_checkbox_label": "החלת כרטיס מתנה",
+        "custom_onsite_payment_method_modal": {
+          "title": "אישור תשלום מותאם אישית באתר"
+        },
+        "markets_pro_disclaimer_label": "בביצוע ההזמנה אתה מסכים לרכוש מ-Global-e כסוחר הרשום, בכפוף ל-%{markets_pro_terms} ול-%{privacy_policy} של Global-e, ולשתף את המידע שלך עם %{shop_name}.",
+        "markets_pro_disclaimer_terms_and_conditions": "תנאים והגבלות",
+        "markets_pro_disclaimer_privacy_policy": "מדיניות פרטיות",
+        "markets_pro_disclaimer_terms_and_conditions_title": "תנאים והגבלות של ספק רשום",
+        "markets_pro_disclaimer_privacy_policy_title": "מדיניות פרטיות של סוחר ראשי",
+        "purchase_order_number": {
+          "title": "מספר הזמנת רכש",
+          "label": "מספר הזמנת רכש (אופציונלי)"
+        },
+        "alternative_payment_currency_total_notice": "הערה: תחויב/ת בסך %{amount_due}.",
+        "alternative_payment_currency_total_manual_payment_notice": "הערה: הסכום הכולל שהומר הוא %{amount_due}.",
+        "alternative_payment_currency_total_notice_disclosure": "%{shop_name} מעבד תשלומים ב- %{shop_currency} (%{amount_due}).",
+        "alternative_payment_currency_total_manual_payment_notice_disclosure": "אתה משלם ל-%{shop_name} ב-%{shop_currency} (%{amount_due}).",
+        "waiting_on_taxes_message": "אם המיסים שלך לא יחושבו בתוך השניות הקרובות, רענן/י את הדף.",
+        "waiting_on_taxes_notice": "חישוב מסים",
+        "payment_method": "אמצעי תשלום",
+        "payment_method_rollup_accessibility_label": "אפשרויות אמצעי תשלום",
+        "expired_payment_method": "אמצעי התשלום שנבחר פג תוקף",
+        "payment_method_update_failed": "עדכון אמצעי התשלום נכשל.",
+        "payment_method_incompatible_with_payment_terms": "אמצעי התשלום אינו תואם את תנאי התשלום.",
+        "proposed_gateway_unavailable": "שער התשלום המוצע אינו זמין",
+        "pay_in_installments_split_pay_short": "4 תשלומים של %{amount}",
+        "gift_cards_unavailable": "לא ניתן להחיל עוד את כרטיס המתנה שלך על הזמנה זו והוא הוסר",
+        "payment_flexibility_terms_id_mismatch": "אי-התאמה של מזהה תנאי גמישות תשלום",
+        "payment_option": {
+          "accessibility_label": "בחר אפשרות תשלום"
+        },
+        "bank_account_type": {
+          "checking": "בדיקה",
+          "savings": "חסכונות"
+        },
+        "new_bank_account_disclaimer": "בביצוע ההזמנה, הנך מאשר/ת ל-%{shop_name} לחייב את החשבון המפורט להלן באמצעות חיוב ACH בסכום ובזמן המוצגים.",
+        "bank_account_disclaimer": "תשלומי ACH עשויים להימשך עד 4 ימי עסקים.",
+        "bank_account_choose": "בחר חשבון כדי להשלים באופן מאובטח את הרכישה",
+        "bank_account_connect_another": "קשר חשבון בנק אחר"
       },
       "payment_errors": {
         "order_total_changed": ".סכום ההזמנה שלך השתנה. אנא בדוק/בדקי ונסה/נסי שוב",
