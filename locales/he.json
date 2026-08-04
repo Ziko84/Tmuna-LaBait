@@ -1933,6 +1933,57 @@
         "modal_po_number_input_max_length_error": "מספרי הזמנות רכש יכולים להכיל לכל היותר {{maxLength}} תווים.",
         "save": "שמור",
         "title": "הזמנת רכש מס' {{poNumber}}"
+      },
+      "account_information": {
+        "company_card_name_label": "שם חברה",
+        "company_card_section_accessibility_label": "חֶבְרָה"
+      },
+      "locations": {
+        "contact_contact": "יצירת קשר",
+        "contact_email": "דוא\"ל",
+        "contact_list_title": "אנשים",
+        "contact_name": "שם",
+        "contact_permissions": "הרשאות",
+        "contact_phone_number": "מספר טלפון",
+        "location_picker_label": "שם מיקום",
+        "location_picker_accessibility_label": "שם מיקום: {{locationName}}",
+        "net_payment_terms_description": "{{name}}: תשלומים שישולמו בתוך {{numberOfDays}} ימים",
+        "deposit_percentage": "{{percentage}} פיקדון",
+        "own_role_contact_name": "אתה",
+        "pagination": {
+          "load_more": "הצג עוד",
+          "load_more_accessibility_label": "הצג מיקומים נוספים"
+        },
+        "payment_details_title": "פרטי תשלום",
+        "payment_terms": "תנאי תשלום",
+        "permissions_label": "ההרשאות שלך",
+        "permissions_title": "הרשאות",
+        "section_title": "מיקום",
+        "shipping_address_required": "הוסף כתובת למשלוח למיקום זה כדי להתחיל לבצע הזמנות",
+        "staff_and_permissions_title": "צוות והרשאות",
+        "tax_details_title": "פרטי מס",
+        "tax_id": "מספר זיהוי מס",
+        "tax_exemptions": "פטורים ממס",
+        "multiple_tax_exemptions": "{{taxExemptionsCount}} נוספים",
+        "multiple_tax_exemptions_and": "וכן",
+        "tax_exemptions_modal_close": "סגור",
+        "taxes_none": "אין",
+        "tax_exemption_not_applicable": "לא זמין",
+        "tax_exemptions_modal_button_accessibility_label": "הצג את כל פטורי המס"
+      },
+      "location_selection": {
+        "continue_to_store": "המשך לאחסן",
+        "description": "אם יש לך פריטים בעגלת הקניות, שינוי מיקום עשוי להשפיע על מחירי ועל כמויות הפריטים בעגלה.",
+        "description_switch_later": "תמיד אפשר לשנות את זה מאוחר יותר",
+        "error_loading_locations": "אירעה שגיאה בטעינת המיקומים. בדקו את חיבור האינטרנט ונסו שוב.",
+        "list_accessibility_label": "רשימת מיקומים",
+        "list_item_without_address_accessibility_label": "{{name}}: אין כתובת",
+        "list_loading_accessibility_message": "טוען רשימת מיקומים",
+        "list_loading_address_accessibility_message": "טוען כתובת עבור {{locationName}}",
+        "list_loading_finished_accessibility_message": "רשימת המיקומים נטענה",
+        "loading_store_accessibility_message": "הולך לחנות",
+        "no_location_title": "הזמנות אישיות בלבד",
+        "no_location_description": "אין לך עוד הרשאה לבצע הזמנות עבור {{company}}. עדיין באפשרותך לבצע הזמנות אישיות."
       }
     },
     "errors": {
@@ -2285,6 +2336,81 @@
         }
       },
       "add_button": "הוסף"
+    },
+    "addresses": {
+      "edit_section_accessibility_label": "ערוך את {{address}}",
+      "edit_modal_title": {
+        "default": "עריכת כתובת",
+        "billing": "ערוך כתובת לחיוב",
+        "shipping": "עריכת כתובת למשלוח"
+      },
+      "loading_accessibility_message": "כתובת טעינה",
+      "loading_addresses_accessibility_message": "טוען כתובות",
+      "loading_billing_accessibility_message": "טוען כתובת לחיוב",
+      "loading_finished_accessibility_message": "דף חדש של כתובות נטען",
+      "loading_shipping_accessibility_message": "טוען כתובת למשלוח",
+      "pagination": {
+        "load_more": "הצג עוד",
+        "load_more_accessibility_label": "הצג כתובות נוספות"
+      },
+      "save_new_address_accessibility_label": "שמור כתובת",
+      "title": "כתובות",
+      "billing_address_dropdown_placeholder": "כתובת לחיוב"
+    },
+    "address_form": {
+      "attention": "תשומת לב",
+      "attention_company": "חברה/לידי",
+      "attention_help_text": "שם איש קשר או מחלקה",
+      "auto_complete_close_accessibility_label": "סגור הצעות",
+      "auto_complete_title": "הצעות",
+      "billing_address": "השתמש ככתובת לחיוב",
+      "cancel": "ביטול",
+      "cancel_accessibility_label": "ביטול עריכת כתובת {{address}}",
+      "creation_success_notification": "הכתובת נוספה",
+      "default_address": "זוהי כתובת ברירת המחדל שלי",
+      "default_address_creation_success_notification": "כתובת ברירת מחדל נוספה",
+      "default_address_update_success_notification": "הכתובת המשמשת כברירת מחדל עודכנה בהצלחה",
+      "loading_add_form_accessibility_message": "טוען טופס כתובת חדשה",
+      "loading_edit_form_accessibility_message": "טוען טופס עריכת כתובת",
+      "loading_form_accessibility_message": "טוען טופס כתובת",
+      "loading_finished_accessibility_message": "טופס הכתובת נטען.",
+      "save": "שמור",
+      "save_accessibility_label": "שמור כתובת {{address}}",
+      "section_title_accessibility_label": "הוסף כתובת",
+      "update_success_notification": "הכתובת עודכנה"
+    },
+    "account_menu": {
+      "signed_out_state": {
+        "sheet_title": "התחבר או צור חשבון",
+        "section_divider": "אפשרויות נוספות להתחברות",
+        "alternate_divider": "אוֹ",
+        "use_email_button": "השתמש/י בדוא\"ל במקום זאת",
+        "email_field_label": "דוא\"ל",
+        "orders_button": "הזמנות",
+        "profile_button": "פרופיל",
+        "shop_login_button": "התחבר/י עם Shop",
+        "continue_with_google": "המשך עם Google",
+        "continue_with_facebook": "המשך עם פייסבוק"
+      },
+      "signed_in_state": {
+        "greeting_with_name": "היי, {{first_name}}",
+        "greeting_without_name": "חשבון",
+        "orders_button": "הזמנות",
+        "profile_button": "פרופיל"
+      },
+      "location_picker": {
+        "sheet_title": "מיקומים",
+        "search_field_placeholder": "חיפוש"
+      },
+      "aria_labels": {
+        "close_menu": "סגור תפריט",
+        "back_to_main_menu": "חזרה לתפריט הראשי מ-{{title}}",
+        "open_submenu": "{{title}}, פותח תפריט משנה",
+        "loading_menu": "טוען תפריט",
+        "account": "חשבון",
+        "sign_in_with_email": "התחבר באמצעות אימייל",
+        "sign_in": "התחבר"
+      }
     }
   }
 }
