@@ -2209,6 +2209,70 @@
       "last_name": "שם משפחה",
       "body": "גוף",
       "signature": "כתובת"
+    },
+    "filters": {
+      "boolean": {
+        "false_label": "לא"
+      }
+    },
+    "search": {
+      "error": "אירעה שגיאה בטעינת תוצאות החיפוש. יש לרענן את העמוד או לנסות שוב מאוחר יותר.",
+      "sorting": {
+        "relevance": "רלוונטיות",
+        "price_ascending": "מחיר, נמוך לגבוה",
+        "price_descending": "מחיר, מהגבוה לנמוך"
+      }
+    },
+    "page_titles": {
+      "blog_or_article_with_error": "שגיאה - %{title}",
+      "products": "מוצרים",
+      "shopping_cart": "עגלת הקניות שלך",
+      "account": "חשבון",
+      "create_account": "צור חשבון",
+      "reset_account": "איפוס חשבון",
+      "addresses": "כתובות",
+      "order": "הזמנה %{name}",
+      "search": "חיפוש",
+      "search_results": {
+        "one": "חיפוש: %{count} תוצאות נמצאו עבור \"%{terms}\"",
+        "other": "חיפוש: %{count} תוצאות נמצאו עבור \"%{terms}\""
+      },
+      "collections": "אוספים",
+      "not_found": "404 לא נמצא",
+      "challenge": "אתגר",
+      "checkpoint": "מחסום"
+    },
+    "cart": {
+      "discounts_with_count": "%n הנחות יושמו"
+    },
+    "challenge": {
+      "message": "כדי להמשיך, אנא ודא שאינך רובוט.",
+      "error": ".התשובה שלך לא הייתה נכונה, אנא נסה שוב",
+      "submit_button_text": "שלח"
+    },
+    "checkpoint": {
+      "message": "פתור את הקפצ'ה כדי להמשיך",
+      "error": "אימות הקפצ'ה נכשל",
+      "submit_button_text": "שלח"
+    },
+    "store_availability": {
+      "pick_up_time": {
+        "one_hour": "בדרך כלל מוכן תוך שעה",
+        "two_hours": "בדרך כלל מוכן תוך שעתיים",
+        "four_hours": "בדרך כלל מוכן תוך 4 שעות",
+        "twenty_four_hours": "בדרך כלל מוכן תוך 24 שעות",
+        "two_to_four_days": "בדרך כלל מוכן תוך 2-4 ימים",
+        "five_or_more_days": "בדרך כלל מוכן בתוך 5+ ימים",
+        "zero_to_two_hours": "בדרך כלל מוכן תוך שעתיים",
+        "two_to_four_hours": "בדרך כלל מוכן תוך 4 שעות",
+        "immediately": "מוכן לאיסוף עכשיו",
+        "next_day": "מוכן לאיסוף ביום למחרת"
+      }
+    },
+    "subscriptions": {
+      "buyer_consent_product": "פריט זה הוא רכישה חוזרת או רכישה עם תשלום עתידי. על ידי המשך הפעולה, אני מסכים/ה ל-[%{cancellationPolicyLink}](% על ידי לחיצה כאן) ומאשר/ת לכם לחייב את אמצעי התשלום שלי במחירים, בתדירות ובתאריכים המפורטים בדף זה, עד למימוש הזמנתי או ביטולה, אם הדבר יתאפשר.",
+      "buyer_consent_cart": "אחד או יותר מהפריטים בעגלה שלך הוא רכישה חוזרת או רכישה עם תשלום עתידי. בלחיצה על 'המשך' אני מסכים/ה ל-[%{cancellationPolicyLink}](%{{cancellationPolicyLink}}) ומאשר/ת לחייב את אמצעי התשלום שלי במחירים, בתדירות ובתאריכים המפורטים בדף זה עד למילוי ההזמנה שלי או עד שאבטל אותה, אם מותר.",
+      "cancellation_policy": "מדיניות ביטולים"
     }
   },
   "customer_accounts": {
@@ -3135,7 +3199,8 @@
           "name_cannot_contain_html_tags": "{{fieldName}} לא יכול להכיל תגי HTML",
           "email_cant_be_blank": "אימייל לא יכול להיות ריק",
           "invalid_email_format": "הזן אימייל תקין"
-        }
+        },
+        "cancel": "ביטול"
       },
       "verify_current_email_modal": {
         "cancel_button": "ביטול",
@@ -3190,7 +3255,9 @@
           "loading_accessibility_label": "טוען אנשים"
         }
       },
-      "add_button": "הוסף"
+      "add_button": "הוסף",
+      "loading_accessibility_message": "טוען פרטי חשבון",
+      "loading_finished_accessibility_message": "פרטי החשבון נטענו"
     },
     "addresses": {
       "edit_section_accessibility_label": "ערוך את {{address}}",
@@ -3337,6 +3404,81 @@
           "invalid_code": "הזן את קוד בן 6 הספרות הנכון"
         }
       }
+    },
+    "callback": {
+      "try_again": "נסה שוב"
+    },
+    "date": {
+      "humanize": {
+        "lessThanOneHourAgo": {
+          "one": "{{count}} לפני דקה",
+          "other": "{{count}} דקות לפני כן"
+        },
+        "lessThanOneMinuteAgo": "הרגע",
+        "yesterday": "אתמול בשעה {{time}}",
+        "today": "היום בשעה {{time}}",
+        "tomorrow": "מחר בשעה {{time}}"
+      }
+    },
+    "enable_javascript": "כדי להציג את החשבון שלך, הפעל את JavaScript בהגדרות הדפדפן או היכנס באמצעות דפדפן אחר.",
+    "navigation_and_structure": {
+      "account_menu": {
+        "hide_accessibility_label": "הסתר תפריט חשבון",
+        "show_accessibility_label": "הצג תפריט חשבון",
+        "nav_accessibility_label": "ניווט בחשבון",
+        "open_menu_accessibility_label": "פתיחת חשבון ניווט",
+        "close_menu_accessibility_label": "סגור ניווט חשבון",
+        "label": "חשבון",
+        "loading_message": "טעינת ניווט חשבון"
+      },
+      "action_menu_accessibility_label": "פעולות נוספות",
+      "back_button_accessibility_label": "חזרה",
+      "go_to_store_link": "לך לחנות",
+      "orders_link_label": "הזמנות",
+      "subscriptions_link_label": "מינויים",
+      "close_menu_accessibility_label": "סגור ניווט ראשי",
+      "contact_email_subject": "פנייה מחנות האונליין {{shopName}}",
+      "contact_link": "פרטי התקשרות",
+      "delete_confirmation": {
+        "cancel": "ביטול",
+        "delete": "מחק"
+      },
+      "dismiss_toast": "בטל",
+      "document_title": "{{sectionName}} - {{shopName}} - חשבון",
+      "loading_message": "טוען",
+      "loading_policy_content_accessibility_label": "טוען תוכן מדיניות",
+      "loading_section_accessibility_label": "טוען את {{sectionName}}",
+      "policy_load_error": "לא ניתן היה לטעון את {{policyName}}",
+      "policy_try_again": "נסה שוב",
+      "log_out_link": "התנתק",
+      "logout_overlay_label": "מתנתק/ת...",
+      "nav_label_accessibility_label": "ניווט ראשי",
+      "navigation_accessibility_message": "נווטת אל {{sectionName}}",
+      "open_menu_accessibility_label": "פתח ניווט ראשי",
+      "shop_logo_accessibility_label": "לוגו של {{shopName}}",
+      "store_credit_accessibility_label": "{{formattedBalance}} זיכוי לחנות",
+      "store_credit_balances_list_accessibility_label": "יתרות זיכוי בחנות",
+      "store_credit_multi_currency_accessibility_label": {
+        "one": "{{formattedBalance}} ו-{{count}} זיכויים נוספים בחנות מטבעות",
+        "other": "{{formattedBalance}} ועוד {{count}} מטבעות באשראי חנות"
+      },
+      "settings_link": "הגדרות",
+      "country_switcher_toast_message": "המדינה השתנתה ל-{{countryName}}",
+      "switch_country": "החלף מדינה",
+      "no_countries_found": "לא נמצאו מדינות",
+      "location_switcher_toast_message": "המיקום שונה ל-{{locationName}}",
+      "switch_location": "שנה מיקום",
+      "no_locations_found": "לא נמצאו מיקומים",
+      "try_new_search": "נסה חיפוש חדש",
+      "view_details": "הצג פרטים",
+      "company_location": "מיקום החברה",
+      "search": "חיפוש",
+      "skip_to_content": "דלג לתוכן"
+    },
+    "announcement_bar": {
+      "expand_label": "הרחב את סרגל ההודעות",
+      "collapse_label": "כיווץ סרגל הודעות",
+      "close_label": "סגור סרגל הכרזות"
     }
   }
 }
