@@ -492,8 +492,100 @@
       },
       "line_item": {
         "item_status": {
-          "add_variant": "נוספו %{delta}"
+          "add_variant": "נוספו %{delta}",
+          "increment_item": "נוספו %{delta}",
+          "decrement_item": "הוסרו %{delta} מתוך %{total}",
+          "decrement_fulfilled_line_item": "הוחזרו %{delta} מתוך %{total}",
+          "decrement_return_line_item": "הוסר %{delta} מהחזר כספי"
         }
+      },
+      "order": {
+        "not_available": "ההזמנה אינה זמינה",
+        "financial_status": {
+          "authorized": "מורשה",
+          "pending": "ממתין/ה",
+          "paid": "שולם",
+          "unpaid": "לא שולם",
+          "voided": "בוטל",
+          "partially_paid": "שולם חלקית",
+          "partially_refunded": "החזר חלקי",
+          "refunded": "הוחזר",
+          "expired": "תוקף הסתיים"
+        },
+        "fulfillment_status": {
+          "fulfilled": "הושלם",
+          "complete": "הושלם",
+          "partial": "חלקי",
+          "unfulfilled": "לא ממומש",
+          "restocked": "מלאי חודש מחדש"
+        },
+        "transaction_status": {
+          "success": "הצלחה",
+          "pending": "ממתין/ה",
+          "failure": "כישלון",
+          "error": "שגיאה"
+        },
+        "cancel_reason": {
+          "declined": "תשלום נדחה",
+          "inventory": "פריטים אינם זמינים",
+          "fraud": "הזמנה כוזבת",
+          "customer": "לקוח שינה/ביטל הזמנה",
+          "staff": "טעות צוות",
+          "other": "אחר"
+        },
+        "cash_on_delivery": "מזומן בעת מסירה (COD)"
+      },
+      "cart": {
+        "not_found": "העגלה לא נמצאה",
+        "only_n_items_available": "ניתן להוסיף רק %{count} %{name} לעגלה.",
+        "too_many_items_in_cart": "אי אפשר להוסיף עוד %{name} לעגלה.",
+        "only_one_added_to_cart": "לצערנו נוסף פריט אחד בלבד לעגלת הקניות שלך עקב זמינות.",
+        "only_n_added_to_cart": "רק %{quantity} פריטים נוספו לעגלה עקב זמינות.",
+        "maximum_available_quantity_reached": "הכמות המקסימלית של פריט זה כבר נמצאת בסל הקניות שלך.",
+        "less_than_minimum": "לפריט זה מינימום %{min}.",
+        "more_than_maximum": "לפריט זה יש מקסימום של %{max}.",
+        "not_respect_step": "באפשרותך להוסיף פריט זה בכפולות של %{step} בלבד.",
+        "all_items_in_cart": "כל %{count} ה%\n{name} נמצאים בעגלה שלך.",
+        "empty_update": "לא ניתן לעדכן עגלה ריקה",
+        "missing_parameters": "אין מזהה או פרמטר שורה חוקיים",
+        "generic_error": "שגיאת עגלה",
+        "invalid_input": "הפרמטר %{parameter} אינו חוקי.",
+        "product_not_available": "המוצר אינו זמין",
+        "too_many_line_items_error": "העגלה שלך לא יכולה להכיל יותר מ־%{max} פריטים.",
+        "link_expired": "הקישור פג תוקף",
+        "link_no_longer_exists": "הקישור אינו קיים יותר.",
+        "stock_problems_html": "פריט אחד או יותר אינו זמין עוד. סיפקנו <a href=\"%{link}\">עגלה מעודכנת</a>.",
+        "changed": "העגלה שונתה",
+        "items_changed": "פריט אחד או יותר השתנו.",
+        "product_sold_out": "המוצר '%{name}' אזל מהמלאי.",
+        "variant_not_found": "לא ניתן למצוא גרסה",
+        "variant_requires_selling_plan": "לא ניתן לרכוש וריאנט זה ללא תוכנית מכירה.",
+        "selling_plan_not_available_for_company_locations": "רכישה חד פעמית זמינה עבור הזמנות B2B בלבד",
+        "digital_product_not_available_for_company_locations": "לא ניתן להוסיף פריט זה להזמנת B2B",
+        "buyer_cannot_purchase_for_company_locations": "אינך יכול לרכוש עבור מיקום זה",
+        "selling_plan_not_applicable": "לא ניתן להחיל תוכנית מכירה על וריאנט",
+        "shipping_address_not_required": "עגלה זו אינה דורשת משלוח",
+        "shipping_address_invalid": "הייתה בעיה בחישוב עלויות המשלוח שלך. המשך/המשיכי לתשלום כדי לבחור שיטת משלוח לפני השלמת הזמנתך.",
+        "bundle_requires_components": "לא ניתן להוסיף את מוצר החבילה '%{name}' לעגלה.",
+        "gift_card_with_components_not_supported": "לא ניתן להוסיף את מוצר החבילה '%{name}' לעגלה.",
+        "gift_card_price_must_be_greater_than_zero": "לא ניתן להוסיף את מוצר החבילה '%{name}' לעגלה.",
+        "gift_card_recipient_validation_error": "נמען כרטיס המתנה שצוין אינו חוקי",
+        "view_lines_limit_reached": "השורות צריכות להיות קצרות מ־%{limit} תווים או שוות למספר תווים זה",
+        "cart_too_large": "העגלה גדולה מדי.",
+        "cart_attributes_error": "מאפייני העגלה מכילים נתונים לא חוקיים.",
+        "merchandise_line_transformers": {
+          "run_error": "אירעה שגיאה בעגלת הקניות שלך."
+        },
+        "merchandise_not_applicable": "לא ניתן לרכוש את הפריט בתצורה זו."
+      },
+      "storefront": {
+        "invalid_password": "הסיסמה שגויה, אנא נסה שוב."
+      },
+      "tags": {
+        "add_articles": "צמצם את החיפוש למאמרים הכוללים גם את התגית %{tag}",
+        "add_products": "צמצום הבחירה למוצרים התואמים לתגית %{tag}",
+        "remove_articles": "הרחב את החיפוש למאמרים שאינם מתויגים כ-%{tag}",
+        "remove_products": "הסר תגית %{tag}"
       }
     },
     "checkout": {
@@ -1220,6 +1312,60 @@
         "remove_gift_card_label": "נקה כרטיס מתנה",
         "remove_discount_label": "הסר הנחה",
         "return_restocking_fee_label": "דמי חידוש מלאי"
+      }
+    },
+    "email_marketing": {
+      "subscribed": {
+        "confirmation": "תודה שנרשמת לרשימת התפוצה שלנו.",
+        "disclaimer": "תוכל/י לבטל את המנוי בכל עת.",
+        "unsubscribe": "הסר מנוי"
+      },
+      "unsubscribed": {
+        "confirmation": "ביטלת את הרישום שלך מרשימת התפוצה שלנו.",
+        "disclaimer": "לא תקבל/י מאיתנו יותר עדכונים שיווקיים. באפשרותך להירשם שוב בכל עת.",
+        "preview": "אתם מציגים תצוגה מקדימה של מה שהלקוחות יראו כשהם יבטלו את המנוי."
+      },
+      "sms_unsubscribe_confirm": {
+        "message": "האם אתה בטוח שברצונך לבטל את המנוי לשיווק באמצעות SMS?",
+        "button": "הסר מנוי"
+      },
+      "open_tracking": {
+        "opt_in": {
+          "opted_in_html": "<b>הפעלת מעקב אחר פתיחת הודעות אימייל.</b>",
+          "visibility": "שיעורי פתיחת האימיילים ידווחו באופן אנונימי. נוכל לראות אם פתחת אימייל רק כחלק משיעור פתיחת אימיילים מצרפי.",
+          "opt_out_html": "תוכל <a style=\"text-decoration:underline;\" href=\"%{link}\">לבטל</a> מעקב פתיחת אימייל אם אינך רוצה לשתף מידע זה.",
+          "preview_bar": "אתם צופים בתצוגה מקדימה של מה הלקוחות יראו כשהם יסכימו למעקב אחר פתיחת אימייל."
+        },
+        "opt_out": {
+          "opted_out_html": "<b>ביטלת את המעקב אחר פתיחת הודעות דוא\"ל.</b>",
+          "visibility": "לא נראה אם פתחתם את המיילים שלנו.",
+          "opt_in_html": "<a style=\"text-decoration:underline;\" href=\"%{link}\">הצטרף</a> למעקב אחר פתיחת אימייל.",
+          "preview_bar": "זוהי תצוגה מקדימה של מה שהלקוחות יראו כאשר יבחרו לבטל מעקב פתיחת אימייל."
+        },
+        "no_longer_track": {
+          "status_html": "<b>אנחנו לא עוקבים יותר אחר פתיחת הודעות אימייל.</b>",
+          "privacy_policy": "לאחר שליחת אימייל זה, עדכנו את מדיניות הפרטיות שלנו ואיננו עוקבים יותר אחר פתיחת אימיילים."
+        },
+        "track": {
+          "status_html": "<b>דיווח על פתיחת הודעות דוא\"ל.</b>",
+          "visibility": "נראה אם פתחת את המייל, כחלק משיעור הפתיחה הכולל של המיילים."
+        },
+        "updated_policy": {
+          "status_html": "<b>דיווח על פתיחת הודעות דוא\"ל.</b>",
+          "visibility": "עדכנו את המדיניות שלנו, וכעת אנו עוקבים אחר פתיחות מייל. שיעורי פתיחת המייל ידווחו באופן אנונימי. אנו נראה אם פתחת מייל רק כחלק משיעור פתיחת המיילים הכולל.",
+          "opt_out_html": "אם אינך רוצה לשתף מידע זה, תוכל/י <a style=\"text-decoration:underline;\" href=\"%{link}\">לבטל את הרישום.</a>"
+        }
+      }
+    },
+    "filters": {
+      "availability": {
+        "value": {
+          "in_stock": "במלאי",
+          "out_of_stock": "אזל מהמלאי"
+        }
+      },
+      "boolean": {
+        "true_label": "כן"
       }
     }
   },
