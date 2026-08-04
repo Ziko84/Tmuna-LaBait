@@ -2226,7 +2226,15 @@
     },
     "subscriptions": {
       "update_payment_instrument": {
-        "title": "החלף אמצעי תשלום"
+        "title": "החלף אמצעי תשלום",
+        "loading": "טוען אמצעי תשלום",
+        "no_payment_methods_available": "אין אמצעי תשלום זמינים",
+        "select_new_payment_method": "בחר אמצעי תשלום חדש",
+        "current_method": "נוכחי",
+        "cancel": "ביטול",
+        "save": "שמור",
+        "success": "אמצעי התשלום עודכן",
+        "use_new_payment_method": "+ השתמש באמצעי תשלום חדש"
       }
     },
     "orders": {
@@ -2918,6 +2926,52 @@
         "account": "חשבון",
         "sign_in_with_email": "התחבר באמצעות אימייל",
         "sign_in": "התחבר"
+      }
+    },
+    "intents": {
+      "subscription_replace_payment_method": {
+        "card_number": "מספר כרטיס",
+        "title": "החלף אמצעי תשלום",
+        "replace_with": "החלף ב-",
+        "add_new_payment_method": "הוסף חדש",
+        "save_button": "שמור",
+        "close_button": "סגור",
+        "loading": "טוען מודל החלפת אמצעי תשלום",
+        "success": "אמצעי התשלום עודכן",
+        "invalid_subscription_contract": "לא ניתן למצוא מנוי",
+        "expiry_date": "תוקף {{expiryDate}}",
+        "edit_current_payment_method": "ערוך אמצעי תשלום נוכחי",
+        "edit_selected_payment_method": "ערוך אמצעי תשלום נבחר"
+      }
+    },
+    "sign_in": {
+      "brand_logo_alt_text": "לוגו של %{shop_name}",
+      "processing": "מעבד…",
+      "step_one": {
+        "page_title": "התחבר - %{shop_name}",
+        "heading": "התחבר",
+        "subheading": "הזן את כתובת המייל שלך ואנו נשלח לך קוד אימות",
+        "subheading_with_sign_in_options": "התחבר או צור חשבון",
+        "input_field_label": "דוא\"ל",
+        "button": "המשך",
+        "or": "אוֹ",
+        "consent_agreement": "בכך שאתם ממשיכים, אתם מסכימים ל-%{terms}",
+        "last_used_pill": "שימוש אחרון"
+      },
+      "step_two": {
+        "page_title": "הזן קוד - %{shop_name}",
+        "heading": "הכנס קוד",
+        "subheading": "נשלח אל %{email}",
+        "change_email": "שנה",
+        "restart_link": "היכנס באמצעות אימייל אחר",
+        "input_field_label": "קוד בן 6 ספרות",
+        "button": "שלח"
+      },
+      "error": {
+        "invalid": {
+          "invalid_email": "הזן כתובת דוא\"ל חוקית",
+          "invalid_code": "הזן את קוד בן 6 הספרות הנכון"
+        }
       }
     }
   }
