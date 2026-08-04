@@ -1712,6 +1712,174 @@
         "confirm_order_button_label": "אשר הזמנה",
         "submit_order_button_label": "שלח הזמנה",
         "submit_for_review_button_label": "שלח לבדיקה"
+      },
+      "order_payment_collection": {
+        "changes_summary": {
+          "removed": "הוסר",
+          "subtracted": "הוסר %{count}",
+          "returned": "הוחזרו %{count}",
+          "return_line_item_removed": "הוסרו %{count} מההחזרות"
+        },
+        "additional_payment_requested": "נדרש תשלום בסך %{total_outstanding}",
+        "checkout_review_and_pay": "ההזמנה שלך %{order_name} עודכנה. עיין בשינויים, ולאחר מכן בצע את התשלום כדי לאשר את הזמנתך.",
+        "order_updated_on": "ההזמנה שלך עודכנה בתאריך %{last_edited_at}.",
+        "order_review_and_pay": "ההזמנה שלך עודכנה. יש לבדוק ולשלם כדי לאשר את ההזמנה שלך.",
+        "pay_now": "שלם עכשיו"
+      },
+      "change_currency": {
+        "currency_button_label": "%{currency} (%{currency_symbol})",
+        "credit_card_will_be_charged_html": "כרטיס האשראי שלך יחויב ב-%{amount}",
+        "payment_total_label": "סכום לתשלום",
+        "conversion_rate": "1 %{from_currency_code} = %{rate} %{to_currency_code}",
+        "change_currency_link": "שנה ל-%{currency_name}",
+        "card_provider_fx_charges_warning": "ספק הכרטיסים שלך עשוי לגבות עמלות על עסקאות ב-%{currency_code}.",
+        "currency_not_supported_by_shop": "המטבע שבחרת אינו זמין עוד. כל המחירים מוצגים כעת ב-%{currency_code}."
+      },
+      "change_country": {
+        "cart_updated_based_on_country": "עגלת הקניות שלך עודכנה בהתאם למדינת המשלוח.",
+        "cart_and_currency_updated_based_on_country": "העגלה והמטבע שלך עודכנו בהתאם למדינת המשלוח.",
+        "currency_updated_for_country": "המטבע עודכן עבור %{country}"
+      },
+      "change_cart_localization": {
+        "verify_shipping_address": "המדינה/אזור שלך עודכן. הזן את כתובת המשלוח שלך כדי להמשיך לתשלום."
+      },
+      "tips": {
+        "title": "הוסף טיפ",
+        "description": "הראו את תמיכתכם בקבוצה ב- %{shop_name}",
+        "presets_description": "בחר אחוז טיפ",
+        "custom_label": "טיפ בהתאמה אישית",
+        "add_tip": "הוסף טיפ",
+        "update_tip": "עדכון טיפ",
+        "message": "תודה, אנחנו מעריכים את זה.",
+        "preset_label": "%{tip_percent}%",
+        "no_tip_label": "אין",
+        "not_available_with_spi": "לא זמין עם תשלומים של Shop Pay"
+      },
+      "open_graph_meta_tag": {
+        "title_with_products": {
+          "zero": "רכוש את %{product_name}",
+          "one": "רכוש את %{product_name} ופריט %{count} נוסף",
+          "other": "רכוש את %{product_name} ופריטים אחרים (%{count})"
+        }
+      },
+      "subscriptions": {
+        "recurring_total_intervals": {
+          "day": {
+            "one": "יום",
+            "other": "%{count} ימים"
+          },
+          "week": {
+            "one": "שבוע",
+            "other": "%{count} שבועות"
+          },
+          "month": {
+            "one": "חודש",
+            "other": "%{count} חודשים"
+          },
+          "year": {
+            "one": "שנה",
+            "other": "%d שנים"
+          }
+        },
+        "recurring_totals": "%{total_price} כל %{interval}",
+        "recurring_totals_with_initial_order_shipping_discount": "תשלום ראשון %{total_price_with_discount}, לאחר מכן %{recurring_total}",
+        "recurring_totals_with_policies": {
+          "first_cycles": {
+            "one": "תשלום ראשון %{total_price}",
+            "other": "%{count} תשלומים ראשונים %{total_price} כל אחד"
+          },
+          "following_cycles": ", ואז %{total_price} כל %{interval}"
+        },
+        "recurring_totals_with_initial_order_shipping_discount_with_policies": {
+          "first_cycles": {
+            "one": ", ואז תשלום אחד עבור %{count} ב- %{total_price}",
+            "other": ", ואז %{count} תשלומים של %{total_price} כל אחד"
+          }
+        }
+      },
+      "customer_payment_methods": {
+        "page_title": "אמצעי תשלום",
+        "title": "אמצעי תשלום",
+        "update_card_button_label": "עדכן כרטיס",
+        "delete_customer_mandate": {
+          "generic_error": "אירעה שגיאה בעיבוד בקשתך.",
+          "success_message": "אמצעי התשלום שלך נמחק בהצלחה"
+        }
+      },
+      "throttle": {
+        "too_many_attempts": {
+          "message": "יותר מדי ניסיונות",
+          "description": "נסה שוב בעוד כמה דקות"
+        },
+        "line_to_check_out": "אתה בתור לקופה",
+        "cart_summary_heading": "העגלה שלך",
+        "merchandise": {
+          "available": "זמין",
+          "sold_out": "אזל מהמלאי"
+        },
+        "inventory": {
+          "partial_inventory_banner": "חלק מהפריטים בעגלה אזלו ולא יהיו זמינים לרכישה בקופה.",
+          "sold_out": {
+            "heading": "העגלה שלך אזלה מהמלאי",
+            "storefront_body": "חזור לחנות כדי להמשיך בקניות",
+            "no_storefront_body": "לרוע המזל, הפריט שברצונך לרכוש אינו זמין עוד.",
+            "link": "חזרה לחנות"
+          }
+        },
+        "title": "תור",
+        "time_to_checkout_title": "זמן לתשלום - {{shopName}}",
+        "estimated_wait_time": {
+          "calculating": "חישוב זמן המתנה משוער",
+          "less_than_one": "זמן ההמתנה המשוער: פחות מדקה",
+          "one": "זמן המתנה משוער: {{count}} דקה",
+          "other": "זמן המתנה משוער: {{count}} דקות"
+        },
+        "last_checked": "(נבדק לאחרונה: {{time}})",
+        "footer": {
+          "heading": "אל תרענן את הדף הזה, הוא יתעדכן אוטומטית.",
+          "body": "פריטים בעגלה אינם שמורים עד להשלמת התשלום."
+        }
+      },
+      "cart_checkout_validation": {
+        "runtime_error": "אירעה שגיאה בעיבוד הבקשה. יש ליצור קשר עם בעל החנות."
+      },
+      "no_address_location": {
+        "title": "מיקום ללא כתובת",
+        "header": "אין לך כתובת למשלוח עבור מיקום זה",
+        "alt_header": "כתובת למשלוח חסרה",
+        "message": "צור קשר כדי שנוכל להוסיף כתובת למיקום זה לצורך השלמת התשלום.",
+        "email_us_button_label": "שלח/י לנו מייל"
+      },
+      "order_errors": {
+        "creation_failure": "אירעה שגיאה ביצירת הזמנתך. אנא נסה שוב, או צור קשר לקבלת פרטים נוספים.",
+        "network_failure": "ההזמנה שלך לא התקבלה בגלל שגיאת רשת. בדוק/בדקי את החיבור ונסה/נסי שוב.",
+        "inventory_reservation_failure": "חלק מהפריטים אינם זמינים יותר."
+      },
+      "session_errors": {
+        "session_not_unique": "אירעה שגיאה בעיבוד ההזמנה שלך. רענן את העמוד כדי לחזור לחנות.",
+        "session_already_finished": "ההזמנה כבר הוגשה. באפשרותך לחזור לחנות כדי להתחיל הזמנה חדשה."
+      },
+      "artifact_errors": {
+        "artifact_dissatisfaction_without_violation": "אירעה שגיאה בעת עיבוד הזמנתך. אנא נסה שוב בעוד מספר דקות."
+      },
+      "pickup_point": {
+        "location_is_currently_closed": "סגור",
+        "business_hours": "שעות פתיחה",
+        "no_business_hours": "אין שעות פתיחה זמינות",
+        "open_twenty_four_hours": "פתוח 24/7",
+        "title": "נקודת איסוף",
+        "or": "אוֹ",
+        "search_button": "חיפוש",
+        "address_label": "כתובת",
+        "selector_tabs": "בורר נקודת איסוף",
+        "selector_tab_map": "מפה",
+        "selector_tab_list": "רשימה",
+        "could_not_resolve_address": "הכתובת שלך לא אותרה. נסה/נסי שוב או השתמש/השתמשי בכתובת אחרת",
+        "no_pickup_points_near_you": "לא נמצאו נקודות איסוף בקרבת הכתובת שנבחרה",
+        "no_pickup_points_near_location": "לא נמצאו נקודות איסוף בקרבת מיקומך.",
+        "pickup_unavailable_banner_title": {
+          "one": "אין נקודות איסוף זמינות עבור הפריט שלך"
+        }
       }
     }
   },
@@ -2046,7 +2214,12 @@
     "B2B": {
       "payment_methods": {
         "payment_details": {
-          "draft_label": "טיוטת הזמנה {{name}}"
+          "draft_label": "טיוטת הזמנה {{name}}",
+          "order_label": "הזמן {{name}}"
+        },
+        "payment_delete": {
+          "description_without_replacement": "שיטת תשלום זו לא תהיה זמינה יותר לרכישות עתידיות ממיקום זה.",
+          "description_with_replacement": "מחיקת אמצעי תשלום זה תשפיע על תשלומים מורשים מראש עבור מיקום זה. החלף אותו באמצעי תשלום חלופי כדי להמשיך לקבל הזמנות עתידיות."
         }
       },
       "purchase_order_number": {
@@ -2113,7 +2286,144 @@
         "list_loading_finished_accessibility_message": "רשימת המיקומים נטענה",
         "loading_store_accessibility_message": "הולך לחנות",
         "no_location_title": "הזמנות אישיות בלבד",
-        "no_location_description": "אין לך עוד הרשאה לבצע הזמנות עבור {{company}}. עדיין באפשרותך לבצע הזמנות אישיות."
+        "no_location_description": "אין לך עוד הרשאה לבצע הזמנות עבור {{company}}. עדיין באפשרותך לבצע הזמנות אישיות.",
+        "no_locations_found": "לא נמצאו מיקומים",
+        "search": "חפש מיקומים",
+        "search_location_title": "בחר מיקום",
+        "selection_cancel_button": "ביטול",
+        "selection_confirmation_button": "בחר מיקום",
+        "selection_continue_button": "המשך",
+        "title": "לאיזה מיקום אתה קונה?",
+        "title_choose_location": "בחר מיקום",
+        "clear_search": "נקה חיפוש",
+        "try_new_search": "נסה חיפוש חדש"
+      },
+      "addresses": {
+        "add_billing_address_button": "הוסף כתובת לחיוב",
+        "add_billing_address_section_accessibility_label": "הוסף כתובת לחיוב",
+        "add_shipping_address_button": "הוספת כתובת למשלוח",
+        "add_shipping_address_section_accessibility_label": "הוספת כתובת למשלוח",
+        "billing_address_card_title": "כתובת לחיוב",
+        "no_billing_address_banner": "לא הוזנה כתובת לחיוב",
+        "cancel_adding_billing_address_accessibility_label": "בטל הוספת כתובת לחיוב",
+        "cancel_adding_shipping_address_accessibility_label": "בטל הוספת כתובת למשלוח",
+        "save_new_billing_address_accessibility_label": "שמור כתובת לחיוב",
+        "save_new_shipping_address_accessibility_label": "שמור כתובת למשלוח",
+        "shipping_address_card_title": "כתובת למשלוח"
+      },
+      "orders": {
+        "draft_order_list": {
+          "hide_all": "הסתר הכל",
+          "show_all": "הצג הכל",
+          "hide_all_accessibility_label": "הסתר את כל ההזמנות בבדיקה",
+          "show_all_accessibility_label": "הצג את כל ההזמנות בבדיקה",
+          "show_all_orders_in_review": "הצג את כל ההזמנות בבדיקה",
+          "show_less_orders_in_review": "הצג פחות הזמנות בבדיקה",
+          "title": "ממתין/ה",
+          "pending_tab_accessibility_label": {
+            "no_pending_orders": "אין לך הזמנות ממתינות",
+            "pending_orders": {
+              "one": "יש לך {{count}} הזמנות ממתינות",
+              "other": "יש לך {{count}} הזמנות ממתינות"
+            },
+            "more_than_pagination_length": "יש לך יותר מ-{{count}} הזמנות ממתינות"
+          },
+          "pending_orders_count_more_than_pagination_length": "{{count}}+",
+          "pagination": {
+            "nav_accessibility_label": "לחצני ניווט של הזמנות בבדיקה"
+          }
+        },
+        "order_list_column_headers_location": "מיקום",
+        "order_list_column_headers_contact": "יצירת קשר",
+        "order_list_column_headers_status": "סטטוס",
+        "removed_company_contact_tooltip": "הוסר מהחברה"
+      },
+      "draft_order_details": {
+        "draft_order_subtitle": "אושר ב-{{date}} מההזמנה {{draftOrderName}}",
+        "loading": "טוען פרטי הזמנה",
+        "loading_finished_accessibility_message": "פרטי הזמנה נטענו",
+        "payment_status": {
+          "pending": {
+            "banner_overdue": {
+              "one": "התשלום שלך באיחור של {{count}} ימים",
+              "other": "התשלום שלך באיחור של {{count}} ימים"
+            },
+            "banner_due": {
+              "one": "התשלום שלך מגיע בעוד {{count}} יום",
+              "other": "התשלום שלך מגיע בעוד {{count}} ימים"
+            },
+            "banner_due_today": "התשלום שלך מגיע היום",
+            "banner_due_today_for_multiple_fulfillments": "תשלום מגיע היום עבור {{count}} מילויים",
+            "banner_overdue_for_multiple_fulfillments": "תשלום על {{count}} הזמנות שבוצעו",
+            "title": "תשלום במועד",
+            "title_with_date": "תאריך יעד לתשלום: {{date}}",
+            "title_due_on_receipt": "התשלום עדיין לא הגיע מועד פירעונו",
+            "title_due_on_fulfillment": "התשלום מגיע עם המסירה",
+            "description_overdue": "התשלום שלך באיחור.",
+            "description_partially_paid": "ההזמנה שולמה חלקית. נותרה יתרה לתשלום.",
+            "description_authorized": "אמצעי התשלום שלך יחויב במועד האחרון לתשלום, או שבאפשרותך לשלם עכשיו.",
+            "description_waiting_for_manual_payment": "להזמנה זו יש תשלום ממתין. היתרה תתעדכן עם קבלת התשלום.",
+            "description_due_on_receipt": "חשבונית תישלח אליך במועד התשלום.",
+            "description_due_on_receipt_partially_paid": "הזמנה זו שולמה חלקית. נותרה לך יתרה לתשלום. תקבל חשבונית כשהתשלום יגיע.",
+            "description_due_on_fulfillment": "התשלום יבוצע עם אספקת כל הפריטים בהזמנה זו.",
+            "description_due_on_fulfillment_partially_paid": "ההזמנה הזו שולמה חלקית. נותרה יתרה לתשלום. התשלום יבוצע במלואו לאחר שכל הפריטים בהזמנה זו יסופקו.",
+            "description_due_on_fulfillment_partially_paid_next": "ההזמנה שולמה חלקית. נותרה יתרה לתשלום."
+          },
+          "draft": {
+            "description": "פרטי התשלום יסוכמו כשההזמנה תאושר.",
+            "title": "תשלום טרם נדרש",
+            "in_review": {
+              "description": "פרטי התשלום יסוכמו כשההזמנה תאושר.",
+              "title": "תשלום טרם נדרש"
+            },
+            "submitted": {
+              "description": "יש לשלם כדי לאשר הזמנה זו.",
+              "title": "שלם כדי לאשר",
+              "deposit": {
+                "title": "התשלום מגיע",
+                "due_later": "היתרה היא בתנאי {{translatedName}} ותשולם עד {{dueDate}}.",
+                "due_on_fulfillment": "היתרה לתשלום עם השלמת כל הפריטים בהזמנה זו.",
+                "due_on_receipt": "תקבל/י חשבונית עבור היתרה לתשלום.",
+                "due_on_date": "היתרה לתשלום ב-{{dueDate}}."
+              }
+            },
+            "deposit": {
+              "due_later": "{{depositAmount}} ישולם עם אישור ההזמנה. היתרה תהיה בתנאי {{translatedName}}.",
+              "due_on_fulfillment": "{{depositAmount}} ישולם עם אישור ההזמנה. היתרה תשולם עם השלמת ההזמנה.",
+              "due_on_receipt": "{{depositAmount}} ישולם עם אישור ההזמנה שלך. היתרה תשולם במועד מאוחר יותר.",
+              "due_on_date": "{{depositAmount}} ישולם עם אישור הזמנתך. יתרת התשלום תשולם ב-{{dueDate}}."
+            }
+          },
+          "paid": {
+            "title": "שולם",
+            "title_with_date": "שולם ב-{{date}}",
+            "description": "ההזמנה שלך שולמה במלואה."
+          },
+          "refund": {
+            "title": "הוחזר",
+            "title_with_date": "הוחזר {{date}}",
+            "description_full_refund": "קבלת החזר מלא עבור הזמנה זו.",
+            "description_single_refund": "קיבלת החזר חלקי עבור הזמנה זו.",
+            "description_multiple_refunds": "קיבלת החזרים חלקיים עבור הזמנה זו."
+          },
+          "canceled": {
+            "title": "התשלום בוטל",
+            "description": "לא חויבת."
+          },
+          "due_date": "תאריך יעד {{date}}",
+          "total_balance": "יתרה כוללת",
+          "pay_now": "שלם עכשיו",
+          "pay_now_accessibility_label": "שלם עכשיו עבור הזמנה {{orderName}}",
+          "title": "סטטוס תשלום"
+        },
+        "order_timeline": {
+          "expand_events_label": "הצג פרטים",
+          "expand_events_accessibility_label": "הצג פרטי הזמנת עבודה",
+          "hide_events_label": "הסתר פרטים",
+          "hide_events_accessibility_label": "הסתר פרטי הזמנת טיוטה"
+        },
+        "subtitle": "נשלח ב-{{date}}",
+        "title": "הזמן {{name}}"
       }
     },
     "errors": {
