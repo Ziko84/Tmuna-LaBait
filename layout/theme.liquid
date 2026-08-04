@@ -849,39 +849,6 @@
       .story-banner {
         position: relative;
       }
-      /* Neumorphic (soft-UI) banner surface: the section reads as a single
-         piece extruded out of the page rather than a flat band. Two opposing
-         shadows do the work - a near-white one up and to the left where the
-         light comes from, a warm grey one down and to the right where it
-         falls away - tinted off the page background (#f7f5f2) rather than
-         pure black/white so the "material" stays the same colour family.
-         The inline margin is what makes this legible at all: these sections
-         are full-width by default, and an extrusion with no space around it
-         has no edge to cast onto. overflow: hidden keeps the artwork inside
-         the rounded corners. */
-      .hero,
-      .media-with-content,
-      .story-banner {
-        border-radius: 28px;
-        overflow: hidden;
-        margin-inline: 24px;
-        margin-block: 12px;
-        box-shadow:
-          -14px -14px 30px rgba(255, 255, 255, 0.95),
-          16px 16px 34px rgba(190, 180, 166, 0.5);
-      }
-      @media screen and (max-width: 749px) {
-        .hero,
-        .media-with-content,
-        .story-banner {
-          border-radius: 18px;
-          margin-inline: 12px;
-          margin-block: 8px;
-          box-shadow:
-            -8px -8px 18px rgba(255, 255, 255, 0.92),
-            10px 10px 22px rgba(190, 180, 166, 0.45);
-        }
-      }
       .hero::after,
       .media-with-content::after,
       .story-banner::after,
