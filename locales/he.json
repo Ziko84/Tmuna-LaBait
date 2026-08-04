@@ -1340,6 +1340,126 @@
           "other": "הצג עוד %{count}"
         },
         "gift_card_code_label": "קוד כרטיס מתנה"
+      },
+      "payment_errors": {
+        "order_total_changed": ".סכום ההזמנה שלך השתנה. אנא בדוק/בדקי ונסה/נסי שוב",
+        "payment_processing": "לא ניתן לעבד את התשלום שלך עקב בעיות טכניות. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "payment_processing_no_retry": "לא ניתן לעבד את התשלום שלך עקב תקלה טכנית. נסה אמצעי תשלום אחר.",
+        "paypal_zero_amount": "אינך יכול/ה להשתמש ב-PayPal עבור הזמנות בסך %{amount}. אשר/י שההזמנה שלך נכונה ובצע/י צ'ק אאוט ללא PayPal.",
+        "paypal_invalid_token": "PayPal לא היה זמין. נסה שוב או השתמש באפשרות תשלום אחרת.",
+        "pay_later_failed": "אירעה שגיאה בעיבוד התשלום שלך באמצעות 'שלם מאוחר יותר'. בחר/י אמצעי תשלום אחר ונסה/י שוב.",
+        "three_d_secure_failed": "התשלום שלך לא אושר. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "three_d_secure_failed_duplicate": "אימות 3D Secure של כרטיס האשראי נכשל מכיוון שאימות אחר כבר בתהליך.",
+        "three_d_secure_failed_payment_method": "לא ניתן היה לאמת את הכרטיס שלך. נסה שוב או הוסף כרטיס אחר.",
+        "three_d_secure_throttled": "יותר מדי ניסיונות; יש להמתין לפני ניסיון נוסף",
+        "subscription_agreement_blank": "על מנת לרכוש מנוי, יש לשמור את פרטי התשלום שלך. כדי להמשיך, אשר שאתה מסכים או הסר פריטי מנוי מההזמנה שלך.",
+        "installments_payment_method_incompatible": "לא ניתן להשתמש בשיטת התשלום שנבחרה עם תשלומים. בחר/י שיטת תשלום אחרת.",
+        "insufficient_funds": "התשלום שלך נדחה עקב חוסר כסף מספק. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "multiple_deferred_payment_not_allowed": "תשלום אחד נדחה בלבד מותר לכל בקשה. אנא בדוק את בקשתך ונסה שוב.",
+        "shipping_must_match_billing": "כתובת החיוב חייבת להיות זהה לכתובת המשלוח. אנא השתמש/י באמצעי תשלום אחר.",
+        "shipping_company_required_error": "{{shopName}} דורש שם חברה עבור כתובת המשלוח.",
+        "decision_rule_block": "אירעה שגיאה בעיבוד התשלום שלך. צור קשר עם בעל החנות.",
+        "cancelled_payment": "התשלום שלך בוטל. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "pick_up_card": "הכרטיס שלך נדחה. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "cannot_verify": "פרטי התשלום שלך לא אומתו. בדוק את פרטי הכרטיס שלך ונסה שוב.",
+        "invalid_number": "הזן מספר כרטיס חוקי",
+        "invalid_expiry_date": "הזן תאריך תפוגה חוקי",
+        "invalid_cvc": "הזן קוד אבטחה חוקי",
+        "missing_cvc": "הזן קוד אבטחה",
+        "expired_card": "הכרטיס שלך פג תוקף. השתמש/י באמצעי תשלום אחר.",
+        "payment_method_not_applicable": "אמצעי תשלום זה אינו זמין. יש להשתמש באמצעי תשלום אחר.",
+        "card_declined": "הכרטיס שלך נדחה. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "processing_error": "אירעה שגיאה בעיבוד התשלום שלך. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "processing_error_checkout_as_guest": "אירעה שגיאה בעיבוד התשלום שלך. נסה שוב עם אמצעי תשלום אחר או {{checkout_as_guest_link}}.",
+        "selected_payment_method": "הייתה בעיה באמצעי התשלום שבחרת ולא חויבת. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "payment_method_billing_address": "הייתה בעיה בכתובת החיוב של אמצעי התשלום שבחרת. אנא בדוק את הכתובת ונסה שוב, או השתמש באמצעי תשלום אחר.",
+        "call_issuer": "הכרטיס שלך נדחה. אנא השתמש/י באמצעי תשלום אחר או צור/צרי קשר עם הבנק שלך למידע נוסף.",
+        "test_mode_live_card": "חנות זו אינה יכולה לקבל הזמנות אמיתיות או תשלומים אמיתיים.",
+        "test_mode_enabled_only_test_cards": "מצב בדיקה מופעל, ניתן להוסיף רק כרטיסי אשראי לבדיקה.",
+        "transient_error": "אירעה שגיאה בעיבוד התשלום. נסו לרענן את העמוד או לבדוק את חיבור האינטרנט שלכם.",
+        "missing_shipping_address": "התשלום שלך לא עובד מכיוון שחסרה כתובת למשלוח. הוסף כתובת למשלוח ונסה שוב.",
+        "invalid_shipping_address": "לא הצלחנו לעבד את התשלום שלך כי לא מצאנו את כתובת המשלוח שלך. אנא בדוק/בדקי את כתובת המשלוח ונסה/נסי שוב.",
+        "successful_offsite_with_gift_card_error": "אירעה שגיאה בעיבוד התשלום בכרטיס המתנה שלך. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "development_store_order_limit_reached": "הגעת למגבלה של הזמנות בחנות פיתוח באמצעות מעבד תשלומים זה. כדי לבצע הזמנה נוספת, עליך להשתמש בשער תשלומים לבדיקה. למידע נוסף על %{development_store_order_testing_docs_link}.",
+        "development_store_with_order_limit": "כדי לבצע הזמנת בדיקה, תצטרכו להשתמש בשער תשלומים לבדיקה. מידע נוסף מופיע ב-%{development_store_order_testing_docs_link}.",
+        "development_store_order_testing_docs_link": "בדיקת הזמנות בחנויות פיתוח",
+        "payment_above_threshold": "סכום התשלום גבוה מהמגבלה הכספית עבור אזור זה. צמצם את הסכום הכולל ונסה שוב.",
+        "risky": "אירעה שגיאה בעיבוד התשלום שלך. נסה שוב או השתמש באמצעי תשלום אחר.",
+        "expired_buyer_action": "אמצעי התשלום פג תוקף. נסה שוב.",
+        "name_mismatch": "בדוק את פרטי הכרטיס. השם בכרטיס וכתובת החיוב אינם תואמים.",
+        "shop_pay_wallet_not_available": "Shop Pay אינו זמין עבור תשלום זה.",
+        "market_manager_blocks_wallet_payments": "שיטת התשלום אינה נתמכת במדינתך.",
+        "paypal_over_capture": "פרטי ההזמנה שלך עודכנו. שלם/שלמי באמצעות {{walletName}} כדי להשלים את ההזמנה.",
+        "captcha_required": "הזן פרטי תשלום ופתור את הקפצ'ה להשלמת הרכישה.",
+        "captcha_required_without_payment_information": "אנא פתור את הקפצ'ה כדי להשלים את הרכישה.",
+        "payment_credential_delegation_error": "היתה בעיה בעיבוד התשלום. בחר אמצעי תשלום חדש."
+      },
+      "shipping_errors": {
+        "shipping_method": "אפשרויות המשלוח עבור הזמנתך השתנו. עליך לבדוק את בחירתך.",
+        "shipping_method_not_available": "העגלה שלך עודכנה ואין אפשרות לשלוח את הפריטים שהוספת לכתובתך. אנא הסר את הפריטים כדי להשלים את ההזמנה.",
+        "shipping_method_not_available_generic": {
+          "one": "אין אפשרות לשלוח את הזמנתך לכתובת שנבחרה. אנא בדוק/בדקי את הכתובת ונסה/נסי שוב, או בחר/בחרי כתובת אחרת.",
+          "other": "חלק מהפריטים בעגלת הקניות שלך לא ניתנים למשלוח לכתובת שהזנת. עיין בכתובת שלך כדי לוודא שהיא נכונה ונסה שוב, או בחר כתובת אחרת."
+        },
+        "shipping_method_not_available_due_to_unsatisfied_conditions": "הפריטים בעגלה אינם עומדים בדרישות המחיר או המשקל כדי לזכות במשלוח. אנא עדכנו את העגלה ונסו שנית.",
+        "shipping_method_not_available_updated": {
+          "one": "הפריט שהוספת אינו נשלח למיקומך. הסר אותו כדי להמשיך לתשלום, או צור קשר עם החנות.",
+          "other": "פריט אחד או יותר ממה שהוספת אינו נשלח למיקומך. הסר אותם כדי לבצע רכישה, או צור קשר עם החנות."
+        },
+        "payment_method_not_supported": "אינך יכול/ה להשתמש באמצעי תשלום זה עבור %{country}. יש להשתמש באמצעי תשלום אחר כדי לשלוח למדינה זו.",
+        "empty_state": "הזן את כתובת המשלוח שלך כדי להציג את שיטות המשלוח הזמינות.",
+        "title": "משלוח לא זמין",
+        "invalid_selected_address": "כתובת המשלוח שנבחרה אינה תקינה",
+        "invalid_selected_address_with_update_link": "כתובת המשלוח שנבחרה אינה חוקית. %{update_address_link} או בחר כתובת אחרת.",
+        "unavailable_addresses_only_countries": "ניתן לשלוח את הזמנתך רק אל {{countriesList}}. הוסף/הוסיפי כתובת חדשה כדי להמשיך.",
+        "unavailable_address_country": "משלוח אינו זמין במדינה שבחרת. יש להשתמש בכתובת אחרת כדי להמשיך",
+        "unavailable_selected_address": "משלוח אינו זמין לכתובת שנבחרה",
+        "unavailable_selected_address_for_region": "משלוח אינו זמין עבור {{region}}. יש לבחור כתובת אחרת כדי להמשיך"
+      },
+      "alternative_payment_method_banner": {
+        "express_checkout": "תשלום מהיר",
+        "or": "אוֹ",
+        "or_pay_another_way": "או שלם בדרך אחרת",
+        "or_check_out_another_way": "או לבדוק דרך אחרת",
+        "or_pay_with_credit_card": "או לשלם בכרטיס אשראי",
+        "show_more_options": "הצג אפשרויות נוספות",
+        "hide_more_options": "הצג פחות אפשרויות"
+      },
+      "post_purchase": {
+        "page_title": "לאחר רכישה",
+        "title": "לאחר רכישה",
+        "escape_confirmation": "שילמת על הזמנתך.",
+        "escape_action": "הצג אישור הזמנה ›",
+        "components": {
+          "close": "סגור",
+          "expand": "הצג עוד",
+          "processing": "מעבד…",
+          "submit": "שלח"
+        }
+      },
+      "processing": {
+        "redirecting_page_title": "הפניה מחדש…",
+        "redirecting_title": "הפניה מחדש…",
+        "redirecting_notice": "המתן בזמן שאנו מפנים אותך.",
+        "redirecting_to_bank": "מעביר אל {{bank}}",
+        "complete_your_purchase_title": "סיים את הרכישה",
+        "continue_to_payment_gateway_notice": "המשך לתשלום כדי להוסיף את פרטי התשלום שלך.",
+        "continue_to_payment_gateway_button_label": "המשך לתשלום",
+        "complete_your_purchase_title_error": "תקנו את פרטי התשלום שלכם",
+        "continue_to_payment_gateway_notice_error": "לא ניתן היה לאמת את פרטי התשלום שלך.",
+        "continue_to_payment_gateway_button_label_error": "עדכן פרטי תשלום",
+        "page_title": "מעבד הזמנה",
+        "title": "מעבד הזמנה",
+        "your_order_has_been_received_title": "תודה על הזמנתך",
+        "you_will_receive_confirmation": "אנחנו מקבלים כרגע הרבה הזמנות. אישור הזמנה יישלח אליך במייל או בהודעת טקסט בקרוב. אם לא תקבלו אותו בתוך שעה, אנא הודיעו לנו.",
+        "you_will_not_be_charged": "עדיין לא תחויב",
+        "wait": {
+          "short": "ההזמנה שלך בתהליך.",
+          "medium": {
+            "one": "ההזמנה שלך בתהליך. זמן ההמתנה המשוער הוא %{count} דקה.",
+            "other": "ההזמנה שלך בתהליך. זמן ההמתנה המשוער הוא %{count} דקות."
+          }
+        }
       }
     }
   },
