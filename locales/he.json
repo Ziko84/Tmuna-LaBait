@@ -1582,6 +1582,136 @@
         "draft_order_payment_due_on_fulfillment": "התשלום שלך יגיע לתשלום לאחר אישור הזמנתך ומימושה.",
         "draft_order_deposit_due_later": "{{depositAmount}} ישולם עם אישור ההזמנה. היתרה תהיה בתנאי {{translatedName}}.",
         "draft_order_deposit_due_on_fulfillment": "{{depositAmount}} ישולם כאשר הזמנתך תאושר. היתרה תשולם לאחר ביצוע הזמנתך."
+      },
+      "general": {
+        "errors": {
+          "delivery": {
+            "origin_location_id_required": "מזהה מיקום מוצא נדרש כאשר שיטת המשלוח RETAIL מתבקשת.",
+            "invalid_origin_location_id": "לא ניתן למצוא מיקום התואם את מזהה מיקום המקור.",
+            "origin_location_id_not_allowed": "שיטות המסירה המבוקשות אינן תומכות במזהה מיקום מוצא.",
+            "auto_fulfill_not_allowed": "הפעלה זו אינה מורשית לעקוף התנהגות מילוי הזמנות.",
+            "auto_fulfill_required": "נדרשת מילוי אוטומטי כאשר מתבקשת שיטת המשלוח RETAIL.",
+            "prefetch_shipping_rates_used": "שיעורי משלוח שנקראו מראש לעולם לא אמורים להחזיר שיעורים.",
+            "fulfillment_constraints_not_satisfied": "אילוץ אחד או יותר לא מולא.",
+            "must_fulfill_from_constraint_not_satisfied": "אילוצי מימוש אינם מקוימים מכיוון שפריטים אינם ניתנים למימוש ממיקומים נדרשים.",
+            "must_fulfill_from_same_location_constraint_not_satisfied": "אילוצי המימוש אינם מסופקים מכיוון שלא ניתן לממש פריטים מאותו מיקום.",
+            "delivery_strategy_conditions_not_satisfied": "קיימות אסטרטגיות למשלוח במיקום זה, אך התנאים שלהן אינם מתקיימים.",
+            "out_of_stock_at_origin_location": "אין מלאי במיקום המקור.",
+            "invalid_signature": "חתימת הנחה לא חוקית.",
+            "mixed_destination_countries": "משלוח אינו זמין מכיוון שקווי האספקה משתרעים על פני מספר מדינות."
+          },
+          "discount": {
+            "discounts_not_allowed_for_b2b": "הנחות אינן מורשות בחנויות B2B.",
+            "mixed_destination_countries": "הנחות אינן זמינות כיוון שקווי האספקה משתרעים על פני מספר מדינות.",
+            "custom_discount_not_honoured": "ההנחה המותאמת אישית שסופקה לא כובדה.",
+            "unsupported_expectation": "שורת ההנחה שצוינה הכילה ציפייה שהפוליסה לא יכלה לפרש.",
+            "additional_requested_discount_code_discarded": "{{code}} תקף, אך אינו ניתן ליישום. בדוק את תנאי ההנחה.",
+            "additional_requested_discount_discarded": "ההנחה שלך תקפה אך אינה ניתנת ליישום. בדוק את תנאי ההנחה.",
+            "allocations_mismatch": "קוד ההנחה שלך השתנה. עיין שוב בעגלה ונסה שנית.",
+            "discount_code_not_honoured": "%{discount_rejection_message}",
+            "discount_title_too_long": "כותרת ההנחה אינה יכולה להיות ארוכה מ-255 תווים."
+          },
+          "tax": {
+            "new_tax_must_be_accepted": "המסים המשויכים להזמנה שלך השתנו. עיין שוב ונסה שנית.",
+            "unresolvable_tax_terms": "התנאים המוצעים אינם ניתנים ליישוב בהתחשב בהקשר המשא ומתן הנוכחי.",
+            "delivery_price_is_abstract": "מחיר המשלוח הנלווה הינו תיאורטי.",
+            "tax_inclusivity_mismatch": "יש לנהל משא ומתן מחדש עם ערך totalTaxAndDutyAmount או totalAmountIncludedInTarget ספציפי.",
+            "tax_exemption_not_supported": "פטורים ממס אינם נתמכים לדיון המשא ומתן הנוכחי.",
+            "delivery_tax_exemption_not_supported": "פטורים ממס עבור קווי משלוח אינם נתמכים כעת.",
+            "proposed_allocations_required": "שדה 'הקצאות מוצעות' חסר.",
+            "merchandise_terms_must_be_defined": "יש להגדיר את תנאי הסחורה.",
+            "delivery_terms_must_be_defined": "תנאי האספקה חייבים להיות מוגדרים.",
+            "merchandise_discount_terms_must_be_defined": "תנאי הנחת הסחורה חייבים להיות מוגדרים.",
+            "delivery_discount_terms_must_be_defined": "יש להגדיר תנאים להנחת משלוח.",
+            "allocated_required": "שדה 'שהוקצה' חסר.",
+            "value_required": "חסר שדה 'value'.",
+            "line_splits_not_supported": "שדה 'שורות מוצרים' חייב להתפצל כך שלכל אחת יהיה רכיב שורה יחיד בהצעת המוכר."
+          },
+          "payment": {
+            "manual_payments_not_allowed_for_b2b": "תשלומים ידניים אסורים בחנויות B2B.",
+            "positive_amount_expected": "סכום התשלום חייב להיות גדול מ-0.",
+            "total_amount_mismatch": "הסכום לתשלום אינו תואם את סכום התשלומים.",
+            "subscription_terms_not_accepted": "תנאי המנוי לא התקבלו.",
+            "missing_session_id": "פרטי ההפעלה של כרטיס האשראי חסרים.",
+            "gateway_not_supported": "שער התשלום אינו תומך באחסון אמצעי התשלום.",
+            "credit_card_last_name_required": "'שם משפחה' אינו יכול להיות ריק.",
+            "credit_card_update_failed": "עדכון כרטיס האשראי נכשל.",
+            "invalid_address_type": "סוג הכתובת שצוין אינו תקין עבור אמצעי תשלום זה.",
+            "missing_retail_attributions": "יש צורך בייחוס קמעונאי עבור תשלומי כרטיסי אשראי שהוזנו ידנית.",
+            "unexpected_retail_attributions": "שיוכים קמעונאיים סופקו באופן בלתי צפוי עבור תשלום בכרטיס אשראי.",
+            "invalid_card_source": "לסשן זה אין הרשאה להשתמש במקור כרטיס זה.",
+            "wallet_content_missing": "תוכן הארנק חסר.",
+            "payment_instrument_not_found": "לא נמצא אמצעי תשלום",
+            "unauthorized_capture_method": "לא ניתן להגדיר את שיטת איסוף התשלום.",
+            "saved_payment_methods_not_allowed": "שמירת אמצעי תשלום אינה מורשית.",
+            "saved_payment_methods_not_enabled": "אפשרויות שמירת אמצעי תשלום אינן מופעלות בחנות זו.",
+            "saved_payment_methods_cvv_verification_disabled": "שיטת התשלום שנבחרה דורשת אימות CVV שאינו מופעל עבור חנות זו. בחר שיטת תשלום אחרת.",
+            "store_credit_not_enabled": "אשראי חנות אינו מופעל עבור חנות זו.",
+            "store_credit_account_not_found": "חשבון זיכוי לקניה לא נמצא.",
+            "store_credit_account_mismatch": "חשבון זיכוי החנות אינו תואם את זהות הקונה.",
+            "store_credit_mismatched_currency": "מטבע חשבון זיכוי החנות אינו תואם את מטבע הקופה.",
+            "store_credit_insufficient_funds": "אין מספיק כספים בחשבון זיכוי החנות.",
+            "store_credit_buying_gift_card": "לא ניתן להשתמש בזיכוי לרכישת כרטיס מתנה.",
+            "gift_cards_not_allowed_for_b2b": "כרטיסי מתנה אסורים בחנויות B2B.",
+            "method_required": "יש להציע אמצעי תשלום.",
+            "paypal_express_address_invalid": "PayPal החזיר כתובת לא חוקית."
+          },
+          "tip": {
+            "not_accepted_by_shop": "החנות אינה מקבלת טיפים.",
+            "only_one_tip_line_allowed": "לא ניתן להשתמש במספר קווי קצה.",
+            "tips_not_allowed_for_b2b": "טיפים אסורים בחנויות B2B.",
+            "currency_change_reset": "הטיפ אופס עקב שינוי מטבע.",
+            "tips_not_allowed_for_deferred_purchase_options": "טיפים עדיין אינם נתמכים עבור אפשרויות רכישה דחויות."
+          },
+          "sale_attribution": {
+            "draft_order_not_exist": "הזמנת טיוטה זו אינה קיימת בחנות הנוכחית.",
+            "staff_member_not_exist": "הצוות הזה לא קיים בחנות הנוכחית.",
+            "location_not_exist": "המיקום הזה לא קיים בחנות הנוכחית.",
+            "point_of_sale_device_not_exist": "התקן נקודת מכירה זה אינו קיים בחנות הנוכחית.",
+            "unresolvable_target_merchandise_lines": "ייחוס המכירות המוצע אינו ניתן לפתרון בהינתן הקשר הנוכחי של המשא ומתן."
+          },
+          "non_negotiable": {
+            "missing_non_negotiable_terms": "הצעת הקונה שלך צריכה להכיל תנאים שאינם ניתנים למשא ומתן.",
+            "invalid_signature": "החתימה עבור {{target_terms}} אינה חוקית."
+          },
+          "inventory": {
+            "missing_quantity_value": "שדה הכמות חסר בשורות המלאי של הקונה.",
+            "changing_behavior_not_allowed": "ללקוח זה אין הרשאה לשנות את התנהגות המלאי.",
+            "only_one_inventory_behavior_allowed": "נכון לעכשיו, רק התנהגות מלאי אחת מותרת לכל קופה."
+          },
+          "optional_duties": {
+            "optional_duties_not_permitted": "לא ניתן לסרב לתפקידים עבור קופה זו."
+          },
+          "attribution": {
+            "retail_attribution_not_allowed": "ייחוס קמעונאי אינו מותר לקופה זו.",
+            "retail_attribution_required": "ייחוס קמעונאי נדרש עבור תשלום זה."
+          },
+          "captcha": {
+            "metadata_missing": "יש להשלים אימות אנושי לצורך התשלום.",
+            "metadata_mismatch": "ספק הקאפצ'ה והסוג שסופקו אינם תואמים לערכים הצפויים.",
+            "token_missing": "יש לספק אסימון captcha כדי להשלים רכישה זו.",
+            "job_enqueue_failed": "נכשלה ההוספה לתור של משימת אימות ה-captcha.",
+            "job_already_queued": "אימות Captcha כבר נמצא בתור עבור אסימון Captcha זה.",
+            "token_expired": "אסימון ה-CAPTCHA שסופק פג תוקף. יש להשלים CAPTCHA חדש כדי להמשיך בתשלום.",
+            "token_invalid": "אסימון ה-CAPTCHA שסופק אינו חוקי. יש להשלים CAPTCHA חדש כדי להמשיך בתהליך התשלום.",
+            "token_not_valid_for_session": "לא ניתן להשתמש בקאפצ'ה שהוזנה לצורך השלמת רכישה זו."
+          },
+          "fx_reconciliation_override": {
+            "shop_currency_mismatch": "הסכום שיתקבל חייב להיות במטבע החנות."
+          },
+          "checkout_source": {
+            "revoked": "קופה זו אינה זמינה עוד."
+          }
+        },
+        "full_price": "מחיר מלא:",
+        "title": "תשלום - {{shopName}}",
+        "full_title": "{{pageTitle}} - {{shopName}} - תשלום",
+        "loading": "טוען…",
+        "loading_title": "תשלום - {{shopName}}",
+        "google_map_title": "מפת גוגל",
+        "confirm_order_button_label": "אשר הזמנה",
+        "submit_order_button_label": "שלח הזמנה",
+        "submit_for_review_button_label": "שלח לבדיקה"
       }
     }
   },
