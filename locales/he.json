@@ -354,5 +354,265 @@
       "default_title": "ברירת מחדל",
       "sticky_add_to_cart": "סרגל הוספה מהירה לעגלה"
     }
+  },
+  "shopify": {
+    "addresses": {
+      "emirate": "אמירות",
+      "governorate": "מחוז",
+      "confirm": "האם אתה בטוח שברצונך למחוק כתובת זו?"
+    },
+    "collections": {
+      "sorting": {
+        "manual": "מוצג",
+        "best_selling": "רב מכר",
+        "az": "לפי סדר אלפביתי, א׳-ת׳",
+        "za": "אלפביתי, ת-א",
+        "price_ascending": "מחיר, נמוך לגבוה",
+        "price_descending": "מחיר, מהגבוה לנמוך",
+        "date_ascending": "תאריך, מהישן לחדש",
+        "date_descending": "תאריך, חדש לישן",
+        "most_relevant": "הרלוונטי ביותר"
+      }
+    },
+    "errors": {
+      "blank": "אסור שיהיה ריק",
+      "blocked_address": "המיקום הזה לא נתמך",
+      "credit_card_session_expired": "אישור כרטיס האשראי פג תוקף, אנא הזן מחדש את פרטי התשלום שלך. הכרטיס שלך לא חויב.",
+      "empty": "לא יכול להיות ריק",
+      "invalid_email": "חובה להזין כתובת אימייל חוקית",
+      "discount_disabled": "הנחה זו בוטלה",
+      "discount_expired": "הנחה זו אינה תקפה עוד",
+      "discount_limit_reached": "ההנחה הזו הגיעה למגבלת השימוש שלה",
+      "discount_not_found": "לא ניתן למצוא קוד הנחה תקין התואם את הקוד שהוזן",
+      "customer_already_used_once_per_customer_discount_notice": "ההנחה הזו הגיעה למגבלת השימוש שלה",
+      "gift_card_already_applied": "קוד כבר יושם על סל הקניות שלך",
+      "gift_card_code_invalid": "הקוד אינו חוקי",
+      "gift_card_currency_mismatch": "לא ניתן להשתמש בכרטיס מתנה זה עבור רכישה זו. יש ליצור קשר עם %{shop_name} כדי להנפיק אותו מחדש.",
+      "gift_card_depleted": "אין יתרה בכרטיס המתנה הזה",
+      "gift_card_disabled": "כרטיס המתנה מושבת",
+      "gift_card_expired": "הגיפט קארד פג תוקפו",
+      "invalid": "אינו חוקי",
+      "bad_domain": "מכיל שם מתחם לא חוקי",
+      "taken": "כבר נלקח",
+      "contains_html_tags": "אינו יכול להכיל תגי HTML",
+      "too_short": "קצר מדי (מינימום %{count} תווים)",
+      "too_long": "ארוך מדי (האורך המקסימלי הוא %{count} תווים)",
+      "password_mismatch": "חייב להתאים לסיסמה שסופקה",
+      "contains_spaces": "מתחיל או נגמר ברווחים.",
+      "invalid_for_country": "אינו תקף עבור %{country}",
+      "invalid_for_country_and_province": "אינו תקף עבור %{province} ו% {country}",
+      "invalid_province_in_country": "אינו מחוז חוקי ב-%{country}",
+      "invalid_state_in_country": "אינה מדינה חוקית ב%{country}",
+      "invalid_region_in_country": "אינו אזור חוקי ב-%{country}",
+      "less_than_or_equal_to": "חייב להיות קטן או שווה ל-%{count}",
+      "not_supported": "לא נתמך",
+      "full_name_required": "הזן שם פרטי ושם משפחה",
+      "invalid_for_card_type": "אינו חוקי",
+      "invalid_type": "מצטערים, איננו מקבלים כרטיסים מסוג זה.",
+      "invalid_format": "הפורמט אינו חוקי",
+      "expired": "פג תוקפו",
+      "invalid_start_date_or_issue_number_for_debit": "תאריך התחלה חוקי או מספר גיליון נדרש",
+      "invalid_expiry_year": "אינה שנת תפוגה חוקית",
+      "reset_password_html": "כתובת דוא\"ל זו כבר משויכת לחשבון קיים. אם חשבון זה שלך, תוכל <a href=\"/account/login#recover\">לאפס את סיסמתך</a>.",
+      "verify_email": "שלחנו דוא\"ל אל %{customer_email}, אנא לחץ/י על הקישור הכלול לאימות כתובת הדוא\"ל שלך.",
+      "product_not_available": "המוצר אינו מפורסם עבור לקוח זה.",
+      "shop_404": {
+        "title": "בנו אתר מסחר אלקטרוני ומכרו אונליין! תוכנת מסחר אלקטרוני מאת Shopify",
+        "title_unavailable": "החנות אינה זמינה",
+        "heros": {
+          "store_will_be_right_back": "החנות תיפתח מחדש בעוד זמן קצר",
+          "store_unavailable": "החנות אינה זמינה כעת.",
+          "store_not_exist": "חנות זו אינה קיימת.",
+          "no_storefront": "לחנות הזו אין עדיין אתר אינטרנט."
+        },
+        "subtitles": {
+          "store_will_be_right_back": "Shopify פועלת להחזירו לפעולה מוקדם ככל האפשר."
+        },
+        "links": {
+          "refresh_page": "רענן את הדף",
+          "explore_other_stores": "חקור חנויות אחרות",
+          "start_free_trial": "התחילו ניסיון בחינם"
+        },
+        "status_card": {
+          "eyebrow": "עזרה לבעלי חנויות",
+          "header": "בדוק את הסטטוס של Shopify",
+          "caption": "בדוק אם יש תקלה שמשפיעה על יותר מסתם החנות הזו ב-Shopify.",
+          "link_text": "הצגת סטטוס מערכות Shopify"
+        },
+        "owner_ctas": {
+          "header": "האם אתה בעל החנות?",
+          "fix_domain": "סיים את הגדרת כתובת האתר החדשה שלך, עבור אל %{domain_settings_link}. לחץ על \"חיבור דומיין\" והזן: %{domain}.<br>אם אתה מתקשה להיכנס לחנות שלך, נסה את עמוד %{forgot_your_store_link}.",
+          "fix_domain_link_text": "הגדרות הדומיין שלך",
+          "forgot_your_store_link_text": "שכחת את החנות שלך",
+          "add_storefront": "באפשרותך להגדיר את האתר על ידי הוספת ערוץ החנות המקוונת ב- %{admin_link}. אם אתה מתקשה להיכנס לחנות, נסה את הדף %{forgot_your_store_link}.",
+          "admin_link_text": "מנהל/ת"
+        },
+        "ctas": {
+          "sell_in_person": {
+            "header": "למכור באופן אישי",
+            "caption": "קבל את הפיצ'רים שאתה צריך כדי להפעיל את החנות הקמעונאית שלך, בין אם אתה רק מתחיל ובין אם אתה מרחיב את העסק.",
+            "link_text": "התחל תקופת ניסיון בחינם"
+          },
+          "open_a_store": {
+            "header": "פתח חנות Shopify חדשה",
+            "caption": "התחילו תקופת ניסיון בחינם למשך 3 ימים, ולאחר מכן המשיכו ב-$1 לחודש למשך 3 החודשים הבאים.",
+            "link_text": "הירשם עכשיו"
+          },
+          "editions": {
+            "header": "בדקו את Shopify Editions",
+            "caption": "עם יותר מ-100 עדכוני מוצר, תוכלו להיות פרודוקטיביים, יצירתיים וחזקים יותר במסחר מאי פעם.",
+            "link_text": "צפה במהדורות האחרונות"
+          },
+          "store_owner": {
+            "header": "האם אתה בעל החנות?",
+            "caption": "האם אתם מתקשים להיכנס לחנות שלכם? נסו את האפשרות %{forgot_your_store_link}. אם ברצונכם להפעיל מחדש את החנות, צרו קשר עם %{shopify_support_link}.",
+            "shopify_support_link_text": "תמיכה של שופיפיי"
+          }
+        }
+      }
+    },
+    "notices": {
+      "customer": {
+        "password_reset_error": "שגיאת איפוס סיסמה",
+        "subscribe_error": "שגיאת הרשמה",
+        "unsubscribe_error": "שגיאת ביטול מנוי",
+        "open_tracking_error": "שגיאת מעקב פתוח",
+        "no_account_found": "לא נמצא חשבון עם כתובת דוא\"ל זו.",
+        "invalid_credentials": "אימייל או סיסמה שגויים.",
+        "denylisted_reset_password": "לא ניתן היה לגשת לחשבונך כיוון שהסיסמה הנוכחית אינה מאובטחת. תישלח אליך הודעת דוא\"ל לעדכון הסיסמה.",
+        "signup_disabled": "יצירת חשבון לקוח הושבתה."
+      },
+      "address": {
+        "updated": "הכתובת עודכנה בהצלחה.",
+        "error_updating": "שגיאה בעדכון הכתובת",
+        "created": "הכתובת נוצרה בהצלחה",
+        "error_creating": "שגיאה ביצירת כתובת.",
+        "deleted": "הכתובת נמחקה בהצלחה",
+        "error_deleting": "שגיאה במחיקת הכתובת."
+      },
+      "line_item": {
+        "item_status": {
+          "add_variant": "נוספו %{delta}"
+        }
+      }
+    },
+    "checkout": {
+      "contact": {
+        "prefecture_label": "מחוז",
+        "prefecture_placeholder": "מחוז",
+        "governorate_label": "מחוז",
+        "governorate_placeholder": "מחוז",
+        "emirate_label": "אמירות",
+        "emirate_placeholder": "אמירות",
+        "state_and_territory_label": "מדינה/טריטוריה",
+        "state_and_territory_placeholder": "מדינה/טריטוריה",
+        "phone_label": "טלפון",
+        "phone_rollup_accessibility_label": "אפשרויות טלפון",
+        "phone_country_code_label": "קידומת טלפון בינלאומית",
+        "optional_phone_label": "טלפון (אופציונלי)",
+        "phone_placeholder": "טלפון",
+        "phone_tooltip": "במקרה שנצטרך ליצור אתכם קשר בנוגע להזמנה שלכם",
+        "zip_code_label": "מיקוד",
+        "optional_zip_code_label": "מיקוד (אופציונלי)",
+        "zip_code_placeholder": "מיקוד",
+        "postal_code_label": "מיקוד",
+        "optional_postal_code_label": "מיקוד (אופציונלי)",
+        "postal_code_placeholder": "מיקוד",
+        "postcode_label": "מיקוד",
+        "optional_postcode_label": "מיקוד (אופציונלי)",
+        "postcode_placeholder": "מיקוד",
+        "pincode_label": "קוד אימות",
+        "optional_pincode_label": "קוד אימות (אופציונלי)",
+        "pincode_placeholder": "קוד אימות",
+        "civic_number_warning": "הוסף מספר בית אם יש לך",
+        "optional_last_name_label": "שם משפחה (לא חובה)",
+        "different_shipping_address_label": "שלח לכתובת אחרת",
+        "different_shipping_address_text": "השתמש/י בכתובת חד-פעמית עבור הזמנה זו",
+        "change_company_location_link_label": "שנה מיקום חברה",
+        "change_location_link_label": "שנה מיקום",
+        "ship_to_company": "לשלוח אל {{companyName}}"
+      },
+      "delivery_options": {
+        "free_total_label": "חינם",
+        "ship": "ספינה",
+        "ship_to_address": "לשלוח לכתובת",
+        "shipping_address": "כתובת למשלוח",
+        "pick_up": "להרים",
+        "pickup": "איסוף",
+        "pickup_store": "איסוף מהחנות",
+        "pickup_point": "נקודת איסוף",
+        "pick_up_from_store": "איסוף בחנות",
+        "pick_up_locations": "נקודות איסוף",
+        "pickup_point_map_title": "מפת נקודת איסוף",
+        "pick_up_in_one_hour": "בדרך כלל מוכן תוך שעה",
+        "pick_up_in_two_hours": "בדרך כלל מוכן תוך שעתיים",
+        "pick_up_in_four_hours": "בדרך כלל מוכן תוך 4 שעות",
+        "pick_up_in_twenty_four_hours": "בדרך כלל מוכן תוך 24 שעות",
+        "pick_up_in_two_to_four_days": "בדרך כלל מוכן תוך 2-4 ימים",
+        "pick_up_in_five_or_more_days": "בדרך כלל מוכן בתוך 5+ ימים",
+        "pick_up_in_zero_to_two_hours": "מוכן לאיסוף בעוד שעתיים",
+        "pick_up_in_two_to_four_hours": "מוכן לאיסוף בעוד 4 שעות",
+        "pick_up_immediately": "מוכן לאיסוף עכשיו",
+        "pick_up_next_day": "מוכן לאיסוף ביום למחרת",
+        "pickup_point_method_definition": "שלח לנקודת איסוף",
+        "retail_method_definition": "משלוח קמעונאי",
+        "company_location_no_address_banner": "הזמנות הנשלחות למיקומים ללא כתובת יישלחו לבדיקה.",
+        "none_method_definition": "אין משלוח",
+        "digital_product": "מוצר דיגיטלי",
+        "subscription_pickup_information": "זה יהיה מיקום האיסוף לכל ההזמנות העתידיות של המינוי שלך."
+      },
+      "customer_account": {
+        "not_user_label": "לא %{first_name}?",
+        "have_an_account_label": "יש לך חשבון?",
+        "sign_in_link_label": "התחבר",
+        "sign_out_link_label": "התנתק",
+        "save_my_information_label": "שמור מידע זה לפעם הבאה",
+        "invalid_address": "הכתובת שנבחרה אינה חוקית. %{update_address_link} או בחר כתובת אחרת.",
+        "incomplete_address": "הכתובת שנבחרה אינה מלאה. %{update_address_link} או בחר/י כתובת אחרת.",
+        "rollup_label": "חשבון",
+        "rollup_accessibility_label": "אפשרויות חשבון",
+        "invalid_shipping_method_summary": "בחר/י כתובת למשלוח כדי לצפות בשיטות המשלוח הזמינות",
+        "saved_address_option_description": {
+          "one": "יש לך כתובת {{count}} שמורה.",
+          "other": "יש לך {{count}} כתובות שמורות."
+        },
+        "saved_address_option_link": "השתמש בכתובת שמורה",
+        "saved_address_modal_title": "השתמש בכתובת השמורה שלי"
+      },
+      "remote_merchandise_only": {
+        "title": "סיים את הרכישה",
+        "remote_only_notice": "פריטים אלה נמכרים ונשלחים על ידי חנויות אחרות. יש להשלים את הרכישה מול כל חנות בנפרד.",
+        "return_to_store_label": "חזור לחנות",
+        "detail_item_label": {
+          "one": "{{count}} פריט",
+          "other": "{{count}} פריטים"
+        },
+        "checkout_on_shop_label": "בדוק ב- %{shop_name}",
+        "single_shop_transition": "מנתבים אותך אל %{advertiser} להשלמת הרכישה."
+      },
+      "stock": {
+        "page_title": "בעיות מלאי",
+        "title": "אזל מהמלאי",
+        "items_unavailable_notice": "חלק מהפריטים אינם זמינים יותר.",
+        "product_column_header": "מוצרים",
+        "quantity_column_header": "כמות",
+        "price_column_header": "מחיר",
+        "status_column_header": "סטטוס",
+        "removed_from_cart_notice": "הוסר מהעגלה",
+        "sold_out_label": "אזל מהמלאי",
+        "reduced_label": "הופחת",
+        "reduced_with_quantity_label": "נותרו רק %{quantity_available}",
+        "remove_from_cart_button_label": "הסרה מהעגלה",
+        "continue_shopping_button_label": "המשך",
+        "go_back_to_cart_button_label": "חזור לעגלה שלי",
+        "remove": "הסר",
+        "return_to_store_label": "חזור לחנות",
+        "continue_cta_label": "המשך תשלום",
+        "item_label": {
+          "one": "{{count}} פריט",
+          "other": "{{count}} פריטים"
+        }
+      }
+    }
   }
 }
