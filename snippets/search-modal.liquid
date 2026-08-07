@@ -134,6 +134,31 @@
           </div>
         </div>
       </form>
+
+      {%- comment -%}
+        Catalog for client-side live search. Shopify's Predictive Search API
+        rejects Hebrew as a buyer locale (HTTP 417 "Unsupported buyer locale"),
+        so /search/suggest can never return results on this store and the
+        as-you-type panel would always stay empty. This inlines the catalog
+        instead so assets/hebrew-live-search.js can filter it locally. Cheap
+        at this store's size (~20 products) and needs no request at all.
+      {%- endcomment -%}
+      <script type="application/json" data-live-search-catalog>
+        [
+          {%- for product in collections.all.products limit: 250 -%}
+            {%- capture haystack -%}
+              {{ product.title }} {{ product.product_type }} {{ product.vendor }} {{ product.tags | join: ' ' }}
+            {%- endcapture -%}
+            {
+              "t": {{ product.title | json }},
+              "u": {{ product.url | json }},
+              "p": {{ product.price | money | json }},
+              "i": {% if product.featured_media %}{{ product.featured_media | image_url: width: 120 | json }}{% else %}""{% endif %},
+              "s": {{ haystack | strip | downcase | json }}
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        ]
+      </script>
     </predictive-search-component>
   </dialog>
 </dialog-component>

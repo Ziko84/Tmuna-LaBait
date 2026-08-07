@@ -1743,6 +1743,60 @@
         --menu-top-level-font-size: 50px;
       }
 
+      /* Live search results (assets/hebrew-live-search.js). Shopify's
+         predictive search rejects Hebrew buyer locales, so these are
+         rendered client-side from an inlined catalog instead. */
+      .live-search-results {
+        margin: 0;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .live-search-results__link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: inherit;
+        transition: background-color 0.15s ease;
+      }
+      .live-search-results__link:hover,
+      .live-search-results__link:focus-visible {
+        background: rgb(var(--color-foreground-rgb) / 0.06);
+      }
+      .live-search-results__image {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        object-fit: cover;
+        border-radius: 8px;
+        background: rgb(var(--color-foreground-rgb) / 0.06);
+      }
+      .live-search-results__text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .live-search-results__title {
+        font-size: 0.95rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .live-search-results__price {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+      .live-search-results__empty {
+        padding: 24px 16px;
+        text-align: center;
+        opacity: 0.7;
+      }
+
       /* Price change feedback on the product page: picking a bigger size
          flashes the price red, a cheaper one flashes it green. Driven by
          assets/price-change-flash.js, which sets --price-flash-base to the
@@ -1897,6 +1951,7 @@
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
+    <script src="{{ 'hebrew-live-search.js' | asset_url }}" defer></script>
     {% if request.page_type == 'product' %}
       <script src="{{ 'price-change-flash.js' | asset_url }}" defer></script>
     {% endif %}
