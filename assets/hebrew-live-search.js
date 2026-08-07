@@ -34,7 +34,7 @@
 
   function renderResults(products) {
     return (
-      '<ul class="live-search-results list-unstyled">' +
+      '<ul class="live-search-results list-unstyled" data-live-search-rendered>' +
       products
         .map(function (product) {
           return (
@@ -74,39 +74,63 @@
     // the field is cleared, so clearing looks the same as never having typed.
     var defaultMarkup = results.innerHTML;
     var timer = null;
+    var writing = false;
+
+    function currentQuery() {
+      return normalize(input.value);
+    }
+
+    function ourResultsPresent() {
+      return !!results.querySelector('[data-live-search-rendered]');
+    }
 
     function update() {
-      var query = normalize(input.value);
+      var query = currentQuery();
 
+      writing = true;
       if (!query) {
         results.innerHTML = defaultMarkup;
-        return;
-      }
+      } else {
+        var terms = query.split(' ');
+        var found = [];
+        for (var i = 0; i < catalog.length && found.length < MAX_RESULTS; i++) {
+          if (matches(catalog[i], terms)) found.push(catalog[i]);
+        }
 
-      var terms = query.split(' ');
-      var found = [];
-      for (var i = 0; i < catalog.length && found.length < MAX_RESULTS; i++) {
-        if (matches(catalog[i], terms)) found.push(catalog[i]);
+        results.innerHTML = found.length
+          ? renderResults(found)
+          : '<p class="live-search-results__empty" data-live-search-rendered>לא נמצאו תוצאות</p>';
       }
-
-      results.innerHTML = found.length
-        ? renderResults(found)
-        : '<p class="live-search-results__empty">' +
-          escapeHtml(catalogTag.getAttribute('data-empty-text') || 'לא נמצאו תוצאות') +
-          '</p>';
+      // Let the mutations we just caused settle before the observer resumes,
+      // otherwise it sees its own write and loops.
+      requestAnimationFrame(function () {
+        writing = false;
+      });
     }
 
     input.addEventListener(
       'input',
       function (event) {
-        // Keep the theme's delegated handler (and its 417-bound fetch) from
-        // running at all - it would otherwise race us and clear the panel.
+        // Stops the theme's delegated document-level handler, and with it the
+        // /search/suggest fetch that can only ever 417 on this locale.
         event.stopPropagation();
         clearTimeout(timer);
         timer = setTimeout(update, 120);
       },
       true
     );
+
+    // stopPropagation alone isn't enough: the component re-renders this panel
+    // from its own lifecycle too (empty state, recently-viewed, the failed
+    // request settling), which wiped our results a moment after they appeared.
+    // Rather than chase each of those paths, reassert our results whenever
+    // something else replaces them while a query is active.
+    new MutationObserver(function () {
+      if (writing) return;
+      if (!currentQuery()) return;
+      if (ourResultsPresent()) return;
+      update();
+    }).observe(results, { childList: true, subtree: true });
   }
 
   function init() {
