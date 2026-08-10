@@ -2971,6 +2971,24 @@ label:has(input[type='checkbox']:disabled) {
   border-radius: var(--style-border-radius-buttons-secondary);
 }
 
+/* Match the quantity stepper to the add-to-cart button beside it: same shape
+   and same height, differing only in width. */
+.product-form-buttons .quantity-selector {
+  border-radius: var(--style-border-radius-buttons-primary);
+  align-self: stretch;
+  min-height: 100%;
+}
+
+.product-form-buttons .quantity-selector .quantity-minus {
+  border-start-start-radius: var(--style-border-radius-buttons-primary);
+  border-end-start-radius: var(--style-border-radius-buttons-primary);
+}
+
+.product-form-buttons .quantity-selector .quantity-plus {
+  border-start-end-radius: var(--style-border-radius-buttons-primary);
+  border-end-end-radius: var(--style-border-radius-buttons-primary);
+}
+
 .quantity-selector :is(.quantity-minus, .quantity-plus) {
   /* Unset button styles */
   padding: 0;
