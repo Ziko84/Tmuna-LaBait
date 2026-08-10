@@ -15,11 +15,19 @@ class RevealOnScroll extends Component {
     const items = formatter ? Array.from(formatter.children) : [this];
     if (!items.length) return;
 
+    // Only hide the content once we know this script is live and will reveal it
+    // again. Without this the CSS hides content that nothing ever un-hides.
+    this.classList.add('is-observing');
+
+    const reveal = (/** @type {Element} */ item) => item.classList.add('is-revealed');
+    let delivered = false;
+
     const observer = new IntersectionObserver(
       (entries) => {
+        delivered = true;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-revealed');
+            reveal(entry.target);
             observer.unobserve(entry.target);
           }
         });
@@ -28,6 +36,14 @@ class RevealOnScroll extends Component {
     );
 
     Array.from(items).forEach((item) => observer.observe(item));
+
+    // Failsafe: if the observer never reports, show everything rather than
+    // leaving the page blank.
+    setTimeout(() => {
+      if (delivered) return;
+      items.forEach(reveal);
+      observer.disconnect();
+    }, 2000);
   }
 }
 
