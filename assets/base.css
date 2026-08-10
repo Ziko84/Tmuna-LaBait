@@ -2987,7 +2987,7 @@ label:has(input[type='checkbox']:disabled) {
   height: var(--quantity-selector-height);
   min-height: var(--quantity-selector-height);
   align-self: center;
-  border-radius: 999px;
+  border-radius: 999px !important;
   overflow: hidden;
 }
 
