@@ -1,50 +1,62 @@
 import { Component } from '@theme/component';
-import { StandardEvents } from '@shopify/events';
 
 /**
- * Shows a notice only while a variant that ships without LED lighting is
- * selected. Which variants those are is driven by data, not by size text: the
- * element carries a data-match-suffix and the notice shows when the selected
- * variant's SKU ends with it.
+ * Shows a notice only while a size that ships without LED lighting is selected.
  *
- * Mirrors the event wiring used by product-sku.js.
+ * Rather than trusting a variant-change event payload, this reads the variant
+ * picker's own current value and compares it against a list supplied by Liquid.
+ * That works for both the dropdown and button picker styles, and survives the
+ * section being re-rendered.
  */
 class LedNoticeComponent extends Component {
   connectedCallback() {
     super.connectedCallback();
-    const target = this.closest('[id*="ProductInformation-"], [id*="QuickAdd-"], product-card');
-    if (!target) return;
-    target.addEventListener(StandardEvents.productSelect, this.#handleProductSelect);
+
+    this.container =
+      this.closest('[id*="ProductInformation-"], [id*="QuickAdd-"], product-card') || document;
+
+    try {
+      this.noLedValues = JSON.parse(this.dataset.noLedValues || '[]');
+    } catch {
+      this.noLedValues = [];
+    }
+
+    this.#sync();
+    this.container.addEventListener('change', this.#sync, true);
+    this.container.addEventListener('click', this.#deferredSync, true);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    const target = this.closest('[id*="ProductInformation-"], [id*="QuickAdd-"], product-card');
-    if (!target) return;
-    target.removeEventListener(StandardEvents.productSelect, this.#handleProductSelect);
+    this.container?.removeEventListener('change', this.#sync, true);
+    this.container?.removeEventListener('click', this.#deferredSync, true);
   }
 
-  /** @param {string} sku */
-  #matches(sku) {
-    const suffix = this.dataset.matchSuffix || '';
-    return Boolean(suffix) && typeof sku === 'string' && sku.endsWith(suffix);
+  /** Reads whichever picker control the theme rendered. */
+  #selectedValue() {
+    const select = this.container.querySelector?.('.variant-option__select');
+    if (select && select.value) return select.value.trim();
+
+    const checked = this.container.querySelector?.(
+      '.variant-option input[type="radio"]:checked, fieldset input[type="radio"]:checked'
+    );
+    if (checked) {
+      const label = checked.closest('label') || this.container.querySelector(`label[for="${checked.id}"]`);
+      return (label?.textContent || checked.value || '').trim();
+    }
+    return '';
   }
 
-  #handleProductSelect = (event) => {
-    event.promise
-      .then(({ detail }) => {
-        if (!detail) return;
+  #sync = () => {
+    if (!this.noLedValues.length) return;
+    const current = this.#selectedValue();
+    if (!current) return;
+    this.hidden = !this.noLedValues.some((value) => current.includes(value));
+  };
 
-        const { newProduct, resource } = detail;
-        if (newProduct) this.dataset.productId = newProduct.id;
-        if (detail.productId && detail.productId !== this.dataset.productId) return;
-        if (!resource) return;
-
-        this.hidden = !this.#matches(resource.sku || '');
-      })
-      .catch((error) => {
-        if (error?.name !== 'AbortError') console.warn('[led-notice] Event promise rejected:', error);
-      });
+  /** Button pickers update state after the click handler, so re-check next tick. */
+  #deferredSync = () => {
+    setTimeout(this.#sync, 0);
   };
 }
 
