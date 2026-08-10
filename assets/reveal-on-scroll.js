@@ -15,6 +15,12 @@ class RevealOnScroll extends Component {
     const items = formatter ? Array.from(formatter.children) : [this];
     if (!items.length) return;
 
+    // When the children are the ones animating, the host itself never gets
+    // .is-revealed. Any rule that hides the host would then never be undone and
+    // would hide the revealed children with it, since opacity multiplies down
+    // the tree. Reveal the host up front so only the children animate.
+    if (formatter) this.classList.add('is-revealed');
+
     // Only hide the content once we know this script is live and will reveal it
     // again. Without this the CSS hides content that nothing ever un-hides.
     this.classList.add('is-observing');
