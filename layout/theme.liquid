@@ -1131,7 +1131,11 @@
           font-size: 1.125rem !important;
         }
         [data-template='product'] .product-information__media {
-          height: 100% !important;
+          /* Sized by the image's own 1:1 ratio, not by the details column.
+             Stretching to the column made the frame grow whenever an
+             accordion opened, letterboxing the square photo. */
+          height: auto !important;
+          align-self: start !important;
           display: flex !important;
         }
         [data-template='product'] .product-information__media media-gallery {
@@ -1156,9 +1160,9 @@
              height on .constrain-height; both override a plain height:100%, so they
              have to be neutralized explicitly for the image to actually reach the
              card's full height instead of stopping early. */
-          aspect-ratio: auto !important;
+          aspect-ratio: 1 / 1 !important;
           max-height: none !important;
-          height: 100% !important;
+          height: auto !important;
           /* NOT flex: 1 - the native rule for this element is
              width: var(--slide-width, 100%), each slide taking the full row
              width with horizontal scroll-snap between them. flex: 1 sets
