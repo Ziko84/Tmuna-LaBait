@@ -209,15 +209,15 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .policy-page__intro,
-    .policy-page__content rte-formatter > * {
+    .policy-page__intro.is-observing,
+    .policy-page__content.is-observing rte-formatter > * {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .policy-page__intro.is-revealed,
-    .policy-page__content rte-formatter > *.is-revealed {
+    .policy-page__intro.is-observing.is-revealed,
+    .policy-page__content.is-observing rte-formatter > *.is-revealed {
       opacity: 1;
       transform: translateY(0);
     }
