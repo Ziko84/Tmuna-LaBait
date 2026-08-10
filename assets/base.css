@@ -2971,22 +2971,32 @@ label:has(input[type='checkbox']:disabled) {
   border-radius: var(--style-border-radius-buttons-secondary);
 }
 
-/* Match the quantity stepper to the add-to-cart button beside it: same shape
-   and same height, differing only in width. */
+/* Match the quantity stepper to the add-to-cart button beside it: same pill
+   shape and same height, differing only in width. The button resolves to a
+   999px radius and a 44px box (12px padding + line-height), so match those
+   directly rather than via --style-border-radius-buttons-primary, which
+   resolves to the input radius in this context. */
+.product-form-buttons {
+  align-items: center;
+}
+
 .product-form-buttons .quantity-selector {
-  border-radius: var(--style-border-radius-buttons-primary);
-  align-self: stretch;
-  min-height: 100%;
+  --quantity-selector-height: 44px;
+
+  box-sizing: border-box;
+  height: var(--quantity-selector-height);
+  min-height: var(--quantity-selector-height);
+  align-self: center;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-.product-form-buttons .quantity-selector .quantity-minus {
-  border-start-start-radius: var(--style-border-radius-buttons-primary);
-  border-end-start-radius: var(--style-border-radius-buttons-primary);
+.product-form-buttons .quantity-selector :is(.quantity-minus, .quantity-plus) {
+  height: 100%;
 }
 
-.product-form-buttons .quantity-selector .quantity-plus {
-  border-start-end-radius: var(--style-border-radius-buttons-primary);
-  border-end-end-radius: var(--style-border-radius-buttons-primary);
+.product-form-buttons .quantity-selector :is(.quantity-minus, .quantity-plus, input[type='number']) {
+  border-radius: 0;
 }
 
 .quantity-selector :is(.quantity-minus, .quantity-plus) {
