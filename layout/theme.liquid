@@ -29,6 +29,9 @@
 
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
+    {%- if request.page_type == 'policy' -%}
+      {%- render 'policy-styles' -%}
+    {%- endif -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
