@@ -418,6 +418,15 @@
         opacity: 1;
         transform: none;
       }
+      /* A slide that already is the night shot has nothing to cross-fade into,
+         so its swatches stay visible instead of waiting for hover. */
+      .led-swatches--always {
+        pointer-events: auto;
+      }
+      .led-swatches--always li {
+        opacity: 1;
+        transform: none;
+      }
       .led-swatches li:nth-child(1) { transition-delay: 0s; }
       .led-swatches li:nth-child(2) { transition-delay: 0.07s; }
       .led-swatches li:nth-child(3) { transition-delay: 0.14s; }
