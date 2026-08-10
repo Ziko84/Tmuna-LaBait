@@ -2999,6 +2999,20 @@ label:has(input[type='checkbox']:disabled) {
   border-radius: 0;
 }
 
+/* Variant (size) dropdown: same pill shape and 44px height as the buttons. */
+.variant-option__select-wrapper {
+  box-sizing: border-box;
+  height: 44px;
+  border-radius: 999px !important;
+  overflow: hidden;
+}
+
+.variant-option__select {
+  box-sizing: border-box;
+  height: 100%;
+  border-radius: 999px !important;
+}
+
 .quantity-selector :is(.quantity-minus, .quantity-plus) {
   /* Unset button styles */
   padding: 0;
