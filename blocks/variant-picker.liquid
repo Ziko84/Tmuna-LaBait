@@ -36,8 +36,9 @@
     <span class="led-notice__icon" aria-hidden="true">!</span>
     <span>המידה הקטנה (50x50) מגיעה ללא תאורת לד.</span>
   </led-notice-component>
+{% endunless %}
 
-  {% stylesheet %}
+{% stylesheet %}
     .led-notice {
       display: flex;
       align-items: center;
@@ -69,8 +70,7 @@
       font-size: 0.8rem;
       font-weight: 600;
     }
-  {% endstylesheet %}
-{% endunless %}
+{% endstylesheet %}
 
 {% schema %}
 {
