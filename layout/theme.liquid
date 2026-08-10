@@ -1825,16 +1825,17 @@
         12%, 36%, 60% { color: #d93025; }
         24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
       }
+      /* A price drop blinks once - a single clear beat rather than the
+         repeated pulse used to draw attention to an increase. */
       @keyframes price-flash-down {
         0%, 100% { color: var(--price-flash-base, currentColor); }
-        12%, 36%, 60% { color: #1e8e3e; }
-        24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
+        35%, 65% { color: #1e8e3e; }
       }
       .price-flash--up {
         animation: price-flash-up 1.2s ease-in-out;
       }
       .price-flash--down {
-        animation: price-flash-down 1.6s ease-in-out;
+        animation: price-flash-down 0.9s ease-in-out;
       }
       /* The price digits sit in child spans that set their own colour, so
          they would ignore the animation on the container without this. */
