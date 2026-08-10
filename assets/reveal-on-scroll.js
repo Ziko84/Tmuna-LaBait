@@ -19,31 +19,39 @@ class RevealOnScroll extends Component {
     // again. Without this the CSS hides content that nothing ever un-hides.
     this.classList.add('is-observing');
 
-    const reveal = (/** @type {Element} */ item) => item.classList.add('is-revealed');
-    let delivered = false;
-
     const observer = new IntersectionObserver(
       (entries) => {
-        delivered = true;
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            reveal(entry.target);
-            observer.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) reveal(entry.target);
         });
       },
       { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
     );
 
-    Array.from(items).forEach((item) => observer.observe(item));
+    /** @param {Element} item */
+    function reveal(item) {
+      item.classList.add('is-revealed');
+      observer.unobserve(item);
+    }
 
-    // Failsafe: if the observer never reports, show everything rather than
-    // leaving the page blank.
-    setTimeout(() => {
-      if (delivered) return;
-      items.forEach(reveal);
-      observer.disconnect();
-    }, 2000);
+    items.forEach((item) => observer.observe(item));
+
+    // Failsafe: reveal anything that is already on screen but which the
+    // observer has not reported. In a healthy browser the observer gets there
+    // first and this is a no-op; if a callback is ever missed, content is still
+    // visible instead of being stranded at opacity 0. Items below the fold keep
+    // their observer and still animate in on scroll.
+    const revealOnScreen = () => {
+      const pending = items.filter((item) => !item.classList.contains('is-revealed'));
+      pending.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) reveal(item);
+      });
+      if (!pending.length) window.removeEventListener('scroll', revealOnScreen);
+    };
+
+    setTimeout(revealOnScreen, 2000);
+    window.addEventListener('scroll', revealOnScreen, { passive: true });
   }
 }
 
