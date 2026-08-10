@@ -9,6 +9,67 @@
 
 {% unless product_resource == blank %}
   {% render 'variant-main-picker', product_resource: product_resource, section: section, product: product %}
+
+  {%- liquid
+    assign selected_variant = product_resource.selected_or_first_available_variant
+    assign no_led_suffix = '-S'
+    assign show_no_led = false
+    if selected_variant.sku != blank
+      assign sku_tail = selected_variant.sku | slice: -2, 2
+      if sku_tail == no_led_suffix
+        assign show_no_led = true
+      endif
+    endif
+  -%}
+
+  <script
+    src="{{ 'led-notice.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+
+  <led-notice-component
+    class="led-notice"
+    data-match-suffix="{{ no_led_suffix }}"
+    {% unless show_no_led %}hidden{% endunless %}
+  >
+    <span class="led-notice__icon" aria-hidden="true">!</span>
+    <span>המידה הקטנה (50x50) מגיעה ללא תאורת לד.</span>
+  </led-notice-component>
+
+  {% stylesheet %}
+    .led-notice {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-block: 0.75rem 0;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid #e3dcc9;
+      border-radius: 12px;
+      background-color: #fcfbf9;
+      color: #4a453d;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .led-notice[hidden] {
+      display: none;
+    }
+
+    .led-notice__icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background-color: #8a6e46;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  {% endstylesheet %}
 {% endunless %}
 
 {% schema %}
