@@ -64,9 +64,7 @@
       // price node the theme is about to replace, and the replacement drops
       // the class before the animation is ever painted.
       clearTimeout(pending);
-      pending = setTimeout(function () {
-        requestAnimationFrame(check);
-      }, 250);
+      pending = setTimeout(check, 250);
     }).observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
