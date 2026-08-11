@@ -137,84 +137,58 @@
       {%- endform -%}
     </reveal-on-scroll>
 
-    <reveal-on-scroll class="contact-page__info-card">
-      {% if section.settings.info_heading != blank %}
-        <h2 class="contact-page__card-heading">{{ section.settings.info_heading }}</h2>
-      {% endif %}
-
+    {%- comment -%}
+      Three equal channel cards, one row, identical height. The previous
+      version mixed a pill, two chips and a tall hours block on one line,
+      which read as clutter rather than as a set of choices.
+    {%- endcomment -%}
+    <reveal-on-scroll class="contact-page__channels">
       {% if section.settings.whatsapp_number != blank %}
-        {%- comment -%}
-          WhatsApp first: for Israeli customers it is the expected way to reach
-          a small business, and it is the only channel here that gets a reply
-          in minutes rather than a working day.
-        {%- endcomment -%}
         {%- assign wa_digits = section.settings.whatsapp_number | remove: '-' | remove: ' ' | remove: '+' -%}
         <a
-          class="contact-page__whatsapp"
+          class="contact-page__channel contact-page__channel--primary"
           href="https://wa.me/{{ wa_digits }}"
           target="_blank"
           rel="noopener"
         >
-          <span class="contact-page__info-icon" aria-hidden="true">
+          <span class="contact-page__channel-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/>
             </svg>
           </span>
-          <span>{{ section.settings.whatsapp_label }}</span>
+          <span class="contact-page__channel-label">{{ section.settings.whatsapp_label }}</span>
+          <span class="contact-page__channel-value">{{ section.settings.whatsapp_number }}</span>
         </a>
       {% endif %}
 
-      <div class="contact-page__info-row">
-        <span class="contact-page__info-icon">
+      <a class="contact-page__channel" href="mailto:{{ section.settings.email }}">
+        <span class="contact-page__channel-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
             <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
-        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-      </div>
+        <span class="contact-page__channel-label">{{ section.settings.email_label }}</span>
+        <span class="contact-page__channel-value">{{ section.settings.email }}</span>
+      </a>
 
-      <div class="contact-page__info-row">
-        <span class="contact-page__info-icon">
+      <a class="contact-page__channel" href="tel:{{ section.settings.phone }}">
+        <span class="contact-page__channel-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.5 3.5c.7 0 1.3.4 1.6 1l1 2c.3.6.2 1.3-.3 1.8L7.5 9.6c1 2.4 2.9 4.3 5.3 5.3l1.3-1.3c.5-.5 1.2-.6 1.8-.3l2 1c.6.3 1 .9 1 1.6v1.7c0 1.2-1.1 2.1-2.3 1.9C10.9 18.7 5.3 13.1 4.4 6.4c-.2-1.2.7-2.3 1.9-2.3h.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           </svg>
         </span>
-        <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
-      </div>
+        <span class="contact-page__channel-label">{{ section.settings.phone_label }}</span>
+        <span class="contact-page__channel-value">{{ section.settings.phone }}</span>
+      </a>
+    </reveal-on-scroll>
 
-      <div class="contact-page__divider"></div>
-
-      <div class="contact-page__hours">
-        <div class="contact-page__info-row">
-          <span class="contact-page__info-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span>{{ section.settings.hours_label }}</span>
-        </div>
-        <p class="contact-page__hours-days">{{ section.settings.hours_days }}</p>
-        <p class="contact-page__hours-time">{{ section.settings.hours_time }}</p>
-      </div>
-
+    <reveal-on-scroll class="contact-page__meta">
+      <p class="contact-page__meta-line">
+        {{ section.settings.hours_label }}: {{ section.settings.hours_days }}, {{ section.settings.hours_time }}
+      </p>
       {% if section.settings.address != blank %}
-        {%- comment -%}
-          The address used to be buried mid-sentence in the intro paragraph,
-          where nobody scanning for it would find it. It belongs here with the
-          other contact details.
-        {%- endcomment -%}
-        <div class="contact-page__divider"></div>
-        <div class="contact-page__info-row contact-page__info-row--address">
-          <span class="contact-page__info-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 21s6.5-5.1 6.5-10.1A6.5 6.5 0 0 0 5.5 10.9C5.5 15.9 12 21 12 21Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <circle cx="12" cy="10.5" r="2.25" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </span>
-          <span>{{ section.settings.address }}</span>
-        </div>
+        <p class="contact-page__meta-line">{{ section.settings.address }}</p>
       {% endif %}
     </reveal-on-scroll>
   </div>
@@ -293,58 +267,103 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 28px;
   }
 
-  .contact-page__info-card {
-    order: -1;
+  .contact-page__channels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 14px 20px;
-    background-color: transparent;
-    box-shadow: none;
-    padding: 0;
+    max-width: 56rem;
+    order: -2;
   }
 
-  .contact-page__info-card .contact-page__card-heading,
-  .contact-page__info-card .contact-page__divider {
-    display: none;
-  }
-
-  .contact-page__info-card .contact-page__info-row {
-    background-color: #f7f5f2;
-    border-radius: 999px;
-    padding: 12px 20px;
-  }
-
-  .contact-page__hours {
+  .contact-page__channel {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 6px 10px;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    text-decoration: none;
+    padding: 24px 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 8%);
+    color: #1a1a2e;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   }
 
-  .contact-page__hours-days,
-  .contact-page__hours-time {
+  .contact-page__channel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(26, 26, 46, 0.12);
+  }
+
+  .contact-page__channel--primary {
+    background-color: #1a1a2e;
+    border-color: #1a1a2e;
+    color: #ffffff;
+  }
+
+  .contact-page__channel-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .contact-page__channel-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    opacity: 0.65;
+  }
+
+  .contact-page__channel-value {
+    font-size: 1.05rem;
+    direction: ltr;
+  }
+
+  .contact-page__channel--primary .contact-page__channel-value {
+    color: #ffffff;
+  }
+
+  .contact-page__meta {
+    display: block;
+    order: -1;
+    text-align: center;
+  }
+
+  .contact-page__meta-line {
     margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgb(var(--color-foreground-rgb) / 60%);
   }
 
   .contact-page__form-card {
     width: 100%;
     max-width: 44rem;
+    margin-block-start: 20px;
   }
 
   @media screen and (max-width: 749px) {
     .contact-page__grid {
-      gap: 36px;
+      gap: 32px;
     }
 
-    .contact-page__info-card {
-      flex-direction: column;
-      align-items: stretch;
+    .contact-page__channels {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-page__channel {
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 20px;
+    }
+
+    .contact-page__channel-label {
+      display: none;
     }
   }
 
@@ -360,10 +379,6 @@
     .contact-page__form-card {
       padding: 28px 24px;
     }
-  }
-
-  .contact-page__info-card {
-    display: flex;
   }
 
   .contact-page__form {
@@ -576,7 +591,7 @@
       "type": "text",
       "id": "whatsapp_label",
       "label": "WhatsApp button label",
-      "default": "שלחו לנו הודעה בוואטסאפ"
+      "default": "וואטסאפ"
     },
     {
       "type": "text",
@@ -619,6 +634,18 @@
       "id": "label_submit",
       "label": "Submit button label",
       "default": "שלחו הודעה"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email channel label",
+      "default": "אימייל"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone channel label",
+      "default": "טלפון"
     },
     {
       "type": "text",
