@@ -20,8 +20,11 @@
   earlier pass set unstyled text directly on that ground, which read as content
   that had escaped its container rather than as a section.
 
-  Inside the surface the description leads and the practical facts sit beside
-  it, divided by a single rule. No cards within the card, no icons.
+  Inside the surface it is deliberately underfilled. The text measure stops at
+  56 characters well before the column ends, the padding is close to twice the
+  usual card padding, and the first paragraph is set larger than the rest so
+  the description opens rather than starts. Luxury here is bought with space
+  and restraint, not with more elements.
 {%- endcomment -%}
 
 {%- assign panel_product = product -%}
@@ -29,9 +32,12 @@
 <div class="product-info-panel">
   <div class="product-info-panel__surface page-width-content">
     <div class="product-info-panel__grid">
-      {% if panel_product.description != blank %}
-        <div class="product-info-panel__lead rte">{{ panel_product.description }}</div>
-      {% endif %}
+      <div class="product-info-panel__col">
+        <h2 class="product-info-panel__title">על היצירה</h2>
+        {% if panel_product.description != blank %}
+          <div class="product-info-panel__lead rte">{{ panel_product.description }}</div>
+        {% endif %}
+      </div>
 
       <dl class="product-info-panel__facts">
         <div class="product-info-panel__fact">
@@ -53,19 +59,18 @@
 
 {% style %}
   .product-info-panel {
-    padding-block: 8px 72px;
+    padding-block: 8px 88px;
   }
 
   .product-info-panel__surface {
     position: relative;
     background-color: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 2px 8px rgba(24, 24, 32, 0.05), 0 16px 40px rgba(24, 24, 32, 0.07);
-    padding: 48px 52px;
+    border-radius: 28px;
+    box-shadow: 0 2px 8px rgba(24, 24, 32, 0.04), 0 20px 56px rgba(24, 24, 32, 0.07);
+    padding: 88px 80px 96px;
     overflow: hidden;
   }
 
-  /* Same gold edge the product cards and banners carry. */
   .product-info-panel__surface::after {
     content: '';
     position: absolute;
@@ -74,25 +79,58 @@
     pointer-events: none;
     border-radius: inherit;
     background:
-      linear-gradient(to left, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 40% 1px no-repeat,
-      linear-gradient(to top, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 1px 40% no-repeat;
+      linear-gradient(to left, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 32% 1px no-repeat,
+      linear-gradient(to top, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 1px 32% no-repeat;
   }
 
   .product-info-panel__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    gap: 52px;
+    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+    gap: 96px;
     align-items: start;
   }
 
+  .product-info-panel__title {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: #1a1a2e;
+    margin: 0 0 40px;
+    padding-block-end: 22px;
+    position: relative;
+  }
+
+  /* A short gold rule under the heading rather than a full width divider:
+     the same accent the cards carry, used once, at reading scale. */
+  .product-info-panel__title::after {
+    content: '';
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(to left, rgba(255, 209, 102, 0.95), rgba(255, 209, 102, 0.15));
+  }
+
   .product-info-panel__lead {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: #33333d;
+    max-width: 56ch;
+    color: #4a4a55;
   }
 
   .product-info-panel__lead p {
-    margin: 0 0 16px;
+    font-size: 1rem;
+    line-height: 2.05;
+    margin: 0 0 22px;
+  }
+
+  /* The opening paragraph is set larger so the description opens rather
+     than simply starting. */
+  .product-info-panel__lead p:first-child {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: #2a2a35;
+    margin-block-end: 30px;
   }
 
   .product-info-panel__lead p:last-child {
@@ -101,48 +139,61 @@
 
   .product-info-panel__facts {
     margin: 0;
-    padding-inline-start: 52px;
-    border-inline-start: 1px solid rgba(26, 26, 46, 0.1);
+    padding-block-start: 4px;
   }
 
   .product-info-panel__fact + .product-info-panel__fact {
-    margin-block-start: 24px;
+    margin-block-start: 40px;
+    padding-block-start: 40px;
+    border-block-start: 1px solid rgba(26, 26, 46, 0.08);
   }
 
   .product-info-panel__fact dt {
-    font-family: var(--font-heading--family);
-    font-size: 0.95rem;
-    color: #1a1a2e;
-    margin-block-end: 6px;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: rgba(26, 26, 46, 0.4);
+    margin-block-end: 14px;
   }
 
   .product-info-panel__fact dd {
     margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #5a554d;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #33333d;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .product-info-panel__surface {
+      padding: 64px 56px 72px;
+    }
+
+    .product-info-panel__grid {
+      gap: 64px;
+    }
   }
 
   @media screen and (max-width: 989px) {
     .product-info-panel {
-      padding-block: 0 48px;
+      padding-block: 0 56px;
     }
 
     .product-info-panel__surface {
-      padding: 32px 24px;
-      border-radius: 20px;
+      padding: 44px 28px 48px;
+      border-radius: 22px;
     }
 
     .product-info-panel__grid {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 48px;
     }
 
-    .product-info-panel__facts {
-      padding-inline-start: 0;
-      padding-block-start: 28px;
-      border-inline-start: none;
-      border-block-start: 1px solid rgba(26, 26, 46, 0.1);
+    .product-info-panel__title {
+      font-size: 1.6rem;
+      margin-block-end: 32px;
+    }
+
+    .product-info-panel__lead p:first-child {
+      font-size: 1.15rem;
     }
   }
 {% endstyle %}
