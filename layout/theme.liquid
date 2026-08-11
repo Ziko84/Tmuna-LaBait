@@ -1419,6 +1419,13 @@
         justify-content: flex-end;
         order: 1;
       }
+      /* Stars sit between the price and the button, sharing the button
+         row's ordering so they land below the text block rather than
+         above the photo. */
+      .product-card__stars {
+        order: 1;
+        padding-inline: 18px;
+      }
       .product-card__add-to-cart-button {
         width: fit-content;
         padding-inline: 14px;
