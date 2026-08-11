@@ -1,17 +1,17 @@
 // Flashes the product page price when a variant change moves it:
-// red when the price goes up, green when it goes down.
+// red (repeated) when the price goes up, green (once) when it goes down.
 //
-// Watches a stable container rather than the price element itself, because
-// the theme swaps the price node out on variant change (morph). Observing
-// the price element directly would leave the observer bound to a detached
-// node after the first switch.
+// Observes document.body rather than the price's own container. A variant
+// change can re-render the whole product-information section, which detaches
+// any container captured at init time - an observer bound to it would then
+// never fire again. Watching a root that always survives, and re-querying the
+// price element on every batch, keeps this working across re-renders.
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // [container that survives variant updates, price element inside it]
-  var WATCH = [
-    ['.product-details', 'product-price'],
-    ['sticky-add-to-cart', '.sticky-add-to-cart__price'],
+  var TARGETS = [
+    { selector: '.product-details product-price', last: null },
+    { selector: 'sticky-add-to-cart .sticky-add-to-cart__price', last: null },
   ];
 
   var UP_CLASS = 'price-flash--up';
@@ -39,34 +39,30 @@
     el.classList.add(direction > 0 ? UP_CLASS : DOWN_CLASS);
   }
 
-  function watch(container, priceSelector) {
-    var last = readPrice(container.querySelector(priceSelector));
-    var pending = null;
-
-    container.addEventListener('animationend', function (event) {
-      event.target.classList.remove(UP_CLASS, DOWN_CLASS);
+  function check() {
+    TARGETS.forEach(function (target) {
+      var el = document.querySelector(target.selector);
+      var current = readPrice(el);
+      if (current == null) return;
+      if (target.last != null && current !== target.last) flash(el, current - target.last);
+      target.last = current;
     });
-
-    new MutationObserver(function () {
-      // A single variant update fires many mutations as the subtree is
-      // rewritten - coalesce them so one change flashes once.
-      clearTimeout(pending);
-      pending = setTimeout(function () {
-        var priceEl = container.querySelector(priceSelector);
-        var current = readPrice(priceEl);
-        if (current == null) return;
-        if (last != null && current !== last) flash(priceEl, current - last);
-        last = current;
-      }, 60);
-    }).observe(container, { childList: true, subtree: true, characterData: true });
   }
 
   function init() {
-    WATCH.forEach(function (pair) {
-      document.querySelectorAll(pair[0]).forEach(function (container) {
-        watch(container, pair[1]);
-      });
+    check(); // seed the baseline
+
+    document.addEventListener('animationend', function (event) {
+      if (event.target instanceof Element) event.target.classList.remove(UP_CLASS, DOWN_CLASS);
     });
+
+    var pending = null;
+    new MutationObserver(function () {
+      // One variant update fires many mutations as the subtree is rewritten -
+      // coalesce them so a single change flashes once.
+      clearTimeout(pending);
+      pending = setTimeout(check, 60);
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
   if (document.readyState === 'loading') {
