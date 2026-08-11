@@ -13,7 +13,8 @@
        depending on state - clear all three. */
     '.account-button__avatar,',
     '.account-button--shop-customer {',
-    '  border-color: #1a1a2e !important;',
+    '  background: transparent !important;',
+    '  border-color: transparent !important;',
     '  outline: none !important;',
     '  box-shadow: none !important;',
     '}',
@@ -21,18 +22,18 @@
     '.account-button__coin-front {',
     '  background: #ffffff !important;',
     '  background-image: none !important;',
-    '  border: 1px solid #1a1a2e !important;',
-    '  color: #1a1a2e !important;',
+    '  border: 1px solid #111111 !important;',
+    '  color: #111111 !important;',
     '}',
     '.account-button__avatar-initials {',
-    '  color: #1a1a2e !important;',
+    '  color: #111111 !important;',
     '  text-transform: lowercase;',
     '}',
     /* Back of the coin: the Shop logo side shown on flip/hover. */
     '.account-button__coin-back {',
-    '  background: #1a1a2e !important;',
+    '  background: #111111 !important;',
     '  background-image: none !important;',
-    '  border: 1px solid #1a1a2e !important;',
+    '  border: 1px solid #111111 !important;',
     '}',
     '.account-button__coin-back-logo path {',
     '  fill: #ffffff !important;',
@@ -40,7 +41,7 @@
     /* Any focus/hover ring the component draws in its own brand colour. */
     '.account-button:focus-visible .account-button__avatar,',
     '.account-button:hover .account-button__avatar {',
-    '  outline-color: #1a1a2e !important;',
+    '  outline-color: #111111 !important;',
     '}',
   ].join('\n');
 
