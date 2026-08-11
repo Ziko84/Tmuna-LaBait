@@ -1820,10 +1820,10 @@
          exactly that (using `inherit` here would resolve to the parent's
          colour and jump on the first frame). Three pulses each; green runs
          longer since a price drop is the friendlier news to dwell on. */
+      /* One clear beat, matching the drop - see price-flash-down below. */
       @keyframes price-flash-up {
         0%, 100% { color: var(--price-flash-base, currentColor); }
-        12%, 36%, 60% { color: #d93025; }
-        24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
+        35%, 65% { color: #d93025; }
       }
       /* A price drop blinks once - a single clear beat rather than the
          repeated pulse used to draw attention to an increase. */
@@ -1832,7 +1832,7 @@
         35%, 65% { color: #1e8e3e; }
       }
       .price-flash--up {
-        animation: price-flash-up 1.2s ease-in-out;
+        animation: price-flash-up 0.9s ease-in-out;
       }
       .price-flash--down {
         animation: price-flash-down 0.9s ease-in-out;
