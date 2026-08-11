@@ -59,9 +59,14 @@
     var pending = null;
     new MutationObserver(function () {
       // One variant update fires many mutations as the subtree is rewritten -
-      // coalesce them so a single change flashes once.
+      // coalesce them so a single change flashes once. The wait also has to
+      // outlast the re-render itself: flashing too early puts the class on a
+      // price node the theme is about to replace, and the replacement drops
+      // the class before the animation is ever painted.
       clearTimeout(pending);
-      pending = setTimeout(check, 60);
+      pending = setTimeout(function () {
+        requestAnimationFrame(check);
+      }, 250);
     }).observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
