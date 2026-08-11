@@ -1837,12 +1837,13 @@
       .price-flash--down {
         animation: price-flash-down 0.9s ease-in-out;
       }
-      /* The price digits sit in child spans that set their own colour, so
-         they would ignore the animation on the container without this. */
-      .price-flash--up .price,
-      .price-flash--down .price,
-      .price-flash--up .price-item,
-      .price-flash--down .price-item {
+      /* The price digits sit in nested wrappers (product-price >
+         .price__regular > .price). Targeting only .price made it inherit from
+         .price__regular - which is not animated - so the flash never showed.
+         Every descendant has to pass the colour down from the animated
+         element for the animation to reach the digits. */
+      .price-flash--up *,
+      .price-flash--down * {
         color: inherit !important;
       }
 
