@@ -38,6 +38,19 @@
     '.account-button__coin-back-logo path {',
     '  fill: #ffffff !important;',
     '}',
+    /* Shop's purple (rgb(84,51,235)) is painted by pseudo-elements, not by the
+       elements themselves - the visible ring comes from these. */
+    '.account-button__avatar::before,',
+    '.account-button__avatar::after,',
+    '.account-button__coin-front::before,',
+    '.account-button__coin-front::after,',
+    '.account-button__coin-back::before,',
+    '.account-button__coin-back::after {',
+    '  background: transparent !important;',
+    '  background-image: none !important;',
+    '  border-color: transparent !important;',
+    '  box-shadow: none !important;',
+    '}',
     /* Any focus/hover ring the component draws in its own brand colour. */
     '.account-button:focus-visible .account-button__avatar,',
     '.account-button:hover .account-button__avatar {',
