@@ -1343,6 +1343,18 @@
         top: calc(var(--padding-sm, 16px) + 5px) !important;
         inset-inline-end: calc(var(--padding-sm, 16px) + 5px) !important;
       }
+      /* Hovering the heart itself fills a faint disc behind it, so the
+         icon reads as a target rather than as decoration painted on the
+         photo. Kept low opacity and blurred so it never competes with
+         the product image. */
+      .favorite-toggle:hover,
+      .favorite-toggle:focus-visible {
+        background: rgb(255 255 255 / 22%) !important;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 0 0 1px rgb(255 255 255 / 30%) !important;
+      }
+
       /* One size step up the theme's own icon scale (sm -> md). */
       .favorite-toggle__icon {
         width: var(--icon-size-md);
