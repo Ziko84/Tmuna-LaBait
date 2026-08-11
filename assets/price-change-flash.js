@@ -7,8 +7,6 @@
 // never fire again. Watching a root that always survives, and re-querying the
 // price element on every batch, keeps this working across re-renders.
 (function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
   var TARGETS = [
     { selector: '.product-details product-price', last: null },
     { selector: 'sticky-add-to-cart .sticky-add-to-cart__price', last: null },
