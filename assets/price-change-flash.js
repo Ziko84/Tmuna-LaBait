@@ -50,6 +50,12 @@
   }
 
   function init() {
+    // Diagnostic handles: whether this ever initialised, and a way to run the
+    // comparison by hand from the console.
+    window.__priceFlashReady = true;
+    window.__priceFlashCheck = check;
+    window.__priceFlashState = TARGETS;
+
     check(); // seed the baseline
 
     document.addEventListener('animationend', function (event) {
