@@ -57,6 +57,10 @@
     check(); // seed the baseline
 
     document.addEventListener('animationend', function (event) {
+      // Only clean up after our own animation. The theme runs a shimmer on
+      // text blocks during a variant update, and its animationend was
+      // stripping the flash class the moment it was applied.
+      if (String(event.animationName).indexOf('price-flash') !== 0) return;
       if (event.target instanceof Element) event.target.classList.remove(UP_CLASS, DOWN_CLASS);
     });
 
