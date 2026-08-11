@@ -10,104 +10,173 @@
   These three bodies of text used to be accordions inside the buy column,
   where they competed with the price and the add to cart button for the same
   narrow strip, and pushed the button down the page every time one opened.
-  Here they sit full width below the card, open, at a readable measure.
 
-  The description still appears in the buy column as a short summary, so the
-  card above continues to say what the product actually is.
+  Layout: the description leads at a real reading measure, and the two
+  supporting texts sit beside it as cards. Three equal columns of gray body
+  text, which is what this was first built as, gave a product's own words the
+  same weight as the returns policy and looked like any theme's spec table.
+  The cards borrow the white surface, radius, shadow and gold edge from the
+  product cards so the section belongs to this store rather than to the
+  template it came from.
 {%- endcomment -%}
 
 {%- assign panel_product = product -%}
 {%- assign details_text = 'היצירה נחתכת בלייזר בדיוק של שבריר מילימטר, מעץ בוטיק איכותי, ומוארת באור רך מבפנים. כל פרט מתוכנן בקפידה כדי להשתלב בבית שלכם.' -%}
 
-<div
-  class="product-info-panel"
-  style="background-color: #f7f5f2; padding-block: 64px;"
->
+<div class="product-info-panel">
   <div class="product-info-panel__inner page-width-content">
-    {% if true %}
-      <h2 class="product-info-panel__heading">כל מה שכדאי לדעת</h2>
+    {% if panel_product.description != blank %}
+      <div class="product-info-panel__lead">
+        <span class="product-info-panel__eyebrow">תיאור</span>
+        <div class="product-info-panel__lead-body rte">{{ panel_product.description }}</div>
+      </div>
     {% endif %}
 
-    <div class="product-info-panel__columns">
-      {% if panel_product.description != blank %}
-        <div class="product-info-panel__column">
-          <h3 class="product-info-panel__column-heading">תיאור</h3>
-          <div class="product-info-panel__body rte">{{ panel_product.description }}</div>
-        </div>
-      {% endif %}
+    <div class="product-info-panel__side">
+      <div class="product-info-panel__card">
+        <h3 class="product-info-panel__card-heading">
+          <span class="product-info-panel__card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M4 8l8 4.5L20 8M12 12.5V20.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          פרטים נוספים
+        </h3>
+        <div class="product-info-panel__card-body">{{ details_text }}</div>
+      </div>
 
-      {% if true %}
-        <div class="product-info-panel__column">
-          <h3 class="product-info-panel__column-heading">פרטים נוספים</h3>
-          <div class="product-info-panel__body rte">{{ details_text }}</div>
+      <div class="product-info-panel__card">
+        <h3 class="product-info-panel__card-heading">
+          <span class="product-info-panel__card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 7.5h10v9H3v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M13 10.5h4l4 3.5v2.5h-8v-6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="7" cy="17.5" r="1.75" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="17" cy="17.5" r="1.75" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </span>
+          משלוחים והחזרות
+        </h3>
+        <div class="product-info-panel__card-body">
+          <p>ההזמנה יוצאת אליכם תוך 1 עד 3 ימי עסקים ומגיעה תוך 2 עד 6 ימי עסקים מרגע ההזמנה.</p>
+          <p>ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו.</p>
         </div>
-      {% endif %}
-
-      {% if true %}
-        <div class="product-info-panel__column">
-          <h3 class="product-info-panel__column-heading">משלוחים והחזרות</h3>
-          <div class="product-info-panel__body rte"><p>ההזמנה יוצאת אליכם תוך 1 עד 3 ימי עסקים ומגיעה תוך 2 עד 6 ימי עסקים מרגע ההזמנה.</p><p>חשוב לנו שתהיו מרוצים מהרכישה. ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו. פנו אלינו דרך עמוד צרו קשר ונטפל בבקשה בקפידה ובהתחשבות.</p></div>
-        </div>
-      {% endif %}
+      </div>
     </div>
   </div>
 </div>
 
 {% style %}
+  .product-info-panel {
+    background-color: #f7f5f2;
+    padding-block: 80px;
+  }
+
   .product-info-panel__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-
-  .product-info-panel__heading {
-    font-family: var(--font-heading--family);
-    font-weight: 500;
-    font-size: 1.5rem;
-    color: #1a1a2e;
-    margin: 0;
-    text-align: center;
-  }
-
-  .product-info-panel__columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 56px;
     align-items: start;
   }
 
-  .product-info-panel__column-heading {
-    font-family: var(--font-heading--family);
-    font-weight: 500;
-    font-size: 1.05rem;
-    color: #1a1a2e;
-    margin: 0 0 12px;
-    padding-block-end: 12px;
-    border-block-end: 1px solid rgba(26, 26, 46, 0.12);
+  .product-info-panel__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    color: rgba(26, 26, 46, 0.45);
+    margin-block-end: 18px;
   }
 
-  .product-info-panel__body {
-    font-size: 0.95rem;
+  .product-info-panel__lead-body {
+    font-size: 1.15rem;
+    line-height: 1.95;
+    color: #33333d;
+    max-width: 38rem;
+  }
+
+  .product-info-panel__lead-body p {
+    margin: 0 0 18px;
+  }
+
+  .product-info-panel__lead-body p:last-child {
+    margin-block-end: 0;
+  }
+
+  .product-info-panel__side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .product-info-panel__card {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 26px 28px;
+    box-shadow: 0 2px 6px rgba(24, 24, 32, 0.05), 0 12px 26px rgba(24, 24, 32, 0.07);
+    overflow: hidden;
+  }
+
+  /* Same gold edge the product cards and banners carry. */
+  .product-info-panel__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(to left, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 55% 1px no-repeat,
+      linear-gradient(to top, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 1px 50% no-repeat;
+  }
+
+  .product-info-panel__card-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1rem;
+    color: #1a1a2e;
+    margin: 0 0 14px;
+  }
+
+  .product-info-panel__card-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    color: rgba(26, 26, 46, 0.55);
+  }
+
+  .product-info-panel__card-body {
+    font-size: 0.9rem;
     line-height: 1.75;
     color: #5a554d;
   }
 
-  .product-info-panel__body p {
-    margin: 0 0 12px;
+  .product-info-panel__card-body p {
+    margin: 0 0 10px;
   }
 
-  .product-info-panel__body p:last-child {
+  .product-info-panel__card-body p:last-child {
     margin-block-end: 0;
   }
 
   @media screen and (max-width: 989px) {
-    .product-info-panel__columns {
-      grid-template-columns: 1fr;
-      gap: 32px;
+    .product-info-panel {
+      padding-block: 56px;
     }
 
     .product-info-panel__inner {
-      gap: 28px;
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .product-info-panel__lead-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      max-width: none;
     }
   }
 {% endstyle %}
