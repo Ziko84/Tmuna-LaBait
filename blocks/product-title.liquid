@@ -13,6 +13,14 @@
   >
     {% render 'text', fallback_text: product_title, block: block %}
   </a>
+  {%- comment -%}
+    Cards only. On a product page the main title block's closest.product is the
+    page's own product, so comparing against the global product object tells a
+    card apart from the page heading without needing a separate block type.
+  {%- endcomment -%}
+  {% if product == blank or product.id != closest.product.id %}
+    {% render 'product-card-stars', card_product: closest.product %}
+  {% endif %}
 {% endif %}
 
 {% schema %}

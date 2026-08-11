@@ -1419,18 +1419,7 @@
         justify-content: flex-end;
         order: 1;
       }
-      /* Stars sit between the price and the button, sharing the button
-         row's ordering so they land below the text block rather than
-         above the photo. */
       .product-card__stars {
-        order: 1;
-        padding-inline: 18px;
-      }
-      /* Once moved into the title and price block it inherits that
-         block's own padding, so it must not add its own. */
-      .product-card__stars.is-positioned {
-        order: 0;
-        padding-inline: 0;
         margin-block: 2px 0;
       }
       .product-card__add-to-cart-button {
@@ -2016,7 +2005,6 @@
     <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
-    <script src="{{ 'product-card-stars-position.js' | asset_url }}" defer></script>
     <script src="{{ 'hebrew-live-search.js' | asset_url }}" defer></script>
     {% comment %}
       The account avatar lives in the header, so its restyle has to load on
