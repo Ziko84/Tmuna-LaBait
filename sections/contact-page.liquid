@@ -13,6 +13,9 @@
 
   <div class="contact-page__grid">
     <reveal-on-scroll class="contact-page__form-card">
+      {% if section.settings.form_heading != blank %}
+        <h2 class="contact-page__card-heading">{{ section.settings.form_heading }}</h2>
+      {% endif %}
       {% assign form_id = section.id | prepend: 'ContactPage-' %}
       {%- form 'contact', id: form_id, class: 'contact-page__form' -%}
         <input
@@ -123,10 +126,44 @@
         >
           {{ section.settings.label_submit }}
         </button>
+
+        {% if section.settings.response_time != blank %}
+          {%- comment -%}
+            Sets the expectation before the visitor sends, so silence after
+            submitting reads as normal rather than as a broken form.
+          {%- endcomment -%}
+          <p class="contact-page__response-time">{{ section.settings.response_time }}</p>
+        {% endif %}
       {%- endform -%}
     </reveal-on-scroll>
 
     <reveal-on-scroll class="contact-page__info-card">
+      {% if section.settings.info_heading != blank %}
+        <h2 class="contact-page__card-heading">{{ section.settings.info_heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.whatsapp_number != blank %}
+        {%- comment -%}
+          WhatsApp first: for Israeli customers it is the expected way to reach
+          a small business, and it is the only channel here that gets a reply
+          in minutes rather than a working day.
+        {%- endcomment -%}
+        {%- assign wa_digits = section.settings.whatsapp_number | remove: '-' | remove: ' ' | remove: '+' -%}
+        <a
+          class="contact-page__whatsapp"
+          href="https://wa.me/{{ wa_digits }}"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="contact-page__info-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/>
+            </svg>
+          </span>
+          <span>{{ section.settings.whatsapp_label }}</span>
+        </a>
+      {% endif %}
+
       <div class="contact-page__info-row">
         <span class="contact-page__info-icon">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,6 +198,24 @@
         <p class="contact-page__hours-days">{{ section.settings.hours_days }}</p>
         <p class="contact-page__hours-time">{{ section.settings.hours_time }}</p>
       </div>
+
+      {% if section.settings.address != blank %}
+        {%- comment -%}
+          The address used to be buried mid-sentence in the intro paragraph,
+          where nobody scanning for it would find it. It belongs here with the
+          other contact details.
+        {%- endcomment -%}
+        <div class="contact-page__divider"></div>
+        <div class="contact-page__info-row contact-page__info-row--address">
+          <span class="contact-page__info-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21s6.5-5.1 6.5-10.1A6.5 6.5 0 0 0 5.5 10.9C5.5 15.9 12 21 12 21Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="12" cy="10.5" r="2.25" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </span>
+          <span>{{ section.settings.address }}</span>
+        </div>
+      {% endif %}
     </reveal-on-scroll>
   </div>
 
@@ -170,6 +225,48 @@
 </div>
 
 {% stylesheet %}
+  .contact-page__card-heading {
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #1a1a2e;
+    margin: 0 0 24px;
+  }
+
+  .contact-page__whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  }
+
+  .contact-page__whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(26, 26, 46, 0.18);
+  }
+
+  .contact-page__whatsapp .contact-page__info-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .contact-page__response-time {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #5a554d;
+    text-align: center;
+  }
+
+  .contact-page__info-row--address span {
+    line-height: 1.5;
+  }
+
   .contact-page {
     padding-block: 24px 96px;
   }
@@ -407,6 +504,42 @@
       "id": "intro_text",
       "label": "Intro text",
       "default": "נשמח לעזור בכל שאלה, בקשה או התייעצות."
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form card heading",
+      "default": "שלחו לנו הודעה"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info card heading",
+      "default": "פרטי התקשרות"
+    },
+    {
+      "type": "text",
+      "id": "response_time",
+      "label": "Response time note",
+      "default": "נחזור אליכם תוך יום עסקים אחד."
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number (international format)",
+      "default": "972546385242"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_label",
+      "label": "WhatsApp button label",
+      "default": "שלחו לנו הודעה בוואטסאפ"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "דרך הרימונים 28, רינתיה 7316500"
     },
     {
       "type": "text",
