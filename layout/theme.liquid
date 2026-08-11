@@ -29,6 +29,9 @@
 
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
+    {%- if request.page_type == 'policy' -%}
+      {%- render 'policy-styles' -%}
+    {%- endif -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
@@ -412,6 +415,15 @@
       }
       .product-media-container:is(:hover, .night-mode-active) .led-swatches li,
       .media-block:is(:hover, .night-mode-active) .led-swatches li {
+        opacity: 1;
+        transform: none;
+      }
+      /* A slide that already is the night shot has nothing to cross-fade into,
+         so its swatches stay visible instead of waiting for hover. */
+      .led-swatches--always {
+        pointer-events: auto;
+      }
+      .led-swatches--always li {
         opacity: 1;
         transform: none;
       }
@@ -946,15 +958,15 @@
       .quantity-selector,
       .variant-option__select-wrapper {
         border: 0.5px solid rgba(26, 26, 46, 0.16) !important;
-        border-radius: 18px !important;
+        border-radius: 999px !important;
       }
       .quantity-selector .quantity-minus {
-        border-start-start-radius: 18px !important;
-        border-end-start-radius: 18px !important;
+        border-start-start-radius: 999px !important;
+        border-end-start-radius: 999px !important;
       }
       .quantity-selector .quantity-plus {
-        border-start-end-radius: 18px !important;
-        border-end-end-radius: 18px !important;
+        border-start-end-radius: 999px !important;
+        border-end-end-radius: 999px !important;
       }
 
       /* Media-with-content: image hover zoom + fade-up reveal */
@@ -1119,7 +1131,11 @@
           font-size: 1.125rem !important;
         }
         [data-template='product'] .product-information__media {
-          height: 100% !important;
+          /* Sized by the image's own 1:1 ratio, not by the details column.
+             Stretching to the column made the frame grow whenever an
+             accordion opened, letterboxing the square photo. */
+          height: auto !important;
+          align-self: start !important;
           display: flex !important;
         }
         [data-template='product'] .product-information__media media-gallery {
@@ -1144,9 +1160,9 @@
              height on .constrain-height; both override a plain height:100%, so they
              have to be neutralized explicitly for the image to actually reach the
              card's full height instead of stopping early. */
-          aspect-ratio: auto !important;
+          aspect-ratio: 1 / 1 !important;
           max-height: none !important;
-          height: 100% !important;
+          height: auto !important;
           /* NOT flex: 1 - the native rule for this element is
              width: var(--slide-width, 100%), each slide taking the full row
              width with horizontal scroll-snap between them. flex: 1 sets
@@ -1804,28 +1820,30 @@
          exactly that (using `inherit` here would resolve to the parent's
          colour and jump on the first frame). Three pulses each; green runs
          longer since a price drop is the friendlier news to dwell on. */
+      /* One clear beat, matching the drop - see price-flash-down below. */
       @keyframes price-flash-up {
         0%, 100% { color: var(--price-flash-base, currentColor); }
-        12%, 36%, 60% { color: #d93025; }
-        24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
+        35%, 65% { color: #d93025; }
       }
+      /* A price drop blinks once - a single clear beat rather than the
+         repeated pulse used to draw attention to an increase. */
       @keyframes price-flash-down {
         0%, 100% { color: var(--price-flash-base, currentColor); }
-        12%, 36%, 60% { color: #1e8e3e; }
-        24%, 48%, 72% { color: var(--price-flash-base, currentColor); }
+        35%, 65% { color: #1e8e3e; }
       }
       .price-flash--up {
-        animation: price-flash-up 1.2s ease-in-out;
+        animation: price-flash-up 0.9s ease-in-out;
       }
       .price-flash--down {
-        animation: price-flash-down 1.6s ease-in-out;
+        animation: price-flash-down 0.9s ease-in-out;
       }
-      /* The price digits sit in child spans that set their own colour, so
-         they would ignore the animation on the container without this. */
-      .price-flash--up .price,
-      .price-flash--down .price,
-      .price-flash--up .price-item,
-      .price-flash--down .price-item {
+      /* The price digits sit in nested wrappers (product-price >
+         .price__regular > .price). Targeting only .price made it inherit from
+         .price__regular - which is not animated - so the flash never showed.
+         Every descendant has to pass the colour down from the animated
+         element for the animation to reach the digits. */
+      .price-flash--up *,
+      .price-flash--down * {
         color: inherit !important;
       }
 
@@ -1952,6 +1970,11 @@
     <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
     <script src="{{ 'hebrew-live-search.js' | asset_url }}" defer></script>
+    {% comment %}
+      The account avatar lives in the header, so its restyle has to load on
+      every page - not only where the price flash is needed.
+    {% endcomment %}
+    <script src="{{ 'account-avatar-theme.js' | asset_url }}" defer></script>
     {% if request.page_type == 'product' %}
       <script src="{{ 'price-change-flash.js' | asset_url }}" defer></script>
     {% endif %}

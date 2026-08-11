@@ -1,0 +1,191 @@
+{% comment %}
+  Styles Shopify's built-in /policies/* pages to match the themed policy pages
+  under /pages/*. Those URLs are rendered by Shopify with fixed markup
+  (.shopify-policy__container) and cannot take a theme template, so the design
+  is reproduced with CSS against that markup.
+
+  Every selector is scoped to .shopify-policy so these rules cannot affect any
+  other section.
+{% endcomment %}
+
+<style>
+  main:has(> .shopify-policy__container),
+  .shopify-policy__container {
+    background-color: #fcfbf9;
+  }
+
+  .shopify-policy__container {
+    position: relative;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 4.5rem 3.5rem 5.5rem;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Corner bracket */
+  .shopify-policy__container::before {
+    content: '';
+    position: absolute;
+    top: 2.25rem;
+    inset-inline-start: 2.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-top: 1px solid #ddd7c8;
+    border-inline-start: 1px solid #ddd7c8;
+    pointer-events: none;
+  }
+
+  /* Concentric circles */
+  .shopify-policy__container::after {
+    content: '';
+    position: absolute;
+    top: -7rem;
+    inset-inline-end: -6.5rem;
+    width: 22rem;
+    height: 22rem;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none'%3E%3Ccircle cx='130' cy='70' r='55' stroke='%23e3dcc9' stroke-width='0.5'/%3E%3Ccircle cx='130' cy='70' r='75' stroke='%23e3dcc9' stroke-width='0.5'/%3E%3Ccircle cx='130' cy='70' r='95' stroke='%23e3dcc9' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .shopify-policy__title {
+    position: relative;
+  }
+
+  .shopify-policy__title h1 {
+    text-align: center;
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 2.25rem;
+    letter-spacing: -0.01em;
+    color: #1c1916;
+    line-height: 1.25;
+    margin: 0 0 1.25rem;
+  }
+
+  /* Divider: line - dot - line */
+  .shopify-policy__title::after {
+    content: '';
+    display: block;
+    width: 9rem;
+    height: 6px;
+    margin: 0 auto 3.5rem;
+    background-image:
+      linear-gradient(#beaf99, #beaf99),
+      radial-gradient(circle, #8a6e46 3px, transparent 3px),
+      linear-gradient(#beaf99, #beaf99);
+    background-size: 3.75rem 1px, 6px 6px, 3.75rem 1px;
+    background-position: left center, center center, right center;
+    background-repeat: no-repeat;
+  }
+
+  .shopify-policy__body {
+    position: relative;
+    max-width: 40rem;
+    margin: 0 auto;
+    color: #4a453d;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .shopify-policy__body h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #1c1916;
+    margin: 2.2em 0 0.5em;
+  }
+
+  .shopify-policy__body h2:first-child {
+    margin-top: 0;
+  }
+
+  .shopify-policy__body h2::before {
+    content: '';
+    width: 0.9rem;
+    height: 1px;
+    background-color: #8a6e46;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .shopify-policy__body p {
+    margin: 0 0 1.4em;
+  }
+
+  .shopify-policy__body ul,
+  .shopify-policy__body ol {
+    margin: 0 0 1.4em;
+    padding-inline-start: 1.4em;
+  }
+
+  .shopify-policy__body li {
+    margin-block: 0.5em;
+  }
+
+  .shopify-policy__body a {
+    color: currentColor;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .shopify-policy__container {
+      padding: 3.5rem 1.5rem 4rem;
+    }
+
+    .shopify-policy__container::before {
+      top: 1.5rem;
+      inset-inline-start: 1.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .shopify-policy__container::after {
+      top: -5rem;
+      inset-inline-end: -5rem;
+      width: 15rem;
+      height: 15rem;
+    }
+
+    .shopify-policy__title h1 {
+      font-size: 1.65rem;
+    }
+
+    .shopify-policy__body {
+      font-size: 1rem;
+    }
+  }
+
+  /* Entrance animation, mirroring the reveal-on-scroll effect used on
+     /pages/*. Pure CSS and self-completing: unlike a JS-driven reveal it
+     cannot leave content stranded at opacity 0. */
+  @media (prefers-reduced-motion: no-preference) {
+    .shopify-policy__title,
+    .shopify-policy__body > * {
+      animation: policy-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    .shopify-policy__body > *:nth-child(1) { animation-delay: 0.08s; }
+    .shopify-policy__body > *:nth-child(2) { animation-delay: 0.16s; }
+    .shopify-policy__body > *:nth-child(3) { animation-delay: 0.24s; }
+    .shopify-policy__body > *:nth-child(4) { animation-delay: 0.32s; }
+    .shopify-policy__body > *:nth-child(n + 5) { animation-delay: 0.4s; }
+  }
+
+  @keyframes policy-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

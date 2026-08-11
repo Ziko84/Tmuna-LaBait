@@ -2971,6 +2971,48 @@ label:has(input[type='checkbox']:disabled) {
   border-radius: var(--style-border-radius-buttons-secondary);
 }
 
+/* Match the quantity stepper to the add-to-cart button beside it: same pill
+   shape and same height, differing only in width. The button resolves to a
+   999px radius and a 44px box (12px padding + line-height), so match those
+   directly rather than via --style-border-radius-buttons-primary, which
+   resolves to the input radius in this context. */
+.product-form-buttons {
+  align-items: center;
+}
+
+.product-form-buttons .quantity-selector {
+  --quantity-selector-height: 44px;
+
+  box-sizing: border-box;
+  height: var(--quantity-selector-height);
+  min-height: var(--quantity-selector-height);
+  align-self: center;
+  border-radius: 999px !important;
+  overflow: hidden;
+}
+
+.product-form-buttons .quantity-selector :is(.quantity-minus, .quantity-plus) {
+  height: 100%;
+}
+
+.product-form-buttons .quantity-selector :is(.quantity-minus, .quantity-plus, input[type='number']) {
+  border-radius: 0;
+}
+
+/* Variant (size) dropdown: same pill shape and 44px height as the buttons. */
+.variant-option__select-wrapper {
+  box-sizing: border-box;
+  height: 44px;
+  border-radius: 999px !important;
+  overflow: hidden;
+}
+
+.variant-option__select {
+  box-sizing: border-box;
+  height: 100%;
+  border-radius: 999px !important;
+}
+
 .quantity-selector :is(.quantity-minus, .quantity-plus) {
   /* Unset button styles */
   padding: 0;

@@ -1,21 +1,23 @@
 // Flashes the product page price when a variant change moves it:
-// red when the price goes up, green when it goes down.
+// red (repeated) when the price goes up, green (once) when it goes down.
 //
-// Watches a stable container rather than the price element itself, because
-// the theme swaps the price node out on variant change (morph). Observing
-// the price element directly would leave the observer bound to a detached
-// node after the first switch.
+// Two things make this harder than it looks:
+//
+// 1. A variant change re-renders the section via fetch + morph, so any node
+//    captured up front is detached afterwards. Everything here re-queries.
+// 2. While that update is in flight the theme puts a `shimmer` attribute on
+//    text blocks, which sets `color: transparent` and paints the text through
+//    a ::after overlay. Animating colour during that window is invisible, so
+//    the flash waits until the shimmer has cleared before it runs.
 (function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  // [container that survives variant updates, price element inside it]
-  var WATCH = [
-    ['.product-details', 'product-price'],
-    ['sticky-add-to-cart', '.sticky-add-to-cart__price'],
+  var TARGETS = [
+    { selector: '.product-details product-price', last: null },
+    { selector: 'sticky-add-to-cart .sticky-add-to-cart__price', last: null },
   ];
 
   var UP_CLASS = 'price-flash--up';
   var DOWN_CLASS = 'price-flash--down';
+  var SHIMMER_TIMEOUT = 3000;
 
   function readPrice(el) {
     if (!el) return null;
@@ -28,45 +30,73 @@
     return isNaN(value) ? null : value;
   }
 
-  function flash(el, direction) {
-    // Pin the element's own resolved colour so the keyframes can return to
-    // exactly it. Using `inherit` in the keyframe would resolve to the
-    // parent's colour instead and cause a visible jump on the first frame.
-    el.style.setProperty('--price-flash-base', getComputedStyle(el).color);
+  function isShimmering(el) {
+    return Boolean(el.closest('[shimmer]') || el.querySelector('[shimmer]'));
+  }
 
+  function paint(selector, direction) {
+    var el = document.querySelector(selector);
+    if (!el) return;
+
+    // Pin the element's own resolved colour so the keyframes can return to
+    // exactly it. `inherit` in the keyframe would resolve to the parent's
+    // colour instead and jump on the first frame.
+    el.style.setProperty('--price-flash-base', getComputedStyle(el).color);
     el.classList.remove(UP_CLASS, DOWN_CLASS);
-    void el.offsetWidth; // restart the animation if one is already running
+    void el.offsetWidth; // restart if an animation is already running
     el.classList.add(direction > 0 ? UP_CLASS : DOWN_CLASS);
   }
 
-  function watch(container, priceSelector) {
-    var last = readPrice(container.querySelector(priceSelector));
-    var pending = null;
+  /** Runs the flash once the shimmer overlay has cleared, so it is visible. */
+  function flashWhenReady(selector, direction) {
+    var startedAt = Date.now();
 
-    container.addEventListener('animationend', function (event) {
-      event.target.classList.remove(UP_CLASS, DOWN_CLASS);
+    (function attempt() {
+      var el = document.querySelector(selector);
+      if (!el) return;
+
+      if (isShimmering(el) && Date.now() - startedAt < SHIMMER_TIMEOUT) {
+        setTimeout(attempt, 50);
+        return;
+      }
+
+      paint(selector, direction);
+    })();
+  }
+
+  function check() {
+    TARGETS.forEach(function (target) {
+      var el = document.querySelector(target.selector);
+      var current = readPrice(el);
+      if (current == null) return;
+      if (target.last != null && current !== target.last) {
+        flashWhenReady(target.selector, current - target.last);
+      }
+      target.last = current;
     });
-
-    new MutationObserver(function () {
-      // A single variant update fires many mutations as the subtree is
-      // rewritten - coalesce them so one change flashes once.
-      clearTimeout(pending);
-      pending = setTimeout(function () {
-        var priceEl = container.querySelector(priceSelector);
-        var current = readPrice(priceEl);
-        if (current == null) return;
-        if (last != null && current !== last) flash(priceEl, current - last);
-        last = current;
-      }, 60);
-    }).observe(container, { childList: true, subtree: true, characterData: true });
   }
 
   function init() {
-    WATCH.forEach(function (pair) {
-      document.querySelectorAll(pair[0]).forEach(function (container) {
-        watch(container, pair[1]);
-      });
+    // Diagnostic handles: whether this ever initialised, and a way to run the
+    // comparison by hand from the console.
+    window.__priceFlashReady = true;
+    window.__priceFlashCheck = check;
+    window.__priceFlashState = TARGETS;
+
+    check(); // seed the baseline
+
+    document.addEventListener('animationend', function (event) {
+      // Only clean up after our own animation - the theme runs other
+      // animations that bubble to document.
+      if (String(event.animationName).indexOf('price-flash') !== 0) return;
+      if (event.target instanceof Element) event.target.classList.remove(UP_CLASS, DOWN_CLASS);
     });
+
+    var pending = null;
+    new MutationObserver(function () {
+      clearTimeout(pending);
+      pending = setTimeout(check, 150);
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
   if (document.readyState === 'loading') {
