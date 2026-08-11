@@ -96,9 +96,10 @@
         display: block;
       }
       /* Titles used to be a single nowrap line with an ellipsis, which
-         cut longer Hebrew names mid-word. Two lines with a reserved
-         min-height instead, so names stay readable and cards in a row
-         still line their prices up. */
+         cut longer Hebrew names mid-word. They wrap to two lines now.
+         No reserved min-height: holding a second line open left an
+         obvious empty band under every short title, which is worse
+         than prices sitting at slightly different heights. */
       .product-card a[ref='productTitleLink'] p {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -107,7 +108,6 @@
         margin: 0;
         font-size: 1.15rem;
         line-height: 1.35;
-        min-height: calc(1.15rem * 1.35 * 2);
         color: #33333d;
         overflow: hidden;
       }
