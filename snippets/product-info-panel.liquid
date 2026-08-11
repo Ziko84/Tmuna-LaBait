@@ -14,61 +14,85 @@
   Layout: the description leads at a reading measure, with the practical
   facts beside it as a short labelled list.
 
-  Two earlier passes were wrong in instructive ways. Three equal columns of
-  gray body text gave the product's own words the same weight as the returns
-  policy and read like any theme's spec table. Replacing two of those columns
-  with shadowed white cards was worse: elevation there communicated no
-  hierarchy, it just added material. What the facts need is separation, which
-  space and a single hairline give for free.
+  The panel sits on its own white surface because that is this store's actual
+  language: on the product page every element, the media card, the buy column,
+  each product card below, is a white rounded card on the beige ground. An
+  earlier pass set unstyled text directly on that ground, which read as content
+  that had escaped its container rather than as a section.
+
+  Inside the surface the description leads and the practical facts sit beside
+  it, divided by a single rule. No cards within the card, no icons.
 {%- endcomment -%}
 
 {%- assign panel_product = product -%}
 
 <div class="product-info-panel">
-  <div class="product-info-panel__inner page-width-content">
-    {% if panel_product.description != blank %}
-      <div class="product-info-panel__lead rte">{{ panel_product.description }}</div>
-    {% endif %}
+  <div class="product-info-panel__surface page-width-content">
+    <div class="product-info-panel__grid">
+      {% if panel_product.description != blank %}
+        <div class="product-info-panel__lead rte">{{ panel_product.description }}</div>
+      {% endif %}
 
-    <dl class="product-info-panel__facts">
-      <div class="product-info-panel__fact">
-        <dt>החומר</dt>
-        <dd>עץ בוטיק, חיתוך לייזר בדיוק של שבריר מילימטר, תאורה רכה מבפנים.</dd>
-      </div>
-      <div class="product-info-panel__fact">
-        <dt>זמן אספקה</dt>
-        <dd>יוצא תוך 1 עד 3 ימי עסקים, מגיע תוך 2 עד 6 ימי עסקים.</dd>
-      </div>
-      <div class="product-info-panel__fact">
-        <dt>החזרות</dt>
-        <dd>14 יום להחזרה, משלוח ההחזרה על חשבוננו.</dd>
-      </div>
-    </dl>
+      <dl class="product-info-panel__facts">
+        <div class="product-info-panel__fact">
+          <dt>החומר</dt>
+          <dd>עץ בוטיק, חיתוך לייזר בדיוק של שברירי מילימטר, תאורה רכה מבפנים.</dd>
+        </div>
+        <div class="product-info-panel__fact">
+          <dt>זמן אספקה</dt>
+          <dd>יוצא תוך 1 עד 3 ימי עסקים, מגיע תוך 2 עד 6 ימי עסקים.</dd>
+        </div>
+        <div class="product-info-panel__fact">
+          <dt>החזרות</dt>
+          <dd>14 יום להחזרה, משלוח ההחזרה על חשבוננו.</dd>
+        </div>
+      </dl>
+    </div>
   </div>
 </div>
 
 {% style %}
   .product-info-panel {
-    background-color: #f7f5f2;
-    padding-block: 96px;
+    padding-block: 8px 72px;
   }
 
-  .product-info-panel__inner {
+  .product-info-panel__surface {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(24, 24, 32, 0.05), 0 16px 40px rgba(24, 24, 32, 0.07);
+    padding: 48px 52px;
+    overflow: hidden;
+  }
+
+  /* Same gold edge the product cards and banners carry. */
+  .product-info-panel__surface::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(to left, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 40% 1px no-repeat,
+      linear-gradient(to top, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 1px 40% no-repeat;
+  }
+
+  .product-info-panel__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: 72px;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 52px;
     align-items: start;
   }
 
   .product-info-panel__lead {
-    font-size: 1.2rem;
-    line-height: 2;
+    font-size: 1.05rem;
+    line-height: 1.9;
     color: #33333d;
-    max-width: 36rem;
   }
 
   .product-info-panel__lead p {
-    margin: 0 0 20px;
+    margin: 0 0 16px;
   }
 
   .product-info-panel__lead p:last-child {
@@ -77,43 +101,48 @@
 
   .product-info-panel__facts {
     margin: 0;
-    padding-block-start: 8px;
-    /* One hairline, on the group, rather than a rule under every row. */
-    border-block-start: 1px solid rgba(26, 26, 46, 0.14);
+    padding-inline-start: 52px;
+    border-inline-start: 1px solid rgba(26, 26, 46, 0.1);
   }
 
-  .product-info-panel__fact {
-    padding-block: 22px;
+  .product-info-panel__fact + .product-info-panel__fact {
+    margin-block-start: 24px;
   }
 
   .product-info-panel__fact dt {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: rgba(26, 26, 46, 0.45);
-    margin-block-end: 8px;
+    font-family: var(--font-heading--family);
+    font-size: 0.95rem;
+    color: #1a1a2e;
+    margin-block-end: 6px;
   }
 
   .product-info-panel__fact dd {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.7;
     color: #5a554d;
   }
 
   @media screen and (max-width: 989px) {
     .product-info-panel {
-      padding-block: 64px;
+      padding-block: 0 48px;
     }
 
-    .product-info-panel__inner {
+    .product-info-panel__surface {
+      padding: 32px 24px;
+      border-radius: 20px;
+    }
+
+    .product-info-panel__grid {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 32px;
     }
 
-    .product-info-panel__lead {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      max-width: none;
+    .product-info-panel__facts {
+      padding-inline-start: 0;
+      padding-block-start: 28px;
+      border-inline-start: none;
+      border-block-start: 1px solid rgba(26, 26, 46, 0.1);
     }
   }
 {% endstyle %}
