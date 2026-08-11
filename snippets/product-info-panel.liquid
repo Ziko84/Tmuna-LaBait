@@ -71,9 +71,11 @@
   .product-info-panel__surface {
     position: relative;
     width: 100%;
-    background-color: #ffffff;
+    /* Same surface color and shadow as the product card above, so the two
+       read as one material rather than as two different panels. */
+    background-color: #f7f5f2;
     border-radius: 32px;
-    box-shadow: 0 2px 8px rgba(24, 24, 32, 0.04), 0 20px 56px rgba(24, 24, 32, 0.07);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
     padding: 88px 80px 96px;
     overflow: hidden;
   }
