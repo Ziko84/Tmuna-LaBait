@@ -455,11 +455,49 @@
         "padding-block-start": 64,
         "padding-block-end": 64
       }
+    },
+    "craft_strip": {
+      "type": "craft-strip",
+      "blocks": {
+        "fact_laser": {
+          "type": "fact",
+          "settings": {
+            "value": "שבריר מילימטר",
+            "label": "חתוך בלייזר בדיוק מוחלט, על עץ בוטיק נבחר"
+          }
+        },
+        "fact_hours": {
+          "type": "fact",
+          "settings": {
+            "value": "4 שעות",
+            "label": "עבודה ידנית באולפן שלנו על כל יצירה"
+          }
+        },
+        "fact_ready": {
+          "type": "fact",
+          "settings": {
+            "value": "מוכן לתלייה",
+            "label": "מגיע עם תאורת לד חכמה וכל אביזרי ההרכבה"
+          }
+        }
+      },
+      "block_order": [
+        "fact_laser",
+        "fact_hours",
+        "fact_ready"
+      ],
+      "settings": {
+        "heading": "איך נולדת כל יצירה",
+        "reassurance": "משלוח תוך 2 עד 6 ימי עסקים. החזרה חינם תוך 14 יום.",
+        "background_color": "#f7f5f2",
+        "padding_block": 72
+      }
     }
   },
   "order": [
     "hero_split_tlb01",
     "product_list_EDUBdR",
+    "craft_strip",
     "hero_overlay_LfPdEJ"
   ]
 }
