@@ -9,6 +9,14 @@
   var STYLE_ID = 'tl-account-avatar-theme';
 
   var CSS = [
+    /* The wrapper draws Shop's purple ring via border/outline/box-shadow
+       depending on state - clear all three. */
+    '.account-button__avatar,',
+    '.account-button--shop-customer {',
+    '  border-color: #1a1a2e !important;',
+    '  outline: none !important;',
+    '  box-shadow: none !important;',
+    '}',
     /* Front of the coin: the initials badge. */
     '.account-button__coin-front {',
     '  background: #ffffff !important;',
