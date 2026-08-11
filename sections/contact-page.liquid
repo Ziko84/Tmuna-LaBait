@@ -286,21 +286,69 @@
     margin-inline: auto;
   }
 
+  /* Single vertical flow: contact channels first as a compact strip, then the
+     form centred at reading width. The old two-column split forced the eye to
+     choose between two competing bodies of content at the same weight. */
   .contact-page__grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 28px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .contact-page__info-card {
+    order: -1;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px 20px;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .contact-page__info-card .contact-page__card-heading,
+  .contact-page__info-card .contact-page__divider {
+    display: none;
+  }
+
+  .contact-page__info-card .contact-page__info-row {
+    background-color: #f7f5f2;
+    border-radius: 999px;
+    padding: 12px 20px;
+  }
+
+  .contact-page__hours {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+
+  .contact-page__hours-days,
+  .contact-page__hours-time {
+    margin: 0;
+  }
+
+  .contact-page__form-card {
+    width: 100%;
+    max-width: 44rem;
   }
 
   @media screen and (max-width: 749px) {
     .contact-page__grid {
-      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .contact-page__info-card {
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 
-  .contact-page__form-card,
-  .contact-page__info-card {
+  .contact-page__form-card {
     display: block;
     background-color: #ffffff;
     border-radius: 24px;
@@ -309,18 +357,13 @@
   }
 
   @media screen and (max-width: 749px) {
-    .contact-page__form-card,
-    .contact-page__info-card {
+    .contact-page__form-card {
       padding: 28px 24px;
     }
   }
 
   .contact-page__info-card {
-    background-color: #f7f5f2;
-    box-shadow: none;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
   }
 
   .contact-page__form {
