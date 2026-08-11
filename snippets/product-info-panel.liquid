@@ -29,8 +29,14 @@
 
 {%- assign panel_product = product -%}
 
-<div class="product-info-panel">
-  <div class="product-info-panel__surface page-width-content">
+{%- comment -%}
+  Width is matched to the product card above by using the same container
+  chain that card sits in (section section--page-width) and the same 85%
+  cap it takes at desktop, rather than page-width-content, which resolves
+  to the narrow page width and came out a different size.
+{%- endcomment -%}
+<div class="product-info-panel section section--page-width">
+  <div class="product-info-panel__surface">
     <div class="product-info-panel__grid">
       <div class="product-info-panel__col">
         <h2 class="product-info-panel__title">על היצירה</h2>
@@ -64,8 +70,9 @@
 
   .product-info-panel__surface {
     position: relative;
+    width: 100%;
     background-color: #ffffff;
-    border-radius: 28px;
+    border-radius: 32px;
     box-shadow: 0 2px 8px rgba(24, 24, 32, 0.04), 0 20px 56px rgba(24, 24, 32, 0.07);
     padding: 88px 80px 96px;
     overflow: hidden;
@@ -81,6 +88,14 @@
     background:
       linear-gradient(to left, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 32% 1px no-repeat,
       linear-gradient(to top, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 1px 32% no-repeat;
+  }
+
+  /* Matches [data-template='product'] .product-information__grid. */
+  @media screen and (min-width: 990px) {
+    .product-info-panel__surface {
+      max-width: 85%;
+      margin-inline: auto;
+    }
   }
 
   .product-info-panel__grid {
