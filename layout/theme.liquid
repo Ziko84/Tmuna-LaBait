@@ -100,6 +100,12 @@
          No reserved min-height: holding a second line open left an
          obvious empty band under every short title, which is worse
          than prices sitting at slightly different heights. */
+      /* The title's text-block wrapper carries its own spacing-style
+         padding from the block settings, which showed up as dead space
+         between the title and the stars row below it. */
+      .product-card a[ref='productTitleLink'] .text-block {
+        padding-block: 0 !important;
+      }
       .product-card a[ref='productTitleLink'] p {
         display: -webkit-box;
         -webkit-line-clamp: 2;
