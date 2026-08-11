@@ -1345,6 +1345,31 @@
         align-items: stretch !important;
       }
 
+      /* The three accordion rows moved out of the buy column into the
+         full width panel below the card. The block itself still lives in
+         templates/product.json, which cannot be edited from here, so it
+         is hidden by its block id instead of removed. */
+      [class*='accordion_g8EVVp'] {
+        display: none !important;
+      }
+      /* The summary is appended after every block (content_for renders
+         them in one call), so the buy and trust groups below it are
+         pushed after it rather than the summary being moved up. */
+      .product-details__summary {
+        order: 0;
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgb(var(--color-foreground-rgb) / 65%);
+      }
+      .product-details__summary ~ *,
+      .product-details__summary:not(:last-child) ~ * {
+        order: 1;
+      }
+      .product-details *:nth-last-child(-n + 3):not(.product-details__summary) {
+        order: 1;
+      }
+
       /* Product card favorite/like heart: drop the native white circular
          backdrop. Previously used mix-blend-mode: difference to
          auto-contrast against the photo, but that inverts per pixel -

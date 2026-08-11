@@ -584,39 +584,159 @@
                 "group_trust_secure"
               ]
             },
-            "text_buy_summary": {
-              "type": "text",
+            "accordion_g8EVVp": {
+              "type": "accordion",
+              "name": "Accordion",
               "settings": {
-                "text": "{{ closest.product.description | strip_html | truncatewords: 24 }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "right",
-                "type_preset": "paragraph",
-                "font": "var(--font-primary--family)",
-                "font_size": "0.95rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
+                "icon": "plus",
+                "dividers": true,
+                "divider_color": "{{ settings.color_palette.color4 }}",
+                "type_preset": "h4",
+                "background_color": "",
                 "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "accordion_row_description": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "תיאור",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_description": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.description }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "right",
+                        "type_preset": "rte",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_description"
+                  ]
+                },
+                "accordion_row_VyFryh": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "פרטים נוספים",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_McjMWz": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>היצירה נחתכת בלייזר בדיוק של שבריר מילימטר, מעץ בוטיק איכותי, ומוארת באור רך מבפנים. כל פרט מתוכנן בקפידה כדי להשתלב בבית שלכם.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "right",
+                        "type_preset": "rte",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_McjMWz"
+                  ]
+                },
+                "accordion_row_aaFerA": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "משלוחים והחזרות",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_DNPAct": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>ההזמנה יוצאת אליכם תוך 1 עד 3 ימי עסקים ומגיעה תוך 2 עד 6 ימי עסקים מרגע ההזמנה.</p><p>אנחנו עושים כל מאמץ לשלוח כל הזמנה בזמן, כדי שהיצירה תגיע אליכם בהקדם האפשרי.</p><p>חשוב לנו שתהיו מרוצים מהרכישה. ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו. פנו אלינו דרך עמוד צרו קשר ונטפל בבקשה בקפידה ובהתחשבות.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "right",
+                        "type_preset": "rte",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "text_color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_DNPAct"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_description",
+                "accordion_row_VyFryh",
+                "accordion_row_aaFerA"
+              ]
             }
           },
           "block_order": [
             "text_GnyQiN",
             "reviews",
             "price_a7krng",
-            "text_buy_summary",
             "group_buy_box",
-            "group_trust_bar"
+            "group_trust_bar",
+            "accordion_g8EVVp"
           ]
         }
       },
@@ -1158,24 +1278,10 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
-    },
-    "product_info_panel": {
-      "type": "product-info-panel",
-      "settings": {
-        "heading": "כל מה שכדאי לדעת",
-        "description_heading": "תיאור",
-        "details_heading": "פרטים נוספים",
-        "details_text": "<p>היצירה נחתכת בלייזר בדיוק של שבריר מילימטר, מעץ בוטיק איכותי, ומוארת באור רך מבפנים. כל פרט מתוכנן בקפידה כדי להשתלב בבית שלכם.</p>",
-        "shipping_heading": "משלוחים והחזרות",
-        "shipping_text": "<p>ההזמנה יוצאת אליכם תוך 1 עד 3 ימי עסקים ומגיעה תוך 2 עד 6 ימי עסקים מרגע ההזמנה.</p><p>אנחנו עושים כל מאמץ לשלוח כל הזמנה בזמן, כדי שהיצירה תגיע אליכם בהקדם האפשרי.</p><p>חשוב לנו שתהיו מרוצים מהרכישה. ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו. פנו אלינו דרך עמוד צרו קשר ונטפל בבקשה בקפידה ובהתחשבות.</p>",
-        "background_color": "#f7f5f2",
-        "padding_block": 64 
-      }
     }
   },
   "order": [
     "main",
-    "product_info_panel",
     "product_list_zR9Cym",
     "product_list_explore_more",
     "1785589749beaf2700"
