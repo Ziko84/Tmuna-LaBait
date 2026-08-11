@@ -1,11 +1,14 @@
 // Flashes the product page price when a variant change moves it:
 // red (repeated) when the price goes up, green (once) when it goes down.
 //
-// Observes document.body rather than the price's own container. A variant
-// change can re-render the whole product-information section, which detaches
-// any container captured at init time - an observer bound to it would then
-// never fire again. Watching a root that always survives, and re-querying the
-// price element on every batch, keeps this working across re-renders.
+// Two things make this harder than it looks:
+//
+// 1. A variant change re-renders the section via fetch + morph, so any node
+//    captured up front is detached afterwards. Everything here re-queries.
+// 2. While that update is in flight the theme puts a `shimmer` attribute on
+//    text blocks, which sets `color: transparent` and paints the text through
+//    a ::after overlay. Animating colour during that window is invisible, so
+//    the flash waits until the shimmer has cleared before it runs.
 (function () {
   var TARGETS = [
     { selector: '.product-details product-price', last: null },
@@ -14,6 +17,7 @@
 
   var UP_CLASS = 'price-flash--up';
   var DOWN_CLASS = 'price-flash--down';
+  var SHIMMER_TIMEOUT = 3000;
 
   function readPrice(el) {
     if (!el) return null;
@@ -26,15 +30,38 @@
     return isNaN(value) ? null : value;
   }
 
-  function flash(el, direction) {
-    // Pin the element's own resolved colour so the keyframes can return to
-    // exactly it. Using `inherit` in the keyframe would resolve to the
-    // parent's colour instead and cause a visible jump on the first frame.
-    el.style.setProperty('--price-flash-base', getComputedStyle(el).color);
+  function isShimmering(el) {
+    return Boolean(el.closest('[shimmer]') || el.querySelector('[shimmer]'));
+  }
 
+  function paint(selector, direction) {
+    var el = document.querySelector(selector);
+    if (!el) return;
+
+    // Pin the element's own resolved colour so the keyframes can return to
+    // exactly it. `inherit` in the keyframe would resolve to the parent's
+    // colour instead and jump on the first frame.
+    el.style.setProperty('--price-flash-base', getComputedStyle(el).color);
     el.classList.remove(UP_CLASS, DOWN_CLASS);
-    void el.offsetWidth; // restart the animation if one is already running
+    void el.offsetWidth; // restart if an animation is already running
     el.classList.add(direction > 0 ? UP_CLASS : DOWN_CLASS);
+  }
+
+  /** Runs the flash once the shimmer overlay has cleared, so it is visible. */
+  function flashWhenReady(selector, direction) {
+    var startedAt = Date.now();
+
+    (function attempt() {
+      var el = document.querySelector(selector);
+      if (!el) return;
+
+      if (isShimmering(el) && Date.now() - startedAt < SHIMMER_TIMEOUT) {
+        setTimeout(attempt, 50);
+        return;
+      }
+
+      paint(selector, direction);
+    })();
   }
 
   function check() {
@@ -42,7 +69,9 @@
       var el = document.querySelector(target.selector);
       var current = readPrice(el);
       if (current == null) return;
-      if (target.last != null && current !== target.last) flash(el, current - target.last);
+      if (target.last != null && current !== target.last) {
+        flashWhenReady(target.selector, current - target.last);
+      }
       target.last = current;
     });
   }
@@ -57,22 +86,16 @@
     check(); // seed the baseline
 
     document.addEventListener('animationend', function (event) {
-      // Only clean up after our own animation. The theme runs a shimmer on
-      // text blocks during a variant update, and its animationend was
-      // stripping the flash class the moment it was applied.
+      // Only clean up after our own animation - the theme runs other
+      // animations that bubble to document.
       if (String(event.animationName).indexOf('price-flash') !== 0) return;
       if (event.target instanceof Element) event.target.classList.remove(UP_CLASS, DOWN_CLASS);
     });
 
     var pending = null;
     new MutationObserver(function () {
-      // One variant update fires many mutations as the subtree is rewritten -
-      // coalesce them so a single change flashes once. The wait also has to
-      // outlast the re-render itself: flashing too early puts the class on a
-      // price node the theme is about to replace, and the replacement drops
-      // the class before the animation is ever painted.
       clearTimeout(pending);
-      pending = setTimeout(check, 250);
+      pending = setTimeout(check, 150);
     }).observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
