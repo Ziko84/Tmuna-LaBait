@@ -95,15 +95,21 @@
       .product-card a[ref='productTitleLink'] {
         display: block;
       }
+      /* Titles used to be a single nowrap line with an ellipsis, which
+         cut longer Hebrew names mid-word. Two lines with a reserved
+         min-height instead, so names stay readable and cards in a row
+         still line their prices up. */
       .product-card a[ref='productTitleLink'] p {
-        display: block;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         width: 100%;
         margin: 0;
-        font-size: 1.265rem;
+        font-size: 1.15rem;
+        line-height: 1.35;
+        min-height: calc(1.15rem * 1.35 * 2);
         color: #33333d;
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
       .rating-wrapper {
         display: none !important;
@@ -118,11 +124,21 @@
         display: none !important;
         content: none !important;
       }
+      /* Price was the smallest text on the card, below the title and
+         even below the button. It is the second thing anyone looks at,
+         so it now carries real weight of its own. */
       .product-card product-price,
       .product-card product-price .price {
+        font-weight: 500;
+        font-size: 1.05rem;
+        color: #1a1a2e;
+      }
+      /* Struck original price stays quiet next to it. */
+      .product-card product-price .price--compare,
+      .product-card product-price s {
         font-weight: 400;
-        font-size: 0.9rem;
-        color: #1c1c24;
+        font-size: 0.85rem;
+        color: rgba(26, 26, 46, 0.45);
       }
 
       /* ============================================================
@@ -285,8 +301,6 @@
          Outline (not border) so it never shifts layout, offset a few
          px so it reads as a floating frame rather than a tight edge. */
       .product-card {
-        outline: 1px solid rgba(26, 26, 46, 0);
-        outline-offset: 6px;
         border-radius: 16px;
         /* !important: a higher-specificity native rule
            (.card-hover-effect-lift .product-card) fully replaces this
@@ -294,21 +308,19 @@
            transition since it isn't merged, just overwritten. */
         transition: outline-color 0.45s ease-in, transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out !important;
       }
-      /* Cancel the lift-on-hover: the theme's own card_hover_effect
-         setting (body.card-hover-effect-lift) translateY's the card up
-         on hover on desktop - this beats it in the cascade so the card
-         stays put, keeping only the shadow hover cue. */
+      /* The card used to be pinned in place while the button inside it
+         lifted on hover, so one element moved and its own container did
+         not. Both lift now, the card by less than the button. */
       .card-hover-effect-lift .product-card:hover {
-        transform: none !important;
+        transform: translateY(-3px) !important;
       }
 
-      /* Experiment: same hairline stroke used on the hero card and nav
-         dropdown thumbnails, tried here on product cards too. */
-      .product-card {
-        border-style: solid;
-        border-color: rgba(0, 0, 0, 0.14);
-        border-width: 0 1px 1px 0;
-      }
+      /* The card previously carried four separate edge devices at once:
+         a shadow, an asymmetric 1px right/bottom border, an outline
+         offset 6px, and the gold gradient below. Stacked, they read as
+         unresolved rather than considered. Shadow plus the gold edge
+         highlight are the two that carry the store's identity, so the
+         border and outline are gone. */
 
       /* Missing-image placeholder on product cards: round it and lift it
          off the page like a real photo instead of a flat gray box. */
@@ -1347,10 +1359,19 @@
          icon reads as a target rather than as decoration painted on the
          photo. Kept low opacity and blurred so it never competes with
          the product image. */
+      /* White on white: against a light artwork the icon was carried
+         entirely by its drop shadow. A permanent, barely-there dark
+         disc gives it ground on any photo. */
+      .favorite-toggle {
+        background: rgb(26 26 46 / 22%) !important;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        border-radius: 50%;
+      }
       .favorite-toggle:hover,
       .favorite-toggle:focus-visible {
-        background: rgb(255 255 255 / 22%) !important;
-        backdrop-filter: blur(4px);
+        background: rgb(26 26 46 / 40%) !important;
+        backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(4px);
         box-shadow: 0 0 0 1px rgb(255 255 255 / 30%) !important;
       }
@@ -1401,8 +1422,8 @@
       .product-card__add-to-cart-button {
         width: fit-content;
         padding-inline: 14px;
-        padding-block: 8px !important;
-        font-size: 0.75rem;
+        padding-block: 9px !important;
+        font-size: 0.875rem;
         height: auto;
       }
       .product-card__add-to-cart-button .add-to-cart-icon {
