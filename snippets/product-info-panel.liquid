@@ -11,169 +11,106 @@
   where they competed with the price and the add to cart button for the same
   narrow strip, and pushed the button down the page every time one opened.
 
-  Layout: the description leads at a real reading measure, and the two
-  supporting texts sit beside it as cards. Three equal columns of gray body
-  text, which is what this was first built as, gave a product's own words the
-  same weight as the returns policy and looked like any theme's spec table.
-  The cards borrow the white surface, radius, shadow and gold edge from the
-  product cards so the section belongs to this store rather than to the
-  template it came from.
+  Layout: the description leads at a reading measure, with the practical
+  facts beside it as a short labelled list.
+
+  Two earlier passes were wrong in instructive ways. Three equal columns of
+  gray body text gave the product's own words the same weight as the returns
+  policy and read like any theme's spec table. Replacing two of those columns
+  with shadowed white cards was worse: elevation there communicated no
+  hierarchy, it just added material. What the facts need is separation, which
+  space and a single hairline give for free.
 {%- endcomment -%}
 
 {%- assign panel_product = product -%}
-{%- assign details_text = 'היצירה נחתכת בלייזר בדיוק של שבריר מילימטר, מעץ בוטיק איכותי, ומוארת באור רך מבפנים. כל פרט מתוכנן בקפידה כדי להשתלב בבית שלכם.' -%}
 
 <div class="product-info-panel">
   <div class="product-info-panel__inner page-width-content">
     {% if panel_product.description != blank %}
-      <div class="product-info-panel__lead">
-        <span class="product-info-panel__eyebrow">תיאור</span>
-        <div class="product-info-panel__lead-body rte">{{ panel_product.description }}</div>
-      </div>
+      <div class="product-info-panel__lead rte">{{ panel_product.description }}</div>
     {% endif %}
 
-    <div class="product-info-panel__side">
-      <div class="product-info-panel__card">
-        <h3 class="product-info-panel__card-heading">
-          <span class="product-info-panel__card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M4 8l8 4.5L20 8M12 12.5V20.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          פרטים נוספים
-        </h3>
-        <div class="product-info-panel__card-body">{{ details_text }}</div>
+    <dl class="product-info-panel__facts">
+      <div class="product-info-panel__fact">
+        <dt>החומר</dt>
+        <dd>עץ בוטיק, חיתוך לייזר בדיוק של שבריר מילימטר, תאורה רכה מבפנים.</dd>
       </div>
-
-      <div class="product-info-panel__card">
-        <h3 class="product-info-panel__card-heading">
-          <span class="product-info-panel__card-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 7.5h10v9H3v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M13 10.5h4l4 3.5v2.5h-8v-6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <circle cx="7" cy="17.5" r="1.75" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="17" cy="17.5" r="1.75" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </span>
-          משלוחים והחזרות
-        </h3>
-        <div class="product-info-panel__card-body">
-          <p>ההזמנה יוצאת אליכם תוך 1 עד 3 ימי עסקים ומגיעה תוך 2 עד 6 ימי עסקים מרגע ההזמנה.</p>
-          <p>ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו.</p>
-        </div>
+      <div class="product-info-panel__fact">
+        <dt>זמן אספקה</dt>
+        <dd>יוצא תוך 1 עד 3 ימי עסקים, מגיע תוך 2 עד 6 ימי עסקים.</dd>
       </div>
-    </div>
+      <div class="product-info-panel__fact">
+        <dt>החזרות</dt>
+        <dd>14 יום להחזרה, משלוח ההחזרה על חשבוננו.</dd>
+      </div>
+    </dl>
   </div>
 </div>
 
 {% style %}
   .product-info-panel {
     background-color: #f7f5f2;
-    padding-block: 80px;
+    padding-block: 96px;
   }
 
   .product-info-panel__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-    gap: 56px;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 72px;
     align-items: start;
   }
 
-  .product-info-panel__eyebrow {
-    display: block;
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    color: rgba(26, 26, 46, 0.45);
-    margin-block-end: 18px;
-  }
-
-  .product-info-panel__lead-body {
-    font-size: 1.15rem;
-    line-height: 1.95;
+  .product-info-panel__lead {
+    font-size: 1.2rem;
+    line-height: 2;
     color: #33333d;
-    max-width: 38rem;
+    max-width: 36rem;
   }
 
-  .product-info-panel__lead-body p {
-    margin: 0 0 18px;
+  .product-info-panel__lead p {
+    margin: 0 0 20px;
   }
 
-  .product-info-panel__lead-body p:last-child {
+  .product-info-panel__lead p:last-child {
     margin-block-end: 0;
   }
 
-  .product-info-panel__side {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .product-info-panel__facts {
+    margin: 0;
+    padding-block-start: 8px;
+    /* One hairline, on the group, rather than a rule under every row. */
+    border-block-start: 1px solid rgba(26, 26, 46, 0.14);
   }
 
-  .product-info-panel__card {
-    position: relative;
-    background-color: #ffffff;
-    border-radius: 18px;
-    padding: 26px 28px;
-    box-shadow: 0 2px 6px rgba(24, 24, 32, 0.05), 0 12px 26px rgba(24, 24, 32, 0.07);
-    overflow: hidden;
+  .product-info-panel__fact {
+    padding-block: 22px;
   }
 
-  /* Same gold edge the product cards and banners carry. */
-  .product-info-panel__card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    border-radius: inherit;
-    background:
-      linear-gradient(to left, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 55% 1px no-repeat,
-      linear-gradient(to top, rgba(255, 209, 102, 0.85), rgba(255, 209, 102, 0)) right bottom / 1px 50% no-repeat;
+  .product-info-panel__fact dt {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: rgba(26, 26, 46, 0.45);
+    margin-block-end: 8px;
   }
 
-  .product-info-panel__card-heading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-heading--family);
-    font-weight: 500;
-    font-size: 1rem;
-    color: #1a1a2e;
-    margin: 0 0 14px;
-  }
-
-  .product-info-panel__card-icon svg {
-    width: 20px;
-    height: 20px;
-    display: block;
-    color: rgba(26, 26, 46, 0.55);
-  }
-
-  .product-info-panel__card-body {
-    font-size: 0.9rem;
-    line-height: 1.75;
+  .product-info-panel__fact dd {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
     color: #5a554d;
-  }
-
-  .product-info-panel__card-body p {
-    margin: 0 0 10px;
-  }
-
-  .product-info-panel__card-body p:last-child {
-    margin-block-end: 0;
   }
 
   @media screen and (max-width: 989px) {
     .product-info-panel {
-      padding-block: 56px;
+      padding-block: 64px;
     }
 
     .product-info-panel__inner {
       grid-template-columns: 1fr;
-      gap: 36px;
+      gap: 40px;
     }
 
-    .product-info-panel__lead-body {
+    .product-info-panel__lead {
       font-size: 1.05rem;
       line-height: 1.85;
       max-width: none;
