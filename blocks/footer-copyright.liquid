@@ -1,5 +1,16 @@
 
 {% assign block_settings = block.settings %}
+
+{%- comment -%}
+  Schema defaults only apply to newly added block instances, so the existing
+  footer copyright block renders these blank. Fall back to the registered
+  business details so the identity is always present for Google's policy check.
+{%- endcomment -%}
+{%- assign biz_name = block_settings.business_legal_name | default: 'דניאל פיקס' -%}
+{%- assign biz_id = block_settings.business_company_id | default: 'עוסק מורשה 306082793' -%}
+{%- assign biz_address = block_settings.business_address | default: 'דרך הרימונים 28, מושב רינתיה, 7316500, ישראל' -%}
+{%- assign biz_phone = block_settings.business_phone | default: '054-569-6909' -%}
+{%- assign biz_email = block_settings.business_email | default: 'info@tmuna-labait.com' -%}
 <div
   class="
     footer-utilities__group-copyright
@@ -25,34 +36,34 @@
     the trading entity and how to reach it to be accessible from anywhere on
     the site, not only from inside a policy page.
   {%- endcomment -%}
-  {%- if block_settings.business_legal_name != blank
-      or block_settings.business_address != blank
-      or block_settings.business_phone != blank
-      or block_settings.business_email != blank
+  {%- if biz_name != blank
+      or biz_address != blank
+      or biz_phone != blank
+      or biz_email != blank
   -%}
     <span class="footer-utilities__business">
-      {%- if block_settings.business_legal_name != blank -%}
+      {%- if biz_name != blank -%}
         <span class="footer-utilities__business-item">
-          {{- block_settings.business_legal_name -}}
-          {%- if block_settings.business_company_id != blank -%}
-            , {{ block_settings.business_company_id }}
+          {{- biz_name -}}
+          {%- if biz_id != blank -%}
+            , {{ biz_id }}
           {%- endif -%}
         </span>
       {%- endif -%}
-      {%- if block_settings.business_address != blank -%}
-        <span class="footer-utilities__business-item">{{ block_settings.business_address }}</span>
+      {%- if biz_address != blank -%}
+        <span class="footer-utilities__business-item">{{ biz_address }}</span>
       {%- endif -%}
-      {%- if block_settings.business_phone != blank -%}
+      {%- if biz_phone != blank -%}
         <span class="footer-utilities__business-item">
-          <a href="tel:{{ block_settings.business_phone | remove: '-' | remove: ' ' }}" dir="ltr">
-            {{- block_settings.business_phone -}}
+          <a href="tel:{{ biz_phone | remove: '-' | remove: ' ' }}" dir="ltr">
+            {{- biz_phone -}}
           </a>
         </span>
       {%- endif -%}
-      {%- if block_settings.business_email != blank -%}
+      {%- if biz_email != blank -%}
         <span class="footer-utilities__business-item">
-          <a href="mailto:{{ block_settings.business_email }}" dir="ltr">
-            {{- block_settings.business_email -}}
+          <a href="mailto:{{ biz_email }}" dir="ltr">
+            {{- biz_email -}}
           </a>
         </span>
       {%- endif -%}
@@ -125,7 +136,7 @@
       "type": "text",
       "id": "business_company_id",
       "label": "Company / VAT number",
-      "default": "ח.פ. 306082793"
+      "default": "עוסק מורשה 306082793"
     },
     {
       "type": "text",
