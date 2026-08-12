@@ -1876,7 +1876,11 @@
         flex: 0 0 auto;
       }
 
-      .product-card .group-block-content > :is(.contents, a) {
+      /* The title link is display:contents, so the flex item is the text
+         block inside it - and that block is width:100% from its own theme
+         settings, which pushed the price onto a second line. */
+      .product-card .group-block-content > :is(.contents, a) > * {
+        width: auto !important;
         flex: 0 1 auto;
         min-width: 0;
       }
