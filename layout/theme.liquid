@@ -1835,12 +1835,35 @@
         max-width: none !important;
       }
 
+      /* Outlined at rest, filled on hover. Ten solid navy bars down the grid
+         shouted louder than the products; the outline keeps the button
+         obviously clickable and legible (navy on white passes AA) without
+         competing with the photos. Filling on hover keeps the strong state
+         for the card you are actually pointing at.
+
+         No hover on touch, so the outline is the permanent state there - it
+         has to stand on its own, which is why the border is full-strength
+         navy rather than a hairline tint. */
       .product-card .product-card__add-to-cart-button[class] {
+        background: transparent !important;
+        color: #1a1a2e !important;
+        border: 1px solid #1a1a2e !important;
+        transition: background-color 0.2s ease, color 0.2s ease;
         justify-content: center !important;
         /* 32px tall with 6px padding read as a squat strip once the button
            went full width. A full-width button needs the height to match. */
         min-height: 42px !important;
         padding-block: 10px !important;
+      }
+
+      .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) {
+        background: #1a1a2e !important;
+        color: #ffffff !important;
+      }
+
+      .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) :is(span, svg) {
+        color: inherit !important;
+        fill: currentColor !important;
       }
 
       /* The 14px above the button used to be the stars row's bottom margin.
