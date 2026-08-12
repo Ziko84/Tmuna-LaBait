@@ -1000,6 +1000,80 @@
         transform: scale(1.03);
       }
 
+      /* Footer surface.
+
+         The footer previously inherited the page background with no border and
+         no padding, so it ran straight on from the product cards with nothing
+         marking where the page ended. On a store the footer is where the
+         trust information lives (who we are, how to reach us, the policies),
+         so it needs to read as a deliberate, self-contained band rather than
+         leftover space.
+
+         It uses the same white card surface and 16px radius as the product
+         cards above it, so the separation comes from the site's existing
+         language rather than a new one. */
+      footer {
+        position: relative;
+        background: #ffffff;
+        border-radius: 16px 16px 0 0;
+        margin-top: 4rem;
+        padding-block: 3.5rem 1.75rem;
+        padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+        box-shadow: 0 -1px 0 rgba(26, 26, 46, 0.08);
+      }
+
+      /* A short centred rule above the footer: a quiet full-stop for the page
+         that does not add another hard line across the layout. */
+      footer::before {
+        content: '';
+        position: absolute;
+        top: -2rem;
+        inset-inline: 0;
+        margin-inline: auto;
+        width: 4rem;
+        height: 1px;
+        background: rgba(26, 26, 46, 0.18);
+      }
+
+      footer .menu__heading,
+      footer .menu__heading__default,
+      footer .footer-content h2,
+      footer .footer-content h3 {
+        color: #1a1a2e;
+        letter-spacing: 0.01em;
+        margin-block-end: 0.85rem;
+      }
+
+      footer .footer-content a {
+        color: rgba(26, 26, 46, 0.72);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      footer .footer-content a:hover,
+      footer .footer-content a:focus-visible {
+        color: #1a1a2e;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      /* The legal row carries the trading entity and contact details, so it is
+         set quieter than the navigation but still at AA contrast. */
+      footer .footer-utilities__group-copyright {
+        color: rgba(26, 26, 46, 0.62);
+      }
+
+      @media screen and (max-width: 749px) {
+        footer {
+          margin-top: 2.5rem;
+          padding-block: 2.5rem 1.5rem;
+          border-radius: 12px 12px 0 0;
+        }
+        footer::before {
+          top: -1.25rem;
+        }
+      }
+
       /* Toylvia-style floating card layout */
       html, body {
         background: #f0f1f3 !important;
