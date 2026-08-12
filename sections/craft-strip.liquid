@@ -55,50 +55,110 @@
   .craft-strip__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
+    gap: 20px;
     width: 100%;
     margin: 0;
     padding: 0;
   }
 
+  /* Each fact is its own card so the three claims read as three distinct
+     proof points rather than one run-on paragraph. The card surface, radius
+     and hairline match the product cards in the grid directly above, so the
+     homepage keeps a single material language. */
   .craft-strip__item {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
+    padding: 32px 24px 28px;
+    background: #ffffff;
+    border: 1px solid #ddd7c8;
+    border-radius: 16px;
+    /* Shadow tinted to the cream background, never pure black. */
+    box-shadow: 0 1px 2px rgba(90, 85, 77, 0.05), 0 8px 24px rgba(90, 85, 77, 0.06);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s
+      cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* A short bronze rule above the value gives each card a fixed starting
+     point, so values of different lengths still line up optically. */
+  .craft-strip__item::before {
+    content: '';
+    width: 32px;
+    height: 2px;
+    border-radius: 2px;
+    background: #8a6e46;
+    margin-block-end: 6px;
+  }
+
+  .craft-strip__item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 4px rgba(90, 85, 77, 0.06), 0 14px 32px rgba(90, 85, 77, 0.1);
   }
 
   .craft-strip__value {
     font-family: var(--font-heading--family);
     font-weight: 500;
-    font-size: 2rem;
-    line-height: 1.1;
+    font-size: 1.85rem;
+    line-height: 1.15;
     color: #1a1a2e;
   }
 
   .craft-strip__label {
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #5a554d;
+    max-width: 30ch;
   }
 
+  /* Set apart from the cards: this line is a promise about the order, not a
+     fourth fact about the craft. */
   .craft-strip__reassurance {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #5a554d;
     margin: 0;
+    padding: 10px 20px;
+    border: 1px solid #ddd7c8;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .craft-strip__item {
+      transition: none;
+    }
+
+    .craft-strip__item:hover {
+      transform: none;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .craft-strip__list {
+      gap: 16px;
+    }
+
+    .craft-strip__item {
+      padding: 28px 20px 24px;
+    }
   }
 
   @media screen and (max-width: 749px) {
     .craft-strip__inner {
-      gap: 32px;
+      gap: 28px;
     }
 
     .craft-strip__list {
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 14px;
     }
 
     .craft-strip__value {
       font-size: 1.65rem;
+    }
+
+    .craft-strip__reassurance {
+      padding: 10px 16px;
     }
   }
 {% endstylesheet %}
