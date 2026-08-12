@@ -1157,9 +1157,12 @@
           margin-block-start: 8px;
         }
 
-        > *:has(.price) {
+        /* product-price carries its own 4px/8px block margin from the theme.
+           The stack spacing is set here, so the element contributes none. */
+        > *:has(.price),
+        > product-price {
           order: 1;
-          margin-block: 2px 0;
+          margin: 0;
         }
       }
 
