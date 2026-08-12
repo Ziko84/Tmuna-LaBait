@@ -1203,13 +1203,14 @@
            .product-media, both of which carry their own 1:1 aspect-ratio. Left
            alone they cap the photo at its square height inside a taller frame,
            which reads as letterboxing. */
-        [data-template='product'] .product-information__media .product-media-constraint-wrapper,
-        [data-template='product'] .product-information__media .product-media {
+        [data-template='product'] .product-information__media .product-media-container .product-media-constraint-wrapper,
+        [data-template='product'] .product-information__media .product-media-container .product-media,
+        [data-template='product'] .product-information__media .product-media-container .product-media-constraint-wrapper .product-media {
           aspect-ratio: auto !important;
           height: 100% !important;
           width: 100% !important;
         }
-        [data-template='product'] .product-information__media img.product-media__image {
+        [data-template='product'] .product-information__media .product-media-container img.product-media__image {
           width: 100% !important;
           height: 100% !important;
           object-fit: cover !important;
