@@ -1145,6 +1145,30 @@
         color: #1a1a2e;
       }
 
+      /* Price sits directly under the product name so the two read as one
+         unit, with the review line demoted below them. The markup order is
+         title, reviews, price, so the swap is done with flex order rather
+         than by moving blocks in the theme editor - the card layout is a
+         column flex either way. */
+      .product-card .group-block-content {
+        > *:has(.product-card__stars),
+        > .product-card__stars {
+          order: 2;
+          margin-block-start: 8px;
+        }
+
+        > *:has(.price) {
+          order: 1;
+          margin-block: 2px 0;
+        }
+      }
+
+      .product-card .price {
+        font-size: 1.2rem;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+
       /* One page gutter for every large content chunk in the store.
 
          The theme's own sections get their side margins from the .section
