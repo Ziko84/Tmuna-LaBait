@@ -1058,9 +1058,26 @@
       }
 
       /* The legal row carries the trading entity and contact details, so it is
-         set quieter than the navigation but still at AA contrast. */
+         set quieter than the navigation but still at AA contrast. Copyright and
+         business identity sit on one line and wrap only when the viewport is
+         genuinely too narrow, rather than always stacking. */
       footer .footer-utilities__group-copyright {
         color: rgba(26, 26, 46, 0.62);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem 0.75rem;
+      }
+
+      footer .footer-utilities__business {
+        margin-block-start: 0;
+      }
+
+      footer .footer-utilities__text + .footer-utilities__business::before {
+        content: '\00B7';
+        margin-inline-end: 0.75rem;
+        opacity: 0.6;
       }
 
       @media screen and (max-width: 749px) {
