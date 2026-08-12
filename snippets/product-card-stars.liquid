@@ -4,16 +4,19 @@
   to be appended by the gallery block and moved into place with JS, which put
   it below the price whenever the script did not land.
 
-  Real data when it exists (Judge.me syncs into the reviews.rating metafield),
-  a quiet empty state when it does not, so a card never claims a rating it has
-  not earned.
+  Real data when it exists (Judge.me syncs into the reviews.rating metafield).
+  With no reviews yet the block renders nothing at all: five grey stars over
+  "0 ביקורות" took two lines to announce that nobody had bought the product,
+  and it was the widest thing in the text block, so it outranked the price.
+  The moment a product has its first review the row appears on its own.
 {%- endcomment -%}
 {%- liquid
   assign card_rating = card_product.metafields.reviews.rating.value.rating
   assign card_rating_count = card_product.metafields.reviews.rating_count | default: 0
   assign card_filled = card_rating | default: 0 | round
 -%}
-<div class="product-card__stars{% if card_rating_count == 0 %} product-card__stars--empty{% endif %}">
+{%- if card_rating_count > 0 -%}
+<div class="product-card__stars">
   <span class="product-card__stars-icons" aria-hidden="true">
     {%- for star in (1..5) -%}
       <svg viewBox="0 0 32 32" class="product-card__star{% if star <= card_filled %} is-filled{% endif %}" role="presentation">
@@ -22,10 +25,7 @@
     {%- endfor -%}
   </span>
   <span class="product-card__stars-count">
-    {%- if card_rating_count == 0 -%}
-      0 ביקורות
-    {%- else -%}
-      {{ card_rating_count }} ביקורות
-    {%- endif -%}
+    {{- card_rating_count }} ביקורות
   </span>
 </div>
+{%- endif -%}

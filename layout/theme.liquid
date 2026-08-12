@@ -1825,6 +1825,20 @@
         padding-block-end: var(--card-pad) !important;
       }
 
+      /* The button used to be a pill floating at the card's left edge while
+         the name, price and rating all sat on the right, so it read as
+         detached from the card rather than as its action. Spanning the full
+         width gives it the same axis as everything above it. */
+      .product-card .product-card__quick-add-row :is(product-form-component, form, add-to-cart-component),
+      .product-card .product-card__add-to-cart-button[class] {
+        width: 100% !important;
+        max-width: none !important;
+      }
+
+      .product-card .product-card__add-to-cart-button[class] {
+        justify-content: center !important;
+      }
+
       .product-card .product-card__content > .group-block[class][class] {
         padding-inline: var(--card-pad) !important;
       }
