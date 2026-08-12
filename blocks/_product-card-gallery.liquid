@@ -188,12 +188,14 @@
 
   .product-card__stars-icons {
     display: inline-flex;
-    gap: 2px;
+    gap: 1.8px;
   }
 
+  /* Row is 5 stars plus 4 gaps: 11px + 1.8px lands at 62px, down 15% from
+     the 73px the 13px/2px pair produced. */
   .product-card__star {
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
     display: block;
     fill: rgba(26, 26, 46, 0.16);
   }
