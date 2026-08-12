@@ -44,7 +44,7 @@
       type settings ask for light weights, and without those faces the browser
       substitutes 400, which reads as unintentionally bold.
     {%- endcomment -%}
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet">
     <style data-v="{{ 'now' | date: '%s' }}">
       :root {
         --font-body--family: 'Heebo', sans-serif !important;
@@ -1180,7 +1180,11 @@
       }
 
       /* Doubled class to outrank the theme's own price sizing. */
+      /* 450 needs the variable Heebo requested in the font link above. With
+         the old fixed-instance list, anything between 400 and 500 snapped
+         back to 500 and the weight never changed. */
       .product-card .price.price {
+        font-weight: 450;
         font-size: 1.09rem;
         line-height: 1.25;
         letter-spacing: -0.01em;
