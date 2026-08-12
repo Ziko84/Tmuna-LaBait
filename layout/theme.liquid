@@ -1870,9 +1870,10 @@
         flex-direction: row !important;
         flex-wrap: wrap;
         align-items: baseline;
-        /* 10px was too tight in Hebrew: name and price ran together as one
-           string. Wide enough to read as two facts, still close enough to
-           read as a pair rather than opposite ends of the card. */
+        /* Name and price pushed to opposite edges of the card. Adjacent they
+           ran together as one string in Hebrew, and widening the gap was not
+           enough - the separation has to be the full card width. */
+        justify-content: space-between;
         column-gap: 18px;
         row-gap: 0;
         margin-block-start: 14px;
