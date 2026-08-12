@@ -242,32 +242,10 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "social_links_JBkCiP": {
-              "type": "social-links",
-              "name": "t:names.social_media_links",
-              "settings": {
-                "icon_color": "",
-                "facebook_url": "https://facebook.com/tmunalabait",
-                "instagram_url": "https://instagram.com/tmunalabait",
-                "youtube_url": "https://www.youtube.com/@tmunalabait",
-                "tiktok_url": "https://www.tiktok.com/@tmunalabait",
-                "twitter_url": "",
-                "threads_url": "",
-                "linkedin_url": "",
-                "bluesky_url": "",
-                "snapchat_url": "",
-                "pinterest_url": "",
-                "tumblr_url": "",
-                "vimeo_url": "",
-                "custom_url": ""
-              },
-              "blocks": {}
             }
           },
           "block_order": [
-            "text_jBr8nr",
-            "social_links_JBkCiP"
+            "text_jBr8nr"
           ]
         }
       },
