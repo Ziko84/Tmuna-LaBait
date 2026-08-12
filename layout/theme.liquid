@@ -1864,6 +1864,10 @@
          photo's edge. */
       .product-card .group-block-content {
         display: flex !important;
+        /* The theme's layout-panel-flex class sets column direction; without
+           overriding it the price stacks under the name instead of pairing
+           with it. */
+        flex-direction: row !important;
         flex-wrap: wrap;
         align-items: baseline;
         column-gap: 10px;
