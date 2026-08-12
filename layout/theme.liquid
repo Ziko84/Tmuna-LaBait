@@ -1170,6 +1170,17 @@
         letter-spacing: -0.01em;
       }
 
+      /* The theme editor set these blocks to align-left, which in a Hebrew
+         RTL card puts the title on the right edge and the price and review
+         line on the left. Nothing lines up. 'start' follows the reading
+         direction, so all three share the same edge in Hebrew and would
+         still behave in a left-to-right locale. */
+      .product-card :is(.price, .product-card__stars, .product-card__stars-count),
+      .product-card .group-block-content > *:has(.price),
+      .product-card .group-block-content > *:has(.product-card__stars) {
+        text-align: start;
+      }
+
       /* One page gutter for every large content chunk in the store.
 
          The theme's own sections get their side margins from the .section
