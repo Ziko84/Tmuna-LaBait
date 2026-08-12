@@ -1120,7 +1120,13 @@
          - body[class], not body: base.css sets --page-margin through the
            page-width-* class, and a bare element selector would lose to it. */
       @media screen and (min-width: 750px) {
-        body[class] {
+        /* base.css re-declares --page-margin on every page-width-* element,
+           not only on body, so the override has to cover both. */
+        body[class],
+        [class].page-width-content,
+        [class].page-width-narrow,
+        [class].page-width-normal,
+        [class].page-width-wide {
           --page-margin: 18px;
         }
       }
