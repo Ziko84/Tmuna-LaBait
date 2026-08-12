@@ -173,13 +173,15 @@
   .favorite-toggle--pulse .favorite-toggle__icon {
     animation: favorite-toggle-pulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  /* Count sits under the stars rather than beside them. The two are close
-     to the same width (the star row and the Hebrew label are both around
-     55-70px), so stacking reads as one tidy unit and the label stops
-     wrapping to two lines in a narrow card. */
+  /* Count on top, stars beneath it. The two are close to the same width
+     (the star row and the Hebrew label are both around 55-70px), so
+     stacking reads as one tidy unit and the label stops wrapping to two
+     lines in a narrow card. column-reverse keeps the markup order - the
+     count follows the stars in the DOM, which is the right reading order
+     for a screen reader. */
   .product-card__stars {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: flex-start;
     gap: 3px;
   }
