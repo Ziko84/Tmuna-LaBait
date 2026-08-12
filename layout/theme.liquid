@@ -1155,6 +1155,14 @@
         padding-block: 24px !important;
       }
 
+      /* The text group carried a 12px top padding on top of the gallery's
+         own 14px bottom inset, so 26px of empty space sat between the image
+         and the product name. The gallery's inset stays - it is what frames
+         the image evenly on all four sides - and only the extra goes. */
+      .product-card .group-block {
+        padding-block-start: 0 !important;
+      }
+
       /* Price sits directly under the product name so the two read as one
          unit, with the review line demoted below them. The markup order is
          title, reviews, price, so the swap is done with flex order rather
