@@ -1837,6 +1837,24 @@
 
       .product-card .product-card__add-to-cart-button[class] {
         justify-content: center !important;
+        /* 32px tall with 6px padding read as a squat strip once the button
+           went full width. A full-width button needs the height to match. */
+        min-height: 42px !important;
+        padding-block: 10px !important;
+      }
+
+      /* The 14px above the button used to be the stars row's bottom margin.
+         With the rating gone on an unreviewed product, the button ended up
+         2px under the price. */
+      .product-card .product-card__quick-add-row[class][class] {
+        padding-block-start: 16px !important;
+      }
+
+      /* The photo sat square-cornered inside a 16px card. Rounding it puts
+         the image and the card in the same shape family; the gallery's own
+         inset means there is no shared corner to produce a double arc. */
+      .product-card [class*='card-gallery'] :is(img, svg, video) {
+        border-radius: 12px !important;
       }
 
       .product-card .product-card__content > .group-block[class][class] {
