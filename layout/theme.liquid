@@ -1149,17 +1149,20 @@
           font-size: 1.125rem !important;
         }
         [data-template='product'] .product-information__media {
-          /* Sized by the image's own 1:1 ratio, not by the details column.
-             Stretching to the column made the frame grow whenever an
-             accordion opened, letterboxing the square photo. */
-          height: auto !important;
-          align-self: start !important;
+          /* Capped to the details column's height so the two sides finish
+             level. The frame stays square (see .product-media-container) and
+             simply gets narrower when the text is short, rather than towering
+             over it and leaving a gap. */
+          height: 100% !important;
+          align-self: stretch !important;
           display: flex !important;
+          justify-content: center !important;
         }
         [data-template='product'] .product-information__media media-gallery {
           display: flex !important;
           flex-direction: column !important;
           width: 100% !important;
+          height: 100% !important;
         }
         /* The gallery web component nests slideshow-component > slideshow-container >
            slideshow-slides > .product-media-container (slideshow-slide) before reaching
@@ -1178,9 +1181,13 @@
              height on .constrain-height; both override a plain height:100%, so they
              have to be neutralized explicitly for the image to actually reach the
              card's full height instead of stopping early. */
-          aspect-ratio: 1 / 1 !important;
+          /* Height follows the details column so both sides finish level.
+             The photo fills the frame via object-fit: cover, so a frame that
+             is not exactly square crops rather than letterboxing - which was
+             the original bug when the frame grew with an open accordion. */
+          aspect-ratio: auto !important;
           max-height: none !important;
-          height: auto !important;
+          height: 100% !important;
           /* NOT flex: 1 - the native rule for this element is
              width: var(--slide-width, 100%), each slide taking the full row
              width with horizontal scroll-snap between them. flex: 1 sets
