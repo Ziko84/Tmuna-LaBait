@@ -1135,6 +1135,16 @@
         }
       }
 
+      /* Product card titles asked for Heebo 200 all along, but 200 was not in
+         the font URL, so they silently fell back to 400. Now that 200 loads,
+         the real ExtraLight reads as washed-out grey against the white card.
+         400 restores the weight the titles were actually being shown at, and
+         the colour goes back to the store's navy rather than a grey-blue. */
+      .product-card :is(.product-title, h1, h2, h3, h4, h5, p):not(.price):not([class*='price']) {
+        font-weight: 400;
+        color: #1a1a2e;
+      }
+
       /* One page gutter for every large content chunk in the store.
 
          The theme's own sections get their side margins from the .section
