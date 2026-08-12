@@ -836,6 +836,38 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
+      /* The overlay hero at the foot of the homepage shipped as a full-bleed
+         band: square corners, running the whole width of the page card while
+         every other block on the page is an inset, rounded card. It reads as
+         a different site.
+
+         It cannot join the :is() list above because that markup is
+         .media-with-content; this section is .hero > .hero__container, which
+         already clips its own overflow, so the radius and shadow can sit
+         directly on it rather than needing the ::before trick. The inset and
+         radius are the same values, so it lands in the same design language. */
+      [id$="__hero_overlay_LfPdEJ"] {
+        padding: 16px 0 28px;
+        box-sizing: border-box;
+        max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
+        margin-inline: auto;
+
+        .hero__container {
+          border-radius: 40px;
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+      }
+
+      @media (max-width: 767px) {
+        [id$="__hero_overlay_LfPdEJ"] {
+          padding: 8px 0 20px;
+
+          .hero__container {
+            border-radius: 20px;
+          }
+        }
+      }
+
       /* Homepage hero only: hairline stroke on the right + bottom edges */
       [id$="__hero_split_tlb01"] .media-with-content {
         border-style: solid;
