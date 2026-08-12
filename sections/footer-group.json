@@ -298,21 +298,10 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "footer_policy_list_rfGrqz": {
-          "type": "footer-policy-list",
-          "name": "t:names.policy_list",
-          "settings": {
-            "text_color": "",
-            "font_size": "0.75rem",
-            "case": "none"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "copyright",
-        "footer_policy_list_rfGrqz"
+        "copyright"
       ],
       "settings": {
         "section_width": "page-width",
