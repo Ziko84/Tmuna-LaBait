@@ -1106,20 +1106,33 @@
          so a custom section lines up with the product grid above it. Scoped
          to elements outside a .section so real grid children are not padded
          twice, and it deliberately does not touch anything inside a card or
-         the product information panel - those keep their own padding. */
-      :where(.page-width-content, .page-width-narrow, .page-width-normal, .page-width-wide):not(.section):not(.section *) {
-        box-sizing: border-box;
-        width: 100%;
-        max-width: calc(var(--narrow-page-width, 90rem) + 80px);
-        margin-inline: auto;
-        padding-inline: 40px;
-      }
+         the product information panel - those keep their own padding.
 
-      @media screen and (max-width: 749px) {
-        :where(.page-width-content, .page-width-narrow, .page-width-normal, .page-width-wide):not(.section):not(.section *) {
-          padding-inline: 16px;
+         One number controls the gutter for the whole store: --page-margin.
+         The .section grid reads it and so does the rule below, so theme and
+         custom sections stay locked together. Desktop is trimmed from the
+         theme's 40px to widen every content chunk by about 10 percent.
+
+         Two scoping notes:
+         - body itself carries page-width-narrow, so it is excluded from the
+           padding rule. Otherwise the gutter lands twice and the whole page
+           gets capped at the narrow width.
+         - body[class], not body: base.css sets --page-margin through the
+           page-width-* class, and a bare element selector would lose to it. */
+      @media screen and (min-width: 750px) {
+        body[class] {
+          --page-margin: 18px;
         }
       }
+
+      :where(.page-width-content, .page-width-narrow, .page-width-normal, .page-width-wide):not(body):not(.section):not(.section *) {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: calc(var(--narrow-page-width, 90rem) + var(--page-margin) * 2);
+        margin-inline: auto;
+        padding-inline: var(--page-margin);
+      }
+
 
       /* Toylvia-style floating card layout */
       html, body {
