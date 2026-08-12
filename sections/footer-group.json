@@ -276,10 +276,18 @@
             "case": "none"
           },
           "blocks": {}
+        },
+        "payment_icons_trust": {
+          "type": "payment-icons",
+          "settings": {
+            "horizontal_alignment": "center",
+            "gap": 8
+          }
         }
       },
       "block_order": [
-        "copyright"
+        "copyright",
+        "payment_icons_trust"
       ],
       "settings": {
         "section_width": "page-width",
