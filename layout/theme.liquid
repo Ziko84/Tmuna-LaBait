@@ -1857,22 +1857,32 @@
         object-fit: cover !important;
       }
 
-      /* Name and price on one baseline, material line spanning underneath. */
+      /* Name and price sit next to each other rather than at opposite edges.
+         Pushed apart on a 280px card they read as two unrelated items with a
+         void between them; adjacent, they read as one label. The row also
+         takes a top margin so the text does not start hard against the
+         photo's edge. */
       .product-card .group-block-content {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) auto;
+        display: flex !important;
+        flex-wrap: wrap;
         align-items: baseline;
         column-gap: 10px;
-      }
-
-      .product-card .group-block-content > :is(.contents, a) {
-        grid-column: 1;
-        grid-row: 1;
+        row-gap: 0;
+        margin-block-start: 14px;
       }
 
       .product-card .group-block-content > product-price {
-        grid-column: 2;
-        grid-row: 1;
+        width: auto !important;
+        flex: 0 0 auto;
+      }
+
+      .product-card .group-block-content > :is(.contents, a) {
+        flex: 0 1 auto;
+        min-width: 0;
+      }
+
+      .product-card .product-card__stars {
+        flex-basis: 100%;
       }
 
       .product-card .price.price {
@@ -1880,17 +1890,6 @@
         font-size: 0.95rem;
       }
 
-      .product-card__material {
-        grid-column: 1 / -1;
-        margin: 7px 0 0;
-        font-size: 0.75rem;
-        line-height: 1.5;
-        color: #5a554d;
-      }
-
-      .product-card .product-card__stars {
-        grid-column: 1 / -1;
-      }
 
       /* The add-to-cart row sits outside the text group and kept its own
          16px inset. */
@@ -1923,13 +1922,20 @@
          No hover on touch, so the outline is the permanent state there - it
          has to stand on its own, which is why the border is full-strength
          navy rather than a hairline tint. */
+      /* Twenty full-strength buttons stacked down a grid made horizontal
+         bands that competed with the photos. At rest the button is a muted
+         label on no border; hover brings the hairline and the navy fill. The
+         row keeps its height either way, so nothing shifts.
+
+         Pointer-coarse devices have no hover, so there the resting state is
+         the strong one - the button has to be unmistakable on touch. */
       .product-card .product-card__add-to-cart-button[class] {
         background: transparent !important;
-        color: #1a1a2e !important;
+        color: #5a554d !important;
         border: 0 !important;
-        border-top: 1px solid #e6e0d4 !important;
+        border-top: 1px solid transparent !important;
         border-radius: 0 !important;
-        transition: background-color 0.2s ease, color 0.2s ease;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         justify-content: center !important;
         /* 32px tall with 6px padding read as a squat strip once the button
            went full width. A full-width button needs the height to match. */
@@ -1937,9 +1943,22 @@
         padding-block: 10px !important;
       }
 
+      .product-card:hover .product-card__add-to-cart-button[class] {
+        border-top-color: #e6e0d4 !important;
+        color: #1a1a2e !important;
+      }
+
       .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) {
         background: #1a1a2e !important;
         color: #ffffff !important;
+        border-top-color: #1a1a2e !important;
+      }
+
+      @media (hover: none) {
+        .product-card .product-card__add-to-cart-button[class] {
+          color: #1a1a2e !important;
+          border-top-color: #e6e0d4 !important;
+        }
       }
 
       .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) :is(span, svg) {

@@ -20,12 +20,11 @@
   {%- endcomment -%}
   {% if product == blank or product.id != closest.product.id %}
     {%- comment -%}
-      Material line under the name. Deliberately states only the substrate,
-      which is true of every product: the smallest size ships without LED, so
-      a blanket "תאורת לד" here would be a claim the card cannot keep - the
-      exact kind of thing the Merchant Center review looks for.
+      A material line used to sit here. It was identical on all twenty cards,
+      so in a grid it carried no information at all - it read as texture, not
+      detail. Removed rather than reworded: anything true of every product
+      belongs on the product page, not repeated down the collection.
     {%- endcomment -%}
-    <p class="product-card__material">MDF פרימיום 6 מ״מ</p>
     {% render 'product-card-stars', card_product: closest.product %}
   {% endif %}
 {% endif %}
