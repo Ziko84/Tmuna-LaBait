@@ -1811,8 +1811,18 @@
         --card-pad: 18px;
       }
 
-      .product-card [class*='card-gallery'] {
+      /* The gallery's own 14px comes from the product-card-gallery block's
+         stylesheet, which Shopify bundles after this one, so the selector
+         has to out-specify it rather than rely on source order. */
+      .product-card [class*='card-gallery'][class][class] {
         padding: var(--card-pad) !important;
+      }
+
+      /* The add-to-cart row sits outside the text group and kept its own
+         16px inset. */
+      .product-card .product-card__quick-add-row[class][class] {
+        padding-inline: var(--card-pad) !important;
+        padding-block-end: var(--card-pad) !important;
       }
 
       .product-card .product-card__content > .group-block[class][class] {
