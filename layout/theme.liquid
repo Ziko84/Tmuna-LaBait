@@ -1843,10 +1843,17 @@
         padding: 0 !important;
       }
 
+      /* The crop is driven by --gallery-aspect-ratio, which the theme sets
+         from the block's image_ratio setting (currently "square"). Setting
+         the variable rather than forcing aspect-ratio on the <img> keeps the
+         theme's own sizing math intact - overriding the image directly left
+         the wrapper square and the two disagreed. 0.8 is 4:5. */
+      .product-card [class*='card-gallery'] {
+        --gallery-aspect-ratio: 0.8;
+      }
+
       .product-card [class*='card-gallery'] :is(img, svg, video) {
-        aspect-ratio: 4 / 5 !important;
         object-fit: cover !important;
-        height: auto !important;
       }
 
       /* Name and price on one baseline, material line spanning underneath. */
