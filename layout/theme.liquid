@@ -1848,8 +1848,9 @@
          the variable rather than forcing aspect-ratio on the <img> keeps the
          theme's own sizing math intact - overriding the image directly left
          the wrapper square and the two disagreed. 0.8 is 4:5. */
-      .product-card [class*='card-gallery'] {
-        --gallery-aspect-ratio: 0.8;
+      .product-card :is([class*='card-gallery'], .product-media-container, .product-media) {
+        --gallery-aspect-ratio: 0.8 !important;
+        aspect-ratio: 4 / 5 !important;
       }
 
       .product-card [class*='card-gallery'] :is(img, svg, video) {
@@ -1898,7 +1899,9 @@
          chosen mockup had it. */
       .product-card .product-card__quick-add-row[class][class] {
         padding: 0 !important;
-        margin-block-start: var(--card-pad) !important;
+        /* The content column's own gap already supplies the space above the
+           footer; adding --card-pad on top of it left 34px of air. */
+        margin-block-start: 0 !important;
       }
 
       /* The button used to be a pill floating at the card's left edge while
