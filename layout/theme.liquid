@@ -1199,10 +1199,21 @@
           width: 100% !important;
           min-height: 0 !important;
         }
+        /* The gallery wraps the photo in .product-media-constraint-wrapper >
+           .product-media, both of which carry their own 1:1 aspect-ratio. Left
+           alone they cap the photo at its square height inside a taller frame,
+           which reads as letterboxing. */
+        [data-template='product'] .product-information__media .product-media-constraint-wrapper,
+        [data-template='product'] .product-information__media .product-media {
+          aspect-ratio: auto !important;
+          height: 100% !important;
+          width: 100% !important;
+        }
         [data-template='product'] .product-information__media img.product-media__image {
           width: 100% !important;
           height: 100% !important;
           object-fit: cover !important;
+          aspect-ratio: auto !important;
           transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         /* Subtle zoom on hover so the wood grain and laser-cut detail read
