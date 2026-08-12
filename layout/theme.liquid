@@ -1151,10 +1151,13 @@
          than by moving blocks in the theme editor - the card layout is a
          column flex either way. */
       .product-card .group-block-content {
+        /* The stars are the last thing above the add-to-cart button. The
+           price used to carry the gap with its own bottom margin, so the
+           block margin lives here now that the price contributes none. */
         > *:has(.product-card__stars),
         > .product-card__stars {
           order: 2;
-          margin-block-start: 8px;
+          margin-block: 8px 14px;
         }
 
         /* product-price carries its own 4px/8px block margin from the theme.
