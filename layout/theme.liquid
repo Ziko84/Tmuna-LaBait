@@ -1094,6 +1094,33 @@
         }
       }
 
+      /* One page gutter for every large content chunk in the store.
+
+         The theme's own sections get their side margins from the .section
+         grid (base.css sets up minmax(--page-margin, 1fr) columns). Custom
+         sections are plain divs, so they carry a page-width-* class for the
+         width tokens but never receive the margin, and their content runs to
+         the screen edge.
+
+         This gives those sections the same gutter the .section grid produces,
+         so a custom section lines up with the product grid above it. Scoped
+         to elements outside a .section so real grid children are not padded
+         twice, and it deliberately does not touch anything inside a card or
+         the product information panel - those keep their own padding. */
+      :where(.page-width-content, .page-width-narrow, .page-width-normal, .page-width-wide):not(.section):not(.section *) {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: calc(var(--narrow-page-width, 90rem) + 80px);
+        margin-inline: auto;
+        padding-inline: 40px;
+      }
+
+      @media screen and (max-width: 749px) {
+        :where(.page-width-content, .page-width-narrow, .page-width-normal, .page-width-wide):not(.section):not(.section *) {
+          padding-inline: 16px;
+        }
+      }
+
       /* Toylvia-style floating card layout */
       html, body {
         background: #f0f1f3 !important;
