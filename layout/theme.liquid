@@ -39,7 +39,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Varela+Round&family=Assistant:wght@300;400&display=swap" rel="stylesheet">
+    {%- comment -%}
+      Heebo is requested at 200 and 300 as well as 400/500/700: the theme's
+      type settings ask for light weights, and without those faces the browser
+      substitutes 400, which reads as unintentionally bold.
+    {%- endcomment -%}
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet">
     <style data-v="{{ 'now' | date: '%s' }}">
       :root {
         --font-body--family: 'Heebo', sans-serif !important;
