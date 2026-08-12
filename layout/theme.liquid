@@ -7,6 +7,26 @@
   dir="rtl"
 >
   <head>
+    {%- comment -%}
+      /collections/all is Shopify's built-in virtual collection. It is not a
+      collection record, so its title cannot be translated - it renders the
+      English "Products" while every other page in the store is Hebrew, and
+      it duplicates /collections/frontpage ("חנות"), which holds the same 20
+      products.
+
+      A URL redirect does not help: Shopify only applies those to paths that
+      would otherwise 404, and this one resolves natively. So it is sent on
+      from the theme, before anything renders, and marked noindex with a
+      canonical pointing at the real shop page so search engines drop it.
+    {%- endcomment -%}
+    {%- if collection.handle == 'all' -%}
+      <meta name="robots" content="noindex,follow">
+      <link rel="canonical" href="{{ shop.url }}{{ collections.frontpage.url }}">
+      <script>
+        window.location.replace({{ collections.frontpage.url | json }} + window.location.search);
+      </script>
+    {%- endif -%}
+
     <meta name="google-site-verification" content="5ZsG_m--RDRvQmAIEb0Z3KWvUbNx0swQOc-6xgZ0GlQ" />
     <meta name="p:domain_verify" content="f0f72d18a0d2f6cf9e31215f7c6f590c"/>
 
