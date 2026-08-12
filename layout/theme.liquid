@@ -1017,7 +1017,10 @@
         background: #ffffff;
         border-radius: 16px 16px 0 0;
         margin-top: 4rem;
-        padding-block: 3.5rem 1.75rem;
+        /* No bottom padding: the theme's .utilities row already carries 40px
+           below the legal line. Adding more leaves the single line floating
+           over an empty band. */
+        padding-block: 3.5rem 0;
         padding-inline: clamp(1.25rem, 4vw, 3.5rem);
         box-shadow: 0 -1px 0 rgba(26, 26, 46, 0.08);
       }
@@ -1083,7 +1086,7 @@
       @media screen and (max-width: 749px) {
         footer {
           margin-top: 2.5rem;
-          padding-block: 2.5rem 1.5rem;
+          padding-block: 2.5rem 0;
           border-radius: 12px 12px 0 0;
         }
         footer::before {
