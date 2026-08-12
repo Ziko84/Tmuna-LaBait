@@ -846,7 +846,10 @@
          already clips its own overflow, so the radius and shadow can sit
          directly on it rather than needing the ::before trick. The inset and
          radius are the same values, so it lands in the same design language. */
-      [id$="__hero_overlay_LfPdEJ"] {
+      /* .shopify-section, not a bare id suffix: Shopify stamps a matching id
+         on the inner .hero div too, so an unqualified selector insets the
+         block twice and it ends up 18px narrower than the product grid. */
+      .shopify-section[id$="__hero_overlay_LfPdEJ"] {
         padding: 16px 0 28px;
         box-sizing: border-box;
         /* This section is a flex item that sizes to its content, so it needs
@@ -862,7 +865,10 @@
       }
 
       @media (max-width: 767px) {
-        [id$="__hero_overlay_LfPdEJ"] {
+        /* .shopify-section, not a bare id suffix: Shopify stamps a matching id
+         on the inner .hero div too, so an unqualified selector insets the
+         block twice and it ends up 18px narrower than the product grid. */
+      .shopify-section[id$="__hero_overlay_LfPdEJ"] {
           padding: 8px 0 20px;
 
           .hero__container {
