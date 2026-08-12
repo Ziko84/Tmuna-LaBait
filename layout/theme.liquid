@@ -1801,6 +1801,23 @@
       .product-card .product-card__content > .group-block {
         padding: 12px 16px 0px !important;
       }
+
+      /* One number for the card's inner padding. The inset was set in three
+         separate places at three different values - 14px around the photo,
+         16px beside the text, 18px at the foot - so the card never read as
+         evenly padded. They all point at --card-pad now; change it here and
+         every side moves together. */
+      .product-card {
+        --card-pad: 18px;
+      }
+
+      .product-card [class*='card-gallery'] {
+        padding: var(--card-pad) !important;
+      }
+
+      .product-card .product-card__content > .group-block[class][class] {
+        padding-inline: var(--card-pad) !important;
+      }
       /* Measured: with no negative margin the quick-add row already sits
          flush (0px gap) against .group-block, so any tightening at all
          necessarily overlaps it - and .group-block/.group-block-content
