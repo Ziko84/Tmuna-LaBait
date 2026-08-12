@@ -1,0 +1,60 @@
+{%- comment -%}
+  Starts from Shopify's own robots rules so the platform's crawl-budget
+  protections (checkout, cart, account, search noise) stay intact, then
+  explicitly allows the AI crawlers. Without an explicit allow these agents
+  fall back to whatever they infer, and several treat "unlisted" as
+  "unavailable".
+{%- endcomment -%}
+{%- for group in robots.default_groups -%}
+  {{- group.user_agent -}}
+  {%- for rule in group.rules -%}
+    {{ rule }}
+  {%- endfor -%}
+  {%- if group.sitemap -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{%- endfor -%}
+
+# AI assistants and answer engines: allowed to read the catalogue and
+# policies so they can recommend and quote this store accurately.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Curated, machine-readable summary of the store for AI assistants.
+# Sitemap: {{ shop.url }}/llms.txt
