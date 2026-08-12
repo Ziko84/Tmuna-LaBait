@@ -956,12 +956,10 @@
         z-index: 2;
         pointer-events: none;
         border-radius: inherit;
-        /* Was gold (#ffd166, the sale badge colour). It read as a stray
-           yellow line on every card and banner, so the edge is now a dark
-           neutral that defines the corner without adding a colour. */
-        background:
-          linear-gradient(to left, rgba(74, 74, 84, 0.55), rgba(74, 74, 84, 0)) right bottom / 55% 1px no-repeat,
-          linear-gradient(to top, rgba(74, 74, 84, 0.55), rgba(74, 74, 84, 0)) right bottom / 1px 50% no-repeat;
+        /* No edge line. This used to draw a gold hairline along the right
+           and bottom of every card and banner; the shadow already defines
+           the corner, so the line was decoration the layout did not need. */
+        background: none;
       }
 
       /* Premium pill buttons with lift on hover */

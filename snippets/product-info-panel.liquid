@@ -80,18 +80,6 @@
     overflow: hidden;
   }
 
-  .product-info-panel__surface::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    border-radius: inherit;
-    background:
-      linear-gradient(to left, rgba(74, 74, 84, 0.55), rgba(74, 74, 84, 0)) right bottom / 32% 1px no-repeat,
-      linear-gradient(to top, rgba(74, 74, 84, 0.55), rgba(74, 74, 84, 0)) right bottom / 1px 32% no-repeat;
-  }
-
   /* Matches [data-template='product'] .product-information__grid. */
   @media screen and (min-width: 990px) {
     .product-info-panel__surface {
