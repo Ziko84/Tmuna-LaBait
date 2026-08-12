@@ -19,6 +19,13 @@
     card apart from the page heading without needing a separate block type.
   {%- endcomment -%}
   {% if product == blank or product.id != closest.product.id %}
+    {%- comment -%}
+      Material line under the name. Deliberately states only the substrate,
+      which is true of every product: the smallest size ships without LED, so
+      a blanket "תאורת לד" here would be a claim the card cannot keep - the
+      exact kind of thing the Merchant Center review looks for.
+    {%- endcomment -%}
+    <p class="product-card__material">MDF פרימיום 6 מ״מ</p>
     {% render 'product-card-stars', card_product: closest.product %}
   {% endif %}
 {% endif %}

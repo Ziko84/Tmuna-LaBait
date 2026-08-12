@@ -1811,18 +1811,87 @@
         --card-pad: 18px;
       }
 
-      /* The gallery's own 14px comes from the product-card-gallery block's
-         stylesheet, which Shopify bundles after this one, so the selector
-         has to out-specify it rather than rely on source order. */
+      /* ---- Frameless card ----------------------------------------------
+         The photo runs to the card's own edges instead of floating in a
+         white box inside a white card, and it is cropped 4:5 because wall
+         art is vertical and the square wasted the frame. Name and price
+         share a baseline with the price in the bronze the craft strip
+         already uses, and the buy button is the card's last row rather than
+         a pill sitting in space. --card-pad still drives the text inset. */
+      .product-card {
+        overflow: hidden;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .product-card,
+        .product-card:hover {
+          transition: none;
+          transform: none;
+        }
+      }
+
+      /* The gallery's own padding comes from the product-card-gallery
+         block's stylesheet, which Shopify bundles after this one, so the
+         selector has to out-specify it rather than rely on source order. */
       .product-card [class*='card-gallery'][class][class] {
-        padding: var(--card-pad) !important;
+        padding: 0 !important;
+      }
+
+      .product-card [class*='card-gallery'] :is(img, svg, video) {
+        aspect-ratio: 4 / 5 !important;
+        object-fit: cover !important;
+        height: auto !important;
+      }
+
+      /* Name and price on one baseline, material line spanning underneath. */
+      .product-card .group-block-content {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: baseline;
+        column-gap: 10px;
+      }
+
+      .product-card .group-block-content > :is(.contents, a) {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .product-card .group-block-content > product-price {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .product-card .price.price {
+        color: #8a6e46 !important;
+        font-size: 0.95rem;
+      }
+
+      .product-card__material {
+        grid-column: 1 / -1;
+        margin: 7px 0 0;
+        font-size: 0.75rem;
+        line-height: 1.5;
+        color: #5a554d;
+      }
+
+      .product-card .product-card__stars {
+        grid-column: 1 / -1;
       }
 
       /* The add-to-cart row sits outside the text group and kept its own
          16px inset. */
+      /* Full-bleed footer: the row loses its inset entirely so the button
+         can span the card edge to edge and sit on a hairline, the way the
+         chosen mockup had it. */
       .product-card .product-card__quick-add-row[class][class] {
-        padding-inline: var(--card-pad) !important;
-        padding-block-end: var(--card-pad) !important;
+        padding: 0 !important;
+        margin-block-start: var(--card-pad) !important;
       }
 
       /* The button used to be a pill floating at the card's left edge while
@@ -1847,7 +1916,9 @@
       .product-card .product-card__add-to-cart-button[class] {
         background: transparent !important;
         color: #1a1a2e !important;
-        border: 1px solid #1a1a2e !important;
+        border: 0 !important;
+        border-top: 1px solid #e6e0d4 !important;
+        border-radius: 0 !important;
         transition: background-color 0.2s ease, color 0.2s ease;
         justify-content: center !important;
         /* 32px tall with 6px padding read as a squat strip once the button
