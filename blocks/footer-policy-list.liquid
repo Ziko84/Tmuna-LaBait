@@ -12,8 +12,24 @@
     "
     {{ block.shopify_attributes }}
   >
+    {%- comment -%}
+      Two policy records are deliberately hidden here:
+
+      - contact-information: duplicates /pages/contact, which is the real
+        contact page and the only one with a working form.
+      - legal-notice: word-for-word the same text as the terms of service.
+
+      Both still exist as policy records (Shopify links them from checkout);
+      they are just not listed twice in the footer.
+    {%- endcomment -%}
     {%- for policy in shop.policies -%}
-      {%- if policy != blank -%}
+      {%- liquid
+        assign policy_hidden = false
+        if policy.url contains 'contact-information' or policy.url contains 'legal-notice'
+          assign policy_hidden = true
+        endif
+      -%}
+      {%- if policy != blank and policy_hidden == false -%}
         <li>
           <a
             href="{{ policy.url }}"
