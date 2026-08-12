@@ -849,6 +849,9 @@
       [id$="__hero_overlay_LfPdEJ"] {
         padding: 16px 0 28px;
         box-sizing: border-box;
+        /* This section is a flex item that sizes to its content, so it needs
+           an explicit width before max-width has anything to cap. */
+        width: 100%;
         max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
         margin-inline: auto;
 
