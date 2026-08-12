@@ -1145,6 +1145,16 @@
         color: #1a1a2e;
       }
 
+      /* The craft strip's vertical padding is a section setting, and it is
+         set to 24 in templates/index.json - but Shopify's GitHub sync does
+         not pick up JSON templates reliably (the theme editor owns them), so
+         the section kept rendering the old 72px inline. Both say 24, so this
+         is not fighting the setting. If the padding is ever changed in the
+         theme editor, delete this rule or the editor's value will not show. */
+      .craft-strip {
+        padding-block: 24px !important;
+      }
+
       /* Price sits directly under the product name so the two read as one
          unit, with the review line demoted below them. The markup order is
          title, reviews, price, so the swap is done with flex order rather
