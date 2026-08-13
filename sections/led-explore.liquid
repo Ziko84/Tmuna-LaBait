@@ -6,16 +6,17 @@
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
 
+  assign current_product = product
   assign display_collection = section.settings.collection
 
-  if section.settings.collection_mode == 'same_as_product' and closest.product != blank
+  if section.settings.collection_mode == 'same_as_product' and current_product != blank
     assign display_collection = blank
-    for pc in closest.product.collections
+    for pc in current_product.collections
       if pc.handle != 'frontpage' and display_collection == blank
         assign display_collection = pc
       endif
     endfor
-  elsif section.settings.collection_mode == 'different_from_product' and closest.product != blank
+  elsif section.settings.collection_mode == 'different_from_product' and current_product != blank
     assign display_collection = blank
     for c in collections
       assign is_excluded = false
@@ -23,7 +24,7 @@
         assign is_excluded = true
       endif
       unless is_excluded
-        for pc in closest.product.collections
+        for pc in current_product.collections
           if pc.handle == c.handle
             assign is_excluded = true
           endif
