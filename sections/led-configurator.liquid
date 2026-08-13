@@ -20,6 +20,7 @@
 {%- assign img_lit = product.media[1] | default: product.media[0] -%}
 
 <div class="lc" dir="rtl">
+  <div class="section section--page-width lc__wrap">
   <div class="lc__grid">
 
     <div class="lc__media">
@@ -130,6 +131,7 @@
       </div>
     </div>
   </div>
+  </div>
 
   {%- comment -%} Full description in its own card below, matching every other product page {%- endcomment -%}
   {% render 'product-info-panel', product: product %}
@@ -146,9 +148,9 @@
      product page. Inside: image LEFT, details RIGHT, ~1.5:1, square 1:1
      frame. Grid is ltr so the first child (media) lands left; children stay
      rtl for text. */
-  .lc{padding-inline:clamp(14px,4vw,40px)}
   .lc__grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,1fr);gap:44px;align-items:start;direction:ltr;
-    background:#f7f5f2;border-radius:32px;box-shadow:0 8px 18px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.06);padding:32px;max-width:1044px;margin:40px auto}
+    background:#f7f5f2;border-radius:32px;box-shadow:0 8px 18px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.06);padding:32px;margin:40px auto}
+  @media(min-width:990px){.lc__grid{max-width:85%}}
   .lc__media,.lc__col{direction:rtl}
   @media(max-width:889px){.lc__grid{grid-template-columns:1fr;gap:26px;direction:rtl;padding:20px;border-radius:22px}}
   .lc__media{position:sticky;top:24px}
