@@ -54,8 +54,9 @@
     {% render 'gap-style', value: section.settings.gap %}
   "
 >
-  <div class="section-resource-list__header">
-    {%- content_for 'block', type: '_product-list-content', id: 'static-header' -%}
+  <div class="section-resource-list__header lc-rec__head">
+    <h2 class="lc-rec__heading">עוד מאותה קטגוריה</h2>
+    {% if display_collection != blank %}<a class="lc-rec__all" href="{{ display_collection.url }}">לצפייה בכל הקטגוריה</a>{% endif %}
   </div>
 
   {% capture list_items %}
@@ -84,12 +85,11 @@
           <div
             class="resource-list__item"
           >
-            {% content_for 'block',
-              type: '_product-card',
-              id: 'static-product-card',
-              closest.product: product,
-              product_view_context: 'collection'
-            %}
+            <a class="lc-rec__card" href="{{ product.url }}">
+              <div class="lc-rec__media">{% if product.featured_media %}<img src="{{ product.featured_media | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" width="600" height="600">{% endif %}</div>
+              <div class="lc-rec__name">{{ product.title }}</div>
+              <div class="lc-rec__price">{{ product.price | money }}</div>
+            </a>
           </div>
         {% endfor %}
       {% endpaginate %}
@@ -98,7 +98,7 @@
         <div
           class="resource-list__item"
         >
-            {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: null %}
+<div class="lc-rec__card lc-rec__card--ph"></div>
         </div>
 
         {% unless forloop.last %}
@@ -918,3 +918,17 @@
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+.lc-rec__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 20px}
+.lc-rec__heading{font-size:1.4rem;font-weight:400;color:#1a1a2e;margin:0}
+.lc-rec__all{font-size:.8rem;color:#8a6e46;text-decoration:none;white-space:nowrap}
+.lc-rec__all:hover{text-decoration:underline}
+.lc-rec__card{display:block;text-decoration:none;color:#1a1a2e}
+.lc-rec__media{aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#f0efeb;margin-bottom:10px}
+.lc-rec__media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.lc-rec__card:hover .lc-rec__media img{transform:scale(1.04)}
+.lc-rec__name{font-size:.92rem;line-height:1.4}
+.lc-rec__price{font-size:.92rem;color:#6d685f;margin-top:2px}
+.lc-rec__card--ph{opacity:0}
+{% endstylesheet %}
