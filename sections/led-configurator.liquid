@@ -170,7 +170,7 @@
     "brand": { "@type": "Brand", "name": "תמונה לבית" },
     "productGroupID": {{ product.id | json }},
     "url": {{ product.url | prepend: shop.url | json }},
-    "variesBy": ["https://schema.org/size"],
+    "variesBy": ["https://schema.org/size", "https://schema.org/pattern"],
     "image": [
       {%- assign _ld_imgs = product.media | where: 'media_type', 'image' -%}
       {%- for m in _ld_imgs limit: 5 -%}
@@ -188,6 +188,7 @@
           "@type": "Product",
           "name": {{ v.title | prepend: ' - ' | prepend: product.title | json }},
           "size": {{ v.option1 | json }},
+          "pattern": {{ v.option2 | json }},
           "sku": {{ v.sku | json }},
           "image": {{ _vabs | json }},
           "offers": {
