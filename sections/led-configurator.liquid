@@ -67,6 +67,15 @@
                 {%- endfor -%}
               </div>
               <div class="lc__noled" id="lc-noled"><b>שימו לב</b> מידה זו מגיעה ללא אפשרות תאורת לד.</div>
+              <div class="lc__custom" id="lc-custom" hidden>
+                <div class="lc__custom-row">
+                  <label>רוחב<input type="number" min="10" max="120" id="lc-w" placeholder="ס״מ" inputmode="numeric"></label>
+                  <span class="lc__custom-x">×</span>
+                  <label>גובה<input type="number" min="10" max="120" id="lc-h" placeholder="ס״מ" inputmode="numeric"></label>
+                </div>
+                <p class="lc__note">המידות לבחירתכם, עד 120 ס״מ בכל צד.</p>
+              </div>
+              <input type="hidden" name="properties[מידות מבוקשות]" id="lc-dims" disabled>
             </div>
           {%- endif -%}
         {%- endfor -%}
@@ -148,14 +157,14 @@
      product page. Inside: image LEFT, details RIGHT, ~1.5:1, square 1:1
      frame. Grid is ltr so the first child (media) lands left; children stay
      rtl for text. */
-  .lc__grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,1fr);gap:44px;align-items:start;direction:ltr;
+  .lc__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,1fr);gap:44px;align-items:start;direction:ltr;
     background:#f7f5f2;border-radius:32px;box-shadow:0 8px 18px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.06);padding:32px;margin:40px auto}
   @media(min-width:990px){.lc__grid{max-width:85%}}
   .lc__media,.lc__col{direction:rtl}
   @media(max-width:889px){.lc__grid{grid-template-columns:1fr;gap:26px;direction:rtl;padding:20px;border-radius:22px}}
-  .lc__media{position:sticky;top:24px}
-  @media(max-width:889px){.lc__media{position:static}}
-  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;max-width:600px;margin-inline:auto;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
+  /* Smaller image, no sticky (the earlier sticky made the media hold while
+     the rest scrolled, which read as an inside-scroll). */
+  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;max-width:440px;margin-inline:auto;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
   .lc__layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s ease,filter .9s ease}
   .lc__layer--day{opacity:1;z-index:2}
   .lc__layer--night{opacity:0;z-index:1}
@@ -185,6 +194,13 @@
   .lc__dot--black{background:#1a1a2e}.lc__dot--white{background:#f4f2ee}.lc__dot--wood{background:linear-gradient(135deg,#c8a06a,#9c6f3f 55%,#7c5326)}
   .lc__noled{display:none;align-items:center;gap:8px;font-size:.77rem;color:var(--muted);margin-top:13px}
   .lc__noled.show{display:flex}.lc__noled b{color:var(--bronze);font-weight:500}
+  .lc__custom{margin-top:16px}
+  .lc__custom[hidden]{display:none}
+  .lc__custom-row{display:flex;align-items:flex-end;gap:12px}
+  .lc__custom label{display:flex;flex-direction:column;gap:6px;font-size:.72rem;color:var(--muted);font-weight:400}
+  .lc__custom input{width:88px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:.9rem;background:#fff;color:var(--ink)}
+  .lc__custom input:focus{outline:none;border-color:var(--bronze)}
+  .lc__custom-x{color:var(--muted);padding-bottom:10px}
   .lc__led{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
   .lc__led-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 2px;background:none;border:0;font-family:inherit;cursor:pointer;text-align:right;color:var(--ink)}
   .lc__led-title{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:400}
@@ -226,8 +242,18 @@
       led=root.querySelector('#lc-led'),
       ledField=root.querySelector('#lc-ledfield'),
       noled=root.querySelector('#lc-noled'),
-      ledCur=root.querySelector('#lc-led-cur');
+      ledCur=root.querySelector('#lc-led-cur'),
+      customField=root.querySelector('#lc-custom'),
+      dimsInput=root.querySelector('#lc-dims'),
+      wIn=root.querySelector('#lc-w'),
+      hIn=root.querySelector('#lc-h'),
+      form=root.querySelector('#lc-form');
   var SMALL='קטן - 50x50', NONE='ללא תאורה';
+  function isCustom(sz){return !!sz && sz.indexOf('התאמה')>-1;}
+  function toggleCustom(sz){var c=isCustom(sz);if(!customField)return;customField.hidden=!c;dimsInput.disabled=!c;if(!c){if(wIn)wIn.value='';if(hIn)hIn.value='';dimsInput.value='';}}
+  function updateDims(){if(!wIn)return;var w=wIn.value.trim(),h=hIn.value.trim();dimsInput.value=(w&&h)?(w+'x'+h+' ס״מ'):'';wIn.style.borderColor='';hIn.style.borderColor='';}
+  if(wIn){wIn.addEventListener('input',updateDims);hIn.addEventListener('input',updateDims);}
+  if(form){form.addEventListener('submit',function(e){if(isCustom(size)&&(!wIn.value.trim()||!hIn.value.trim())){e.preventDefault();customField.hidden=false;dimsInput.disabled=false;(wIn.value.trim()?hIn:wIn).focus();wIn.style.borderColor=!wIn.value.trim()?'#d93025':'';hIn.style.borderColor=!hIn.value.trim()?'#d93025':'';}});}
   var size=(root.querySelector('#lc-sizes .lc__pill[aria-pressed=true]')||{}).dataset ? root.querySelector('#lc-sizes .lc__pill[aria-pressed=true]').dataset.size : null;
   var ledVal=NONE, lastPrice=null;
 
@@ -277,6 +303,7 @@
     this.querySelectorAll('.lc__pill').forEach(function(s){s.setAttribute('aria-pressed','false')});
     b.setAttribute('aria-pressed','true');size=b.dataset.size;
     var small=(size===SMALL);
+    toggleCustom(size);
     noled.classList.toggle('show',small);
     ledField.style.opacity=small?'.4':'1';ledField.style.pointerEvents=small?'none':'auto';
     if(small){ledVal=NONE;led.removeAttribute('open');
@@ -293,5 +320,6 @@
   });
 
   apply(false);
+  toggleCustom(size);
 })();
 </script>
