@@ -168,7 +168,7 @@
   @media(max-width:889px){.lc__grid{grid-template-columns:1fr;gap:26px;direction:rtl;padding:20px;border-radius:22px}}
   /* Smaller image, no sticky (the earlier sticky made the media hold while
      the rest scrolled, which read as an inside-scroll). */
-  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;max-width:528px;margin-inline:auto;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
+  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;max-width:554px;margin-inline:auto;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
   .lc__layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s ease,filter .9s ease}
   .lc__layer--day{opacity:1;z-index:2}
   .lc__layer--night{opacity:0;z-index:1}
@@ -227,8 +227,8 @@
   .lc__tier-txt span{display:block;font-size:.75rem;color:var(--muted);line-height:1.55;font-weight:300}
   .lc__tier-price{font-size:.82rem;font-weight:400;color:var(--bronze);white-space:nowrap}
   .lc__tier-price.free{color:var(--muted);font-weight:300}
-  .lc__atc{width:100%;margin-top:20px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:inherit;font-size:1rem;font-weight:400;padding:17px;cursor:pointer;transition:transform .1s,opacity .2s}
-  .lc__atc:hover{opacity:.94}.lc__atc:active{transform:scale(.99)}
+  .lc__atc{width:100%;margin-top:20px;background:transparent;color:var(--ink);border:1px solid var(--ink);border-radius:999px;font-family:inherit;font-size:1rem;font-weight:400;padding:16px;cursor:pointer;transition:background .2s,color .2s,transform .1s}
+  .lc__atc:hover{background:var(--ink);color:#fff}.lc__atc:active{transform:scale(.99)}
   .lc__desc{margin-top:34px;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
   .lc__trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
   .lc__trust-item{border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:7px;line-height:1.4}
