@@ -115,13 +115,10 @@
       {%- endform -%}
 
       {%- comment -%}
-        Teaser only. The full description lives in the "על היצירה" panel
-        below, the same separate card the rest of the store's product pages
-        use, so this card stays about choosing, not reading.
+        No description on the buy side. It reads as clutter next to the
+        choices; the full text lives in the "על היצירה" card below, which is
+        where the rest of the store keeps it too. This card is for choosing.
       {%- endcomment -%}
-      {%- if product.description != blank -%}
-        <div class="lc__desc rte">{{ product.description | strip_html }}</div>
-      {%- endif -%}
 
       {%- comment -%} Trust row, matching the rest of the store's product pages {%- endcomment -%}
       <div class="lc__trust">
