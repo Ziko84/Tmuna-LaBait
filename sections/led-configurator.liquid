@@ -1,0 +1,260 @@
+{%- comment -%}
+  Custom product experience for the LED wall-art line.
+
+  Renders a reactive day/lit preview plus a quiet, boutique option stack:
+  - מידה (size)  -> maps to product option 1
+  - תאורת לד (LED) -> maps to product option 2, drives price and the preview
+  - גוון (frame color) -> a made-to-order line-item property, NOT a variant,
+    so the Merchant feed stays one honest offer per size+LED (no white photo
+    we do not have).
+
+  Image convention: product media position 1 = off (no LED, the default view),
+  position 2 = lit (warm on). Single/multi are hue treatments of the lit shot.
+
+  Scoped to products on the "led" template suffix, so it can be rolled out one
+  product at a time without touching the rest of the catalogue.
+{%- endcomment -%}
+
+{%- assign v0 = product.selected_or_first_available_variant -%}
+{%- assign img_off = product.media[0] -%}
+{%- assign img_lit = product.media[1] | default: product.media[0] -%}
+
+<div class="lc" dir="rtl">
+  <div class="lc__grid page-width">
+
+    <div class="lc__media">
+      <div class="lc__preview" id="lc-preview">
+        {%- if img_off -%}
+          <img class="lc__layer lc__layer--day" src="{{ img_off.preview_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}">
+        {%- endif -%}
+        {%- if img_lit -%}
+          <img class="lc__layer lc__layer--night" src="{{ img_lit.preview_image | image_url: width: 1000 }}" alt="{{ product.title | escape }} מואר">
+        {%- endif -%}
+        <span class="lc__pstate" id="lc-pstate"></span>
+      </div>
+    </div>
+
+    <div class="lc__col">
+      <h1 class="lc__name">{{ product.title }}</h1>
+      <p class="lc__price" id="lc-price">{{ v0.price | money }}</p>
+
+      <div class="lc__rule"></div>
+
+      {%- form 'product', product, id: 'lc-form', class: 'lc__form' -%}
+        <input type="hidden" name="id" id="lc-variant-id" value="{{ v0.id }}">
+        <input type="hidden" name="properties[גוון]" id="lc-color" value="שחור">
+
+        {%- comment -%} Frame color: made-to-order property, quiet pills {%- endcomment -%}
+        <div class="lc__field">
+          <div class="lc__label">גוון היצירה</div>
+          <div class="lc__pills" id="lc-colors">
+            <button type="button" class="lc__pill" data-color="שחור" aria-pressed="true"><span class="lc__dot lc__dot--black"></span>שחור</button>
+            <button type="button" class="lc__pill" data-color="לבן" aria-pressed="false"><span class="lc__dot lc__dot--white"></span>לבן</button>
+            <button type="button" class="lc__pill" data-color="עץ" aria-pressed="false"><span class="lc__dot lc__dot--wood"></span>עץ</button>
+          </div>
+          <p class="lc__note">מיוצר לפי הזמנה בגוון שתבחרו. אינו משנה את המחיר.</p>
+        </div>
+
+        {%- comment -%} Size: pills from product option 1 {%- endcomment -%}
+        {%- for opt in product.options_with_values -%}
+          {%- if opt.name == 'מידה' -%}
+            <div class="lc__field">
+              <div class="lc__label">מידה</div>
+              <div class="lc__pills" id="lc-sizes">
+                {%- for val in opt.values -%}
+                  <button type="button" class="lc__pill" data-size="{{ val | escape }}" aria-pressed="{% if val == opt.selected_value %}true{% else %}false{% endif %}">{{ val }}</button>
+                {%- endfor -%}
+              </div>
+              <div class="lc__noled" id="lc-noled"><b>שימו לב</b> מידה זו מגיעה ללא אפשרות תאורת לד.</div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} LED: quiet collapsing panel, values from product option 2 {%- endcomment -%}
+        {%- for opt in product.options_with_values -%}
+          {%- if opt.name == 'תאורת לד' -%}
+            <div class="lc__field" id="lc-ledfield">
+              <div class="lc__led" id="lc-led">
+                <button type="button" class="lc__led-head" id="lc-led-head">
+                  <span class="lc__led-title"><span class="lc__spark"></span>תאורת לד</span>
+                  <span class="lc__led-cur"><span id="lc-led-cur">ללא תאורה</span><span class="lc__chev">▾</span></span>
+                </button>
+                <div class="lc__led-body"><div class="lc__led-inner"><div class="lc__led-opts" id="lc-led-opts">
+                  {%- for val in opt.values -%}
+                    {%- assign desc = '' -%}
+                    {%- assign mode = '' -%}
+                    {%- case val -%}
+                      {%- when 'ללא תאורה' -%}{%- assign desc = 'היצירה נטו, בעיצוב נקי' -%}{%- assign mode = '' -%}
+                      {%- when 'לבן חם' -%}{%- assign desc = 'אור צהבהב רך ואחיד' -%}{%- assign mode = 'lit' -%}
+                      {%- when 'צבע יחיד' -%}{%- assign desc = 'כל צבע שתרצו, מתחלף בשלט. צבע אחד בכל רגע' -%}{%- assign mode = 'lit single' -%}
+                      {%- when 'רב-צבע' -%}{%- assign desc = 'כל הצבעים יחד ואפקטים, המרשים ביותר. כולל שלט' -%}{%- assign mode = 'lit multi' -%}
+                    {%- endcase -%}
+                    <button type="button" class="lc__tier" data-led="{{ val | escape }}" data-mode="{{ mode }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
+                      <span class="lc__check">✓</span>
+                      <span class="lc__tier-txt"><b>{{ val }}</b><span>{{ desc }}</span></span>
+                      <span class="lc__tier-price" data-role="delta"></span>
+                    </button>
+                  {%- endfor -%}
+                </div></div></div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <button type="submit" name="add" class="lc__atc">הוספה לסל</button>
+      {%- endform -%}
+
+      {%- if product.description != blank -%}
+        <div class="lc__desc rte">{{ product.description }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <script type="application/json" id="lc-variants">
+    [{% for v in product.variants %}{"id":{{ v.id }},"size":{{ v.option1 | json }},"led":{{ v.option2 | json }},"price":{{ v.price }},"available":{{ v.available }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  </script>
+</div>
+
+{% stylesheet %}
+  .lc{--ink:#1a1a2e;--bronze:#8a6e46;--bronze-tint:rgba(138,110,70,.08);--cream:#f7f5f2;--line:#e8e3d9;--line-soft:#efeadf;--muted:#6d685f;--up:#d93025;--down:#1e8e3e;font-weight:300;color:var(--ink)}
+  .lc__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:start;padding-block:40px 72px}
+  @media(max-width:889px){.lc__grid{grid-template-columns:1fr;gap:30px}}
+  .lc__media{position:sticky;top:24px}
+  @media(max-width:889px){.lc__media{position:static}}
+  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
+  .lc__layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s ease,filter .9s ease}
+  .lc__layer--day{opacity:1;z-index:2}
+  .lc__layer--night{opacity:0;z-index:1}
+  .lc__preview.lit .lc__layer--day{opacity:0}
+  .lc__preview.lit .lc__layer--night{opacity:1}
+  .lc__preview.single .lc__layer--night{filter:hue-rotate(190deg) saturate(1.35)}
+  .lc__preview.multi .lc__layer--night{animation:lc-hue 9s linear infinite}
+  @keyframes lc-hue{from{filter:hue-rotate(0deg) saturate(1.3)}to{filter:hue-rotate(360deg) saturate(1.3)}}
+  @media(prefers-reduced-motion:reduce){.lc__preview.multi .lc__layer--night{animation:none;filter:hue-rotate(120deg) saturate(1.3)}}
+  .lc__pstate{position:absolute;inset-block-end:14px;inset-inline-start:16px;z-index:3;font-size:.72rem;letter-spacing:.12em;color:rgba(255,255,255,.85);opacity:0;transition:opacity .5s}
+  .lc__preview.lit .lc__pstate{opacity:1}
+
+  .lc__name{font-size:2rem;font-weight:400;margin:0;letter-spacing:-.015em;line-height:1.1}
+  .lc__price{font-size:1.35rem;font-weight:400;margin:12px 0 0;transition:color .2s}
+  .lc__price.up{animation:lc-pu .9s ease-in-out}.lc__price.down{animation:lc-pd .9s ease-in-out}
+  @keyframes lc-pu{0%,100%{color:var(--ink)}35%,65%{color:var(--up)}}
+  @keyframes lc-pd{0%,100%{color:var(--ink)}35%,65%{color:var(--down)}}
+  .lc__rule{height:1px;background:var(--line-soft);margin:30px 0}
+  .lc__field{margin:0 0 32px}
+  .lc__label{font-size:.7rem;font-weight:500;letter-spacing:.16em;color:var(--muted);margin:0 0 15px}
+  .lc__note{font-size:.75rem;color:var(--muted);margin:14px 2px 0;line-height:1.65;font-weight:300}
+  .lc__pills{display:flex;flex-wrap:wrap;gap:9px}
+  .lc__pill{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-size:.88rem;font-weight:400;padding:9px 17px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .1s}
+  .lc__pill:hover{border-color:var(--bronze);color:var(--ink)}.lc__pill:active{transform:scale(.98)}
+  .lc__pill[aria-pressed=true]{border-color:var(--ink);color:var(--ink);background:#fff}
+  .lc__dot{width:13px;height:13px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+  .lc__dot--black{background:#1a1a2e}.lc__dot--white{background:#f4f2ee}.lc__dot--wood{background:linear-gradient(135deg,#c8a06a,#9c6f3f 55%,#7c5326)}
+  .lc__noled{display:none;align-items:center;gap:8px;font-size:.77rem;color:var(--muted);margin-top:13px}
+  .lc__noled.show{display:flex}.lc__noled b{color:var(--bronze);font-weight:500}
+  .lc__led{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .lc__led-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 2px;background:none;border:0;font-family:inherit;cursor:pointer;text-align:right;color:var(--ink)}
+  .lc__led-title{display:flex;align-items:center;gap:10px;font-size:.95rem;font-weight:400}
+  .lc__spark{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#ffe6ac,#d99a34 66%,transparent 74%);opacity:.85}
+  .lc__led-cur{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:9px;font-weight:300}
+  .lc__chev{transition:transform .25s;font-size:.64rem;color:var(--muted)}
+  .lc__led[open] .lc__chev{transform:rotate(180deg)}
+  .lc__led-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+  .lc__led[open] .lc__led-body{grid-template-rows:1fr}
+  .lc__led-inner{overflow:hidden}
+  .lc__led-opts{padding:0 0 12px}
+  .lc__tier{width:100%;display:flex;align-items:center;gap:13px;padding:13px 10px;border:0;border-radius:12px;background:none;font-family:inherit;cursor:pointer;text-align:right;transition:background .15s}
+  .lc__tier:hover{background:#fcfbf9}.lc__tier[aria-pressed=true]{background:var(--bronze-tint)}
+  .lc__check{width:14px;flex:0 0 auto;color:var(--bronze);opacity:0;font-size:.8rem}
+  .lc__tier[aria-pressed=true] .lc__check{opacity:1}
+  .lc__tier-txt{flex:1;min-width:0}
+  .lc__tier-txt b{display:block;font-size:.9rem;font-weight:500}
+  .lc__tier-txt span{display:block;font-size:.75rem;color:var(--muted);line-height:1.55;font-weight:300}
+  .lc__tier-price{font-size:.82rem;font-weight:400;color:var(--bronze);white-space:nowrap}
+  .lc__tier-price.free{color:var(--muted);font-weight:300}
+  .lc__atc{width:100%;margin-top:30px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:inherit;font-size:1rem;font-weight:400;padding:17px;cursor:pointer;transition:transform .1s,opacity .2s}
+  .lc__atc:hover{opacity:.94}.lc__atc:active{transform:scale(.99)}
+  .lc__desc{margin-top:34px;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300}
+{% endstylesheet %}
+
+<script>
+(function(){
+  var root=document.currentScript.closest('.lc')||document.querySelector('.lc');
+  if(!root)return;
+  var data=[];try{data=JSON.parse(root.querySelector('#lc-variants').textContent);}catch(e){}
+  var idInput=root.querySelector('#lc-variant-id'),
+      colorInput=root.querySelector('#lc-color'),
+      priceEl=root.querySelector('#lc-price'),
+      preview=root.querySelector('#lc-preview'),
+      pstate=root.querySelector('#lc-pstate'),
+      led=root.querySelector('#lc-led'),
+      ledField=root.querySelector('#lc-ledfield'),
+      noled=root.querySelector('#lc-noled'),
+      ledCur=root.querySelector('#lc-led-cur');
+  var SMALL='קטן - 50x50', NONE='ללא תאורה';
+  var size=(root.querySelector('#lc-sizes .lc__pill[aria-pressed=true]')||{}).dataset ? root.querySelector('#lc-sizes .lc__pill[aria-pressed=true]').dataset.size : null;
+  var ledVal=NONE, lastPrice=null;
+
+  function find(sz,ld){for(var i=0;i<data.length;i++){if(data[i].size===sz&&data[i].led===ld)return data[i];}return null;}
+  function fmt(c){return (c/100).toFixed(2)+' ₪';}
+  function priceOf(sz,ld){var v=find(sz,ld);return v?v.price:null;}
+
+  function apply(flash){
+    var v=find(size,ledVal);
+    if(!v){ // fall back to no-LED for this size (e.g. small)
+      ledVal=NONE; v=find(size,NONE);
+      root.querySelectorAll('#lc-led-opts .lc__tier').forEach(function(t){t.setAttribute('aria-pressed', t.dataset.led===NONE?'true':'false');});
+    }
+    if(!v)return;
+    idInput.value=v.id;
+    if(priceEl){priceEl.textContent=fmt(v.price);
+      if(flash&&lastPrice!==null&&v.price!==lastPrice){priceEl.classList.remove('up','down');void priceEl.offsetWidth;priceEl.classList.add(v.price>lastPrice?'up':'down');}
+    }
+    lastPrice=v.price;
+    // preview + led header
+    var tier=root.querySelector('#lc-led-opts .lc__tier[data-led="'+cssq(ledVal)+'"]');
+    preview.className='lc__preview '+((tier&&tier.dataset.mode)||'');
+    var base=priceOf(size,NONE);
+    ledCur.textContent = ledVal + (v.price>base? ' · '+(v.price/100).toFixed(0)+' ₪' : '');
+    pstate.textContent = ledVal===NONE ? '' : ledVal;
+    // per-tier delta labels for the current size
+    root.querySelectorAll('#lc-led-opts .lc__tier').forEach(function(t){
+      var ld=t.dataset.led, p=priceOf(size,ld), pr=t.querySelector('[data-role=delta]');
+      if(!pr)return;
+      if(p==null){pr.textContent='';t.style.display='none';return;}
+      t.style.display='';
+      if(ld===NONE){pr.textContent='כלול';pr.classList.add('free');}
+      else{pr.classList.remove('free');pr.textContent='+ '+Math.round((p-base)/100)+' ₪';}
+    });
+  }
+  function cssq(s){return s.replace(/"/g,'\\"');}
+
+  // colors
+  root.querySelector('#lc-colors').addEventListener('click',function(e){
+    var b=e.target.closest('.lc__pill');if(!b)return;
+    this.querySelectorAll('.lc__pill').forEach(function(s){s.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');colorInput.value=b.dataset.color;
+  });
+  // sizes
+  root.querySelector('#lc-sizes').addEventListener('click',function(e){
+    var b=e.target.closest('.lc__pill');if(!b)return;
+    this.querySelectorAll('.lc__pill').forEach(function(s){s.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');size=b.dataset.size;
+    var small=(size===SMALL);
+    noled.classList.toggle('show',small);
+    ledField.style.opacity=small?'.4':'1';ledField.style.pointerEvents=small?'none':'auto';
+    if(small){ledVal=NONE;led.removeAttribute('open');
+      root.querySelectorAll('#lc-led-opts .lc__tier').forEach(function(t){t.setAttribute('aria-pressed',t.dataset.led===NONE?'true':'false');});}
+    apply(true);
+  });
+  // led toggle + select
+  root.querySelector('#lc-led-head').addEventListener('click',function(){led.toggleAttribute('open');});
+  root.querySelector('#lc-led-opts').addEventListener('click',function(e){
+    var b=e.target.closest('.lc__tier');if(!b)return;
+    this.querySelectorAll('.lc__tier').forEach(function(s){s.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');ledVal=b.dataset.led;apply(true);
+    setTimeout(function(){led.removeAttribute('open');},340);
+  });
+
+  apply(false);
+})();
+</script>
