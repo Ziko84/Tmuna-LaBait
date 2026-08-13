@@ -107,6 +107,22 @@
       {%- if product.description != blank -%}
         <div class="lc__desc rte">{{ product.description }}</div>
       {%- endif -%}
+
+      {%- comment -%} Trust row, matching the rest of the store's product pages {%- endcomment -%}
+      <div class="lc__trust">
+        <div class="lc__trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          <span>תשלום מאובטח</span>
+        </div>
+        <div class="lc__trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M18 4v3h-3"/></svg>
+          <span>החזרה חינם תוך 14 יום</span>
+        </div>
+        <div class="lc__trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+          <span>משלוח מהיר</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -117,11 +133,15 @@
 
 {% stylesheet %}
   .lc{--ink:#1a1a2e;--bronze:#8a6e46;--bronze-tint:rgba(138,110,70,.08);--cream:#f7f5f2;--line:#e8e3d9;--line-soft:#efeadf;--muted:#6d685f;--up:#d93025;--down:#1e8e3e;font-weight:300;color:var(--ink)}
-  .lc__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:start;padding-block:40px 72px}
-  @media(max-width:889px){.lc__grid{grid-template-columns:1fr;gap:30px}}
+  /* Match the store's product layout: image LEFT, details RIGHT, ~1.5:1,
+     square 1:1 frame like the rest of the catalogue. Grid is ltr so the
+     first child (media) lands on the left; children stay rtl for text. */
+  .lc__grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(330px,1fr);gap:44px;align-items:start;padding-block:40px 72px;direction:ltr}
+  .lc__media,.lc__col{direction:rtl}
+  @media(max-width:889px){.lc__grid{grid-template-columns:1fr;gap:30px;direction:rtl}}
   .lc__media{position:sticky;top:24px}
   @media(max-width:889px){.lc__media{position:static}}
-  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
+  .lc__preview{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;max-width:600px;margin-inline:auto;background:#0d0d16;box-shadow:0 2px 8px rgba(26,26,46,.06),0 20px 50px rgba(26,26,46,.10)}
   .lc__layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s ease,filter .9s ease}
   .lc__layer--day{opacity:1;z-index:2}
   .lc__layer--night{opacity:0;z-index:1}
@@ -174,6 +194,9 @@
   .lc__atc{width:100%;margin-top:30px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:inherit;font-size:1rem;font-weight:400;padding:17px;cursor:pointer;transition:transform .1s,opacity .2s}
   .lc__atc:hover{opacity:.94}.lc__atc:active{transform:scale(.99)}
   .lc__desc{margin-top:34px;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300}
+  .lc__trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+  .lc__trust-item{border:1px solid var(--line);border-radius:12px;padding:15px 8px;text-align:center;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:9px;line-height:1.4}
+  .lc__trust-item svg{width:20px;height:20px;stroke:var(--bronze);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 {% endstylesheet %}
 
 <script>
