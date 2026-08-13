@@ -104,8 +104,13 @@
         <button type="submit" name="add" class="lc__atc">הוספה לסל</button>
       {%- endform -%}
 
+      {%- comment -%}
+        Teaser only. The full description lives in the "על היצירה" panel
+        below, the same separate card the rest of the store's product pages
+        use, so this card stays about choosing, not reading.
+      {%- endcomment -%}
       {%- if product.description != blank -%}
-        <div class="lc__desc rte">{{ product.description }}</div>
+        <div class="lc__desc rte">{{ product.description | strip_html }}</div>
       {%- endif -%}
 
       {%- comment -%} Trust row, matching the rest of the store's product pages {%- endcomment -%}
@@ -125,6 +130,9 @@
       </div>
     </div>
   </div>
+
+  {%- comment -%} Full description in its own card below, matching every other product page {%- endcomment -%}
+  {% render 'product-info-panel', product: product %}
 
   <script type="application/json" id="lc-variants">
     [{% for v in product.variants %}{"id":{{ v.id }},"size":{{ v.option1 | json }},"led":{{ v.option2 | json }},"price":{{ v.price }},"available":{{ v.available }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
@@ -197,7 +205,7 @@
   .lc__tier-price.free{color:var(--muted);font-weight:300}
   .lc__atc{width:100%;margin-top:30px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:inherit;font-size:1rem;font-weight:400;padding:17px;cursor:pointer;transition:transform .1s,opacity .2s}
   .lc__atc:hover{opacity:.94}.lc__atc:active{transform:scale(.99)}
-  .lc__desc{margin-top:34px;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300}
+  .lc__desc{margin-top:34px;font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
   .lc__trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
   .lc__trust-item{border:1px solid var(--line);border-radius:12px;padding:15px 8px;text-align:center;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:9px;line-height:1.4}
   .lc__trust-item svg{width:20px;height:20px;stroke:var(--bronze);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
