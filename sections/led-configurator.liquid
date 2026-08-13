@@ -187,6 +187,7 @@
         {
           "@type": "Product",
           "name": {{ v.title | prepend: ' - ' | prepend: product.title | json }},
+          "size": {{ v.option1 | json }},
           "sku": {{ v.sku | json }},
           "image": {{ _vabs | json }},
           "offers": {
