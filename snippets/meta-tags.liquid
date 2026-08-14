@@ -120,6 +120,47 @@
   >
 {% endif %}
 
+{%- comment -%} Site-wide entity schema (moved here from the header section, whose sync is pinned). {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  {% if settings.logo %}"logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},{% endif %}
+  "url": {{ request.origin | json }},
+  "email": "info@tmuna-labait.com",
+  "telephone": "+972-54-569-6909",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "דרך הרימונים 28",
+    "addressLocality": "רינתיה",
+    "postalCode": "7316500",
+    "addressCountry": "IL"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+972-54-569-6909",
+    "email": "info@tmuna-labait.com",
+    "contactType": "customer service",
+    "areaServed": "IL",
+    "availableLanguage": "he"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ request.origin | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ routes.search_url | append: '?q={search_term_string}' | prepend: request.origin | json }},
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
 {%- if request.page_type == 'collection' and collection -%}
   <script type="application/ld+json">
   {
