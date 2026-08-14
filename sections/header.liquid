@@ -379,6 +379,7 @@
   <div
     class="header__underlay header__underlay-open"
   ></div>
+  {%- comment -%} Homepage SEO label (kept out of the H1 hierarchy). {%- endcomment -%}
   {%- if request.page_type == 'index' -%}
     <p class="visually-hidden">{{ shop.name }}</p>
   {%- endif -%}
