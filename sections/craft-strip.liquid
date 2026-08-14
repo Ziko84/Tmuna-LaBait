@@ -52,35 +52,32 @@
     margin: 0;
   }
 
+  /* One connected strip, not three boxed cards: the three claims read as
+     facets of a single statement, separated by a hairline rather than each
+     wrapped in its own card surface. */
   .craft-strip__list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     width: 100%;
     margin: 0;
     padding: 0;
   }
 
-  /* Each fact is its own card so the three claims read as three distinct
-     proof points rather than one run-on paragraph. The card surface, radius
-     and hairline match the product cards in the grid directly above, so the
-     homepage keeps a single material language. */
   .craft-strip__item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 32px 24px 28px;
-    background: #ffffff;
-    border: 1px solid #ddd7c8;
-    border-radius: 16px;
-    /* Shadow tinted to the cream background, never pure black. */
-    box-shadow: 0 1px 2px rgba(90, 85, 77, 0.05), 0 8px 24px rgba(90, 85, 77, 0.06);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s
-      cubic-bezier(0.16, 1, 0.3, 1);
+    flex: 1 1 0;
+    padding-inline: 32px;
   }
 
-  /* A short bronze rule above the value gives each card a fixed starting
+  .craft-strip__item + .craft-strip__item {
+    border-inline-start: 1px solid #ddd7c8;
+  }
+
+  /* A short bronze rule above the value gives each fact a fixed starting
      point, so values of different lengths still line up optically. */
   .craft-strip__item::before {
     content: '';
@@ -89,11 +86,6 @@
     border-radius: 2px;
     background: #8a6e46;
     margin-block-end: 6px;
-  }
-
-  .craft-strip__item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 2px 4px rgba(90, 85, 77, 0.06), 0 14px 32px rgba(90, 85, 77, 0.1);
   }
 
   .craft-strip__value {
@@ -123,23 +115,9 @@
     background: rgba(255, 255, 255, 0.6);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .craft-strip__item {
-      transition: none;
-    }
-
-    .craft-strip__item:hover {
-      transform: none;
-    }
-  }
-
   @media screen and (max-width: 989px) {
-    .craft-strip__list {
-      gap: 16px;
-    }
-
     .craft-strip__item {
-      padding: 28px 20px 24px;
+      padding-inline: 20px;
     }
   }
 
@@ -149,8 +127,21 @@
     }
 
     .craft-strip__list {
-      grid-template-columns: 1fr;
-      gap: 14px;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .craft-strip__item {
+      width: 100%;
+      max-width: 320px;
+      padding-inline: 0;
+    }
+
+    .craft-strip__item + .craft-strip__item {
+      border-inline-start: 0;
+      border-block-start: 1px solid #ddd7c8;
+      padding-block-start: 24px;
     }
 
     .craft-strip__value {

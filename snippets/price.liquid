@@ -19,6 +19,15 @@
     assign show_compare_price = true
   endif
 
+  # On product cards, a product whose variants span a real price range
+  # (this store's size x LED tiers) shows "from" the lowest price rather
+  # than the default variant's price, so the grid doesn't read as every
+  # product costing the same.
+  assign show_price_from = false
+  if template.name != 'product' and product_resource.price_min < product_resource.price_max
+    assign show_price_from = true
+  endif
+
   if product_resource == blank
     assign price = 1999
   endif
@@ -95,7 +104,12 @@
         {% endif %}
       "
     >
-      <span class="price">{{ price | default: '&nbsp;' }}</span>
+      {%- if show_price_from -%}
+        <span style="font-size: 0.72em; font-weight: 400; color: #6d685f; margin-inline-end: 4px;">החל מ-</span>
+        <span class="price">{{ price_min }}</span>
+      {%- else -%}
+        <span class="price">{{ price | default: '&nbsp;' }}</span>
+      {%- endif -%}
     </div>
     <div
       class="
