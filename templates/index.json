@@ -299,7 +299,7 @@
                   "name": "t:names.product_title",
                   "settings": {
                     "width": "fit-content",
-                    "max_width": "normal",
+                    "max_width": "narrow",
                     "alignment": "right",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
@@ -316,6 +316,20 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "swatches_eYcKAz": {
+                  "type": "swatches",
+                  "name": "t:names.swatches",
+                  "settings": {
+                    "product_swatches_alignment": "flex-start",
+                    "product_swatches_alignment_mobile": "flex-start",
+                    "hide_padding": false,
+                    "product_swatches_padding_top": 4,
+                    "product_swatches_padding_bottom": 0,
+                    "product_swatches_padding_left": 0,
+                    "product_swatches_padding_right": 0
                   },
                   "blocks": {}
                 },
@@ -339,20 +353,6 @@
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "swatches_eYcKAz": {
-                  "type": "swatches",
-                  "name": "t:names.swatches",
-                  "settings": {
-                    "product_swatches_alignment": "flex-start",
-                    "product_swatches_alignment_mobile": "flex-start",
-                    "hide_padding": false,
-                    "product_swatches_padding_top": 4,
-                    "product_swatches_padding_bottom": 0,
-                    "product_swatches_padding_left": 0,
-                    "product_swatches_padding_right": 0
                   },
                   "blocks": {}
                 }
@@ -392,70 +392,6 @@
         "padding-block-end": 64
       }
     },
-    "hero_overlay_LfPdEJ": {
-      "type": "hero",
-      "blocks": {
-        "text_Hf79zK": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<h2>אור שנולד מעץ</h2>",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "h1",
-            "font": "var(--font-heading--family)",
-            "text_color": "#ffffff"
-          },
-          "blocks": {}
-        },
-        "text_jxGhdJ": {
-          "type": "text",
-          "settings": {
-            "text": "<p>כל פריט מתוכנן בקפידה ונחתך בלייזר על MDF פרימיום בעובי 6 מ״מ. בדגמים המוארים, כשהאור נדלק מאחור הוא עובר דרך החריטה ומעניק לקיר שלכם נשמה.</p>",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1.125rem",
-            "text_color": "#ffffff",
-            "padding-block-end": 8
-          },
-          "blocks": {}
-        },
-        "button_zg4nUF": {
-          "type": "button",
-          "settings": {
-            "label": "לגלות את הסיפור שלנו",
-            "link": "shopify://pages/our-story",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "#ffffff",
-            "custom_button_text": "#1a1a2e",
-            "custom_button_border": "#ffffff",
-            "width": "fit-content"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_Hf79zK",
-        "text_jxGhdJ",
-        "button_zg4nUF"
-      ],
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/2_c47ea54b-9e71-41a0-aebe-eec911b75b23.png",
-        "horizontal_alignment_flex_direction_column": "center",
-        "gap": 24,
-        "section_width": "full-width",
-        "section_height": "large",
-        "toggle_overlay": true,
-        "overlay_style": "gradient",
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      }
-    },
     "craft_strip": {
       "type": "craft-strip",
       "blocks": {
@@ -490,7 +426,118 @@
         "heading": "איך נולדת כל יצירה",
         "reassurance": "משלוח תוך 2 עד 6 ימי עסקים. החזרה חינם תוך 14 יום.",
         "background_color": "#f7f5f2",
-        "padding_block": 24
+        "padding_block": 72
+      }
+    },
+    "hero_overlay_LfPdEJ": {
+      "type": "hero",
+      "blocks": {
+        "text_Hf79zK": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>אור שנולד מעץ</h2>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_jxGhdJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>כל פריט מתוכנן בקפידה ונחתך בלייזר על MDF פרימיום בעובי 6 מ״מ. בדגמים המוארים, כשהאור נדלק מאחור הוא עובר דרך החריטה ומעניק לקיר שלכם נשמה.</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_zg4nUF": {
+          "type": "button",
+          "settings": {
+            "label": "לגלות את הסיפור שלנו",
+            "link": "shopify://pages/our-story",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#ffffff",
+            "custom_button_text": "#1a1a2e",
+            "custom_button_border": "#ffffff",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_Hf79zK",
+        "text_jxGhdJ",
+        "button_zg4nUF"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/2_c47ea54b-9e71-41a0-aebe-eec911b75b23.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "background_color": "",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     }
   },
