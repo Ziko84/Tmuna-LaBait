@@ -187,7 +187,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "flex-start",
             "gap": 24,
             "width": "fill",
@@ -246,8 +246,14 @@
             "payment_icons_trust": {
               "type": "payment-icons",
               "settings": {
-                "horizontal_alignment": "center"
-              }
+                "horizontal_alignment": "center",
+                "gap": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -278,6 +284,11 @@
           "type": "footer-copyright",
           "settings": {
             "show_powered_by": true,
+            "business_legal_name": "דניאל פיקס",
+            "business_company_id": "עוסק מורשה 306082793",
+            "business_address": "דרך הרימונים 29, מושב רינתיה, 7316500, ישראל",
+            "business_phone": "054-569-6909",
+            "business_email": "info@tmuna-labait.com",
             "text_color": "",
             "font_size": "0.75rem",
             "case": "none"
