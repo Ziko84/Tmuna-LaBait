@@ -184,8 +184,8 @@
         {%- assign _vimg = v.image | default: product.featured_media.preview_image -%}
         {%- capture _vu -%}{{ _vimg | image_url: width: 1200 }}{%- endcapture -%}
         {%- if _vu contains '://' -%}{%- assign _vabs = _vu -%}{%- else -%}{%- assign _vabs = _vu | prepend: 'https:' -%}{%- endif -%}
-        {%- comment -%} Free shipping kicks in at 500 ILS, so the 500 tier ships free. {%- endcomment -%}
-        {%- if v.price >= 50000 -%}{%- assign _ship = '0' -%}{%- else -%}{%- assign _ship = '35' -%}{%- endif -%}
+        {%- comment -%} Flat shipping rate of 45 ILS on every order, no free-shipping threshold. {%- endcomment -%}
+        {%- assign _ship = '45' -%}
         {
           "@type": "Product",
           "name": {{ v.title | prepend: ' - ' | prepend: product.title | json }},
