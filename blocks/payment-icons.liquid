@@ -3,6 +3,13 @@
 
 {%- assign block_settings = block.settings -%}
 
+{%- comment -%}
+  Tranzila is an offsite/additional payment provider, so it never appears in
+  shop.enabled_payment_types (only the primary gateway type does). These are
+  hardcoded so the accepted methods still show regardless of that gap.
+{%- endcomment -%}
+{%- assign manual_payment_types = 'visa,master,american_express,google_pay' | split: ',' -%}
+
 <div
   class="
     payment-icons
@@ -21,10 +28,24 @@
     role="list"
   >
     {%- for type in shop.enabled_payment_types -%}
+      {%- unless manual_payment_types contains type -%}
+        <li class="payment-icons__item">
+          {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+        </li>
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- for type in manual_payment_types -%}
       <li class="payment-icons__item">
         {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
       </li>
     {%- endfor -%}
+    <li class="payment-icons__item">
+      <svg class="icon icon--full-color" viewBox="0 0 38 24" width="38" height="24" role="img" aria-labelledby="pi-bit">
+        <title id="pi-bit">Bit</title>
+        <rect width="38" height="24" rx="4" fill="#00C4CC"/>
+        <text x="19" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#ffffff">bit</text>
+      </svg>
+    </li>
   </ul>
 </div>
 
