@@ -206,11 +206,11 @@
       </p>
       {% if section.settings.address != blank %}
         {%- comment -%}
-          Google's geocoder cannot resolve this street address on its own
-          (small moshav roads are often unmapped) and falls back to an
-          unrelated keyword search. map_coordinates pins the actual
-          resolved location of the moshav instead. Update it if the
-          business address changes to somewhere Google can geocode directly.
+          Google's Hebrew-text geocoder can't resolve this address and falls
+          back to an unrelated keyword search. The address IS indexed, but
+          only under its Latin transliteration ("Derekh ha-Rimonim 29,
+          Rinatya"). map_coordinates pins that exact resolved point instead
+          of relying on live text geocoding.
         {%- endcomment -%}
         {% assign maps_query = section.settings.map_coordinates | default: section.settings.address | url_encode %}
         <p class="contact-page__meta-line">
@@ -703,8 +703,8 @@
       "type": "text",
       "id": "map_coordinates",
       "label": "Map pin coordinates (lat,lng)",
-      "info": "Google cannot geocode this street address directly, so the map link/embed use this resolved point instead. Leave as-is unless the business moves.",
-      "default": "32.044365,34.928477"
+      "info": "Google's Hebrew geocoder can't resolve this street directly, but it is indexed under the Latin transliteration \"Derekh ha-Rimonim 29, Rinatya\". This is that exact resolved point. Leave as-is unless the business moves.",
+      "default": "32.0433535,34.9305696"
     },
     {
       "type": "text",
