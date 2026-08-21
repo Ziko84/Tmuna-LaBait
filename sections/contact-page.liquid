@@ -165,7 +165,6 @@
             <span class="contact-page__channel-label">{{ section.settings.whatsapp_label }}</span>
             <span class="contact-page__channel-value-wrap">
               <span class="contact-page__channel-value">{{ section.settings.whatsapp_number }}</span>
-              <span class="contact-page__channel-hint" aria-hidden="true">לחצו לצפייה</span>
             </span>
           </a>
         </contact-channel-reveal>
@@ -182,7 +181,6 @@
           <span class="contact-page__channel-label">{{ section.settings.email_label }}</span>
           <span class="contact-page__channel-value-wrap">
             <span class="contact-page__channel-value">{{ section.settings.email }}</span>
-            <span class="contact-page__channel-hint" aria-hidden="true">לחצו לצפייה</span>
           </span>
         </a>
       </contact-channel-reveal>
@@ -197,7 +195,6 @@
           <span class="contact-page__channel-label">{{ section.settings.phone_label }}</span>
           <span class="contact-page__channel-value-wrap">
             <span class="contact-page__channel-value">{{ section.settings.phone }}</span>
-            <span class="contact-page__channel-hint" aria-hidden="true">לחצו לצפייה</span>
           </span>
         </a>
       </contact-channel-reveal>
@@ -363,6 +360,7 @@
   }
 
   .contact-page__channel-value {
+    display: inline-block;
     font-size: 1.05rem;
     direction: ltr;
   }
@@ -376,41 +374,29 @@
     display: contents;
   }
 
+  /* Collapsed by default so the card shows only its label. Clicking the card
+     reveals the value by expanding the wrapper open and fading/sliding the
+     text in, rather than just unblurring text that was already in place. */
   .contact-page__channel-value-wrap {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-  }
-
-  .contact-page__channel-value {
-    filter: blur(7px);
-    opacity: 0.55;
-    transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    user-select: none;
-  }
-
-  .contact-page__channel-hint {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    opacity: 0.8;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-
-  contact-channel-reveal.is-revealed .contact-page__channel-value {
-    filter: blur(0);
-    opacity: 1;
-    user-select: auto;
-  }
-
-  contact-channel-reveal.is-revealed .contact-page__channel-hint {
+    display: block;
+    max-height: 0;
     opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  }
+
+  .contact-page__channel-value-wrap .contact-page__channel-value {
+    transform: translateY(-6px);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  contact-channel-reveal.is-revealed .contact-page__channel-value-wrap {
+    max-height: 2.5rem;
+    opacity: 1;
+  }
+
+  contact-channel-reveal.is-revealed .contact-page__channel-value-wrap .contact-page__channel-value {
+    transform: translateY(0);
   }
 
   .contact-page__meta {
