@@ -20,11 +20,11 @@
             "text": "משלוח בעלות קבועה של 45 ש\"ח לכל הזמנה",
             "link": "shopify://collections/all",
             "font": "var(--font-body--family)",
-            "font_size": "0.8125rem",
+            "font_size": "0.9375rem",
             "weight": "400",
             "letter_spacing": "normal",
             "case": "none",
-            "text_color": "#f0ece3"
+            "text_color": "#000000"
           },
           "blocks": {}
         }
@@ -36,7 +36,7 @@
       "settings": {
         "speed": 5,
         "section_width": "full-width",
-        "background_color": "#1a1a2e",
+        "background_color": "#f7f5f2",
         "divider_width": 0,
         "divider_color": "",
         "padding-block-start": 15,
