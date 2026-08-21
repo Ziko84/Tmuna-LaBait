@@ -65,7 +65,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h1>מהידיים שלנו, אל הקיר שלכם</h1>",
+                "text": "<h1>תמונה לבית &middot; מהידיים שלנו, אל הקיר שלכם</h1>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",

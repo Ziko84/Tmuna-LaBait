@@ -65,7 +65,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h1>הסיפור שנחתך באור</h1>",
+                "text": "<h1>תמונה לבית &middot; הסיפור שנחתך באור</h1>",
                 "width": "100%",
                 "max_width": "narrow",
                 "alignment": "right",
