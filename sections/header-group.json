@@ -41,7 +41,8 @@
         "divider_color": "",
         "padding-block-start": 15,
         "padding-block-end": 15
-      }
+      },
+      "disabled": true
     },
     "header_section": {
       "type": "header",
