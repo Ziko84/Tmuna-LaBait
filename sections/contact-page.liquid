@@ -205,7 +205,14 @@
         {{ section.settings.hours_label }}: {{ section.settings.hours_days }}, {{ section.settings.hours_time }}
       </p>
       {% if section.settings.address != blank %}
-        {% assign maps_query = section.settings.address | url_encode %}
+        {%- comment -%}
+          Google's geocoder cannot resolve this street address on its own
+          (small moshav roads are often unmapped) and falls back to an
+          unrelated keyword search. map_coordinates pins the actual
+          resolved location of the moshav instead. Update it if the
+          business address changes to somewhere Google can geocode directly.
+        {%- endcomment -%}
+        {% assign maps_query = section.settings.map_coordinates | default: section.settings.address | url_encode %}
         <p class="contact-page__meta-line">
           <a
             href="https://www.google.com/maps/search/?api=1&query={{ maps_query }}"
@@ -222,7 +229,7 @@
     {% if section.settings.address != blank %}
       <reveal-on-scroll class="contact-page__map">
         <iframe
-          src="https://www.google.com/maps?q={{ maps_query }}&output=embed"
+          src="https://www.google.com/maps?q={{ maps_query }}&z=15&output=embed"
           width="100%"
           height="240"
           style="border:0"
@@ -691,6 +698,13 @@
       "id": "address",
       "label": "Address",
       "default": "דרך הרימונים 29, מושב רינתיה, 7316500, ישראל"
+    },
+    {
+      "type": "text",
+      "id": "map_coordinates",
+      "label": "Map pin coordinates (lat,lng)",
+      "info": "Google cannot geocode this street address directly, so the map link/embed use this resolved point instead. Leave as-is unless the business moves.",
+      "default": "32.044365,34.928477"
     },
     {
       "type": "text",
