@@ -1,6 +1,6 @@
-// Hides a contact channel's value (phone / email / WhatsApp number) behind a
-// blur until the visitor clicks once. The first click only reveals it; a
-// second click on the now-revealed link follows through (call, mail, chat).
+// Toggles a contact channel's value (phone / email / WhatsApp number) open
+// and closed. The card shows only its label until clicked; each click flips
+// it open or shut instead of following the link.
 class ContactChannelReveal extends HTMLElement {
   #controller = new AbortController();
 
@@ -14,10 +14,8 @@ class ContactChannelReveal extends HTMLElement {
   }
 
   #handleClick = (event) => {
-    if (this.classList.contains('is-revealed')) return;
-
     event.preventDefault();
-    this.classList.add('is-revealed');
+    this.classList.toggle('is-revealed');
   };
 }
 
