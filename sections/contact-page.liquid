@@ -152,7 +152,7 @@
         {%- assign wa_digits = section.settings.whatsapp_number | remove: '-' | remove: ' ' | remove: '+' -%}
         <contact-channel-reveal class="contact-page__channel-wrap">
           <a
-            class="contact-page__channel contact-page__channel--primary"
+            class="contact-page__channel"
             href="https://wa.me/{{ wa_digits }}"
             target="_blank"
             rel="noopener"
