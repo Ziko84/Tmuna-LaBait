@@ -509,7 +509,7 @@
             "button_zg4nUF": {
               "type": "button",
               "settings": {
-                "label": "לגלות את הסיפור שלנו",
+                "label": "גלו את הסיפור",
                 "link": "shopify://pages/our-story",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",

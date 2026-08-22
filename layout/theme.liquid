@@ -862,6 +862,15 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
+      /* Bottom banner only: heading/paragraph stay right-aligned (natural
+         Hebrew reading), but the button is centered under them rather than
+         matching that same right edge - no per-block alignment setting
+         exists on the button block, so this overrides just its own
+         cross-axis position within the flex column. */
+      [id$="__hero_overlay_LfPdEJ"] .button-custom {
+        align-self: center;
+      }
+
       /* Hairline stroke on the right + bottom edges, on both homepage
          media-with-content banners. */
       :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-with-content {
