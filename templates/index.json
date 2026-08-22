@@ -450,7 +450,7 @@
           "type": "_content-without-appearance",
           "static": true,
           "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-end",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 24
           },
@@ -462,7 +462,7 @@
                 "text": "<h2>אור שנולד מעץ</h2>",
                 "width": "100%",
                 "max_width": "narrow",
-                "alignment": "left",
+                "alignment": "right",
                 "type_preset": "h2",
                 "font": "var(--font-heading--family)",
                 "font_size": "",
@@ -487,7 +487,7 @@
                 "text": "<p>כל פריט מתוכנן בקפידה ונחתך בלייזר על MDF פרימיום בעובי 6 מ״מ. בדגמים המוארים, כשהאור נדלק מאחור הוא עובר דרך החריטה ומעניק לקיר שלכם נשמה.</p>",
                 "width": "100%",
                 "max_width": "narrow",
-                "alignment": "left",
+                "alignment": "right",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1.125rem",
