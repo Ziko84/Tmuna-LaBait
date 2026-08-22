@@ -36,11 +36,13 @@
       <div class="policy-page__divider" aria-hidden="true"><span></span><i></i><span></span></div>
     </reveal-on-scroll>
 
-    <reveal-on-scroll class="policy-page__content">
-      <rte-formatter>
-        {{ page.content }}
-      </rte-formatter>
-    </reveal-on-scroll>
+    {% if section.settings.show_page_content %}
+      <reveal-on-scroll class="policy-page__content">
+        <rte-formatter>
+          {{ page.content }}
+        </rte-formatter>
+      </reveal-on-scroll>
+    {% endif %}
   </div>
 </div>
 
@@ -233,6 +235,13 @@
       "id": "eyebrow",
       "label": "Eyebrow label",
       "default": "Policy Document"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_page_content",
+      "label": "Show page content",
+      "info": "Turn off when this section is used only as a decorative title banner and the page body is rendered by another section further down.",
+      "default": true
     }
   ]
 }
