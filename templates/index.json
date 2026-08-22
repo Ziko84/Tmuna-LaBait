@@ -193,7 +193,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>הנמכרים ביותר</h3>",
+                "text": "<h3>היצירות שלנו</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "right",
@@ -370,15 +370,14 @@
           ]
         }
       },
-      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection_mode": "manual",
         "collection": "all",
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "max_products": 10,
-        "columns": 5,
+        "max_products": 2,
+        "columns": 2,
         "mobile_columns": "1",
         "mobile_card_size": "60cqw",
         "columns_gap": 20,
