@@ -8,7 +8,7 @@
   bottom-left, same as product images - since their night image is a
   static theme asset rather than product media, the mask/swatches
   markup is injected here in JS instead of via Liquid. Exception:
-  media_with_content_LfPdEJ (the bottom homepage banner) - swatches
+  hero_overlay_LfPdEJ (the bottom homepage banner) - swatches
   removed there per request, so it keeps just the day/night hover
   crossfade with no color picker.
 
@@ -20,7 +20,7 @@
   (function () {
     var nightImages = {
       '__hero_split_tlb01': {{ 'hero-night.png' | asset_url | json }},
-      '__media_with_content_LfPdEJ': {{ 'banner-night.png' | asset_url | json }}
+      '__hero_overlay_LfPdEJ': {{ 'banner-night.png' | asset_url | json }}
     };
     var ledColors = [
       { color: '', label: 'לבן חם', active: true, gradient: true },
@@ -75,7 +75,7 @@
         img.alt = '';
         img.loading = 'lazy';
         container.appendChild(img);
-        if (suffix !== '__media_with_content_LfPdEJ') {
+        if (suffix !== '__hero_overlay_LfPdEJ') {
           addLedSwatches(container, nightImages[suffix]);
         }
       });

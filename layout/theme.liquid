@@ -770,7 +770,7 @@
         [id$="__hero_split_tlb01"],
         [id$="__story_hero"],
         [id$="__story_craft"],
-        [id$="__media_with_content_LfPdEJ"]
+        [id$="__hero_overlay_LfPdEJ"]
       ) {
         padding: 16px 0 28px;
         box-sizing: border-box;
@@ -862,49 +862,9 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* The overlay hero at the foot of the homepage shipped as a full-bleed
-         band: square corners, running the whole width of the page card while
-         every other block on the page is an inset, rounded card. It reads as
-         a different site.
-
-         It cannot join the :is() list above because that markup is
-         .media-with-content; this section is .hero > .hero__container, which
-         already clips its own overflow, so the radius and shadow can sit
-         directly on it rather than needing the ::before trick. The inset and
-         radius are the same values, so it lands in the same design language. */
-      /* .shopify-section, not a bare id suffix: Shopify stamps a matching id
-         on the inner .hero div too, so an unqualified selector insets the
-         block twice and it ends up 18px narrower than the product grid. */
-      .shopify-section[id$="__hero_overlay_LfPdEJ"] {
-        padding: 16px 0 28px;
-        box-sizing: border-box;
-        /* This section is a flex item that sizes to its content, so it needs
-           an explicit width before max-width has anything to cap. */
-        width: 100%;
-        max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
-        margin-inline: auto;
-
-        .hero__container {
-          border-radius: 40px;
-          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-        }
-      }
-
-      @media (max-width: 767px) {
-        /* .shopify-section, not a bare id suffix: Shopify stamps a matching id
-         on the inner .hero div too, so an unqualified selector insets the
-         block twice and it ends up 18px narrower than the product grid. */
-      .shopify-section[id$="__hero_overlay_LfPdEJ"] {
-          padding: 8px 0 20px;
-
-          .hero__container {
-            border-radius: 20px;
-          }
-        }
-      }
-
-      /* Homepage hero only: hairline stroke on the right + bottom edges */
-      [id$="__hero_split_tlb01"] .media-with-content {
+      /* Hairline stroke on the right + bottom edges, on both homepage
+         media-with-content banners. */
+      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-with-content {
         border-style: solid;
         border-color: rgba(0, 0, 0, 0.14);
         border-width: 0 1px 1px 0;
@@ -918,10 +878,10 @@
          hero and the second "אור שנולד מעץ" banner. Not the Our Story hero -
          the effect didn't read well on that image, so it was removed there
          (see snippets/hero-night-mode.liquid). */
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-block {
+      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-block {
         position: relative;
       }
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .hero-night-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -935,7 +895,7 @@
       /* Trigger on hovering the photo itself, not the whole split section -
          .media-with-content:hover also fires while hovering the text/button
          column, which shouldn't flip the image to night mode. */
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-block:is(:hover, .night-mode-active) .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-block:is(:hover, .night-mode-active) .hero-night-image {
         opacity: 1;
       }
 
@@ -1355,7 +1315,7 @@
           [id$="__hero_split_tlb01"],
           [id$="__story_hero"],
           [id$="__story_craft"],
-          [id$="__media_with_content_LfPdEJ"]
+          [id$="__hero_overlay_LfPdEJ"]
         ) {
           padding: 8px 0 20px;
 
