@@ -12,7 +12,10 @@
 {%- assign biz_name = block_settings.business_legal_name | default: 'דניאל אמינוב וזרמן איסקוב (דניאל פיקס)' -%}
 {%- assign biz_id = block_settings.business_company_id | default: 'עוסק מורשה 306082793' -%}
 {%- assign shop_phone_digits = shop.address.phone | remove: '-' | remove: ' ' -%}
-{%- assign shop_phone_formatted = shop_phone_digits | slice: 0, 3 | append: '-' | append: shop_phone_digits | slice: 3, 3 | append: '-' | append: shop_phone_digits | slice: 6, 4 -%}
+{%- assign shop_phone_p1 = shop_phone_digits | slice: 0, 3 -%}
+{%- assign shop_phone_p2 = shop_phone_digits | slice: 3, 3 -%}
+{%- assign shop_phone_p3 = shop_phone_digits | slice: 6, 4 -%}
+{%- assign shop_phone_formatted = shop_phone_p1 | append: '-' | append: shop_phone_p2 | append: '-' | append: shop_phone_p3 -%}
 {%- assign biz_address = block_settings.business_address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: shop.address.zip | append: ', ישראל' -%}
 {%- assign biz_phone = block_settings.business_phone | default: shop_phone_formatted -%}
 {%- assign biz_email = block_settings.business_email | default: shop.email -%}

@@ -17,7 +17,10 @@
   they can never drift out of sync with the real business record.
 {%- endcomment -%}
 {%- assign contact_phone_digits = shop.address.phone | remove: '-' | remove: ' ' -%}
-{%- assign contact_phone_formatted = contact_phone_digits | slice: 0, 3 | append: '-' | append: contact_phone_digits | slice: 3, 3 | append: '-' | append: contact_phone_digits | slice: 6, 4 -%}
+{%- assign contact_phone_p1 = contact_phone_digits | slice: 0, 3 -%}
+{%- assign contact_phone_p2 = contact_phone_digits | slice: 3, 3 -%}
+{%- assign contact_phone_p3 = contact_phone_digits | slice: 6, 4 -%}
+{%- assign contact_phone_formatted = contact_phone_p1 | append: '-' | append: contact_phone_p2 | append: '-' | append: contact_phone_p3 -%}
 {%- assign effective_phone = section.settings.phone | default: contact_phone_formatted -%}
 {%- assign contact_phone_local = contact_phone_digits | remove_first: '0' -%}
 {%- assign contact_phone_intl = contact_phone_local | prepend: '972' -%}

@@ -127,7 +127,10 @@
   drift out of sync with the business's real, single source of truth.
 {%- endcomment -%}
 {%- assign meta_phone_digits = shop.address.phone | remove: '-' | remove: ' ' -%}
-{%- assign meta_phone_formatted = meta_phone_digits | slice: 0, 3 | append: '-' | append: meta_phone_digits | slice: 3, 3 | append: '-' | append: meta_phone_digits | slice: 6, 4 -%}
+{%- assign meta_phone_p1 = meta_phone_digits | slice: 0, 3 -%}
+{%- assign meta_phone_p2 = meta_phone_digits | slice: 3, 3 -%}
+{%- assign meta_phone_p3 = meta_phone_digits | slice: 6, 4 -%}
+{%- assign meta_phone_formatted = meta_phone_p1 | append: '-' | append: meta_phone_p2 | append: '-' | append: meta_phone_p3 -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
