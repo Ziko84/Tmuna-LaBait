@@ -189,3 +189,31 @@
     }
   }
 </style>
+
+{% comment %}
+  Shopify's own Hebrew locale dictionary translates the "Shipping" policy
+  type's title as the bare word "משלוח", unlike the other three policy
+  types ("Privacy policy", "Refund policy", "Terms of service") which it
+  translates as "מדיניות X" - and that title isn't a shop-editable field
+  (Settings > Policies and the Translate & Adapt app both only expose the
+  policy body, not this title). All four policy pages share identical
+  markup with no distinguishing class, so this corrects the text directly
+  by URL instead of trying to scope a CSS override to just one of them.
+{% endcomment %}
+<script>
+  (function () {
+    function fixShippingTitle() {
+      if (!/\/policies\/shipping-policy\/?($|\?)/.test(location.pathname)) return;
+      var shippingTitle = document.querySelector('.shopify-policy__title h1');
+      if (shippingTitle && shippingTitle.textContent.trim() === 'משלוח') {
+        shippingTitle.textContent = 'מדיניות משלוחים';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fixShippingTitle);
+    } else {
+      fixShippingTitle();
+    }
+  })();
+</script>
