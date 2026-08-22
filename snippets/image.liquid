@@ -27,8 +27,19 @@
     {% endcomment %}
     {% assign image_height = image.height | at_most: 1200 %}
   {% endif %}
-  {% assign image_height_2x = image_height | times: 2 %}
-  {% assign image_height_3x = image_height | times: 3 %}
+  {% comment %}
+    The 1x fallback above is capped, but multiplying it by 2/3 for the
+    retina variants defeated that cap for any source taller than 400/600px -
+    a 1200px-capped image still produced a 3600px 3x request whenever the
+    native photo was that tall. Shopify's CDN won't upscale past the source
+    image's actual resolution, so this only matters when the native photo
+    is large enough to honor the bigger request - which most uploaded
+    photos are. Capping each variant against both the multiplied value and
+    a flat retina-safe ceiling keeps every existing caller's visual quality
+    (still up to 3x pixel density) while removing the unbounded case.
+  {% endcomment %}
+  {% assign image_height_2x = image_height | times: 2 | at_most: 2000 %}
+  {% assign image_height_3x = image_height | times: 3 | at_most: 2400 %}
   {% assign image_alt_text = image.alt | default: alt_text_fallback | default: '' %}
 
   {% capture image_srcset -%}
