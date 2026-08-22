@@ -541,7 +541,7 @@
         "extend_media": false,
         "background_color": "#ffffff",
         "padding-block-start": 0,
-        "padding-block-end": 64
+        "padding-block-end": 0
       }
     }
   },
