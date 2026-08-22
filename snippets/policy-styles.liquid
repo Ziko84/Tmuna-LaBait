@@ -208,6 +208,9 @@
       if (shippingTitle && shippingTitle.textContent.trim() === 'משלוח') {
         shippingTitle.textContent = 'מדיניות משלוחים';
       }
+      if (document.title.indexOf('משלוח') === 0) {
+        document.title = document.title.replace('משלוח', 'מדיניות משלוחים');
+      }
     }
 
     if (document.readyState === 'loading') {
