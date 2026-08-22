@@ -150,14 +150,13 @@
     <reveal-on-scroll class="contact-page__channels">
       {% if section.settings.whatsapp_number != blank %}
         {%- assign wa_digits = section.settings.whatsapp_number | remove: '-' | remove: ' ' | remove: '+' -%}
-        <div class="contact-page__channel-wrap contact-page__channel-wrap--static">
-          {%- comment -%}
-            Unlike phone/email, this link opens directly on a single click
-            instead of using contact-channel-reveal's click-to-reveal
-            behavior - wa.me routes to the WhatsApp app on mobile and to
-            WhatsApp Web/Desktop on desktop automatically, so there's no
-            number to protect behind a reveal step.
-          {%- endcomment -%}
+        {%- comment -%}
+          data-open-on-reveal: unlike phone (below), the first click both
+          reveals the "שלח הודעה" label AND lets the browser follow the
+          link, opening wa.me - it routes to the WhatsApp app on mobile and
+          WhatsApp Web/Desktop on desktop automatically.
+        {%- endcomment -%}
+        <contact-channel-reveal class="contact-page__channel-wrap" data-open-on-reveal>
           <a
             class="contact-page__channel"
             href="https://wa.me/{{ wa_digits }}"
@@ -174,10 +173,14 @@
               <span class="contact-page__channel-value">שלח הודעה</span>
             </span>
           </a>
-        </div>
+        </contact-channel-reveal>
       {% endif %}
 
-      <contact-channel-reveal class="contact-page__channel-wrap">
+      {%- comment -%}
+        data-open-on-reveal here too: click reveals "שלח מייל" and opens the
+        visitor's email client via mailto:, in one action.
+      {%- endcomment -%}
+      <contact-channel-reveal class="contact-page__channel-wrap" data-open-on-reveal>
         <a class="contact-page__channel" href="mailto:{{ section.settings.email }}">
           <span class="contact-page__channel-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,7 +190,7 @@
           </span>
           <span class="contact-page__channel-label">{{ section.settings.email_label }}</span>
           <span class="contact-page__channel-value-wrap">
-            <span class="contact-page__channel-value">{{ section.settings.email }}</span>
+            <span class="contact-page__channel-value">שלח מייל</span>
           </span>
         </a>
       </contact-channel-reveal>
@@ -415,17 +418,6 @@
   }
 
   contact-channel-reveal.is-revealed .contact-page__channel-value-wrap .contact-page__channel-value {
-    transform: translateY(0);
-  }
-
-  /* WhatsApp opens on a single click, so its value is shown up front
-     instead of behind the phone/email reveal-on-click interaction. */
-  .contact-page__channel-wrap--static .contact-page__channel-value-wrap {
-    max-height: 2.5rem;
-    opacity: 1;
-  }
-
-  .contact-page__channel-wrap--static .contact-page__channel-value-wrap .contact-page__channel-value {
     transform: translateY(0);
   }
 

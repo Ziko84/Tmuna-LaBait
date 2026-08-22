@@ -1,6 +1,12 @@
-// Toggles a contact channel's value (phone / email / WhatsApp number) open
-// and closed. The card shows only its label until clicked; each click flips
-// it open or shut instead of following the link.
+// Toggles a contact channel's value (phone / email / WhatsApp) open and
+// closed. By default the card shows only its label until clicked, and each
+// click flips it open or shut instead of following the link - this is the
+// phone card's behavior, since dialing isn't something to trigger from a
+// page click.
+//
+// A card marked with the `data-open-on-reveal` attribute (email, WhatsApp)
+// instead reveals its value AND lets the click continue through to the
+// link, opening the mail client / wa.me in the same click.
 class ContactChannelReveal extends HTMLElement {
   #controller = new AbortController();
 
@@ -14,6 +20,10 @@ class ContactChannelReveal extends HTMLElement {
   }
 
   #handleClick = (event) => {
+    if (this.hasAttribute('data-open-on-reveal')) {
+      this.classList.add('is-revealed');
+      return;
+    }
     event.preventDefault();
     this.classList.toggle('is-revealed');
   };
