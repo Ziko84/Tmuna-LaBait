@@ -1066,6 +1066,13 @@
         transform: scale(1.03);
       }
 
+      /* Our Story page top banner: the zoom looks bad on this specific
+         image, so disable it there while keeping the effect everywhere
+         else it's used. */
+      [id$="__story_hero"] .media-with-content:hover img {
+        transform: none;
+      }
+
       /* Footer surface.
 
          The footer previously inherited the page background with no border and
