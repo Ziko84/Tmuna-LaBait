@@ -376,7 +376,7 @@
         "collection": "all",
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "max_products": 3,
+        "max_products": 4,
         "columns": 4,
         "mobile_columns": "1",
         "mobile_card_size": "60cqw",
