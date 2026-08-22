@@ -247,7 +247,7 @@
               "type": "payment-icons",
               "settings": {
                 "horizontal_alignment": "flex-start",
-                "gap": 6,
+                "gap": 10,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -271,10 +271,10 @@
       "name": "Footer",
       "settings": {
         "section_width": "page-width",
-        "gap": 12,
+        "gap": 40,
         "background_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 36,
-        "padding-block-end": 18
+        "padding-block-start": 48,
+        "padding-block-end": 32
       }
     },
     "utilities": {

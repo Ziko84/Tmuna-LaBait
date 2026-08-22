@@ -1085,8 +1085,10 @@
         box-shadow: 0 -1px 0 rgba(26, 26, 46, 0.08);
       }
 
-      /* A short centred rule above the footer: a quiet full-stop for the page
-         that does not add another hard line across the layout. */
+      /* A short centred rule above the footer, tinted with the brand accent
+         instead of plain grayscale, so the "full-stop" also carries a touch
+         of the same warmth as the rest of the site rather than reading as a
+         leftover default divider. */
       footer::before {
         content: '';
         position: absolute;
@@ -1094,17 +1096,24 @@
         inset-inline: 0;
         margin-inline: auto;
         width: 4rem;
-        height: 1px;
-        background: rgba(26, 26, 46, 0.18);
+        height: 2px;
+        border-radius: 999px;
+        background: #8a6e46;
+        opacity: 0.55;
       }
 
+      /* Column headings pick up the brand accent (the same bronze used on
+         product-card hovers) instead of flat near-black, so the footer reads
+         as designed for this brand rather than a generic theme default. */
       footer .menu__heading,
       footer .menu__heading__default,
       footer .footer-content h2,
       footer .footer-content h3 {
-        color: #1a1a2e;
-        letter-spacing: 0.01em;
-        margin-block-end: 0.85rem;
+        color: #8a6e46;
+        font-size: 0.8125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-block-end: 1.1rem;
       }
 
       footer .footer-content a {
@@ -1115,9 +1124,28 @@
 
       footer .footer-content a:hover,
       footer .footer-content a:focus-visible {
-        color: #1a1a2e;
+        color: #8a6e46;
         text-decoration: underline;
         text-underline-offset: 3px;
+      }
+
+      /* Payment logos read as an afterthought when they're just bare flat
+         marks in a row. Giving each one its own quiet card (matching the
+         footer's own white-surface language) makes the row read as a
+         deliberate trust strip instead of a leftover icon dump. */
+      footer .payment-icons__item {
+        background: #ffffff;
+        border: 1px solid rgba(26, 26, 46, 0.1);
+        border-radius: 6px;
+        padding: 0.4rem 0.65rem;
+        box-shadow: 0 1px 2px rgba(26, 26, 46, 0.05);
+      }
+
+      footer .payment-icons__item img,
+      footer .payment-icons__item svg {
+        height: 1.1rem;
+        width: auto;
+        display: block;
       }
 
       /* The legal row carries the trading entity and contact details, so it is
@@ -1134,13 +1162,19 @@
       }
 
       footer .footer-utilities__business {
-        margin-block-start: 0;
+        margin-block-start: 0.15rem;
       }
 
       footer .footer-utilities__text + .footer-utilities__business::before {
-        content: '\00B7';
+        content: '';
+        display: inline-block;
+        width: 3px;
+        height: 3px;
+        border-radius: 999px;
         margin-inline-end: 0.75rem;
-        opacity: 0.6;
+        background: currentColor;
+        opacity: 0.35;
+        vertical-align: middle;
       }
 
       @media screen and (max-width: 749px) {
