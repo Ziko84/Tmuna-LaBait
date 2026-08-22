@@ -6,7 +6,7 @@
   fetchpriority="low"
 ></script>
 
-<div class="policy-page-shell">
+<div class="policy-page-shell" style="background-color: {{ section.settings.background_color | default: '#fcfbf9' }};">
   <div class="policy-page page-width-content">
     <div class="policy-page__corner-bracket" aria-hidden="true"></div>
     <svg class="policy-page__circles" viewBox="0 0 200 200" fill="none" aria-hidden="true">
@@ -47,10 +47,6 @@
 </div>
 
 {% stylesheet %}
-  .policy-page-shell {
-    background-color: #fcfbf9;
-  }
-
   .policy-page {
     position: relative;
     max-width: 48rem;
@@ -242,6 +238,12 @@
       "label": "Show page content",
       "info": "Turn off when this section is used only as a decorative title banner and the page body is rendered by another section further down.",
       "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fcfbf9"
     }
   ]
 }

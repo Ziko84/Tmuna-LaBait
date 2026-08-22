@@ -13,7 +13,8 @@
       "type": "policy-page",
       "settings": {
         "eyebrow": "מי אנחנו",
-        "show_page_content": false
+        "show_page_content": false,
+        "background_color": "#f7f5f2"
       }
     },
     "story_editorial": {
