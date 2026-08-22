@@ -887,6 +887,13 @@
         align-self: flex-end;
       }
 
+      /* Extra breathing room between the text column and the card's outer
+         (left) edge - padding-inline-end is the left side in this RTL
+         layout. */
+      [id$="__hero_overlay_LfPdEJ"] .media-with-content__content {
+        padding-inline-end: 32px;
+      }
+
       /* Hairline stroke on the right + bottom edges, on both homepage
          media-with-content banners. */
       :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-with-content {
