@@ -1934,14 +1934,15 @@
         margin-block-start: 0 !important;
       }
 
-      /* The button used to be a pill floating at the card's left edge while
-         the name, price and rating all sat on the right, so it read as
-         detached from the card rather than as its action. Spanning the full
-         width gives it the same axis as everything above it. */
+      /* Full width read as too wide once it was also filled solid (a large
+         block of bronze rather than a modest pill) - back to sizing to its
+         own content, centered under the price instead of spanning the
+         card's full axis. */
       .product-card .product-card__quick-add-row :is(product-form-component, form, add-to-cart-component),
       .product-card .product-card__add-to-cart-button[class] {
-        width: 100% !important;
-        max-width: none !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+        margin-inline: auto !important;
       }
 
       /* Filled at rest instead of muted outline-text: a higher-contrast
@@ -1954,13 +1955,12 @@
         background: #8a6e46 !important;
         color: #ffffff !important;
         border: 0 !important;
-        border-radius: 0 !important;
+        border-radius: 999px !important;
         transition: background-color 0.2s ease;
         justify-content: center !important;
-        /* 32px tall with 6px padding read as a squat strip once the button
-           went full width. A full-width button needs the height to match. */
-        min-height: 42px !important;
-        padding-block: 10px !important;
+        min-height: 36px !important;
+        padding-inline: 20px !important;
+        padding-block: 8px !important;
       }
 
       .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) {
