@@ -862,20 +862,26 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* Bottom banner only. Two fixes with no schema setting available -
-         note align-self here follows inline direction, not physical
-         left/right: this column is RTL, so flex-start is the right edge
-         and flex-end is the left edge (opposite of the LTR-intuitive
-         reading, easy to get backwards).
-         1) The paragraph's own box is deliberately narrower than the
-            heading's (--max-width--body-narrow caps body-text measure for
-            readability) but defaults to the column's flex-start (right)
-            already - explicit here so it can't drift from the heading's
-            right edge if that default ever changes.
-         2) The button should sit at the left instead of matching the
-            text's right edge - flex-end. */
-      [id$="__hero_overlay_LfPdEJ"] .text-block.rte {
-        align-self: flex-start;
+      /* Bottom banner only. Two fixes with no schema setting available.
+         1) text.liquid's own .text-block--align-right rule sets
+            margin-inline-start: auto to push a narrower-than-container box
+            toward its aligned edge - correct for LTR, but on this RTL site
+            inline-start is the right edge, so an auto margin there pushes
+            the box LEFT instead, away from the heading it should line up
+            with. This site-wide quirk is invisible almost everywhere else
+            because most text blocks are already fit-content width with
+            nothing to push; this paragraph is the rare width:100% +
+            narrower max-width combination that exposes it. Overriding to
+            margin-inline-end: auto here (not touching the shared rule,
+            which is out of scope for a single banner) reverses the push so
+            it lands flush against the heading's right edge instead.
+         2) The button should sit at the left instead of the text's right
+            edge - align-self here follows inline direction too: flex-end
+            is the left edge in RTL, opposite of the LTR-intuitive reading. */
+      [id$="__hero_overlay_LfPdEJ"] .text-block.rte,
+      [id$="__hero_overlay_LfPdEJ"] .text-block.rte > * {
+        margin-inline-start: 0;
+        margin-inline-end: auto;
       }
       [id$="__hero_overlay_LfPdEJ"] .button-custom {
         align-self: flex-end;
