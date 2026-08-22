@@ -74,6 +74,17 @@
         img.src = nightImages[suffix];
         img.alt = '';
         img.loading = 'lazy';
+        // Matches the day image's own width/height attributes (Shopify sets
+        // these server-side, so they're present immediately - naturalWidth/
+        // Height would need the day image to have already finished loading,
+        // which isn't guaranteed this early). Position: absolute means this
+        // image can't cause layout shift either way, but this keeps the
+        // markup complete rather than leaving width/height unset.
+        var dayImage = container.querySelector('.media-block__media');
+        if (dayImage && dayImage.getAttribute('width') && dayImage.getAttribute('height')) {
+          img.width = dayImage.getAttribute('width');
+          img.height = dayImage.getAttribute('height');
+        }
         container.appendChild(img);
         if (suffix !== '__hero_overlay_LfPdEJ') {
           addLedSwatches(container, nightImages[suffix]);
