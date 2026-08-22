@@ -1944,33 +1944,18 @@
         max-width: none !important;
       }
 
-      /* Outlined at rest, filled on hover. Ten solid navy bars down the grid
-         shouted louder than the products; the outline keeps the button
-         obviously clickable and legible (navy on white passes AA) without
-         competing with the photos. Filling on hover keeps the strong state
-         for the card you are actually pointing at.
-
-         No hover on touch, so the outline is the permanent state there - it
-         has to stand on its own, which is why the border is full-strength
-         navy rather than a hairline tint. */
-      /* Twenty full-strength buttons stacked down a grid made horizontal
-         bands that competed with the photos. At rest the button is a muted
-         label on no border; hover brings the hairline and the navy fill. The
-         row keeps its height either way, so nothing shifts.
-
-         Pointer-coarse devices have no hover, so there the resting state is
-         the strong one - the button has to be unmistakable on touch. */
+      /* Filled at rest instead of muted outline-text: a higher-contrast
+         resting state was requested directly, taking priority over the
+         earlier "outline at rest, fill on hover" choice (which measured
+         4.78:1 bronze-on-white for the text-only state - AA-passing, but
+         not as strong as a solid fill). Darkens slightly on hover for
+         feedback instead of toggling from unfilled to filled. */
       .product-card .product-card__add-to-cart-button[class] {
-        background: transparent !important;
-        /* Bronze rather than grey or navy: it ties the action to the price
-           above it and keeps the whole card in two colours. Measured 4.78:1
-           against white, so it clears AA both as text at rest and as the
-           white-on-bronze fill on hover. */
-        color: #8a6e46 !important;
+        background: #8a6e46 !important;
+        color: #ffffff !important;
         border: 0 !important;
-        border-top: 1px solid transparent !important;
         border-radius: 0 !important;
-        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        transition: background-color 0.2s ease;
         justify-content: center !important;
         /* 32px tall with 6px padding read as a squat strip once the button
            went full width. A full-width button needs the height to match. */
@@ -1978,20 +1963,8 @@
         padding-block: 10px !important;
       }
 
-      .product-card:hover .product-card__add-to-cart-button[class] {
-        border-top-color: rgba(138, 110, 70, 0.35) !important;
-      }
-
       .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) {
-        background: #8a6e46 !important;
-        color: #ffffff !important;
-        border-top-color: #8a6e46 !important;
-      }
-
-      @media (hover: none) {
-        .product-card .product-card__add-to-cart-button[class] {
-          border-top-color: rgba(138, 110, 70, 0.35) !important;
-        }
+        background: #74603c !important;
       }
 
       .product-card .product-card__add-to-cart-button[class]:is(:hover, :focus-visible) :is(span, svg) {
