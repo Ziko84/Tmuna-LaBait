@@ -224,6 +224,11 @@
           </a>
         </p>
       {% endif %}
+      {% if section.settings.business_identity != blank %}
+        <p class="contact-page__meta-line contact-page__meta-line--muted">
+          {{ section.settings.business_identity }}
+        </p>
+      {% endif %}
     </reveal-on-scroll>
 
     {% if section.settings.address != blank %}
@@ -417,6 +422,12 @@
     font-size: 0.9rem;
     line-height: 1.7;
     color: rgb(var(--color-foreground-rgb) / 60%);
+  }
+
+  .contact-page__meta-line--muted {
+    font-size: 0.8rem;
+    color: rgb(var(--color-foreground-rgb) / 45%);
+    margin-block-start: 0.35rem;
   }
 
   .contact-page__map-link {
@@ -789,6 +800,13 @@
       "id": "footer_message",
       "label": "Footer message",
       "default": "אנחנו מאמינים שכל בית ראוי לעיצוב איכותי שמכניס אווירה, חמימות ונגיעה עתידנית לחלל."
+    },
+    {
+      "type": "text",
+      "id": "business_identity",
+      "label": "Business identity note",
+      "info": "Shown under the address. Google's Misrepresentation policy expects the registered trading entity to be disclosed here too.",
+      "default": "תמונה לבית הוא מיזם של דניאל אמינוב וזרמן איסקוב, פועל תחת עוסק מורשה 306082793 (דניאל פיקס)"
     }
   ],
   "presets": [
