@@ -862,13 +862,22 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* Bottom banner only: heading/paragraph stay right-aligned (natural
-         Hebrew reading), but the button is centered under them rather than
-         matching that same right edge - no per-block alignment setting
-         exists on the button block, so this overrides just its own
-         cross-axis position within the flex column. */
+      /* Bottom banner only. Two fixes with no schema setting available:
+         1) The paragraph's own box is deliberately narrower than the
+            heading's (--max-width--body-narrow caps body-text measure for
+            readability) but the flex column anchors every child to the
+            same physical-left start, so the narrower box's right edge
+            falls short of the heading's instead of lining up with it.
+            align-self: flex-end re-anchors it from the right instead.
+         2) The button sits at the far left, matching neither the text's
+            right edge nor true center - align-self: flex-start puts it at
+            the same left anchor the column already uses for everything
+            else, which is what "left" reads as here. */
+      [id$="__hero_overlay_LfPdEJ"] .text-block.rte {
+        align-self: flex-end;
+      }
       [id$="__hero_overlay_LfPdEJ"] .button-custom {
-        align-self: center;
+        align-self: flex-start;
       }
 
       /* Hairline stroke on the right + bottom edges, on both homepage
