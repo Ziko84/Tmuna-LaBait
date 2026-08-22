@@ -7,7 +7,7 @@
 ></script>
 
 <div class="policy-page-shell" style="background-color: {{ section.settings.background_color | default: '#fcfbf9' }};">
-  <div class="policy-page page-width-content">
+  <div class="policy-page page-width-content{% unless section.settings.show_page_content %} policy-page--banner-only{% endunless %}">
     <div class="policy-page__corner-bracket" aria-hidden="true"></div>
     <svg class="policy-page__circles" viewBox="0 0 200 200" fill="none" aria-hidden="true">
       <circle cx="130" cy="70" r="55" stroke="currentColor" stroke-width="0.5" />
@@ -53,6 +53,13 @@
     margin: 0 auto;
     padding: 4.5rem 3.5rem 5.5rem;
     overflow: hidden;
+  }
+
+  /* Without the content block below, the divider is the last thing in the
+     section - the full 5.5rem meant to lead into page.content just stacks
+     with the next section's own top padding otherwise. */
+  .policy-page--banner-only {
+    padding-bottom: 1.5rem;
   }
 
   .policy-page__corner-bracket {
@@ -181,6 +188,10 @@
   @media screen and (max-width: 749px) {
     .policy-page {
       padding: 3.5rem 1.5rem 4rem;
+    }
+
+    .policy-page--banner-only {
+      padding-bottom: 1rem;
     }
 
     .policy-page__corner-bracket {
