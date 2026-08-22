@@ -228,6 +228,74 @@
 
 {% render 'sticky-add-to-cart' %}
 
+{%- comment -%}
+  The shared sticky-add-to-cart component only activates itself against the
+  theme's standard <product-form-component>/.buy-buttons-block markup, which
+  this section doesn't use (its size/LED-tier picker is fully custom, driven
+  by data-led/data-mode buttons rather than the standard variant-picker
+  inputs the component listens for). Left alone, the bar would stay
+  permanently hidden and, if forced visible, its own click handler would add
+  whatever variant was selected on page load rather than the customer's
+  actual current choice.
+
+  This script does two things instead, both scoped to this section only:
+  1. Toggles the bar's existing data-stuck attribute (the CSS that shows/
+     hides it already keys off this) based on whether the real .lc__atc
+     button has scrolled out of view - the same visibility rule the shared
+     component uses, just driven independently.
+  2. Makes the sticky bar's own button a pure proxy for the real .lc__atc
+     submit button instead of using the shared component's own add-to-cart
+     logic, so it always submits whatever size/LED/color is actually
+     selected right now, never a stale snapshot.
+{%- endcomment -%}
+<script>
+  (function () {
+    function init() {
+      var realButton = document.querySelector('.lc__atc');
+      var stickyBar = document.querySelector('.sticky-add-to-cart__bar');
+      var stickyButton = stickyBar ? stickyBar.querySelector('[ref="addToCartButton"]') : null;
+      if (!realButton || !stickyBar || !stickyButton) return;
+
+      stickyButton.addEventListener(
+        'click',
+        function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          realButton.click();
+        },
+        true
+      );
+
+      var footer = document.querySelector('footer') || document.querySelector('[class*="footer-group"]');
+      var footerVisible = false;
+
+      var buttonObserver = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+        if (!entry) return;
+        var scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        stickyBar.setAttribute('data-stuck', scrolledPast && !footerVisible ? 'true' : 'false');
+      });
+      buttonObserver.observe(realButton);
+
+      if (footer) {
+        var footerObserver = new IntersectionObserver(function (entries) {
+          var entry = entries[0];
+          if (!entry) return;
+          footerVisible = entry.isIntersecting;
+          if (footerVisible) stickyBar.setAttribute('data-stuck', 'false');
+        });
+        footerObserver.observe(footer);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+
 {% stylesheet %}
   .lc{--ink:#1a1a2e;--bronze:#8a6e46;--bronze-tint:rgba(138,110,70,.08);--cream:#f7f5f2;--line:#e8e3d9;--line-soft:#efeadf;--muted:#6d685f;--up:#d93025;--down:#1e8e3e;font-weight:300;color:var(--ink)}
   /* Match the store's product layout: the whole thing sits in a cream
