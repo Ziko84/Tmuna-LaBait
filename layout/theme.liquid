@@ -915,11 +915,13 @@
          .media-block (the photo column only) so it doesn't wash out the text side.
          Day shot underneath, night shot fades in over it - both pixel-aligned so it
          reads as the lights turning off, not a slideshow swap. Covers the homepage
-         hero, the second "אור שנולד מעץ" banner, and the Our Story hero. */
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-block {
+         hero and the second "אור שנולד מעץ" banner. Not the Our Story hero -
+         the effect didn't read well on that image, so it was removed there
+         (see snippets/hero-night-mode.liquid). */
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-block {
         position: relative;
       }
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .hero-night-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -933,7 +935,7 @@
       /* Trigger on hovering the photo itself, not the whole split section -
          .media-with-content:hover also fires while hovering the text/button
          column, which shouldn't flip the image to night mode. */
-      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"], [id$="__story_hero"]) .media-block:is(:hover, .night-mode-active) .hero-night-image {
+      :is([id$="__hero_split_tlb01"], [id$="__media_with_content_LfPdEJ"]) .media-block:is(:hover, .night-mode-active) .hero-night-image {
         opacity: 1;
       }
 
@@ -1064,13 +1066,6 @@
       }
       .media-with-content:hover img {
         transform: scale(1.03);
-      }
-
-      /* Our Story page top banner: the zoom looks bad on this specific
-         image, so disable it there while keeping the effect everywhere
-         else it's used. */
-      [id$="__story_hero"] .media-with-content:hover img {
-        transform: none;
       }
 
       /* Footer surface.
