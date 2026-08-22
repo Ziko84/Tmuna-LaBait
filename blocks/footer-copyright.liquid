@@ -3,14 +3,19 @@
 
 {%- comment -%}
   Schema defaults only apply to newly added block instances, so the existing
-  footer copyright block renders these blank. Fall back to the registered
-  business details so the identity is always present for Google's policy check.
+  footer copyright block renders these blank. Fall back to the shop's own
+  Settings > General store details (single source of truth for phone/address/
+  email) instead of a second hardcoded copy, so this can never drift out of
+  sync with the real business record. business_legal_name/business_company_id
+  have no shop-object equivalent, so those still fall back to a literal.
 {%- endcomment -%}
 {%- assign biz_name = block_settings.business_legal_name | default: 'דניאל אמינוב וזרמן איסקוב (דניאל פיקס)' -%}
 {%- assign biz_id = block_settings.business_company_id | default: 'עוסק מורשה 306082793' -%}
-{%- assign biz_address = block_settings.business_address | default: 'דרך הרימונים 29, מושב רינתיה, 7316500, ישראל' -%}
-{%- assign biz_phone = block_settings.business_phone | default: '054-6385242' -%}
-{%- assign biz_email = block_settings.business_email | default: 'info@tmuna-labait.com' -%}
+{%- assign shop_phone_digits = shop.address.phone | remove: '-' | remove: ' ' -%}
+{%- assign shop_phone_formatted = shop_phone_digits | slice: 0, 3 | append: '-' | append: shop_phone_digits | slice: 3, 3 | append: '-' | append: shop_phone_digits | slice: 6, 4 -%}
+{%- assign biz_address = block_settings.business_address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: shop.address.zip | append: ', ישראל' -%}
+{%- assign biz_phone = block_settings.business_phone | default: shop_phone_formatted -%}
+{%- assign biz_email = block_settings.business_email | default: shop.email -%}
 <div
   class="
     footer-utilities__group-copyright

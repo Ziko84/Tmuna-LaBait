@@ -27,8 +27,8 @@
         "label_subject": "נושא",
         "label_message": "הודעה",
         "label_submit": "שלחו הודעה",
-        "email": "info@tmuna-labait.com",
-        "phone": "054-6385242",
+        "email": "",
+        "phone": "",
         "hours_label": "שעות פעילות",
         "hours_days": "ימים א' עד ה'",
         "hours_time": "09:00-18:00, בימי שישי עד 16:00",
@@ -36,9 +36,9 @@
         "form_heading": "שלחו לנו הודעה",
         "info_heading": "פרטי התקשרות",
         "response_time": "נחזור אליכם תוך יום עסקים אחד.",
-        "whatsapp_number": "972546385242",
+        "whatsapp_number": "",
         "whatsapp_label": "שלחו לנו הודעה בוואטסאפ",
-        "address": "דרך הרימונים 29, מושב רינתיה, 7316500, ישראל",
+        "address": "",
         "map_coordinates": "32.0433535,34.9305696",
         "business_identity": "תמונה לבית הוא מיזם של דניאל אמינוב וזרמן איסקוב, פועל תחת עוסק מורשה 306082793 (דניאל פיקס)"
       }
