@@ -180,7 +180,13 @@
         data-open-on-reveal here too: click reveals "שלח מייל" and opens the
         visitor's email client via mailto:, in one action.
       {%- endcomment -%}
-      <contact-channel-reveal class="contact-page__channel-wrap" data-open-on-reveal>
+      {%- comment -%}
+        mailto: links depend on the visitor having a default mail client
+        configured, which often silently does nothing - so this stays
+        reveal-only like phone, showing the actual address to copy instead
+        of a "send" action that can appear broken.
+      {%- endcomment -%}
+      <contact-channel-reveal class="contact-page__channel-wrap">
         <a class="contact-page__channel" href="mailto:{{ section.settings.email }}">
           <span class="contact-page__channel-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,7 +196,7 @@
           </span>
           <span class="contact-page__channel-label">{{ section.settings.email_label }}</span>
           <span class="contact-page__channel-value-wrap">
-            <span class="contact-page__channel-value">שלח מייל</span>
+            <span class="contact-page__channel-value">{{ section.settings.email }}</span>
           </span>
         </a>
       </contact-channel-reveal>
