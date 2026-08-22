@@ -1,7 +1,7 @@
 
 
 <div class="story-philosophy" style="background-color: {{ section.settings.background_color }}; padding-block: {{ section.settings.padding_block }}px;">
-  <div class="story-philosophy__inner page-width-content">
+  <div class="story-philosophy__inner">
     {% if section.settings.quote != blank %}
       <p class="story-philosophy__quote">{{ section.settings.quote }}</p>
     {% endif %}
@@ -22,6 +22,8 @@
     text-align: center;
     max-width: 42rem;
     margin: 0 auto;
+    padding-inline: var(--page-margin, 16px);
+    box-sizing: border-box;
   }
 
   .story-philosophy__quote {
