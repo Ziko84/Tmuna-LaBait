@@ -46,6 +46,12 @@
 
 {% stylesheet %}
   .blog-post-card {
+    /* The grid item wrapping this card already stretches to match the
+       tallest card in its row (default CSS Grid align-items: stretch),
+       but without this the card itself only grows to fit its own
+       content, so shorter posts (no summary, a one-line title) render
+       as visibly shorter cards inside an equal-height, invisible cell. */
+    height: 100%;
     display: flex;
     flex-direction: column;
     text-align: var(--text-align);
