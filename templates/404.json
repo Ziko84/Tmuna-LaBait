@@ -62,7 +62,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>The link may be incorrect, or the page has been removed. </p>",
+            "text": "<p>ייתכן שהקישור שגוי, או שהעמוד הוסר.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -86,7 +86,7 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Continue shopping",
+            "label": "המשיכו לקנות",
             "link": "shopify://collections/frontpage",
             "open_in_new_tab": false,
             "style_class": "button",
