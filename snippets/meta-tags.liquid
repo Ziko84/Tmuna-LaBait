@@ -19,6 +19,20 @@
 >
 
 {%- liquid
+  # Shopify's own page_title default for these three system page types is
+  # an untranslated English string ("Your Shopping Cart", "Search: N
+  # results found for...", "Collections") with no theme setting or
+  # Translate & Adapt entry to override it, so it has to be replaced here
+  # before anything downstream (the <title> tag, og:title, twitter:title)
+  # reads page_title.
+  if request.page_type == 'cart'
+    assign page_title = 'עגלת הקניות שלי'
+  elsif request.page_type == 'search'
+    assign page_title = 'תוצאות חיפוש עבור "' | append: search.terms | append: '"'
+  elsif request.page_type == 'list_collections'
+    assign page_title = 'כל הקטגוריות'
+  endif
+
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
