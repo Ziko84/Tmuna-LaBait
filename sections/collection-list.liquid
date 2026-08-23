@@ -21,6 +21,23 @@
   endif
 %}
 
+{% if section.settings.layout_type == 'grid' and section.settings.varied_card_heights %}
+  {% style %}
+    #shopify-section-{{ section.id }} .resource-list__item:nth-child(4n+1) .resource-image {
+      --ratio: 3/4;
+    }
+    #shopify-section-{{ section.id }} .resource-list__item:nth-child(4n+2) .resource-image {
+      --ratio: 1/1;
+    }
+    #shopify-section-{{ section.id }} .resource-list__item:nth-child(4n+3) .resource-image {
+      --ratio: 5/4;
+    }
+    #shopify-section-{{ section.id }} .resource-list__item:nth-child(4n+4) .resource-image {
+      --ratio: 4/3;
+    }
+  {% endstyle %}
+{% endif %}
+
 <div
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
@@ -168,6 +185,14 @@
       "step": 1,
       "default": 4,
       "visible_if": "{{ section.settings.layout_type == 'grid' or section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "varied_card_heights",
+      "label": "Vary card heights",
+      "info": "Gives each card a different aspect ratio for an asymmetric, masonry-like look instead of a uniform grid.",
+      "default": false,
+      "visible_if": "{{ section.settings.layout_type == 'grid' }}"
     },
     {
       "type": "select",
