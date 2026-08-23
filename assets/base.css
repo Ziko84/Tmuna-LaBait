@@ -4167,15 +4167,11 @@ product-card .contents.user-select-text {
     margin-bottom: 0 !important;
 }
 
-/* Slower, smoother levitation effect */
 .resource-list__item product-card {
-    /* Changed from 0.3s to 0.9s for a smoother feel */
-    transition: transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                box-shadow 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    transition: box-shadow 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
 }
 
 .resource-list__item:hover product-card {
-    transform: translateY(-8px) !important; /* Slightly higher lift */
     box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
 }
 /* Reduce the padding inside the Add to Cart button */

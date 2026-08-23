@@ -336,20 +336,15 @@
 
       /* Product cards: thin navy frame on hover only, slow luxury fade.
          Outline (not border) so it never shifts layout, offset a few
-         px so it reads as a floating frame rather than a tight edge. */
+         px so it reads as a floating frame rather than a tight edge.
+         No hover lift/translate: the card stays pinned in place, only
+         the outline and shadow change. */
       .product-card {
         border-radius: 16px;
-        /* !important: a higher-specificity native rule
-           (.card-hover-effect-lift .product-card) fully replaces this
-           shorthand otherwise, silently dropping the outline-color
-           transition since it isn't merged, just overwritten. */
-        transition: outline-color 0.45s ease-in, transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out !important;
+        transition: outline-color 0.45s ease-in, box-shadow 0.4s ease-in-out !important;
       }
-      /* The card used to be pinned in place while the button inside it
-         lifted on hover, so one element moved and its own container did
-         not. Both lift now, the card by less than the button. */
       .card-hover-effect-lift .product-card:hover {
-        transform: translateY(-3px) !important;
+        transform: none !important;
       }
 
       /* The card previously carried four separate edge devices at once:
@@ -1873,20 +1868,11 @@
          a pill sitting in space. --card-pad still drives the text inset. */
       .product-card {
         overflow: hidden;
-        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+        transition: box-shadow 0.25s ease;
       }
 
       .product-card:hover {
-        transform: translateY(-4px);
         box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .product-card,
-        .product-card:hover {
-          transition: none;
-          transform: none;
-        }
       }
 
       /* The gallery's own padding comes from the product-card-gallery
@@ -2197,10 +2183,9 @@
         border-radius: 14px !important;
         overflow: hidden !important;
         box-shadow: 0 2px 6px rgba(24, 24, 32, 0.06), 0 10px 22px rgba(24, 24, 32, 0.08) !important;
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        transition: box-shadow 0.18s ease;
       }
       [data-template='list-collections'] .collection-card:hover {
-        transform: translateY(-3px);
         box-shadow: 0 4px 10px rgba(24, 24, 32, 0.08), 0 16px 30px rgba(24, 24, 32, 0.12) !important;
       }
 
