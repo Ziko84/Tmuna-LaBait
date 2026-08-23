@@ -40,7 +40,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Join our Newsletter. Get Updates, Offers and Invites.</p>",
+                "text": "<p>הצטרפו לניוזלטר שלנו וקבלו עדכונים, מבצעים והזמנות מיוחדות.</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -85,7 +85,7 @@
                 "custom_button_border": "{{ settings.color_palette.background }}",
                 "link_text_color": "",
                 "display_type": "arrow",
-                "label": "Sign up",
+                "label": "הרשמה",
                 "integrated_button": false,
                 "button_type_preset": "paragraph",
                 "padding-block-start": 0,
