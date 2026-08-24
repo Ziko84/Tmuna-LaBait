@@ -45,6 +45,16 @@
             {{ 'content.product_badge_sale' | t }}
           {%- endif -%}
         </div>
+      {%- elsif product.tags contains 'featured' -%}
+        {%- comment -%}
+          Editorial curation signal ("we picked this"), not a sales claim -
+          the store has no completed orders yet, so a "bestseller" badge
+          would be a false claim. Reuses the same amber accent as the LED
+          product photography glow and the button/card hover states.
+        {%- endcomment -%}
+        <div class="product-badges__badge product-badges__badge--rectangle product-badges__badge--featured">
+          מומלץ
+        </div>
       {%- endif -%}
     </div>
   {% endunless %}

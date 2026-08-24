@@ -70,18 +70,39 @@
       type settings ask for light weights, and without those faces the browser
       substitutes 400, which reads as unintentionally bold.
     {%- endcomment -%}
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Rubik:wght@500;600;700&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet">
     <style data-v="{{ 'now' | date: '%s' }}">
       :root {
         --font-body--family: 'Heebo', sans-serif !important;
         --font-primary--family: 'Heebo', sans-serif !important;
         --font-subheading--family: 'Heebo', sans-serif !important;
-        --font-heading--family: 'Varela Round', 'Heebo', sans-serif !important;
-        --font-accent--family: 'Varela Round', 'Heebo', sans-serif !important;
+        --font-heading--family: 'Rubik', 'Heebo', sans-serif !important;
+        --font-accent--family: 'Rubik', 'Heebo', sans-serif !important;
+        /* The warm amber the LED backlight photography glows in. Pulled
+           into UI chrome (button hover, category card hover, the craft
+           strip's rule marks) so the site's one truly distinctive color
+           shows up outside the product photos too, not just inside them. */
+        --color-accent-amber: #e8a33d;
       }
       body {
         font-family: 'Heebo', sans-serif;
         letter-spacing: 0.015em;
+      }
+      /* Every section background on the site was a flat solid fill.
+         This gives the page a single, very quiet ambient-light wash
+         instead - a warm glow (echoing the LED product photography)
+         in one corner, a faint cool one in the other for depth. Fixed
+         + pointer-events:none so it never repaints on scroll (see
+         base.css's own grain-layer pattern for the same technique). */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse 900px 600px at 85% -5%, rgba(232, 163, 61, 0.07), transparent 60%),
+          radial-gradient(ellipse 700px 500px at -5% 100%, rgba(26, 26, 46, 0.035), transparent 60%);
       }
 
       /* Toylvia-style product cards */
@@ -1414,6 +1435,34 @@
             margin-inline: auto !important;
           }
         }
+      }
+
+      /* Amber accent, in the two places product cards deliberately don't
+         use it (see the "gold edge highlight" removal note above - that
+         decision stands for product cards). Buttons get a warm glow on
+         hover instead of a color change, additive to whatever background
+         color that instance already resolves to. Category cards had no
+         hover feedback at all, so a quiet amber ring is new here, not a
+         reversal of anything. */
+      .button:hover,
+      .button-custom:hover {
+        box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.28), 0 8px 20px rgba(232, 163, 61, 0.22);
+      }
+      .collection-card {
+        transition: box-shadow 0.35s ease;
+        border-radius: 10px;
+      }
+      .collection-card:hover {
+        box-shadow: 0 0 0 2px var(--color-accent-amber, #e8a33d);
+      }
+      /* Featured-product badge (see _product-card-gallery.liquid): the
+         one hierarchy signal the product grid otherwise has none of.
+         Dark text on the amber fill for contrast, since the amber itself
+         is too light-mid-tone to carry white text reliably. */
+      .product-badges__badge--featured {
+        background: var(--color-accent-amber, #e8a33d);
+        color: #1a1a2e;
+        font-weight: 600;
       }
 
     </style>
