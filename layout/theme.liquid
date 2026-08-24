@@ -1458,15 +1458,6 @@
       .collection-card:hover {
         box-shadow: 0 0 0 2px var(--color-accent-amber, #e8a33d);
       }
-      /* Featured-product badge (see _product-card-gallery.liquid): the
-         one hierarchy signal the product grid otherwise has none of.
-         Dark text on the amber fill for contrast, since the amber itself
-         is too light-mid-tone to carry white text reliably. */
-      .product-badges__badge--featured {
-        background: var(--color-accent-amber, #e8a33d);
-        color: #1a1a2e;
-        font-weight: 600;
-      }
       /* Judge.me's own empty-review-state markup (targeted by its stable
          outer #judgeme_product_reviews id only, not its internal classes,
          which are app-controlled and can change without notice) - wraps
@@ -1495,6 +1486,20 @@
     {{ content_for_header }}
 
     <style>
+      /* Featured-product badge (see _product-card-gallery.liquid): the one
+         hierarchy signal the product grid otherwise has none of. Placed in
+         THIS block, not the main one above - product-badges-styles.liquid's
+         base .product-badges__badge background rule is part of Shopify's
+         bundled per-component CSS injected via content_for_header, which
+         lands after the main style block and silently won the equal-
+         specificity tie there (first found live on the store/collection
+         page: the badge rendered in --color-background grey, not amber). */
+      .product-badges__badge--featured {
+        background: var(--color-accent-amber, #e8a33d) !important;
+        color: #1a1a2e !important;
+        font-weight: 600 !important;
+      }
+
       /* Product page: the whole top section (image, title, price, variant picker,
          buy buttons, trust bar, description, accordion) as ONE unified card.
          Deliberately placed after content_for_header — Shopify's own per-section/component
