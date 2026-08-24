@@ -1449,7 +1449,7 @@
         box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.28), 0 8px 20px rgba(232, 163, 61, 0.22);
       }
       .collection-card {
-        transition: outline-offset 0.35s ease, outline-color 0.35s ease;
+        transition: outline-offset 0.35s ease, outline-color 0.35s ease, transform 0.25s ease;
         border-radius: 10px;
         outline: 2px solid transparent;
         outline-offset: 0px;
@@ -1461,6 +1461,13 @@
       .collection-card:hover {
         outline-color: var(--color-accent-amber, #e8a33d);
         outline-offset: 6px;
+      }
+      /* Same lift as .product-card:hover and .blog-post-card:hover, same
+         accessible gating (precise pointer only, no reduced-motion). */
+      @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+        .collection-card:hover {
+          transform: translateY(-4px);
+        }
       }
       /* Judge.me's own empty-review-state markup (targeted by its stable
          outer #judgeme_product_reviews id only, not its internal classes,
