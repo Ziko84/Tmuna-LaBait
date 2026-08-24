@@ -1474,9 +1474,15 @@
          rest of the product page uses, instead of floating unstyled in
          open whitespace. */
       #judgeme_product_reviews {
-        background-color: #f7f5f2;
+        background-color: #ffffff;
         border-radius: 24px;
         padding: 48px 32px;
+        /* A background-color match alone did not read as a distinct
+           surface here - the review section's own wrapper already sits
+           on the same cream tone, so nothing visually separated them
+           without an edge. Same shadow recipe as .product-info-panel__surface
+           above it on the page, for the same "elevated card" language. */
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
       }
 
     </style>
