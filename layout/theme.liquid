@@ -100,9 +100,12 @@
         inset: 0;
         z-index: -1;
         pointer-events: none;
+        /* Centers pulled into the actual viewport (the first version sat
+           mostly above/beside it at -5%, which read as invisible on pages
+           without a big photo up top to blend into, like the store grid). */
         background:
-          radial-gradient(ellipse 900px 600px at 85% -5%, rgba(232, 163, 61, 0.07), transparent 60%),
-          radial-gradient(ellipse 700px 500px at -5% 100%, rgba(26, 26, 46, 0.035), transparent 60%);
+          radial-gradient(ellipse 900px 600px at 88% 10%, rgba(232, 163, 61, 0.11), transparent 62%),
+          radial-gradient(ellipse 700px 500px at 8% 92%, rgba(26, 26, 46, 0.05), transparent 62%);
       }
 
       /* Toylvia-style product cards */
