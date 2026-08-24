@@ -142,15 +142,23 @@
     margin-block-end: 0;
   }
 
+  /* Each fact used to be one stacked list with a hairline between items -
+     the generic "spec sheet with border-b on every row" default. Three
+     separate soft-tinted cards instead, so the facts read as distinct
+     small statements rather than rows in a table. */
   .product-info-panel__facts {
     margin: 0;
     padding-block-start: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .product-info-panel__fact + .product-info-panel__fact {
-    margin-block-start: 40px;
-    padding-block-start: 40px;
-    border-block-start: 1px solid rgba(26, 26, 46, 0.08);
+  .product-info-panel__fact {
+    padding: 22px 24px;
+    border-radius: 16px;
+    background: rgba(26, 26, 46, 0.035);
+    border-inline-start: 2px solid var(--color-accent-amber, #e8a33d);
   }
 
   .product-info-panel__fact dt {

@@ -1467,6 +1467,17 @@
         color: #1a1a2e;
         font-weight: 600;
       }
+      /* Judge.me's own empty-review-state markup (targeted by its stable
+         outer #judgeme_product_reviews id only, not its internal classes,
+         which are app-controlled and can change without notice) - wraps
+         the bare "no reviews yet" text in the same soft card surface the
+         rest of the product page uses, instead of floating unstyled in
+         open whitespace. */
+      #judgeme_product_reviews {
+        background-color: #f7f5f2;
+        border-radius: 24px;
+        padding: 48px 32px;
+      }
 
     </style>
 
