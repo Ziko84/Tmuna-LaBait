@@ -358,11 +358,12 @@
         letter-spacing: 0.05em !important;
       }
 
-      /* Product cards: thin navy frame on hover, plus the same lift +
-         drop-shadow setup the blog article cards use (see
-         .blog-post-card:hover in _blog-post-card.liquid - same -4px
-         translate, same accessible gating so it only fires for
-         precise-pointer devices with no reduced-motion preference). */
+      /* Product cards: the same lift + drop-shadow setup the blog article
+         cards use (see .blog-post-card:hover in _blog-post-card.liquid -
+         same -4px translate, same accessible gating so it only fires for
+         precise-pointer devices with no reduced-motion preference). The
+         actual outline ring and box-shadow values live further down, in
+         the later "Frameless card" block, which wins the cascade tie. */
       .product-card {
         border-radius: 16px;
         transition: outline-color 0.45s ease-in, box-shadow 0.4s ease-in-out, transform 0.25s ease-in-out !important;
@@ -1953,11 +1954,18 @@
          a pill sitting in space. --card-pad still drives the text inset. */
       .product-card {
         overflow: hidden;
-        transition: box-shadow 0.25s ease, transform 0.25s ease;
+        transition: box-shadow 0.25s ease, transform 0.25s ease, outline-offset 0.35s ease, outline-color 0.35s ease;
+        outline: 2px solid transparent;
+        outline-offset: 0px;
       }
 
       .product-card:hover {
         box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14);
+        /* Same offset amber ring as .collection-card:hover, so every card
+           type on the site shares one hover-accent language instead of
+           collection cards being amber and product cards being unmarked. */
+        outline-color: var(--color-accent-amber, #e8a33d);
+        outline-offset: 6px;
       }
 
       /* Lift, same recipe as .blog-post-card:hover in _blog-post-card.liquid -
