@@ -358,15 +358,20 @@
         letter-spacing: 0.05em !important;
       }
 
-      /* Product cards: the same lift + drop-shadow setup the blog article
-         cards use (see .blog-post-card:hover in _blog-post-card.liquid -
-         same -4px translate, same accessible gating so it only fires for
-         precise-pointer devices with no reduced-motion preference). The
-         actual outline ring and box-shadow values live further down, in
-         the later "Frameless card" block, which wins the cascade tie. */
+      /* Product cards: the exact same lift + drop-shadow setup the blog
+         article cards use (see .blog-post-card:hover in
+         _blog-post-card.liquid) - not just visually similar values, the
+         actual shared tokens (--hover-transition-duration: 0.25s,
+         --hover-transition-timing: ease-out, both defined in base.css)
+         so the timing and easing curve are byte-identical, not a
+         hand-typed approximation. This used to be a hardcoded
+         "0.45s ease-in / 0.4s ease-in-out / 0.25s ease-in-out" mix that
+         genuinely felt different from blog's tokens, not just looked
+         different in the source. */
       .product-card {
         border-radius: 16px;
-        transition: outline-color 0.45s ease-in, box-shadow 0.4s ease-in-out, transform 0.25s ease-in-out !important;
+        transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
+          box-shadow var(--hover-transition-duration) var(--hover-transition-timing) !important;
       }
 
       /* The card previously carried four separate edge devices at once:
@@ -1954,7 +1959,11 @@
          a pill sitting in space. --card-pad still drives the text inset. */
       .product-card {
         overflow: hidden;
-        transition: box-shadow 0.25s ease, transform 0.25s ease;
+        /* Transition itself lives on the earlier .product-card rule
+           (the !important one, which wins the cascade tie) using the
+           shared --hover-transition-duration/--hover-transition-timing
+           tokens - not redeclared here to avoid two different transition
+           values sitting in the source for the same property. */
       }
 
       .product-card:hover {
