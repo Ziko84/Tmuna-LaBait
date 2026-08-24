@@ -33,21 +33,6 @@
       {%- content_for 'block', id: 'heading', type: '_heading', text: article.title -%}
     </a>
 
-    {%- comment -%}
-      templates/blog.json's static "blog-post-details" block is stuck on a
-      GitHub-synced copy that never picks up settings changes (the same
-      per-file sync-pinning issue documented on templates/product.json,
-      see product-info-panel.liquid) - show_date there is permanently
-      stuck at false no matter what the repo says. Rendered directly here
-      instead of via content_for 'block', bypassing that JSON entirely.
-      Same markup/classes as _blog-post-info-text.liquid so the existing
-      .blog-post-details styling still applies unchanged.
-    {%- endcomment -%}
-    {%- if article.published_at -%}
-      <div class="blog-post-details spacing-style justify-{{ block_settings.alignment }}">
-        <span>{{ article.published_at | time_tag: format: 'date' }}</span>
-      </div>
-    {%- endif -%}
 
     {% content_for 'block', id: 'content', type: '_blog-post-description', article: article, show_read_more: true %}
   </div>
