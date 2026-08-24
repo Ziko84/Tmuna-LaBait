@@ -358,17 +358,14 @@
         letter-spacing: 0.05em !important;
       }
 
-      /* Product cards: thin navy frame on hover only, slow luxury fade.
-         Outline (not border) so it never shifts layout, offset a few
-         px so it reads as a floating frame rather than a tight edge.
-         No hover lift/translate: the card stays pinned in place, only
-         the outline and shadow change. */
+      /* Product cards: thin navy frame on hover, plus the same lift +
+         drop-shadow setup the blog article cards use (see
+         .blog-post-card:hover in _blog-post-card.liquid - same -4px
+         translate, same accessible gating so it only fires for
+         precise-pointer devices with no reduced-motion preference). */
       .product-card {
         border-radius: 16px;
-        transition: outline-color 0.45s ease-in, box-shadow 0.4s ease-in-out !important;
-      }
-      .card-hover-effect-lift .product-card:hover {
-        transform: none !important;
+        transition: outline-color 0.45s ease-in, box-shadow 0.4s ease-in-out, transform 0.25s ease-in-out !important;
       }
 
       /* The card previously carried four separate edge devices at once:
@@ -1942,11 +1939,24 @@
          a pill sitting in space. --card-pad still drives the text inset. */
       .product-card {
         overflow: hidden;
-        transition: box-shadow 0.25s ease;
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
       }
 
       .product-card:hover {
         box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14);
+      }
+
+      /* Lift, same recipe as .blog-post-card:hover in _blog-post-card.liquid -
+         same -4px translate and gated the same way, only deepening the
+         shadow further (card's own warm tone, not blog's navy) instead of
+         copying blog's shadow color outright. */
+      @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+        .product-card:hover {
+          transform: translateY(-4px);
+          box-shadow:
+            0 4px 10px rgba(90, 85, 77, 0.18),
+            0 14px 34px rgba(90, 85, 77, 0.22);
+        }
       }
 
       /* The gallery's own padding comes from the product-card-gallery
