@@ -29,6 +29,17 @@
   >
     {% content_for 'blocks' %}
 
+    {%- comment -%}
+      templates/blog.json's banner section is stuck on a GitHub-synced
+      copy that never picks up settings changes (the same per-file
+      sync-pinning issue documented on templates/product.json, see
+      product-info-panel.liquid), so a subtitle block added there there
+      never reaches the live theme. Rendered here instead, in this
+      section's own working Liquid file, positioned so it still reads as
+      the page intro directly under the "בלוג" heading above it.
+    {%- endcomment -%}
+    <p class="blog-posts__intro">טיפים, השראה וסיפורים מאחורי היצירות שלנו.</p>
+
     <div
       ref="grid"
       class="blog-posts-container"
@@ -83,6 +94,15 @@
     --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
     --columns-gap: 36px;
     --rows-gap: 36px;
+  }
+
+  .blog-posts__intro {
+    text-align: center;
+    max-width: 46ch;
+    margin: -8px auto 32px;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgb(var(--color-foreground-rgb) / 0.7);
   }
 
   .blog-posts-container {
