@@ -364,11 +364,19 @@
          actual shared tokens (--hover-transition-duration: 0.25s,
          --hover-transition-timing: ease-out, both defined in base.css)
          so the timing and easing curve are byte-identical, not a
-         hand-typed approximation. This used to be a hardcoded
-         "0.45s ease-in / 0.4s ease-in-out / 0.25s ease-in-out" mix that
-         genuinely felt different from blog's tokens, not just looked
-         different in the source. */
-      .product-card {
+         hand-typed approximation.
+
+         Scoped as ".resource-list__item .product-card", not bare
+         ".product-card" - base.css has its own !important transition on
+         ".resource-list__item product-card" (the real <product-card>
+         element, ancestor-scoped), specificity (0,1,1), which silently
+         wins over a bare ".product-card" (0,1,0) even with !important on
+         both sides, locking the transition to "box-shadow 0.9s
+         cubic-bezier(...)" only - transform never included, so it never
+         animated at all regardless of what this rule said. Matching the
+         same ancestor-scoped pattern gives (0,2,0), which wins on the
+         class-count tiebreak. */
+      .resource-list__item .product-card {
         border-radius: 16px;
         transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
           box-shadow var(--hover-transition-duration) var(--hover-transition-timing) !important;
@@ -1966,8 +1974,14 @@
            values sitting in the source for the same property. */
       }
 
-      .product-card:hover {
-        box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14);
+      /* Scoped like the transition rule above - base.css's own
+         ".resource-list__item:hover product-card" (specificity 0,2,1,
+         !important) was winning over a bare ".product-card:hover"
+         (0,2,0) and silently replacing this box-shadow with its own
+         "0 15px 30px rgba(0,0,0,0.12)". Matching the ancestor scope
+         gives (0,3,0), which wins. */
+      .resource-list__item .product-card:hover {
+        box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14) !important;
       }
 
       /* Lift, same recipe as .blog-post-card:hover in _blog-post-card.liquid -
@@ -1975,11 +1989,11 @@
          shadow further (card's own warm tone, not blog's navy) instead of
          copying blog's shadow color outright. */
       @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
-        .product-card:hover {
-          transform: translateY(-4px);
+        .resource-list__item .product-card:hover {
+          transform: translateY(-4px) !important;
           box-shadow:
             0 4px 10px rgba(90, 85, 77, 0.18),
-            0 14px 34px rgba(90, 85, 77, 0.22);
+            0 14px 34px rgba(90, 85, 77, 0.22) !important;
         }
       }
 
