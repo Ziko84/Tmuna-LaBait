@@ -1,0 +1,361 @@
+{% doc %}
+  A grouped, categorized FAQ. Content is intentionally hardcoded rather than
+  built from generic accordion blocks, matching how Our Story and Contact
+  carry their own brand-specific copy directly in the section.
+{% enddoc %}
+
+<div class="faq page-width-content">
+  <reveal-on-scroll class="faq__intro">
+    <p class="faq__eyebrow">שאלות ותשובות</p>
+    <h1 class="faq__heading">כל מה שרציתם לדעת</h1>
+    <p class="faq__subtitle">תשובות ישירות על החומר, המשלוח וההחזרות, לפני שאתם מזמינים.</p>
+  </reveal-on-scroll>
+
+  {%- liquid
+    assign group_1_heading = 'היצירה עצמה'
+    assign group_2_heading = 'משלוח, החזרות ותשלום'
+    assign group_3_heading = 'עלינו'
+  -%}
+
+  <reveal-on-scroll class="faq__group">
+    <h2 class="faq__group-heading">{{ group_1_heading }}</h2>
+    <div class="faq__list">
+      <details class="faq__row" open>
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">מאיזה חומר עשויות היצירות?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>כל יצירה עשויה מ-MDF פרימיום בעובי 6 מ״מ, חתוך בלייזר בדיוק של שבריר מילימטר.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">אילו מידות זמינות?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>ניתן לבחור בין 50x50, 70x70 ו-90x90 ס״מ, וגם במידה מותאמת אישית עד 120x120 ס״מ.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">האם כל היצירות מגיעות עם תאורה?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>המידה הקטנה (50x50) מגיעה כברירת מחדל ללא תאורה. ניתן לבחור בגרסה המוארת עם תאורת לד לבן חם, המחוברת לשלט הפעלה לעמעום ולבחירת מצבי תאורה.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">איך נקבע המחיר?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>המחיר עולה בהתאם למידה ולסוג התאורה שנבחרו, ומוצג במלואו בעמוד המוצר לפני ההוספה לסל.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">תוך כמה זמן ההזמנה מגיעה?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>כל יצירה מיוצרת לפי הזמנה. זמן ההכנה הוא 1 עד 3 ימי עסקים, ולאחר מכן זמן האספקה הוא עוד 1 עד 3 ימי עסקים, כך שסך הכל ההזמנה מגיעה תוך 2 עד 6 ימי עסקים.</p>
+        </div>
+      </details>
+    </div>
+  </reveal-on-scroll>
+
+  <reveal-on-scroll class="faq__group">
+    <h2 class="faq__group-heading">{{ group_2_heading }}</h2>
+    <div class="faq__list">
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">מה עלות המשלוח?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>משלוח חינם בהזמנה מעל 500 ש״ח. בהזמנות מתחת לסכום זה, עלות המשלוח מחושבת לפי משקל היצירה והיעד, ומוצגת בעת התשלום.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">לאן אתם שולחים?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>אנחנו שולחים כרגע בתוך ישראל בלבד.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">מה מדיניות ההחזרות?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>ניתן להחזיר כל יצירה תוך 14 יום. ההחזרה חינם, ועלות משלוח ההחזרה היא על חשבוננו.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">אילו אמצעי תשלום מתקבלים?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>ניתן לשלם באמצעות ויזה, מאסטרקארד, אמריקן אקספרס, גוגל פיי ואפל פיי.</p>
+        </div>
+      </details>
+    </div>
+  </reveal-on-scroll>
+
+  <reveal-on-scroll class="faq__group">
+    <h2 class="faq__group-heading">{{ group_3_heading }}</h2>
+    <div class="faq__list">
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">מי עומד מאחורי תמונה לבית?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>תמונה לבית מופעלת על ידי דניאל פיקס, עוסק מורשה 306082793, מושב רינתיה. הצוות שמאחורי הסטודיו הוא דניאל אמינוב וזרמן איסקוב.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
+          <span class="faq__row-question">איך אפשר ליצור איתכם קשר?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>אפשר לפנות אלינו בטלפון, באימייל או בוואטסאפ דרך עמוד <a href="/pages/contact" class="faq__link">צרו קשר</a>, שם תמצאו גם את הכתובת המלאה שלנו.</p>
+        </div>
+      </details>
+    </div>
+  </reveal-on-scroll>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('.faq__row').forEach(function (row) {
+      var answer = row.querySelector('.faq__row-answer');
+      var summary = row.querySelector('.faq__row-summary');
+
+      function setHeight(open) {
+        answer.style.maxHeight = open ? answer.scrollHeight + 'px' : '0px';
+      }
+
+      setHeight(row.open);
+
+      summary.addEventListener('click', function (event) {
+        event.preventDefault();
+        var willOpen = !row.open;
+
+        if (willOpen) {
+          row.open = true;
+          requestAnimationFrame(function () { setHeight(true); });
+        } else {
+          setHeight(false);
+          window.setTimeout(function () { row.open = false; }, 350);
+        }
+      });
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .faq {
+    padding-block: 32px 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+  }
+
+  .faq__intro {
+    display: block;
+    text-align: center;
+    max-width: 38rem;
+    margin-inline: auto;
+  }
+
+  .faq__eyebrow {
+    font-family: var(--font-accent--family);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: #1a1a2e;
+    opacity: 0.65;
+    margin: 0 0 16px;
+  }
+
+  .faq__heading {
+    font-family: var(--font-heading--family);
+    font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+    line-height: 1.2;
+    color: #1a1a2e;
+    margin: 0 0 16px;
+  }
+
+  .faq__subtitle {
+    font-family: var(--font-body--family);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgb(var(--color-foreground-rgb) / 70%);
+    margin: 0;
+  }
+
+  .faq__group {
+    display: block;
+    max-width: 46rem;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .faq__group-heading {
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: #1a1a2e;
+    margin: 0 0 20px;
+    padding-inline-start: 4px;
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq__row {
+    background-color: #ffffff;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 8%);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .faq__row[open] {
+    box-shadow: 0 10px 28px rgba(26, 26, 46, 0.08);
+    border-color: rgb(var(--color-foreground-rgb) / 14%);
+  }
+
+  .faq__row-summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .faq__row-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__row-question {
+    font-family: var(--font-body--family);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #1a1a2e;
+    text-align: right;
+  }
+
+  .faq__row-icon {
+    flex: none;
+    position: relative;
+    width: 18px;
+    height: 18px;
+  }
+
+  .faq__row-icon::before,
+  .faq__row-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #1a1a2e;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  .faq__row-icon::before {
+    width: 18px;
+    height: 1.5px;
+  }
+
+  .faq__row-icon::after {
+    width: 1.5px;
+    height: 18px;
+  }
+
+  .faq__row[open] .faq__row-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq__row-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .faq__row-answer p {
+    margin: 0;
+    padding: 0 24px 22px;
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgb(var(--color-foreground-rgb) / 75%);
+  }
+
+  .faq__link {
+    color: #1a1a2e;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .faq {
+      gap: 56px;
+      padding-block: 24px 80px;
+    }
+
+    .faq__row-question {
+      font-size: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .faq reveal-on-scroll.is-observing {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq reveal-on-scroll.is-observing.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [],
+  "presets": [
+    {
+      "name": "FAQ"
+    }
+  ]
+}
+{% endschema %}
