@@ -269,12 +269,18 @@
     opacity: 1;
   }
   /* The site-wide card-hover-effect setting (subtle-zoom/scale, see
-     base.css) scales .card-gallery or .product-card on hover. On cards with
-     a night image that zoom was compounding with the crossfade into a
-     jittery combined motion - the ask here is just the opacity swap, so
-     hover on these specific cards is locked to no transform at all. */
-  .card-gallery:has(.card-gallery__night-image),
-  .product-card:has(.card-gallery__night-image) {
+     base.css) scales .card-gallery on hover. On cards with a night image
+     that zoom was compounding with the crossfade into a jittery combined
+     motion - the ask here is just the opacity swap, so hover on this
+     specific inner element is locked to no transform at all.
+     .product-card itself is deliberately NOT included here anymore: its
+     own hover lift (theme.liquid, translateY only, no scale) moves the
+     whole card as one rigid unit and doesn't distort or rescale the
+     crossfading image inside it, so it doesn't reproduce the original
+     jitter this rule exists to prevent - this rule was blocking that
+     lift entirely on every product with a night-mode image, which is
+     effectively the whole catalog. */
+  .card-gallery:has(.card-gallery__night-image) {
     transform: none !important;
   }
 
