@@ -1449,11 +1449,18 @@
         box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.28), 0 8px 20px rgba(232, 163, 61, 0.22);
       }
       .collection-card {
-        transition: box-shadow 0.35s ease;
+        transition: outline-offset 0.35s ease, outline-color 0.35s ease;
         border-radius: 10px;
+        outline: 2px solid transparent;
+        outline-offset: 0px;
       }
+      /* Ring sat flush against the card edge before (a plain box-shadow
+         ring), which read as tight/harsh right on the image border. An
+         offset outline instead, so there's real breathing room between
+         the card and the amber line. */
       .collection-card:hover {
-        box-shadow: 0 0 0 2px var(--color-accent-amber, #e8a33d);
+        outline-color: var(--color-accent-amber, #e8a33d);
+        outline-offset: 6px;
       }
       /* Judge.me's own empty-review-state markup (targeted by its stable
          outer #judgeme_product_reviews id only, not its internal classes,
