@@ -64,7 +64,7 @@
       type settings ask for light weights, and without those faces the browser
       substitutes 400, which reads as unintentionally bold.
     {%- endcomment -%}
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet"></noscript>>
     <style data-v="{{ 'now' | date: '%s' }}">
       :root {
         --font-body--family: 'Heebo', sans-serif !important;
