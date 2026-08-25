@@ -19,8 +19,8 @@
 <script>
   (function () {
     var nightImages = {
-      '__hero_split_tlb01': {{ 'hero-night.png' | asset_url | json }},
-      '__hero_overlay_LfPdEJ': {{ 'banner-night.png' | asset_url | json }}
+    '__hero_split_tlb01': {{ 'hero-night.png' | asset_url | append: '&width=1000' | json }},
+    '__hero_overlay_LfPdEJ': {{ 'banner-night.png' | asset_url | append: '&width=1000' | json }}
     };
     var ledColors = [
       { color: '', label: 'לבן חם', active: true, gradient: true },
