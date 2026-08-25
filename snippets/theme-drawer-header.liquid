@@ -18,7 +18,15 @@
 {% enddoc %}
 
 <div class="theme-drawer__header">
-  <h2
+  {%- comment -%}
+    A <p>, not a heading: aria-labelledby on the drawer's dialog element
+    reads its accessible name from this element's text regardless of tag,
+    so it doesn't need to be a real heading, and this drawer's title isn't
+    part of the page's document outline (it's off-canvas until opened, one
+    of several such labels across the theme that were showing up as
+    same-level headings alongside actual page content).
+  {%- endcomment -%}
+  <p
     class="theme-drawer__title h4"
     {% if heading_id %}
       id="{{ heading_id }}"
@@ -26,7 +34,7 @@
   >
     {{ title }}
     {{ title_append }}
-  </h2>
+  </p>
 
   <button
     class="theme-drawer__close-button"
