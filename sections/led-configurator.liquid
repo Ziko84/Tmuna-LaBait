@@ -212,10 +212,11 @@
               "@type": "OfferShippingDetails",
               "shippingRate": { "@type": "MonetaryAmount", "value": "{{ _ship }}", "currency": "ILS" },
               "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "IL" },
+              {%- comment -%} Matches GMC shipping settings: same business day handling, 3-5 business day transit. {%- endcomment -%}
               "deliveryTime": {
                 "@type": "ShippingDeliveryTime",
-                "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "DAY" },
-                "transitTime": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 6, "unitCode": "DAY" }
+                "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+                "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 5, "unitCode": "DAY" }
               }
             }
           }
