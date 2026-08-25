@@ -25,7 +25,12 @@
 {%- assign contact_phone_local = contact_phone_digits | remove_first: '0' -%}
 {%- assign contact_phone_intl = contact_phone_local | prepend: '972' -%}
 {%- assign effective_whatsapp = section.settings.whatsapp_number | default: contact_phone_intl -%}
-{%- assign effective_address = section.settings.address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: shop.address.zip | append: ', ישראל' -%}
+{%- comment -%}
+  Order matches Google Merchant Center's required address format and the
+  footer (blocks/footer-copyright.liquid): address line, city, postcode.
+  Israel has no state field, and no trailing country per GMC's format.
+{%- endcomment -%}
+{%- assign effective_address = section.settings.address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: shop.address.zip -%}
 {%- assign effective_email = section.settings.email | default: shop.email -%}
 
 <div class="contact-page page-width-content">
