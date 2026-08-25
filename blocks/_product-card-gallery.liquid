@@ -109,10 +109,18 @@
 {% render 'product-badges-styles' %}
 
 {% stylesheet %}
+  {%- comment -%}
+    inset-inline-start rather than -end: this store's badge_position setting
+    defaults to top-left (a physical "left" regardless of text direction, see
+    .product-badges--top-left in product-badges-styles.liquid). In this RTL
+    theme inline-start resolves to the physical right, keeping the heart in
+    the opposite corner from the badge so a featured/sale tag never sits on
+    top of it.
+  {%- endcomment -%}
   .favorite-toggle {
     position: absolute;
     top: var(--padding-sm, 16px);
-    inset-inline-end: var(--padding-sm, 16px);
+    inset-inline-start: var(--padding-sm, 16px);
     z-index: 2;
     display: flex;
     align-items: center;
