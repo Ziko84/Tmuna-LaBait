@@ -17,12 +17,12 @@
 {%- assign shop_phone_p3 = shop_phone_digits | slice: 6, 4 -%}
 {%- assign shop_phone_formatted = shop_phone_p1 | append: '-' | append: shop_phone_p2 | append: '-' | append: shop_phone_p3 -%}
 {%- comment -%}
-  Order matches Google Merchant Center's required footer address format:
-  address line, city, state, postcode. Israel has no state, so state is
-  skipped and postcode follows city directly. No trailing country, GMC's
-  format does not call for one.
+  Order matches the required footer address format: address line,
+  city, area/district, postcode, country. Israel has no formal
+  province field in Shopify, so the district is a literal; country
+  is appended last per the required order.
 {%- endcomment -%}
-{%- assign biz_address = block_settings.business_address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: shop.address.zip -%}
+{%- assign biz_address = block_settings.business_address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: 'מחוז המרכז' | append: ', ' | append: shop.address.zip | append: ', ' | append: shop.address.country -%}
 {%- assign biz_phone = block_settings.business_phone | default: shop_phone_formatted -%}
 {%- assign biz_email = block_settings.business_email | default: shop.email -%}
 <div
