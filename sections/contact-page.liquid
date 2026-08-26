@@ -1,3 +1,5 @@
+
+
 <script
   src="{{ 'reveal-on-scroll.js' | asset_url }}"
   type="module"
@@ -18,12 +20,7 @@
 {%- assign contact_phone_p1 = contact_phone_digits | slice: 0, 3 -%}
 {%- assign contact_phone_p2 = contact_phone_digits | slice: 3, 3 -%}
 {%- assign contact_phone_p3 = contact_phone_digits | slice: 6, 4 -%}
-{%- assign contact_phone_formatted = contact_phone_p1
-  | append: '-'
-  | append: contact_phone_p2
-  | append: '-'
-  | append: contact_phone_p3
--%}
+{%- assign contact_phone_formatted = contact_phone_p1 | append: '-' | append: contact_phone_p2 | append: '-' | append: contact_phone_p3 -%}
 {%- assign effective_phone = section.settings.phone | default: contact_phone_formatted -%}
 {%- assign contact_phone_local = contact_phone_digits | remove_first: '0' -%}
 {%- assign contact_phone_intl = contact_phone_local | prepend: '972' -%}
@@ -34,17 +31,7 @@
   postcode, country. Israel has no formal province field, so the
   district is a literal; country is appended last.
 {%- endcomment -%}
-{%- assign effective_address = section.settings.address
-  | default: shop.address.address1
-  | append: ', '
-  | append: shop.address.city
-  | append: ', '
-  | append: 'מחוז המרכז'
-  | append: ', '
-  | append: shop.address.zip
-  | append: ', '
-  | append: shop.address.country
--%}
+{%- assign effective_address = section.settings.address | default: shop.address.address1 | append: ', ' | append: shop.address.city | append: ', ' | append: 'מחוז המרכז' | append: ', ' | append: shop.address.zip | append: ', ' | append: shop.address.country -%}
 {%- assign effective_email = section.settings.email | default: shop.email -%}
 
 <div class="contact-page page-width-content">
@@ -234,7 +221,8 @@
           <span class="contact-page__channel-value-wrap">
             <span class="contact-page__channel-value">{{ effective_email }}</span>
           </span>
-        </a>
+          
+        /a>
       </contact-channel-reveal>
 
       <contact-channel-reveal class="contact-page__channel-wrap is-revealed">        <
@@ -248,60 +236,59 @@
           <span class="contact-page__channel-value-wrap">
             <span class="contact-page__channel-value">{{ effective_phone }}</span>
           </span>
-        </a>
+        /a>
       </contact-channel-reveal>
     </reveal-on-scroll>
 
+    <reveal-on-scroll class="contact-page__meta">
+      <p class="contact-page__meta-line">
+        {{ section.settings.hours_label }}: {{ section.settings.hours_days }}, {{ section.settings.hours_time }}
+      </p>
+      {% if effective_address != blank %}
+        {%- comment -%}
+          Google's Hebrew-text geocoder can't resolve this address and falls
+          back to an unrelated keyword search. The address IS indexed, but
+          only under its Latin transliteration ("Derekh ha-Rimonim 29,
+          Rinatya"). map_coordinates pins that exact resolved point instead
+          of relying on live text geocoding.
+        {%- endcomment -%}
+        {% assign maps_query = section.settings.map_coordinates | default: effective_address | url_encode %}
+        <p class="contact-page__meta-line">
+          <a
+            href="https://www.google.com/maps/search/?api=1&query={{ maps_query }}"
+            target="_blank"
+            rel="noopener"
+            class="contact-page__map-link"
+          >
+            {{ effective_address }}
+          </a>
+        </p>
+      {% endif %}
+      {% if section.settings.business_identity != blank %}
+        <p class="contact-page__meta-line contact-page__meta-line--muted">
+          {{ section.settings.business_identity }}
+        </p>
+      {% endif %}
+    </reveal-on-scroll>
 
-<reveal-on-scroll class="contact-page__meta">
-  <p class="contact-page__meta-line">
-    {{ section.settings.hours_label }}: {{ section.settings.hours_days }}, {{ section.settings.hours_time }}
-  </p>
-  {% if effective_address != blank %}
-    {%- comment -%}
-      Google's Hebrew-text geocoder can't resolve this address and falls
-      back to an unrelated keyword search. The address IS indexed, but
-      only under its Latin transliteration ("Derekh ha-Rimonim 29,
-      Rinatya"). map_coordinates pins that exact resolved point instead
-      of relying on live text geocoding.
-    {%- endcomment -%}
-    {% assign maps_query = section.settings.map_coordinates | default: effective_address | url_encode %}
-    <p class="contact-page__meta-line">
-      <a
-        href="https://www.google.com/maps/search/?api=1&query={{ maps_query }}"
-        target="_blank"
-        rel="noopener"
-        class="contact-page__map-link"
-      >
-        {{ effective_address }}
-      </a>
-    </p>
-  {% endif %}
-  {% if section.settings.business_identity != blank %}
-    <p class="contact-page__meta-line contact-page__meta-line--muted">
-      {{ section.settings.business_identity }}
-    </p>
-  {% endif %}
-</reveal-on-scroll>
+    {% if effective_address != blank %}
+      <reveal-on-scroll class="contact-page__map">
+        <iframe
+          src="https://www.google.com/maps?q={{ maps_query }}&z=17&output=embed"
+          width="100%"
+          height="240"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="{{ shop.name }} על המפה"
+        ></iframe>
+      </reveal-on-scroll>
+    {% endif %}
+  </div>
 
-{% if effective_address != blank %}
-  <reveal-on-scroll class="contact-page__map">
-    <iframe
-      src="https://www.google.com/maps?q={{ maps_query }}&z=17&output=embed"
-      width="100%"
-      height="240"
-      style="border:0"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="{{ shop.name }} על המפה"
-    ></iframe>
+  <reveal-on-scroll class="contact-page__footer">
+    <p>{{ section.settings.footer_message }}</p>
   </reveal-on-scroll>
-{% endif %}
-</div>
-
-<reveal-on-scroll class="contact-page__footer">
-  <p>{{ section.settings.footer_message }}</p>
-</reveal-on-scroll>
 </div>
 
 {% stylesheet %}
