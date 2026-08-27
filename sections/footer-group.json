@@ -179,7 +179,7 @@
           },
           "blocks": {}
         },
-        "group_hAzkCn": {
+        "brand_group": {
           "type": "group",
           "settings": {
             "content_direction": "column",
@@ -187,11 +187,11 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "flex-start",
-            "gap": 24,
+            "gap": 14,
             "width": "fill",
-            "custom_width": 35,
+            "custom_width": 30,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fill",
@@ -218,16 +218,38 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_jBr8nr": {
+            "brand_mark": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/logo_only_transparent_1024px.png",
+                "link": "",
+                "image_ratio": "square",
+                "width": "custom",
+                "custom_width": 16,
+                "width_mobile": "custom",
+                "custom_width_mobile": 14,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "brand_name": {
               "type": "text",
               "settings": {
-                "text": "<p>תשלום מאובטח</p>",
+                "text": "<p>תמונה לבית</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "right",
                 "type_preset": "h3",
                 "font": "var(--font-primary--family)",
-                "font_size": "1rem",
+                "font_size": "1.05rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -236,18 +258,31 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 10,
+                "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
               "blocks": {}
             },
-            "payment_icons_trust": {
-              "type": "payment-icons",
+            "brand_tagline": {
+              "type": "text",
               "settings": {
-                "horizontal_alignment": "flex-start",
-                "gap": 10,
+                "text": "<p>נחתך בידינו, לא בידי אחרים</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "right",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "0.85rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -257,16 +292,17 @@
             }
           },
           "block_order": [
-            "text_jBr8nr",
-            "payment_icons_trust"
+            "brand_mark",
+            "brand_name",
+            "brand_tagline"
           ]
         }
       },
       "block_order": [
+        "brand_group",
         "menu_8tJbUk",
         "menu_jRmAQi",
-        "menu_6jWwP4",
-        "group_hAzkCn"
+        "menu_6jWwP4"
       ],
       "name": "Footer",
       "settings": {
@@ -294,10 +330,23 @@
             "case": "none"
           },
           "blocks": {}
+        },
+        "payment_icons_utilities": {
+          "type": "payment-icons",
+          "settings": {
+            "horizontal_alignment": "flex-end",
+            "gap": 8,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "copyright"
+        "copyright",
+        "payment_icons_utilities"
       ],
       "settings": {
         "section_width": "page-width",
