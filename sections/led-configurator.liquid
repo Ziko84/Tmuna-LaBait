@@ -30,7 +30,11 @@
           <img class="lc__layer lc__layer--day" src="{{ img_off.preview_image | image_url: width: 1000 }}" alt="{{ img_off_alt | escape }}">
         {%- endif -%}
         {%- if img_lit -%}
-          {%- assign img_lit_alt = img_lit.alt | default: product.title | append: ' מואר' -%}
+          {%- if img_lit.alt != blank -%}
+            {%- assign img_lit_alt = img_lit.alt -%}
+          {%- else -%}
+            {%- assign img_lit_alt = product.title | append: ' מואר' -%}
+          {%- endif -%}
           <img class="lc__layer lc__layer--night" src="{{ img_lit.preview_image | image_url: width: 1000 }}" alt="{{ img_lit_alt | escape }}">
         {%- endif -%}
         <span class="lc__pstate" id="lc-pstate"></span>
