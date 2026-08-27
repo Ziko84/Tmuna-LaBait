@@ -289,33 +289,34 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "brand_payment_icons": {
-              "type": "payment-icons",
-              "settings": {
-                "horizontal_alignment": "flex-start",
-                "gap": 10,
-                "padding-block-start": 6,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "brand_mark",
             "brand_name",
-            "brand_tagline",
-            "brand_payment_icons"
+            "brand_tagline"
           ]
+        },
+        "payment_icons_row": {
+          "type": "payment-icons",
+          "settings": {
+            "horizontal_alignment": "flex-start",
+            "gap": 10,
+            "icon_height": 18,
+            "padding-block-start": 8,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "brand_group",
         "menu_8tJbUk",
         "menu_jRmAQi",
-        "menu_6jWwP4"
+        "menu_6jWwP4",
+        "payment_icons_row"
       ],
       "name": "Footer",
       "settings": {
