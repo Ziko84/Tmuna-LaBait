@@ -289,59 +289,13 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            }
-          },
-          "block_order": [
-            "brand_mark",
-            "brand_name",
-            "brand_tagline"
-          ]
-        },
-        "payment_icons_wrap": {
-          "type": "group",
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "flex-start",
-            "gap": 10,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 24,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "payment_icons_row": {
+            },
+            "brand_payment_icons": {
               "type": "payment-icons",
               "settings": {
                 "horizontal_alignment": "flex-start",
                 "gap": 10,
-                "padding-block-start": 0,
+                "padding-block-start": 6,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -350,12 +304,14 @@
             }
           },
           "block_order": [
-            "payment_icons_row"
+            "brand_mark",
+            "brand_name",
+            "brand_tagline",
+            "brand_payment_icons"
           ]
         }
       },
       "block_order": [
-        "payment_icons_wrap",
         "brand_group",
         "menu_8tJbUk",
         "menu_jRmAQi",
