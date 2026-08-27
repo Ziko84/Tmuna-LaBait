@@ -26,10 +26,12 @@
     <div class="lc__media">
       <div class="lc__preview" id="lc-preview">
         {%- if img_off -%}
-          <img class="lc__layer lc__layer--day" src="{{ img_off.preview_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}">
+          {%- assign img_off_alt = img_off.alt | default: product.title -%}
+          <img class="lc__layer lc__layer--day" src="{{ img_off.preview_image | image_url: width: 1000 }}" alt="{{ img_off_alt | escape }}">
         {%- endif -%}
         {%- if img_lit -%}
-          <img class="lc__layer lc__layer--night" src="{{ img_lit.preview_image | image_url: width: 1000 }}" alt="{{ product.title | escape }} מואר">
+          {%- assign img_lit_alt = img_lit.alt | default: product.title | append: ' מואר' -%}
+          <img class="lc__layer lc__layer--night" src="{{ img_lit.preview_image | image_url: width: 1000 }}" alt="{{ img_lit_alt | escape }}">
         {%- endif -%}
         <span class="lc__pstate" id="lc-pstate"></span>
       </div>
