@@ -265,16 +265,15 @@
           of relying on live text geocoding.
         {%- endcomment -%}
         {% assign maps_query = section.settings.map_coordinates | default: effective_address | url_encode %}
-        <p class="contact-page__meta-line">
-          <a
-            href="https://www.google.com/maps/search/?api=1&query={{ maps_query }}"
-            target="_blank"
-            rel="noopener"
-            class="contact-page__map-link"
-          >
-            {{ effective_address }}
-          </a>
-        </p>
+        <p class="contact-page__meta-line contact-page__address">
+                      <span class="contact-page__address-text">{{ effective_address }}</span>
+                                  <a
+                                                href="https://www.google.com/maps/search/?api=1&query={{ maps_query }}"
+                                                              target="_blank"
+                                                                            rel="noopener"
+                                                                                          class="contact-page__map-link contact-page__map-link--small"
+                                                                                                      >(פתח במפות)</a>
+                                                                                                                </p>>
       {% endif %}
       {% if section.settings.business_identity != blank %}
         <p class="contact-page__meta-line contact-page__meta-line--muted">
