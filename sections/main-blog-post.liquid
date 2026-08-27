@@ -56,8 +56,40 @@
   </div>
 </div>
 
+{%- comment -%}
+  Hand-authored BlogPosting instead of the native `article | structured_data`
+  filter (which outputs @type: Article with no publisher.logo). Same logo
+  source as the site-wide Organization schema in snippets/meta-tags.liquid,
+  so the two stay consistent.
+{%- endcomment -%}
 <script type="application/ld+json">
-  {{ article | structured_data }}
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ article.url | prepend: shop.url | json }}
+  },
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt | strip_html | default: article.content | strip_html | truncate: 300 | json }},
+  {% if article.image %}"image": {{ article.image | image_url: width: 1920 | prepend: "https:" | json }},{% endif %}
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+  "author": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }}
+    {% if settings.logo %},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }}
+    }
+    {% endif %}
+  }
+}
 </script>
 
 {% stylesheet %}
