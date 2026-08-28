@@ -3,6 +3,8 @@
 
   @param {object} [block] - The block object
   @param {boolean} [unset_image_tag] - if true, ignores the image focal point in the image
+  @param {string} [fetchpriority] - 'high' for the page's LCP image, otherwise omit
+  @param {string} [sizes] - responsive sizes attribute for the rendered image
 {%- enddoc -%}
 
 {% liquid
@@ -46,7 +48,9 @@
         {% render 'image',
           image: block_settings.image,
           class: 'media-block__media border-style',
-          unset_image_tag: unset_image_tag
+          unset_image_tag: unset_image_tag,
+          fetchpriority: fetchpriority,
+          sizes: sizes
         %}
       {% else %}
         <div class="media-block__media border-style">

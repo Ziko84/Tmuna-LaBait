@@ -4,9 +4,20 @@
   if block.settings.image_position == 'contain'
     assign unset_image_tag = true
   endif
+
+  # Matches sections/hero.liquid's own convention: only the first section on
+  # the page is the LCP candidate, so only it gets fetchpriority=high and a
+  # width-based responsive srcset. Every other media-with-content instance on
+  # the page keeps the default (lazy-eligible, DPR-based) image rendering.
+  assign fetch_priority = null
+  assign responsive_sizes = null
+  if section.index == 1
+    assign fetch_priority = 'high'
+    assign responsive_sizes = '(min-width: 750px) 60vw, 100vw'
+  endif
 %}
 
-{% render 'media', unset_image_tag: unset_image_tag %}
+{% render 'media', unset_image_tag: unset_image_tag, fetchpriority: fetch_priority, sizes: responsive_sizes %}
 
 {% schema %}
 {

@@ -8,6 +8,11 @@
   @param {boolean} [unset_image_tag] - if true, ignores the image focal point
   @param {string} [style] - additional styles
   @param {string} [alt_text_fallback] - Optional text to display if image alt text is blank
+  @param {string} [fetchpriority] - 'high' for the page's LCP image, otherwise omit
+  @param {string} [sizes] - responsive sizes attribute; when given, switches to a
+    width-based srcset (matching sections/hero.liquid's convention) instead of the
+    default 1x/2x/3x pixel-density srcset, so mobile doesn't download a desktop-sized
+    image
 
   @example
   {% render 'image', image: product.featured_image, height: 300, class: 'product-image' %}
@@ -52,11 +57,31 @@
     {% assign style_value = style_value | append: 'object-position: inherit;' %}
   {% endif %}
 
-  {{
-    image
-    | image_url: height: image_height
-    | image_tag: class: class, srcset: image_srcset, style: style_value, alt: image_alt_text
-  }}
+  {% assign loading_value = 'lazy' %}
+  {% if fetchpriority == 'high' %}
+    {% assign loading_value = 'eager' %}
+  {% endif %}
+
+  {% if sizes %}
+    {{
+      image
+      | image_url: width: 1600
+      | image_tag:
+        widths: '400, 600, 832, 1200, 1600, 2000, 2560',
+        sizes: sizes,
+        class: class,
+        style: style_value,
+        alt: image_alt_text,
+        fetchpriority: fetchpriority,
+        loading: loading_value
+    }}
+  {% else %}
+    {{
+      image
+      | image_url: height: image_height
+      | image_tag: class: class, srcset: image_srcset, style: style_value, alt: image_alt_text, fetchpriority: fetchpriority, loading: loading_value
+    }}
+  {% endif %}
 {% elsif text_fallback %}
   {{ text_fallback }}
 {% endif %}
