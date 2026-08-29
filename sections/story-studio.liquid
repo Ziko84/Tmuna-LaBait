@@ -249,7 +249,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
-    align-items: center;
+    align-items: stretch;
     padding-block: 48px;
   }
 
@@ -264,8 +264,11 @@
     margin-block-end: 0;
   }
 
+  /* Matches the text column's actual height (stretch on the grid row)
+     rather than a fixed aspect-ratio, so the two boxes end level instead
+     of the photo running shorter or taller than the text beside it. */
   .story-studio__body-photo {
-    aspect-ratio: 4 / 3;
+    min-height: 260px;
     border-radius: 16px;
     overflow: hidden;
   }
