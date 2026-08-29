@@ -1516,7 +1516,13 @@
          page: the badge rendered in --color-background grey, not amber). */
       .product-badges__badge--featured {
         background: var(--color-accent-amber, #e8a33d) !important;
-        color: var(--color-foreground) !important;
+        /* Fixed to the sale badge's literal text color setting, not the
+           ambient --color-foreground var - that one is color-scheme
+           relative and flips to white on sections using a dark scheme,
+           while the sale badge (via the contrast-override snippet) always
+           locks its own scoped --color-foreground to this same setting
+           regardless of scheme. */
+        color: {{ settings.badge_sale_text_color }} !important;
         font-weight: 600 !important;
       }
 
