@@ -9,25 +9,6 @@
  */
 {
   "sections": {
-    "story_banner": {
-      "type": "policy-page",
-      "settings": {
-        "eyebrow": "מי אנחנו",
-        "show_page_content": false,
-        "background_color": "#f7f5f2"
-      }
-    },
-    "story_editorial": {
-      "type": "story-editorial",
-      "settings": {
-        "eyebrow": "",
-        "heading": "מהסקיצה הראשונה ועד הקיר שלכם",
-        "body": "<p>כל יצירה מתחילה בסקיצה. עיפרון על נייר, לפני שהיא הופכת לקובץ, ולפני שהיא הופכת לעץ.</p><p>אנחנו צוות קטן, שני אנשים בלבד, שבוחרים בקפידה MDF איכותי ועמיד לכל יצירה, ואז חורטים אותה במכונת הלייזר שלנו בדיוק של שבריר מילימטר.</p><p>אנחנו לא עובדים עם ספקים או מתווכים. כל שלב, מהסקיצה ועד ההרכבה הסופית, קורה כאן, באולפן שלנו, והיצירה מגיעה אליכם מוכנה לתלייה.</p>",
-        "background_color": "#f7f5f2",
-        "padding-block-start": 32,
-        "padding-block-end": 64
-      }
-    },
     "story_studio": {
       "type": "story-studio",
       "blocks": {
@@ -47,122 +28,106 @@
             "role": "מייסד, אחראי על הדיגיטל והחנות המקוונת"
           }
         },
+        "photo_laser_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-laser-2.png",
+            "caption": "מכונת חיתוך הלייזר שלנו",
+            "tile_size": "big"
+          }
+        },
         "photo_workbench": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-studio-workbench.png",
-            "caption": "שולחן העבודה שלנו"
-          }
-        },
-        "photo_sign": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-studio-sign.png",
-            "caption": "האולפן ברינתיה"
+            "caption": "שולחן העבודה שלנו",
+            "tile_size": "wide"
           }
         },
         "photo_working": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-workshop-daniel-working.png",
-            "caption": "עבודה על יצירה"
-          }
-        },
-        "photo_laser_1": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-laser-1.png",
-            "caption": "מכונת חיתוך הלייזר שלנו"
-          }
-        },
-        "photo_laser_2": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-laser-2.png",
-            "caption": "חיתוך בלייזר, מקרוב"
-          }
-        },
-        "photo_cnc_1": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-cnc-1.png",
-            "caption": "מכונת ה-CNC לחריטה מדויקת"
+            "caption": "עבודה על יצירה",
+            "tile_size": "wide"
           }
         },
         "photo_cnc_2": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-cnc-2.png",
-            "caption": "ראש הכרסום בפעולה"
+            "caption": "ראש הכרסום בפעולה",
+            "tile_size": "normal"
           }
         },
         "photo_saw_1": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-saw-1.png",
-            "caption": "מסור הפורמט לחיתוך מדויק"
+            "caption": "מסור הפורמט לחיתוך מדויק",
+            "tile_size": "normal"
           }
         },
         "photo_saw_2": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-saw-2.png",
-            "caption": "חיתוך עץ בדיוק מילימטרי"
+            "caption": "חיתוך עץ בדיוק מילימטרי",
+            "tile_size": "normal"
           }
         },
         "photo_edgeband_1": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-edgeband-1.png",
-            "caption": "מכונת הקצעת הפינות"
+            "caption": "מכונת הקצעת הפינות",
+            "tile_size": "normal"
           }
         },
         "photo_edgeband_2": {
           "type": "workshop_photo",
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-edgeband-2.png",
-            "caption": "גימור הקצוות של כל יצירה"
+            "caption": "גימור הקצוות של כל יצירה",
+            "tile_size": "normal"
+          }
+        },
+        "photo_laser_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-laser-1.png",
+            "caption": "מכונת חיתוך הלייזר, מקרוב",
+            "tile_size": "normal"
           }
         }
       },
       "block_order": [
         "member_daniel",
         "member_zerman",
-        "photo_workbench",
-        "photo_sign",
-        "photo_working",
-        "photo_laser_1",
         "photo_laser_2",
-        "photo_cnc_1",
+        "photo_workbench",
+        "photo_working",
         "photo_cnc_2",
         "photo_saw_1",
         "photo_saw_2",
         "photo_edgeband_1",
-        "photo_edgeband_2"
+        "photo_edgeband_2",
+        "photo_laser_1"
       ],
       "settings": {
-        "eyebrow": "מאחורי הקלעים",
-        "heading": "האולפן שלנו",
-        "intro": "לא צוות שיווק ולא מפעל רחוק. שני אנשים, מכונת לייזר אחת, ואולפן קטן ברינתיה, שבו כל יצירה נולדת.",
-        "background_color": "#f7f5f2",
-        "padding_block": 72
-      }
-    },
-    "story_philosophy": {
-      "type": "story-philosophy",
-      "settings": {
+        "hero_image": "shopify://shop_images/tmuna-labait-studio-sign.png",
+        "headline": "מהסקיצה הראשונה ועד הקיר שלכם",
+        "body": "<p>כל יצירה מתחילה בסקיצה. עיפרון על נייר, לפני שהיא הופכת לקובץ, ולפני שהיא הופכת לעץ.</p><p>אנחנו צוות קטן, שני אנשים בלבד, שבוחרים בקפידה MDF איכותי ועמיד לכל יצירה, ואז חורטים אותה במכונת הלייזר שלנו בדיוק של שבריר מילימטר.</p><p>אנחנו לא עובדים עם ספקים או מתווכים. כל שלב, מהסקיצה ועד ההרכבה הסופית, קורה כאן, באולפן שלנו, והיצירה מגיעה אליכם מוכנה לתלייה.</p>",
+        "body_image": "shopify://shop_images/tmuna-labait-machine-cnc-1.png",
+        "equipment_heading": "הציוד באולפן",
         "quote": "אנחנו מאמינים שאמנות טובה לא צריכה לצעוק. היא נוכחת בשקט, מדויקת, ונשארת רלוונטית שנים קדימה.",
-        "button_label": "למעבר לקולקציות",
-        "button_link": "shopify://collections/frontpage",
-        "background_color": "#f7f5f2",
-        "padding_block": 64
+        "quote_cta_label": "למעבר לקולקציות",
+        "quote_cta_link": "shopify://collections/frontpage",
+        "background_color": "#f7f5f2"
       }
     }
   },
   "order": [
-    "story_banner",
-    "story_editorial",
-    "story_studio",
-    "story_philosophy"
+    "story_studio"
   ]
 }
