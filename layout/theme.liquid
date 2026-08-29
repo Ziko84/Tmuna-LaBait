@@ -1506,6 +1506,12 @@
     {{ content_for_header }}
 
     <style>
+      /* All product-card badges (sale, sold-out, featured) hidden per
+         request - removes the "מבצע" and "מומלץ" tags from cards. */
+      .product-badges {
+        display: none !important;
+      }
+
       /* Featured-product badge (see _product-card-gallery.liquid): the one
          hierarchy signal the product grid otherwise has none of. Placed in
          THIS block, not the main one above - product-badges-styles.liquid's
