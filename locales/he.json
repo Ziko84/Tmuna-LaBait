@@ -319,7 +319,7 @@
       "subtext": "כרטיס המתנה שלך",
       "shop_link": "לביקור בחנות האונליין",
       "add_to_apple_wallet": "הוספה ל־Apple Wallet",
-      "qr_image_alt": "קוד QR — סרקו למימוש כרטיס המתנה",
+      "qr_image_alt": "קוד QR - סרקו למימוש כרטיס המתנה",
       "copy_code": "העתקת קוד כרטיס המתנה",
       "expiration_date": "בתוקף עד {{ expires_on }}",
       "copy_code_success": "הקוד הועתק בהצלחה",
