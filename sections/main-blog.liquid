@@ -49,15 +49,19 @@
       %}
       {% for article in blog.articles %}
         {% liquid
-          # Uniform card grid: every post gets the same size, no featured/hero treatment
+          # The latest post (first in the loop) gets the wide, featured
+          # horizontal treatment. Everything else stays the uniform grid.
           assign col_span = 2
           assign scale = 0.8
-          assign is_horizontal = false
+          assign is_featured = false
 
           if items_on_page == 1
             assign col_span = 6
           elsif items_on_page == 2
             assign col_span = 3
+          elsif forloop.first
+            assign col_span = 6
+            assign is_featured = true
           endif
         %}
         {% style %}
@@ -74,10 +78,13 @@
           }
         {% endstyle %}
         <div
-          class="blog-post-item{% if is_horizontal %} blog-post-item--horizontal{% endif %}"
+          class="blog-post-item{% if is_featured %} blog-post-item--horizontal blog-post-item--featured{% endif %}"
           data-testid="blog-post-item"
           data-blog-index="{{ section.id }}-{{ forloop.index }}"
         >
+          {% if is_featured %}
+            <span class="blog-post-item__eyebrow">הפוסט האחרון</span>
+          {% endif %}
           {% content_for 'block', id: 'static-blog-post-card', type: '_blog-post-card', article: article %}
         </div>
       {% endfor %}
@@ -130,6 +137,24 @@
   .blog-post-item {
     border: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-20));
     padding: 0 1rem 1rem;
+  }
+
+  /**
+   * The latest post spans the full row, reusing the theme's existing
+   * horizontal card layout (image/content 70-30 split) instead of a new
+   * one, so it reads as clearly larger than the grid below it.
+   */
+  .blog-post-item--featured {
+    margin-block-end: 8px;
+  }
+
+  .blog-post-item__eyebrow {
+    display: block;
+    margin-block-end: 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-accent-amber, #e8a33d);
   }
 
   .blog-post-item:has(.blog-post-card__image-container) {
