@@ -10,103 +10,103 @@
   class="story-studio"
   style="background-color: {{ section.settings.background_color }};"
 >
-  {% if section.settings.hero_image != blank %}
-    <div class="story-studio__hero">
-      {{
-        section.settings.hero_image
-        | image_url: width: 2000
-        | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          alt: section.settings.hero_image.alt,
-          sizes: '100vw',
-          widths: '750, 1100, 1500, 2000'
-      }}
-      <h1 class="story-studio__hero-heading">{{ section.settings.headline }}</h1>
-    </div>
-  {% endif %}
-
-  <reveal-on-scroll class="story-studio__team">
-    {% for block in section.blocks %}
-      {% if block.type == 'team_member' %}
-        <div class="story-studio__member" {{ block.shopify_attributes }}>
-          {% if block.settings.photo != blank %}
-            <div class="story-studio__member-photo">
-              {{
-                block.settings.photo
-                | image_url: width: 200
-                | image_tag: loading: 'lazy', alt: block.settings.photo.alt, sizes: '84px', widths: '84, 128, 168'
-              }}
-            </div>
-          {% endif %}
-          <div class="story-studio__member-text">
-            <p class="story-studio__member-name">{{ block.settings.name }}</p>
-            {% if block.settings.role != blank %}
-              <p class="story-studio__member-role">{{ block.settings.role }}</p>
-            {% endif %}
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </reveal-on-scroll>
-
-  <reveal-on-scroll class="story-studio__body">
-    <div class="story-studio__body-text">{{ section.settings.body }}</div>
-    {% if section.settings.body_image != blank %}
-      <div class="story-studio__body-photo">
+  <div class="story-studio__inner">
+    {% if section.settings.hero_image != blank %}
+      <div class="story-studio__hero">
         {{
-          section.settings.body_image
-          | image_url: width: 1200
+          section.settings.hero_image
+          | image_url: width: 2000
           | image_tag:
-            loading: 'lazy',
-            alt: section.settings.body_image.alt,
-            sizes: '(min-width: 750px) 50vw, 100vw',
-            widths: '400, 700, 1000, 1200'
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: section.settings.hero_image.alt,
+            sizes: '100vw',
+            widths: '750, 1100, 1500, 2000'
         }}
+        <h1 class="story-studio__hero-heading">{{ section.settings.headline }}</h1>
       </div>
     {% endif %}
-  </reveal-on-scroll>
 
-  {% if section.settings.equipment_heading != blank %}
-    <div class="story-studio__bento-head">
-      <h2>{{ section.settings.equipment_heading }}</h2>
-    </div>
-  {% endif %}
+    <reveal-on-scroll class="story-studio__team">
+      {% for block in section.blocks %}
+        {% if block.type == 'team_member' %}
+          <div class="story-studio__member" {{ block.shopify_attributes }}>
+            {% if block.settings.photo != blank %}
+              <div class="story-studio__member-photo">
+                {{
+                  block.settings.photo
+                  | image_url: width: 200
+                  | image_tag: loading: 'lazy', alt: block.settings.photo.alt, sizes: '84px', widths: '84, 128, 168'
+                }}
+              </div>
+            {% endif %}
+            <div class="story-studio__member-text">
+              <p class="story-studio__member-name">{{ block.settings.name }}</p>
+              {% if block.settings.role != blank %}
+                <p class="story-studio__member-role">{{ block.settings.role }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </reveal-on-scroll>
 
-  <reveal-on-scroll class="story-studio__bento">
-    {% for block in section.blocks %}
-      {% if block.type == 'workshop_photo' and block.settings.image != blank %}
-        <div
-          class="story-studio__tile story-studio__tile--{{ block.settings.tile_size }}"
-          {{ block.shopify_attributes }}
-        >
+    <reveal-on-scroll class="story-studio__body">
+      <div class="story-studio__body-text">{{ section.settings.body }}</div>
+      {% if section.settings.body_image != blank %}
+        <div class="story-studio__body-photo">
           {{
-            block.settings.image
-            | image_url: width: 1000
+            section.settings.body_image
+            | image_url: width: 1200
             | image_tag:
               loading: 'lazy',
-              alt: block.settings.image.alt,
-              sizes: '(min-width: 750px) 25vw, 50vw',
-              widths: '300, 500, 700, 1000'
+              alt: section.settings.body_image.alt,
+              sizes: '(min-width: 750px) 50vw, 100vw',
+              widths: '400, 700, 1000, 1200'
           }}
-          {% if block.settings.caption != blank %}
-            <span class="story-studio__tile-caption">{{ block.settings.caption }}</span>
-          {% endif %}
         </div>
       {% endif %}
-    {% endfor %}
-  </reveal-on-scroll>
+    </reveal-on-scroll>
 
-  {% if section.settings.quote != blank %}
-    <div class="story-studio__quote-band">
-      <div class="story-studio__quote-inner">
+    {% if section.settings.equipment_heading != blank %}
+      <div class="story-studio__bento-head">
+        <h2>{{ section.settings.equipment_heading }}</h2>
+      </div>
+    {% endif %}
+
+    <reveal-on-scroll class="story-studio__bento">
+      {% for block in section.blocks %}
+        {% if block.type == 'workshop_photo' and block.settings.image != blank %}
+          <div
+            class="story-studio__tile story-studio__tile--{{ block.settings.tile_size }}"
+            {{ block.shopify_attributes }}
+          >
+            {{
+              block.settings.image
+              | image_url: width: 1000
+              | image_tag:
+                loading: 'lazy',
+                alt: block.settings.image.alt,
+                sizes: '(min-width: 750px) 25vw, 50vw',
+                widths: '300, 500, 700, 1000'
+            }}
+            {% if block.settings.caption != blank %}
+              <span class="story-studio__tile-caption">{{ block.settings.caption }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </reveal-on-scroll>
+
+    {% if section.settings.quote != blank %}
+      <div class="story-studio__quote-band">
         <p>{{ section.settings.quote }}</p>
         {% if section.settings.quote_cta_label != blank and section.settings.quote_cta_link != blank %}
           <a href="{{ section.settings.quote_cta_link }}">{{ section.settings.quote_cta_label }}</a>
         {% endif %}
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
+  </div>
 </div>
 
 {% stylesheet %}
@@ -121,7 +121,16 @@
     color: #1a1a2e;
   }
 
-  /* Hero: full-bleed photo, the headline overlaid is this page's only H1 */
+  /* Single consistent gutter and width cap for every element on the page,
+     hero included. Previously the hero and team row ran edge to edge while
+     body/bento/quote each carried their own separate inset, so the page
+     had no one consistent margin and things read as randomly placed. */
+  .story-studio__inner {
+    max-width: 1600px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 64px);
+  }
+
   /* width is explicit, not left to resolve from aspect-ratio: combining
      aspect-ratio with max-height on a block otherwise sized by content
      makes the browser shrink the width to preserve the ratio once height
@@ -131,6 +140,9 @@
     position: relative;
     width: 100%;
     height: clamp(260px, 32vw, 440px);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-block-start: clamp(20px, 4vw, 40px);
   }
 
   @media screen and (max-width: 749px) {
@@ -166,23 +178,21 @@
     margin-inline-start: auto;
   }
 
-  /* Team, immediately below the hero: two founders, amber-ringed portraits */
+  /* Team, immediately below the hero: two founders, amber-ringed portraits.
+     Centered as one close-together pair, not stretched to fill the row
+     with each photo anchored out near its own edge. */
   .story-studio__team {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid rgb(26 26 46 / 8%);
+    justify-content: center;
+    gap: clamp(32px, 6vw, 80px);
+    padding-block: 32px;
   }
 
   .story-studio__member {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 28px clamp(20px, 4vw, 56px);
-    flex: 1 1 320px;
-  }
-
-  .story-studio__member + .story-studio__member {
-    border-inline-start: 1px solid rgb(26 26 46 / 8%);
   }
 
   .story-studio__member-photo {
@@ -225,9 +235,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: center;
-    padding: 56px clamp(20px, 4vw, 56px);
-    max-width: var(--story-studio-content-width, 1360px);
-    margin-inline: auto;
+    padding-block: 48px;
   }
 
   .story-studio__body-text p {
@@ -266,9 +274,7 @@
   }
 
   .story-studio__bento-head {
-    padding: 40px clamp(20px, 4vw, 56px) 20px;
-    max-width: var(--story-studio-content-width, 1360px);
-    margin-inline: auto;
+    padding-block: 24px 20px;
   }
 
   .story-studio__bento-head h2 {
@@ -281,9 +287,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 130px;
     gap: 12px;
-    padding: 0 clamp(20px, 4vw, 56px) 56px;
-    max-width: var(--story-studio-content-width, 1360px);
-    margin-inline: auto;
+    padding-block-end: 56px;
   }
 
   .story-studio__tile {
@@ -334,22 +338,21 @@
     }
   }
 
+  /* A contained card, not a full-bleed strip: with the page's background
+     already a similar warm neutral, a band spanning the whole width had no
+     visible edge and just read as the page getting wider here for no
+     reason. Boxed and centered, it reads as one closing statement instead. */
   .story-studio__quote-band {
     background: #efeade;
-    padding: 48px clamp(20px, 4vw, 56px);
-  }
-
-  /* Deliberately narrower than the shared content width: a short quote and
-     one button pinned to the far edges of a 1360px band read as two
-     orphaned elements. Capped tighter, they read as one composed unit. */
-  .story-studio__quote-inner {
-    max-width: 760px;
-    margin-inline: auto;
+    border-radius: 20px;
+    padding: 40px clamp(24px, 5vw, 48px);
+    margin-block-end: clamp(32px, 5vw, 64px);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 32px;
     flex-wrap: wrap;
+    text-align: center;
   }
 
   .story-studio__quote-band p {
