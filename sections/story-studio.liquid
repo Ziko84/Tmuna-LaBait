@@ -99,7 +99,7 @@
                 <h3>{{ group_heading }}</h3>
               </div>
             {% endif %}
-            <div class="story-studio__equipment-row">
+            <div class="story-studio__equipment-row" style="--group-count: {{ group_count }};">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'workshop_photo' and block.settings.group == group_key and block.settings.image != blank -%}
                   <div class="story-studio__equipment-photo" {{ block.shopify_attributes }}>
@@ -332,10 +332,13 @@
 
   /* Equipment grouped by process stage instead of one undifferentiated grid:
      each cluster is its own labeled row, so the section reads as a sequence
-     (cutting, then shaping, then finishing) rather than a photo dump. Tile
-     width is a fixed range (auto-fill/minmax), not a column count derived
-     from item totals, so a 2-photo cluster and a 4-photo cluster both get
-     evenly sized tiles with no stretched-huge or orphaned-blank cells. */
+     (cutting, then shaping, then finishing) rather than a photo dump. Column
+     count is set per row from the group's real photo count (--group-count),
+     not left to grid's auto-fill: auto-fill picks track count using a
+     minmax range's fixed max bound, not its min, so at tablet widths a
+     4-photo row was only getting 3 tracks and the 4th photo wrapped onto
+     its own orphaned row. An explicit count avoids that regardless of
+     viewport width, and each track still shrinks between 150-200px. */
   .story-studio__equipment {
     display: flex;
     flex-direction: column;
@@ -362,7 +365,7 @@
 
   .story-studio__equipment-row {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+    grid-template-columns: repeat(var(--group-count, 3), minmax(150px, 200px));
     justify-content: start;
     gap: 18px;
   }
