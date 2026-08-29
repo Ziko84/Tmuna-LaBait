@@ -1,0 +1,338 @@
+{%- doc -%}
+  Team and workshop proof section for the Our Story page. Real photos of the
+  two founders and the actual workshop, not stock or illustrated imagery, so
+  a visitor can see who they are buying from and where the work happens.
+{%- enddoc -%}
+
+<div
+  class="story-studio"
+  style="background-color: {{ section.settings.background_color }}; padding-block: {{ section.settings.padding_block }}px;"
+>
+  <div class="story-studio__inner page-width-content">
+    <reveal-on-scroll class="story-studio__intro">
+      {% if section.settings.eyebrow != blank %}
+        <p class="story-studio__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="story-studio__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.intro != blank %}
+        <p class="story-studio__lead">{{ section.settings.intro }}</p>
+      {% endif %}
+    </reveal-on-scroll>
+
+    <reveal-on-scroll class="story-studio__team">
+      {% for block in section.blocks %}
+        {% if block.type == 'team_member' %}
+          <div class="story-studio__member" {{ block.shopify_attributes }}>
+            {% if block.settings.photo != blank %}
+              <div class="story-studio__member-photo">
+                {{
+                  block.settings.photo
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    alt: block.settings.photo.alt,
+                    sizes: '128px',
+                    widths: '128, 192, 256, 400'
+                }}
+              </div>
+            {% endif %}
+            <p class="story-studio__member-name">{{ block.settings.name }}</p>
+            {% if block.settings.role != blank %}
+              <p class="story-studio__member-role">{{ block.settings.role }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </reveal-on-scroll>
+
+    <reveal-on-scroll class="story-studio__gallery">
+      {% for block in section.blocks %}
+        {% if block.type == 'workshop_photo' and block.settings.image != blank %}
+          <div class="story-studio__gallery-item" {{ block.shopify_attributes }}>
+            {{
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                alt: block.settings.image.alt,
+                sizes: '(min-width: 990px) 33vw, 100vw',
+                widths: '400, 700, 1000, 1200'
+            }}
+            {% if block.settings.caption != blank %}
+              <span class="story-studio__gallery-caption">{{ block.settings.caption }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </reveal-on-scroll>
+  </div>
+</div>
+
+{% stylesheet %}
+  .story-studio__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+  }
+
+  .story-studio__intro {
+    display: block;
+    text-align: center;
+    max-width: 40rem;
+  }
+
+  .story-studio__eyebrow {
+    font-family: var(--font-accent--family);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: #1a1a2e;
+    opacity: 0.65;
+    margin: 0 0 14px;
+  }
+
+  .story-studio__heading {
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+    line-height: 1.2;
+    color: #1a1a2e;
+    margin: 0 0 16px;
+  }
+
+  .story-studio__lead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #5a554d;
+    margin: 0;
+  }
+
+  /* Two founders, side by side. A round portrait rather than a cropped
+     rectangle so the pair reads as people, not as product photography. */
+  .story-studio__team {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+
+  .story-studio__member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .story-studio__member-photo {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-block-end: 16px;
+    box-shadow: 0 8px 18px rgba(26, 26, 46, 0.14);
+    /* Same amber ring language as the product-card hover accent, at rest
+       here since a portrait doesn't get a hover state on touch devices. */
+    outline: 2px solid var(--color-accent-amber, #e8a33d);
+    outline-offset: 4px;
+  }
+
+  .story-studio__member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-studio__member-name {
+    font-family: var(--font-heading--family);
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: #1a1a2e;
+    margin: 0;
+  }
+
+  .story-studio__member-role {
+    font-size: 0.9rem;
+    color: #5a554d;
+    margin: 0;
+  }
+
+  /* Three workshop photos, deliberately uneven heights so it reads as a
+     real space caught mid-work rather than a staged, symmetrical spread. */
+  .story-studio__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .story-studio__gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(90, 85, 77, 0.1), 0 14px 34px rgba(90, 85, 77, 0.14);
+    transition: transform var(--hover-transition-duration, 0.25s) var(--hover-transition-timing, ease-out),
+      box-shadow var(--hover-transition-duration, 0.25s) var(--hover-transition-timing, ease-out);
+  }
+
+  .story-studio__gallery-item:nth-child(2) {
+    margin-block-start: 32px;
+  }
+
+  @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .story-studio__gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(90, 85, 77, 0.16), 0 20px 40px rgba(90, 85, 77, 0.2);
+    }
+  }
+
+  .story-studio__gallery-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-studio__gallery-caption {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    padding: 14px 18px;
+    font-size: 0.8rem;
+    color: #ffffff;
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.55), transparent);
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-studio__inner {
+      gap: 40px;
+    }
+
+    .story-studio__team {
+      gap: 40px;
+    }
+
+    .story-studio__member-photo {
+      width: 96px;
+      height: 96px;
+    }
+
+    .story-studio__gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .story-studio__gallery-item:nth-child(2) {
+      margin-block-start: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .story-studio reveal-on-scroll.is-observing {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .story-studio reveal-on-scroll.is-observing.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Story studio",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "מאחורי הקלעים"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "האולפן שלנו"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro text",
+      "default": "לא צוות שיווק ולא מפעל רחוק. שני אנשים, מכונת לייזר אחת, ואולפן קטן ברינתיה, שבו כל יצירה נולדת."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f7f5f2"
+    },
+    {
+      "type": "range",
+      "id": "padding_block",
+      "label": "Vertical padding",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role"
+        }
+      ]
+    },
+    {
+      "type": "workshop_photo",
+      "name": "Workshop photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Story studio",
+      "blocks": [
+        { "type": "team_member" },
+        { "type": "team_member" },
+        { "type": "workshop_photo" },
+        { "type": "workshop_photo" },
+        { "type": "workshop_photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -28,6 +28,62 @@
         "padding-block-end": 64
       }
     },
+    "story_studio": {
+      "type": "story-studio",
+      "blocks": {
+        "member_daniel": {
+          "type": "team_member",
+          "settings": {
+            "photo": "shopify://shop_images/tmuna-labait-daniel.png",
+            "name": "דניאל אמינוב",
+            "role": "מייסד ומעצב"
+          }
+        },
+        "member_zerman": {
+          "type": "team_member",
+          "settings": {
+            "photo": "shopify://shop_images/tmuna-labait-zerman.png",
+            "name": "זרמן איסקוב",
+            "role": "מייסד ומעצב"
+          }
+        },
+        "photo_workbench": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-studio-workbench.png",
+            "caption": "שולחן העבודה שלנו"
+          }
+        },
+        "photo_sign": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-studio-sign.png",
+            "caption": "האולפן ברינתיה"
+          }
+        },
+        "photo_working": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-workshop-daniel-working.png",
+            "caption": "עבודה על יצירה"
+          }
+        }
+      },
+      "block_order": [
+        "member_daniel",
+        "member_zerman",
+        "photo_workbench",
+        "photo_sign",
+        "photo_working"
+      ],
+      "settings": {
+        "eyebrow": "מאחורי הקלעים",
+        "heading": "האולפן שלנו",
+        "intro": "לא צוות שיווק ולא מפעל רחוק. שני אנשים, מכונת לייזר אחת, ואולפן קטן ברינתיה, שבו כל יצירה נולדת.",
+        "background_color": "#f7f5f2",
+        "padding_block": 72
+      }
+    },
     "story_philosophy": {
       "type": "story-philosophy",
       "settings": {
@@ -42,6 +98,7 @@
   "order": [
     "story_banner",
     "story_editorial",
+    "story_studio",
     "story_philosophy"
   ]
 }
