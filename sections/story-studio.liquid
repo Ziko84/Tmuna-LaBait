@@ -99,10 +99,12 @@
 
   {% if section.settings.quote != blank %}
     <div class="story-studio__quote-band">
-      <p>{{ section.settings.quote }}</p>
-      {% if section.settings.quote_cta_label != blank and section.settings.quote_cta_link != blank %}
-        <a href="{{ section.settings.quote_cta_link }}">{{ section.settings.quote_cta_label }}</a>
-      {% endif %}
+      <div class="story-studio__quote-inner">
+        <p>{{ section.settings.quote }}</p>
+        {% if section.settings.quote_cta_label != blank and section.settings.quote_cta_link != blank %}
+          <a href="{{ section.settings.quote_cta_link }}">{{ section.settings.quote_cta_label }}</a>
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 </div>
@@ -219,7 +221,7 @@
     gap: 48px;
     align-items: center;
     padding: 56px clamp(20px, 4vw, 56px);
-    max-width: 1180px;
+    max-width: var(--story-studio-content-width, 1360px);
     margin-inline: auto;
   }
 
@@ -260,7 +262,7 @@
 
   .story-studio__bento-head {
     padding: 40px clamp(20px, 4vw, 56px) 20px;
-    max-width: 1180px;
+    max-width: var(--story-studio-content-width, 1360px);
     margin-inline: auto;
   }
 
@@ -275,7 +277,7 @@
     grid-auto-rows: 130px;
     gap: 12px;
     padding: 0 clamp(20px, 4vw, 56px) 56px;
-    max-width: 1180px;
+    max-width: var(--story-studio-content-width, 1360px);
     margin-inline: auto;
   }
 
@@ -330,6 +332,11 @@
   .story-studio__quote-band {
     background: #efeade;
     padding: 48px clamp(20px, 4vw, 56px);
+  }
+
+  .story-studio__quote-inner {
+    max-width: var(--story-studio-content-width, 1360px);
+    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
