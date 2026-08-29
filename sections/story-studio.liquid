@@ -322,6 +322,17 @@
     }
   }
 
+  /* At tablet widths each column is narrower than desktop, so the 3-paragraph
+     text block wraps to 5-6 lines and grows much taller than a 16:9 photo
+     sized to that same narrower column, leaving the photo looking stubby
+     next to a much taller text block. Taller ratio here only, desktop and
+     mobile (already full width, stacked) stay as they were. */
+  @media screen and (min-width: 750px) and (max-width: 1099px) {
+    .story-studio__body-photo {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
   .story-studio__bento-head {
     padding-block: 24px 20px;
   }
