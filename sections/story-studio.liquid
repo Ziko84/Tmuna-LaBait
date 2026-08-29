@@ -122,15 +122,20 @@
   }
 
   /* Hero: full-bleed photo, the headline overlaid is this page's only H1 */
+  /* width is explicit, not left to resolve from aspect-ratio: combining
+     aspect-ratio with max-height on a block otherwise sized by content
+     makes the browser shrink the width to preserve the ratio once height
+     hits the cap, instead of just letting object-fit crop the image. That
+     silently narrowed this hero to about 60% of the page on wide screens. */
   .story-studio__hero {
     position: relative;
-    aspect-ratio: 21 / 8;
-    max-height: 440px;
+    width: 100%;
+    height: clamp(260px, 32vw, 440px);
   }
 
   @media screen and (max-width: 749px) {
     .story-studio__hero {
-      aspect-ratio: 4 / 5;
+      height: min(90vw, 420px);
     }
   }
 
