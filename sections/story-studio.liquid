@@ -139,7 +139,7 @@
   .story-studio__hero {
     position: relative;
     width: 100%;
-    height: clamp(260px, 32vw, 440px);
+    height: clamp(200px, 22vw, 320px);
     border-radius: 20px;
     overflow: hidden;
     margin-block-start: clamp(20px, 4vw, 40px);
@@ -147,7 +147,7 @@
 
   @media screen and (max-width: 749px) {
     .story-studio__hero {
-      height: min(90vw, 420px);
+      height: min(70vw, 320px);
     }
   }
 
@@ -162,10 +162,15 @@
      two-line heading is never left to fight whatever happens to be behind
      it in the photo at that breakpoint's crop (a tablet-width crop put the
      bright monitor screen in the photo right under the second line). */
+  /* z-index: a ::after pseudo-element always paints after every real DOM
+     child of its host regardless of source order, so without an explicit
+     stacking order this scrim was rendering on top of the heading text
+     below, dimming it, instead of just sitting behind it as backdrop. */
   .story-studio__hero::after {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(to top, rgba(18, 18, 24, 0.8) 0%, rgba(18, 18, 24, 0.8) 32%, transparent 72%);
   }
 
@@ -173,9 +178,10 @@
     position: absolute;
     inset-inline: 0;
     inset-block-end: 0;
-    padding: 32px clamp(20px, 4vw, 56px) 40px;
+    z-index: 2;
+    padding: 24px clamp(20px, 4vw, 56px) 28px;
     color: #ffffff;
-    font-size: clamp(1.9rem, 1.4rem + 2vw, 2.9rem);
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.2rem);
     line-height: 1.18;
     max-width: 18ch;
     text-align: end;
