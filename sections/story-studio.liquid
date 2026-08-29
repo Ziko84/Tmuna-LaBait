@@ -179,20 +179,24 @@
   }
 
   /* Team, immediately below the hero: two founders, amber-ringed portraits.
-     Centered as one close-together pair, not stretched to fill the row
-     with each photo anchored out near its own edge. */
+     Each member is its own centered vertical stack (photo, then name, then
+     role), so the two are true mirrors of each other regardless of which
+     side of the row they land on, rather than a fixed photo-then-text
+     order that put one photo near the edge and the other near the center. */
   .story-studio__team {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(32px, 6vw, 80px);
+    gap: clamp(40px, 7vw, 96px);
     padding-block: 32px;
   }
 
   .story-studio__member {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    text-align: center;
+    gap: 14px;
   }
 
   .story-studio__member-photo {
@@ -212,6 +216,12 @@
     display: block;
   }
 
+  .story-studio__member-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .story-studio__member-name {
     font-size: 1.05rem;
     font-weight: 600;
@@ -224,7 +234,8 @@
     color: #5a554d;
     font-size: 0.88rem;
     line-height: 1.5;
-    max-width: 26ch;
+    max-width: 22ch;
+    text-align: center;
   }
 
   /* Body: narrative text beside a supporting photo. In this RTL page the
@@ -341,18 +352,18 @@
   /* A contained card, not a full-bleed strip: with the page's background
      already a similar warm neutral, a band spanning the whole width had no
      visible edge and just read as the page getting wider here for no
-     reason. Boxed and centered, it reads as one closing statement instead. */
+     reason. Boxed and centered, it reads as one closing statement instead.
+     Two equal halves: the quote stays right-aligned in its half, the CTA
+     is centered within its own half rather than pinned to the outer edge. */
   .story-studio__quote-band {
     background: #efeade;
     border-radius: 20px;
     padding: 40px clamp(24px, 5vw, 48px);
     margin-block-end: clamp(32px, 5vw, 64px);
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: center;
     gap: 32px;
-    flex-wrap: wrap;
-    text-align: center;
   }
 
   .story-studio__quote-band p {
@@ -362,6 +373,25 @@
     max-width: 34ch;
     margin: 0;
     color: #1a1a2e;
+    text-align: right;
+    justify-self: right;
+  }
+
+  .story-studio__quote-band a {
+    justify-self: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-studio__quote-band {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .story-studio__quote-band p {
+      text-align: center;
+      justify-self: center;
+      margin-inline: auto;
+    }
   }
 
   .story-studio__quote-band a {
