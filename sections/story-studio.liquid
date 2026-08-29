@@ -158,11 +158,15 @@
     display: block;
   }
 
+  /* Bottom third stays solidly dark rather than fading immediately, so a
+     two-line heading is never left to fight whatever happens to be behind
+     it in the photo at that breakpoint's crop (a tablet-width crop put the
+     bright monitor screen in the photo right under the second line). */
   .story-studio__hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(18, 18, 24, 0.72) 0%, rgba(18, 18, 24, 0.15) 45%, transparent 70%);
+    background: linear-gradient(to top, rgba(18, 18, 24, 0.8) 0%, rgba(18, 18, 24, 0.8) 32%, transparent 72%);
   }
 
   .story-studio__hero-heading {
