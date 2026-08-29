@@ -67,6 +67,62 @@
             "image": "shopify://shop_images/tmuna-labait-workshop-daniel-working.png",
             "caption": "עבודה על יצירה"
           }
+        },
+        "photo_laser_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-laser-1.png",
+            "caption": "מכונת חיתוך הלייזר שלנו"
+          }
+        },
+        "photo_laser_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-laser-2.png",
+            "caption": "חיתוך בלייזר, מקרוב"
+          }
+        },
+        "photo_cnc_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-cnc-1.png",
+            "caption": "מכונת ה-CNC לחריטה מדויקת"
+          }
+        },
+        "photo_cnc_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-cnc-2.png",
+            "caption": "ראש הכרסום בפעולה"
+          }
+        },
+        "photo_saw_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-saw-1.png",
+            "caption": "מסור הפורמט לחיתוך מדויק"
+          }
+        },
+        "photo_saw_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-saw-2.png",
+            "caption": "חיתוך עץ בדיוק מילימטרי"
+          }
+        },
+        "photo_edgeband_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-edgeband-1.png",
+            "caption": "מכונת הקצעת הפינות"
+          }
+        },
+        "photo_edgeband_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-edgeband-2.png",
+            "caption": "גימור הקצוות של כל יצירה"
+          }
         }
       },
       "block_order": [
@@ -74,7 +130,15 @@
         "member_zerman",
         "photo_workbench",
         "photo_sign",
-        "photo_working"
+        "photo_working",
+        "photo_laser_1",
+        "photo_laser_2",
+        "photo_cnc_1",
+        "photo_cnc_2",
+        "photo_saw_1",
+        "photo_saw_2",
+        "photo_edgeband_1",
+        "photo_edgeband_2"
       ],
       "settings": {
         "eyebrow": "מאחורי הקלעים",
