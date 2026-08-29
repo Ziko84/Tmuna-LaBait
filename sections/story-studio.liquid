@@ -159,8 +159,7 @@
     margin: 0;
   }
 
-  /* Three workshop photos, deliberately uneven heights so it reads as a
-     real space caught mid-work rather than a staged, symmetrical spread. */
+  /* Three workshop photos, same size and aligned in a row. */
   .story-studio__gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -175,10 +174,6 @@
     box-shadow: 0 4px 10px rgba(90, 85, 77, 0.1), 0 14px 34px rgba(90, 85, 77, 0.14);
     transition: transform var(--hover-transition-duration, 0.25s) var(--hover-transition-timing, ease-out),
       box-shadow var(--hover-transition-duration, 0.25s) var(--hover-transition-timing, ease-out);
-  }
-
-  .story-studio__gallery-item:nth-child(2) {
-    margin-block-start: 32px;
   }
 
   @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -222,10 +217,6 @@
 
     .story-studio__gallery {
       grid-template-columns: 1fr;
-    }
-
-    .story-studio__gallery-item:nth-child(2) {
-      margin-block-start: 0;
     }
   }
 
