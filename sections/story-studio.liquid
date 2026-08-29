@@ -339,13 +339,16 @@
     padding: 48px clamp(20px, 4vw, 56px);
   }
 
+  /* Deliberately narrower than the shared content width: a short quote and
+     one button pinned to the far edges of a 1360px band read as two
+     orphaned elements. Capped tighter, they read as one composed unit. */
   .story-studio__quote-inner {
-    max-width: var(--story-studio-content-width, 1360px);
+    max-width: 760px;
     margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 32px;
     flex-wrap: wrap;
   }
 
