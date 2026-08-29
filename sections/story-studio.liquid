@@ -1,9 +1,10 @@
 {%- doc -%}
   Our Story page, full build: full-bleed hero photo with the page's only H1,
   the two founders, narrative text beside a supporting photo, the workshop
-  equipment as a bento grid, and a closing quote with a CTA. Replaces the
-  separate banner / editorial / studio / philosophy sections this page used
-  to be split across, so there is exactly one H1 on the page instead of two.
+  equipment grouped into labeled clusters by process stage, and a closing
+  quote with a CTA. Replaces the separate banner / editorial / studio /
+  philosophy sections this page used to be split across, so there is exactly
+  one H1 on the page instead of two.
 {%- enddoc -%}
 
 <div
@@ -74,28 +75,55 @@
       </div>
     {% endif %}
 
-    <reveal-on-scroll class="story-studio__bento">
-      {% for block in section.blocks %}
-        {% if block.type == 'workshop_photo' and block.settings.image != blank %}
-          <div
-            class="story-studio__tile story-studio__tile--{{ block.settings.tile_size }}"
-            {{ block.shopify_attributes }}
-          >
-            {{
-              block.settings.image
-              | image_url: width: 1000
-              | image_tag:
-                loading: 'lazy',
-                alt: block.settings.image.alt,
-                sizes: '(min-width: 750px) 25vw, 50vw',
-                widths: '300, 500, 700, 1000'
-            }}
-            {% if block.settings.caption != blank %}
-              <span class="story-studio__tile-caption">{{ block.settings.caption }}</span>
+    <reveal-on-scroll class="story-studio__equipment">
+      {%- assign equipment_groups = 'laser,shaping,finishing' | split: ',' -%}
+      {%- for group_key in equipment_groups -%}
+        {%- assign group_count = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'workshop_photo' and block.settings.group == group_key and block.settings.image != blank -%}
+            {%- assign group_count = group_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if group_count > 0 -%}
+          {%- case group_key -%}
+            {%- when 'laser' -%}
+              {%- assign group_heading = section.settings.group_laser_heading -%}
+            {%- when 'shaping' -%}
+              {%- assign group_heading = section.settings.group_shaping_heading -%}
+            {%- when 'finishing' -%}
+              {%- assign group_heading = section.settings.group_finishing_heading -%}
+          {%- endcase -%}
+          <div class="story-studio__equipment-group">
+            {% if group_heading != blank %}
+              <div class="story-studio__equipment-head">
+                <h3>{{ group_heading }}</h3>
+              </div>
             {% endif %}
+            <div class="story-studio__equipment-row">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'workshop_photo' and block.settings.group == group_key and block.settings.image != blank -%}
+                  <div class="story-studio__equipment-photo" {{ block.shopify_attributes }}>
+                    <div class="story-studio__equipment-photo-frame">
+                      {{
+                        block.settings.image
+                        | image_url: width: 500
+                        | image_tag:
+                          loading: 'lazy',
+                          alt: block.settings.image.alt,
+                          sizes: '(min-width: 750px) 200px, 45vw',
+                          widths: '150, 250, 350, 500'
+                      }}
+                    </div>
+                    {% if block.settings.caption != blank %}
+                      <p class="story-studio__equipment-caption">{{ block.settings.caption }}</p>
+                    {% endif %}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
           </div>
-        {% endif %}
-      {% endfor %}
+        {%- endif -%}
+      {%- endfor -%}
     </reveal-on-scroll>
 
     {% if section.settings.quote != blank %}
@@ -302,60 +330,66 @@
     font-size: 1.5rem;
   }
 
-  /* Equipment as a real bento grid, mixed tile sizes, not a uniform repeat */
-  .story-studio__bento {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 130px;
-    gap: 12px;
+  /* Equipment grouped by process stage instead of one undifferentiated grid:
+     each cluster is its own labeled row, so the section reads as a sequence
+     (cutting, then shaping, then finishing) rather than a photo dump. Tile
+     width is a fixed range (auto-fill/minmax), not a column count derived
+     from item totals, so a 2-photo cluster and a 4-photo cluster both get
+     evenly sized tiles with no stretched-huge or orphaned-blank cells. */
+  .story-studio__equipment {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     padding-block-end: 56px;
   }
 
-  .story-studio__tile {
-    position: relative;
-    border-radius: 14px;
+  .story-studio__equipment-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-block-end: 1.5px solid rgba(26, 26, 46, 0.12);
+    padding-block-end: 10px;
+    margin-block-end: 18px;
+  }
+
+  .story-studio__equipment-head h3 {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin: 0;
+    color: #1a1a2e;
+  }
+
+  .story-studio__equipment-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+    justify-content: start;
+    gap: 18px;
+  }
+
+  .story-studio__equipment-photo-frame {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
     overflow: hidden;
   }
 
-  .story-studio__tile img {
+  .story-studio__equipment-photo-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .story-studio__tile::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(18, 18, 24, 0.6), transparent 55%);
-  }
-
-  .story-studio__tile-caption {
-    position: absolute;
-    bottom: 10px;
-    inset-inline-end: 14px;
-    color: #ffffff;
-    font-size: 0.82rem;
-    z-index: 2;
-  }
-
-  .story-studio__tile--wide {
-    grid-column: span 2;
-  }
-
-  .story-studio__tile--big {
-    grid-column: span 2;
-    grid-row: span 2;
+  .story-studio__equipment-caption {
+    margin: 10px 2px 0;
+    font-size: 0.85rem;
+    color: #5a554d;
   }
 
   @media screen and (max-width: 749px) {
-    .story-studio__bento {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .story-studio__tile--big {
-      grid-column: span 2;
+    .story-studio__equipment-row {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      justify-content: stretch;
     }
   }
 
@@ -461,6 +495,24 @@
       "default": "הציוד באולפן"
     },
     {
+      "type": "text",
+      "id": "group_laser_heading",
+      "label": "Equipment group 1 heading",
+      "default": "חיתוך לייזר"
+    },
+    {
+      "type": "text",
+      "id": "group_shaping_heading",
+      "label": "Equipment group 2 heading",
+      "default": "עיבוד ועיצוב"
+    },
+    {
+      "type": "text",
+      "id": "group_finishing_heading",
+      "label": "Equipment group 3 heading",
+      "default": "הרכבה וגימור"
+    },
+    {
       "type": "textarea",
       "id": "quote",
       "label": "Closing quote",
@@ -502,14 +554,14 @@
         { "type": "text", "id": "caption", "label": "Caption (optional)" },
         {
           "type": "select",
-          "id": "tile_size",
-          "label": "Tile size",
+          "id": "group",
+          "label": "Equipment group",
           "options": [
-            { "value": "normal", "label": "Normal" },
-            { "value": "wide", "label": "Wide (2 columns)" },
-            { "value": "big", "label": "Big (2x2)" }
+            { "value": "laser", "label": "Group 1 (חיתוך לייזר)" },
+            { "value": "shaping", "label": "Group 2 (עיבוד ועיצוב)" },
+            { "value": "finishing", "label": "Group 3 (הרכבה וגימור)" }
           ],
-          "default": "normal"
+          "default": "laser"
         }
       ]
     }

@@ -33,63 +33,7 @@
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-laser-2.png",
             "caption": "מכונת חיתוך הלייזר שלנו",
-            "tile_size": "big"
-          }
-        },
-        "photo_workbench": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-studio-workbench.png",
-            "caption": "שולחן העבודה שלנו",
-            "tile_size": "wide"
-          }
-        },
-        "photo_working": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-workshop-daniel-working.png",
-            "caption": "עבודה על יצירה",
-            "tile_size": "wide"
-          }
-        },
-        "photo_cnc_2": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-cnc-2.png",
-            "caption": "ראש הכרסום בפעולה",
-            "tile_size": "normal"
-          }
-        },
-        "photo_saw_1": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-saw-1.png",
-            "caption": "מסור הפורמט לחיתוך מדויק",
-            "tile_size": "normal"
-          }
-        },
-        "photo_saw_2": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-saw-2.png",
-            "caption": "חיתוך עץ בדיוק מילימטרי",
-            "tile_size": "normal"
-          }
-        },
-        "photo_edgeband_1": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-edgeband-1.png",
-            "caption": "מכונת הקצעת הפינות",
-            "tile_size": "normal"
-          }
-        },
-        "photo_edgeband_2": {
-          "type": "workshop_photo",
-          "settings": {
-            "image": "shopify://shop_images/tmuna-labait-machine-edgeband-2.png",
-            "caption": "גימור הקצוות של כל יצירה",
-            "tile_size": "normal"
+            "group": "laser"
           }
         },
         "photo_laser_1": {
@@ -97,7 +41,63 @@
           "settings": {
             "image": "shopify://shop_images/tmuna-labait-machine-laser-1.png",
             "caption": "מכונת חיתוך הלייזר, מקרוב",
-            "tile_size": "normal"
+            "group": "laser"
+          }
+        },
+        "photo_cnc_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-cnc-2.png",
+            "caption": "ראש הכרסום בפעולה",
+            "group": "shaping"
+          }
+        },
+        "photo_saw_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-saw-1.png",
+            "caption": "מסור הפורמט לחיתוך מדויק",
+            "group": "shaping"
+          }
+        },
+        "photo_saw_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-saw-2.png",
+            "caption": "חיתוך עץ בדיוק מילימטרי",
+            "group": "shaping"
+          }
+        },
+        "photo_workbench": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-studio-workbench.png",
+            "caption": "שולחן העבודה שלנו",
+            "group": "finishing"
+          }
+        },
+        "photo_working": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-workshop-daniel-working.png",
+            "caption": "עבודה על יצירה",
+            "group": "finishing"
+          }
+        },
+        "photo_edgeband_1": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-edgeband-1.png",
+            "caption": "מכונת הקצעת הפינות",
+            "group": "finishing"
+          }
+        },
+        "photo_edgeband_2": {
+          "type": "workshop_photo",
+          "settings": {
+            "image": "shopify://shop_images/tmuna-labait-machine-edgeband-2.png",
+            "caption": "גימור הקצוות של כל יצירה",
+            "group": "finishing"
           }
         }
       },
@@ -105,14 +105,14 @@
         "member_daniel",
         "member_zerman",
         "photo_laser_2",
-        "photo_workbench",
-        "photo_working",
+        "photo_laser_1",
         "photo_cnc_2",
         "photo_saw_1",
         "photo_saw_2",
+        "photo_workbench",
+        "photo_working",
         "photo_edgeband_1",
-        "photo_edgeband_2",
-        "photo_laser_1"
+        "photo_edgeband_2"
       ],
       "settings": {
         "hero_image": "shopify://shop_images/tmuna-labait-studio-hero-2.png",
