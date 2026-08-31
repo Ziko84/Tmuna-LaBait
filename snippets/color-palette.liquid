@@ -175,6 +175,17 @@
     --palette-lightest-rgb: {{ palette_lightest.rgb }};
     --palette-darkest: {{ palette_darkest }};
     --palette-darkest-rgb: {{ palette_darkest.rgb }};
+    {% comment %}
+      Raw palette slots, for any component-level {% stylesheet %} block that
+      needs a plain palette color and can't reach settings.color_palette
+      directly - {% stylesheet %} compiles into the shared static bundle
+      with no per-request Liquid rendering, unlike this file's own
+      {% style %} tag, so {{ settings.color_palette.colorN }} used directly
+      inside one renders as literal, invalid CSS text (confirmed via
+      Shopify's own minifier failing on the compiled bundle because of it).
+    {% endcomment %}
+    --color-palette-1: {{ settings.color_palette.color1 }};
+    --color-palette-4: {{ settings.color_palette.color4 }};
     {% render 'brightness-opacities', background: settings.page_background_color %}
 
     --color-primary-button-text: rgb({{ settings.palette_primary_button_text.rgba }});
