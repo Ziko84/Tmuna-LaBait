@@ -18,10 +18,23 @@
 
 <script>
   (function () {
-    var nightImages = {
-    '__hero_split_tlb01': {{ 'hero-night.png' | asset_url | append: '&width=1000' | json }},
-    '__hero_overlay_LfPdEJ': {{ 'banner-night.png' | asset_url | append: '&width=1000' | json }}
+    var nightImageBaseUrls = {
+    '__hero_split_tlb01': {{ 'hero-night.png' | asset_url | json }},
+    '__hero_overlay_LfPdEJ': {{ 'banner-night.png' | asset_url | json }}
     };
+
+    // Pick from a small fixed set of CDN-cacheable widths based on the
+    // container's actual rendered size, instead of always requesting a
+    // fixed 1000px image regardless of viewport (was flagged by PageSpeed
+    // as ~19 KiB oversized on narrower/mobile layouts).
+    var availableWidths = [400, 600, 800, 1000, 1600];
+    function widthForContainer(container) {
+      var target = Math.ceil((container.offsetWidth || 800) * (window.devicePixelRatio || 1));
+      for (var i = 0; i < availableWidths.length; i++) {
+        if (availableWidths[i] >= target) return availableWidths[i];
+      }
+      return availableWidths[availableWidths.length - 1];
+    }
     var ledColors = [
       { color: '', label: 'לבן חם', active: true, gradient: true },
       { color: '#00b0ff', label: 'כחול' },
@@ -66,12 +79,13 @@
     }
 
     function initBannerNightMode() {
-      Object.keys(nightImages).forEach(function (suffix) {
+      Object.keys(nightImageBaseUrls).forEach(function (suffix) {
         var container = document.querySelector('[id$="' + suffix + '"] .media-block');
         if (!container || container.querySelector('.hero-night-image')) return;
+        var nightImageUrl = nightImageBaseUrls[suffix] + '&width=' + widthForContainer(container);
         var img = document.createElement('img');
         img.className = 'hero-night-image';
-        img.src = nightImages[suffix];
+        img.src = nightImageUrl;
         img.alt = '';
         img.loading = 'lazy';
         // Matches the day image's own width/height attributes (Shopify sets
@@ -87,7 +101,7 @@
         }
         container.appendChild(img);
         if (suffix !== '__hero_overlay_LfPdEJ') {
-          addLedSwatches(container, nightImages[suffix]);
+          addLedSwatches(container, nightImageUrl);
         }
       });
     }
