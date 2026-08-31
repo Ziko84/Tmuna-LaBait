@@ -306,21 +306,8 @@
         width: fit-content;
         font-family: 'Assistant', 'Heebo', sans-serif !important;
         font-weight: 300 !important;
-        /* --menu-scroll-shrink (assets/menu-scroll-shrink.js) goes from 0
-           at the top of the page to 1 after 1200px of scroll, continuously
-           shrinking this from 30px down to a 22px floor, never smaller. */
-        font-size: calc(30px - (8px * var(--menu-scroll-shrink, 0))) !important;
+        font-size: 30px !important;
         letter-spacing: 0.04em;
-        transition: font-size 0.15s linear;
-      }
-      /* Header bar's own vertical padding shrinks in the same proportion
-         (down to 60%, matching the 30px -> 18px font ratio) as
-         --menu-scroll-shrink increases, so the white header rectangle
-         gets shorter alongside the menu text instead of staying fixed
-         height around now-smaller text. */
-      .header {
-        --header-padding: calc(var(--padding-sm) * (1 - (var(--menu-scroll-shrink, 0) * 0.6))) !important;
-        transition: padding 0.15s linear;
       }
       /* Short underline, right-aligned: shown only on the current page's
          nav item - never on hover of other items. Hovering the active
@@ -2457,7 +2444,6 @@
     {% endif %}
 
 
-    <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
     <script src="{{ 'hebrew-live-search.js' | asset_url }}" defer></script>
     {% comment %}
