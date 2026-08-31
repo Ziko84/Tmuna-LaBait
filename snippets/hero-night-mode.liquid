@@ -79,10 +79,29 @@
     }
 
     function initBannerNightMode() {
+      // Read phase: resolve every container and its offsetWidth-derived
+      // image width up front, before any DOM writes happen below. Reading
+      // offsetWidth interleaved with the appendChild calls in a single loop
+      // forces a synchronous layout recalc on every iteration after the
+      // first (each container's read had to wait for the previous
+      // iteration's writes to be flushed) - PageSpeed's forced-reflow audit
+      // flagged this exact loop. Separating read from write means all the
+      // offsetWidth reads happen against the untouched initial layout.
+      var pending = [];
       Object.keys(nightImageBaseUrls).forEach(function (suffix) {
         var container = document.querySelector('[id$="' + suffix + '"] .media-block');
         if (!container || container.querySelector('.hero-night-image')) return;
-        var nightImageUrl = nightImageBaseUrls[suffix] + '&width=' + widthForContainer(container);
+        pending.push({
+          suffix: suffix,
+          container: container,
+          nightImageUrl: nightImageBaseUrls[suffix] + '&width=' + widthForContainer(container)
+        });
+      });
+
+      // Write phase.
+      pending.forEach(function (entry) {
+        var container = entry.container;
+        var nightImageUrl = entry.nightImageUrl;
         var img = document.createElement('img');
         img.className = 'hero-night-image';
         img.src = nightImageUrl;
@@ -100,7 +119,7 @@
           img.height = dayImage.getAttribute('height');
         }
         container.appendChild(img);
-        if (suffix !== '__hero_overlay_LfPdEJ') {
+        if (entry.suffix !== '__hero_overlay_LfPdEJ') {
           addLedSwatches(container, nightImageUrl);
         }
       });
