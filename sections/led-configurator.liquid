@@ -9,7 +9,9 @@
     we do not have).
 
   Image convention: product media position 1 = off (no LED, the default view),
-  position 2 = lit (warm on). Single/multi are hue treatments of the lit shot.
+  position 2 = lit (warm on). Single/multi color LED options select the same
+  lit shot with no visual treatment - the preview only distinguishes off vs
+  lit, not which color mode is chosen.
 
   Scoped to products on the "led" template suffix, so it can be rolled out one
   product at a time without touching the rest of the catalogue.
@@ -323,10 +325,6 @@
   .lc__layer--night{opacity:0;z-index:1}
   .lc__preview.lit .lc__layer--day{opacity:0}
   .lc__preview.lit .lc__layer--night{opacity:1}
-  .lc__preview.single .lc__layer--night{filter:hue-rotate(190deg) saturate(1.35)}
-  .lc__preview.multi .lc__layer--night{animation:lc-hue 9s linear infinite}
-  @keyframes lc-hue{from{filter:hue-rotate(0deg) saturate(1.3)}to{filter:hue-rotate(360deg) saturate(1.3)}}
-  @media(prefers-reduced-motion:reduce){.lc__preview.multi .lc__layer--night{animation:none;filter:hue-rotate(120deg) saturate(1.3)}}
   .lc__pstate{position:absolute;inset-block-end:14px;inset-inline-start:16px;z-index:3;font-size:.72rem;letter-spacing:.12em;color:rgba(255,255,255,.85);opacity:0;transition:opacity .5s}
   .lc__preview.lit .lc__pstate{opacity:1}
 
