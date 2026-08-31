@@ -40,7 +40,7 @@
       %}
       {{
         background_video.preview_image
-        | image_url: width: 3840, quality: 65
+        | image_url: width: 3840, quality: 65, format: 'webp'
         | image_tag:
           width: 1100,
           widths: widths,
@@ -120,7 +120,7 @@
       %}
       {{
         background_image
-        | image_url: width: 3840, quality: 65
+        | image_url: width: 3840, quality: 65, format: 'webp'
         | image_tag: sizes: sizes, widths: widths, loading: loading, fetchpriority: fetch_priority
       }}
     {%- else -%}

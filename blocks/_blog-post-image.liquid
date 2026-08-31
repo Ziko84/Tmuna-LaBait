@@ -13,13 +13,13 @@
   <a href="{{ article.url }}">
     <img
       srcset="
-        {% if image.width >= 350 %}{{ image | image_url: width: 350, quality: 65 }} 350w,{% endif %}
-        {% if image.width >= 750 %}{{ image | image_url: width: 750, quality: 65 }} 750w,{% endif %}
-        {% if image.width >= 1100 %}{{ image | image_url: width: 1100, quality: 65 }} 1100w,{% endif %}
-        {% if image.width >= 1500 %}{{ image | image_url: width: 1500, quality: 65 }} 1500w,{% endif %}
-        {{ image | image_url: quality: 65 }} {{ image.width }}w
+        {% if image.width >= 350 %}{{ image | image_url: width: 350, quality: 65, format: 'webp' }} 350w,{% endif %}
+        {% if image.width >= 750 %}{{ image | image_url: width: 750, quality: 65, format: 'webp' }} 750w,{% endif %}
+        {% if image.width >= 1100 %}{{ image | image_url: width: 1100, quality: 65, format: 'webp' }} 1100w,{% endif %}
+        {% if image.width >= 1500 %}{{ image | image_url: width: 1500, quality: 65, format: 'webp' }} 1500w,{% endif %}
+        {{ image | image_url: quality: 65, format: 'webp' }} {{ image.width }}w
       "
-      src="{{ image | image_url: width: 1100, quality: 65 }}"
+      src="{{ image | image_url: width: 1100, quality: 65, format: 'webp' }}"
       loading="eager"
       fetchpriority="high"
       width="{{ image.width }}"

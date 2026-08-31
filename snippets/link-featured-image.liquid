@@ -15,7 +15,7 @@
   {% if link.object.featured_image %}
     {{
       link.object.featured_image
-      | image_url: width: 800, quality: 65
+      | image_url: width: 800, quality: 65, format: 'webp'
       | image_tag: loading: 'lazy', class: class, sizes: image_sizes
     }}
   {% elsif link.object.products.size > 0 %}
@@ -23,7 +23,7 @@
     {% if product_object.featured_image %}
       {{
         product_object.featured_image
-        | image_url: width: 800, quality: 65
+        | image_url: width: 800, quality: 65, format: 'webp'
         | image_tag: loading: 'lazy', class: class, sizes: image_sizes
       }}
     {% endif %}
@@ -33,7 +33,7 @@
   {% if collection_object.featured_image %}
     {{
       collection_object.featured_image
-      | image_url: width: 800, quality: 65
+      | image_url: width: 800, quality: 65, format: 'webp'
       | image_tag: loading: 'lazy', class: class, sizes: image_sizes
     }}
   {% endif %}
@@ -41,14 +41,14 @@
   {% assign product_object = collections.all.products | where: 'featured_image' | first %}
   {{
     product_object.featured_image
-    | image_url: width: 800, quality: 65
+    | image_url: width: 800, quality: 65, format: 'webp'
     | image_tag: loading: 'lazy', class: class, sizes: image_sizes
   }}
 {% elsif link.type == 'article_link' %}
   {% if link.object.image %}
     {{
       link.object.image
-      | image_url: width: 800, quality: 65
+      | image_url: width: 800, quality: 65, format: 'webp'
       | image_tag: loading: 'lazy', class: class, sizes: image_sizes
     }}
   {% endif %}

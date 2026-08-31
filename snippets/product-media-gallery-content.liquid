@@ -391,7 +391,7 @@
           {% if night_media and forloop.first and media.id != night_media.id %}
             {{
               night_media
-              | image_url: width: 1600, quality: 65
+              | image_url: width: 1600, quality: 65, format: 'webp'
               | image_tag: class: 'product-media__night-image', loading: 'lazy', alt: '', sizes: media_sizes
             }}
           {% endif %}
@@ -413,7 +413,7 @@
             endif
           -%}
           {% if show_led_ui %}
-            {% assign led_mask_url = led_mask_media.preview_image | image_url: width: 1600, quality: 65 %}
+            {% assign led_mask_url = led_mask_media.preview_image | image_url: width: 1600, quality: 65, format: 'webp' %}
             <div class="led-tint" style="--led-mask-url: url({{ led_mask_url }});"></div>
             <ul class="led-swatches{% if is_night_slide %} led-swatches--always{% endif %}" aria-label="בחר צבע תאורה">
               <li>
@@ -605,7 +605,7 @@
                     %}
                     {{
                       media.preview_image
-                      | image_url: width: 1024, quality: 65
+                      | image_url: width: 1024, quality: 65, format: 'webp'
                       | image_tag:
                         loading: 'lazy',
                         sizes: 'auto, 110, (min-width: 750px) 160',
