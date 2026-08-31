@@ -5,15 +5,27 @@
     assign unset_image_tag = true
   endif
 
-  # Matches sections/hero.liquid's own convention: only the first section on
-  # the page is the LCP candidate, so only it gets fetchpriority=high and a
-  # width-based responsive srcset. Every other media-with-content instance on
-  # the page keeps the default (lazy-eligible, DPR-based) image rendering.
+  # Only the first section on the page is the LCP candidate, so only it gets
+  # fetchpriority=high (matches sections/hero.liquid's own convention).
+  #
+  # responsive_sizes, though, applies to every instance regardless of
+  # section.index - this block renders inside a two-column media-with-content
+  # layout (media ~33-58vw on desktop depending on the media_width setting,
+  # 100vw on mobile) or a similar ~50vw split in featured-product.liquid.
+  # Leaving it null for non-first sections used to fall through to
+  # snippets/image.liquid's no-sizes branch, which sizes the 1x/2x/3x srcset
+  # off the source image's own native height - correct for a component that
+  # renders near-full-size, but this one usually renders far smaller than its
+  # native resolution, so that path was requesting candidates 2-3x larger
+  # than the block ever displays (confirmed via PageSpeed flagging a 71 KiB
+  # oversized download on the homepage's second banner, "hero_overlay_LfPdEJ").
+  # 60vw is a safe upper-bound approximation across every media_width
+  # setting (33/50/58vw) - never wrong-direction (blurry), just occasionally
+  # a little more headroom than the narrowest layouts strictly need.
   assign fetch_priority = null
-  assign responsive_sizes = null
+  assign responsive_sizes = '(min-width: 750px) 60vw, 100vw'
   if section.index == 1
     assign fetch_priority = 'high'
-    assign responsive_sizes = '(min-width: 750px) 60vw, 100vw'
   endif
 %}
 
