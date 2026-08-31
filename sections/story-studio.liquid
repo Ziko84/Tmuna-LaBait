@@ -16,7 +16,7 @@
       <div class="story-studio__hero">
         {{
           section.settings.hero_image
-          | image_url: width: 2000
+          | image_url: width: 2000, quality: 65
           | image_tag:
             loading: 'eager',
             fetchpriority: 'high',
@@ -36,7 +36,7 @@
               <div class="story-studio__member-photo">
                 {{
                   block.settings.photo
-                  | image_url: width: 200
+                  | image_url: width: 200, quality: 65
                   | image_tag: loading: 'lazy', alt: block.settings.photo.alt, sizes: '84px', widths: '84, 128, 168'
                 }}
               </div>
@@ -58,7 +58,7 @@
         <div class="story-studio__body-photo">
           {{
             section.settings.body_image
-            | image_url: width: 1200
+            | image_url: width: 1200, quality: 65
             | image_tag:
               loading: 'lazy',
               alt: section.settings.body_image.alt,
@@ -106,7 +106,7 @@
                     <div class="story-studio__equipment-photo-frame">
                       {{
                         block.settings.image
-                        | image_url: width: 500
+                        | image_url: width: 500, quality: 65
                         | image_tag:
                           loading: 'lazy',
                           alt: block.settings.image.alt,

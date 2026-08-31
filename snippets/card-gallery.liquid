@@ -177,10 +177,10 @@
               # padding around the photo, and sizing this to the outer
               # wrapper instead made the night image visibly larger than
               # the day photo it's replacing, reading as a scale-up.
-              echo night_media | image_url: width: 800 | image_tag: class: 'card-gallery__night-image', loading: 'lazy', alt: '', sizes: sizes
+              echo night_media | image_url: width: 800, quality: 65 | image_tag: class: 'card-gallery__night-image', loading: 'lazy', alt: '', sizes: sizes
             endif
             if night_media and forloop.first
-              assign led_mask_url = night_media.preview_image | image_url: width: 800
+              assign led_mask_url = night_media.preview_image | image_url: width: 800, quality: 65
               echo '<div class="led-tint" style="--led-mask-url: url(' | append: led_mask_url | append: ');"></div>'
               echo '<ul class="led-swatches" aria-label="בחר צבע תאורה"><li><button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#00b0ff" aria-pressed="false" aria-label="כחול" style="background: #00b0ff;" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#ff5722" aria-pressed="false" aria-label="אדום" style="background: #ff5722;" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#64dd17" aria-pressed="false" aria-label="ירוק" style="background: #64dd17;" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#e91e63" aria-pressed="false" aria-label="ורוד" style="background: #e91e63;" on:click=""></button></li></ul>'
             endif

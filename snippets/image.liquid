@@ -48,7 +48,7 @@
   {% assign image_alt_text = image.alt | default: alt_text_fallback | default: '' %}
 
   {% capture image_srcset -%}
-    {{ image | image_url: height: image_height }} 1x, {{ image | image_url: height: image_height_2x }} 2x, {{ image | image_url: height: image_height_3x }} 3x
+    {{ image | image_url: height: image_height, quality: 65 }} 1x, {{ image | image_url: height: image_height_2x, quality: 65 }} 2x, {{ image | image_url: height: image_height_3x, quality: 65 }} 3x
   {%- endcapture %}
 
   {% assign style_value = style | default: '' %}
@@ -65,7 +65,7 @@
   {% if sizes %}
     {{
       image
-      | image_url: width: 1600
+      | image_url: width: 1600, quality: 65
       | image_tag:
         widths: '400, 600, 832, 1200, 1600, 2000, 2560',
         sizes: sizes,
@@ -78,7 +78,7 @@
   {% else %}
     {{
       image
-      | image_url: height: image_height
+      | image_url: height: image_height, quality: 65
       | image_tag: class: class, srcset: image_srcset, style: style_value, alt: image_alt_text, fetchpriority: fetchpriority, loading: loading_value
     }}
   {% endif %}
