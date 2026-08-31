@@ -39,7 +39,11 @@
     assign image_sizes = sizes_attribute | strip
   elsif section.settings.columns and section.settings.layout_type != 'editorial'
     assign viewport_width = 100.0 | divided_by: section.settings.columns
-    assign sizes_attribute = '(min-width: 750px) [viewport_width]vw, 100vw' | replace: '[viewport_width]', viewport_width
+    assign viewport_width_mobile = 100.0
+    if section.settings.mobile_columns
+      assign viewport_width_mobile = 100.0 | divided_by: section.settings.mobile_columns
+    endif
+    assign sizes_attribute = '(min-width: 750px) [viewport_width]vw, [viewport_width_mobile]vw' | replace: '[viewport_width]', viewport_width | replace: '[viewport_width_mobile]', viewport_width_mobile
     assign image_sizes = sizes_attribute | strip
   endif
 
