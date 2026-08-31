@@ -84,7 +84,11 @@
     case section_settings.layout_type
       when 'grid', 'carousel'
         assign calculated_width = 100 | divided_by: section_settings.columns | append: 'vw'
-        assign sizes = '(min-width: 750px) [calc-width], 100vw' | replace: '[calc-width]', calculated_width
+        assign calculated_width_mobile = '100vw'
+        if section_settings.mobile_columns
+          assign calculated_width_mobile = 100 | divided_by: section_settings.mobile_columns | append: 'vw'
+        endif
+        assign sizes = '(min-width: 750px) [calc-width], [calc-width-mobile]' | replace: '[calc-width]', calculated_width | replace: '[calc-width-mobile]', calculated_width_mobile
       when 'editorial', 'bento'
         assign loading = 'lazy'
         assign sizes = lazy_sizes
