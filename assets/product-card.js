@@ -410,8 +410,8 @@ export class ProductCard extends ProductCardLink {
 
     // Animated (not instant) so the custom scroll-duration set on this
     // card's slideshow (see snippets/card-gallery.liquid) actually applies -
-    // this is what turns the day/night image swap into a smooth crossfade
-    // instead of an abrupt snap.
+    // this is what turns the image swap into a smooth crossfade instead of
+    // an abrupt snap.
     if (this.#previousSlideIndex != null && this.#previousSlideIndex > 0) {
       slideshow.select(this.#previousSlideIndex, undefined, { animate: true });
     } else {

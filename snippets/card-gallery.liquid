@@ -66,25 +66,6 @@
     endif
   endif
 
-  # Night-mode hover crossfade (same effect as the homepage banners): any
-  # product with a gallery image tagged "...לילה" gets a pure CSS opacity
-  # fade to that image on hover, instead of the native "show second image on
-  # hover" slide/scroll behavior - a slide is the wrong motion for a day/night
-  # reveal, it should look like the lights turning off, not a carousel swipe.
-  assign night_media = null
-  if product != blank
-    for media in product.media
-      # Match the specific closing phrase used by the night-image alt-text
-      # convention, not just the word "לילה" anywhere - a plain "contains"
-      # check false-matches whenever a product's own name happens to
-      # contain that word too (e.g. "זאב הלילה"), which made the DAY
-      # image's alt match first and get mistaken for the night companion.
-      if media.alt contains 'במצב לילה'
-        assign night_media = media
-        break
-      endif
-    endfor
-  endif
 %}
 
 <div
@@ -96,7 +77,7 @@
     --gallery-aspect-ratio: {{ ratio }};
   "
   data-product-id="{{ product.id }}"
-  {% if settings.show_second_image_on_hover and night_media == null %}
+  {% if settings.show_second_image_on_hover %}
     on:pointerenter="/previewImage"
     on:pointerleave="/resetImage"
   {% endif %}
@@ -170,20 +151,6 @@
 
           capture slideshow_children
             render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
-            if night_media and forloop.first
-              # Nested inside the same .product-media-container as the day
-              # photo (not a sibling of the whole gallery), so it inherits
-              # the exact same box - the card-gallery wrapper has its own
-              # padding around the photo, and sizing this to the outer
-              # wrapper instead made the night image visibly larger than
-              # the day photo it's replacing, reading as a scale-up.
-              echo night_media | image_url: width: 800, quality: 65, format: 'webp' | image_tag: class: 'card-gallery__night-image', loading: 'lazy', alt: '', sizes: sizes
-            endif
-            if night_media and forloop.first
-              assign led_mask_url = night_media.preview_image | image_url: width: 800, quality: 65, format: 'webp'
-              echo '<div class="led-tint" style="--led-mask-url: url(' | append: led_mask_url | append: ');"></div>'
-              echo '<ul class="led-swatches" aria-label="בחר צבע תאורה"><li><button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#00b0ff" aria-pressed="false" aria-label="כחול" style="background: #00b0ff;" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#ff5722" aria-pressed="false" aria-label="אדום" style="background: #ff5722;" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#64dd17" aria-pressed="false" aria-label="ירוק" style="background: #64dd17;" on:click=""></button></li><li><button type="button" class="led-swatch" data-led-color="#e91e63" aria-pressed="false" aria-label="ורוד" style="background: #e91e63;" on:click=""></button></li></ul>'
-            endif
           endcapture
 
           render 'slideshow-slide', slide_id: media.id, index: forloop.index0, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit
@@ -251,41 +218,6 @@
     overflow: hidden;
     container-type: inline-size; /* Make card-gallery a container */
     container-name: card-gallery-container; /* Optional: name the container */
-  }
-
-  /* Night-mode hover crossfade: day shot underneath, night shot fades in on
-     hover, same treatment as the homepage banners and the product page's
-     main image. Pure opacity, no sliding - see the doc comment above the
-     night_media Liquid assignment for why this bypasses the native
-     "show second image on hover" carousel behavior entirely. */
-  .card-gallery__night-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .card-gallery:hover .card-gallery__night-image {
-    opacity: 1;
-  }
-  /* The site-wide card-hover-effect setting (subtle-zoom/scale, see
-     base.css) scales .card-gallery on hover. On cards with a night image
-     that zoom was compounding with the crossfade into a jittery combined
-     motion - the ask here is just the opacity swap, so hover on this
-     specific inner element is locked to no transform at all.
-     .product-card itself is deliberately NOT included here anymore: its
-     own hover lift (theme.liquid, translateY only, no scale) moves the
-     whole card as one rigid unit and doesn't distort or rescale the
-     crossfading image inside it, so it doesn't reproduce the original
-     jitter this rule exists to prevent - this rule was blocking that
-     lift entirely on every product with a night-mode image, which is
-     effectively the whole catalog. */
-  .card-gallery:has(.card-gallery__night-image) {
-    transform: none !important;
   }
 
   .card-gallery__placeholder svg {

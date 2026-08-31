@@ -120,22 +120,6 @@
   endif
   assign has_image_drop = sorted_media | has: 'media_type', 'image'
 
-  # Night-mode hover crossfade on the main product image (mirrors the homepage
-  # banner effect): any gallery image whose alt text is tagged "...לילה" is
-  # treated as this product's night companion shot and overlaid on the first
-  # slide only, fading in on hover. Products without a tagged night image are
-  # unaffected.
-  assign night_media = null
-  for media in sorted_media
-    # Match the specific closing phrase, not just the word "לילה" anywhere -
-    # see card-gallery.liquid for why a plain "contains" check false-matches
-    # on products whose own name contains that word (e.g. "זאב הלילה").
-    if media.alt contains 'במצב לילה'
-      assign night_media = media
-      break
-    endif
-  endfor
-
   # Determine if we're in single column mode (carousel or grid with one column)
   assign is_single_column = false
   if media_presentation == 'carousel' or sorted_media.size == 1 or media_presentation == 'grid' and block_settings.media_columns == 'one'
@@ -387,51 +371,6 @@
             </div>
           {% else %}
             {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
-          {% endif %}
-          {% if night_media and forloop.first and media.id != night_media.id %}
-            {{
-              night_media
-              | image_url: width: 1600, quality: 65, format: 'webp'
-              | image_tag: class: 'product-media__night-image', loading: 'lazy', alt: '', sizes: media_sizes
-            }}
-          {% endif %}
-          {%- liquid
-            # The LED colour UI belongs on the first slide (which crossfades to
-            # the night shot on hover) and equally on any slide that already is
-            # a night shot - previously only the first slide got it, so opening
-            # the night image lost the swatches.
-            assign show_led_ui = false
-            assign led_mask_media = null
-            assign is_night_slide = false
-            if night_media and forloop.first
-              assign show_led_ui = true
-              assign led_mask_media = night_media
-            elsif media.alt contains 'במצב לילה'
-              assign show_led_ui = true
-              assign led_mask_media = media
-              assign is_night_slide = true
-            endif
-          -%}
-          {% if show_led_ui %}
-            {% assign led_mask_url = led_mask_media.preview_image | image_url: width: 1600, quality: 65, format: 'webp' %}
-            <div class="led-tint" style="--led-mask-url: url({{ led_mask_url }});"></div>
-            <ul class="led-swatches{% if is_night_slide %} led-swatches--always{% endif %}" aria-label="בחר צבע תאורה">
-              <li>
-                <button type="button" class="led-swatch led-swatch--active" data-led-color="" aria-pressed="true" aria-label="לבן חם" style="background: linear-gradient(135deg, #fff3d6, #ffb347);" on:click=""></button>
-              </li>
-              <li>
-                <button type="button" class="led-swatch" data-led-color="#00b0ff" aria-pressed="false" aria-label="כחול" style="background: #00b0ff;" on:click=""></button>
-              </li>
-              <li>
-                <button type="button" class="led-swatch" data-led-color="#ff5722" aria-pressed="false" aria-label="אדום" style="background: #ff5722;" on:click=""></button>
-              </li>
-              <li>
-                <button type="button" class="led-swatch" data-led-color="#64dd17" aria-pressed="false" aria-label="ירוק" style="background: #64dd17;" on:click=""></button>
-              </li>
-              <li>
-                <button type="button" class="led-swatch" data-led-color="#e91e63" aria-pressed="false" aria-label="ורוד" style="background: #e91e63;" on:click=""></button>
-              </li>
-            </ul>
           {% endif %}
         {% endcapture %}
         {% capture class %}

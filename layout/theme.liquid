@@ -390,194 +390,6 @@
         box-shadow: 0 6px 18px rgba(26, 26, 46, 0.12);
       }
 
-      /* LED color swatches (product cards + product page, night-mode
-         products only): the tint layer uses the NIGHT photo itself as a
-         luminance mask, so a mix-blend-mode:color overlay only recolors the
-         bright LED glow and leaves the wood/wall/props alone - no per-color
-         photography needed. Opacity is driven purely by :hover on the same
-         container that triggers the day/night crossfade, so a color choice
-         is only ever visible together with the night image - never on the
-         day photo. data-led-color="" (warm white) leaves the tint
-         transparent, showing the night photo's real glow color untouched. */
-      .led-tint {
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-        pointer-events: none;
-        opacity: 0;
-        mix-blend-mode: color;
-        /* mix-blend-mode:color keeps the backdrop's luminosity, and the
-           glow's highlights sit so close to white that even a fully
-           saturated overlay reads as washed-out/pastel there - boost past
-           100% saturation to compensate and keep the color reading vivid
-           at the brightest part of the glow. Blue/green need this more
-           than red/orange/pink: forced up to near-white luminosity, warm
-           hues can stay vivid but blue/green are inherently closer to
-           white at that brightness regardless of input saturation - the
-           swatch hex values were also picked to sit nearer their own
-           brightness ceiling (cyan-leaning blue, lime-leaning green) to
-           help the same problem from the other side. */
-        filter: saturate(2.4);
-        mask-image: var(--led-mask-url);
-        -webkit-mask-image: var(--led-mask-url);
-        mask-mode: luminance;
-        -webkit-mask-mode: luminance;
-        mask-size: cover;
-        -webkit-mask-size: cover;
-        mask-position: center;
-        -webkit-mask-position: center;
-        transition: opacity 0.8s ease, background-color 0.35s ease;
-      }
-      .product-media-container:is(:hover, .night-mode-active) .led-tint,
-      .media-block:is(:hover, .night-mode-active) .led-tint {
-        opacity: 1;
-      }
-      /* Tiny color chips anchored to the photo's bottom-left corner.
-         Nested inside .product-media-container itself (same element the
-         tint and night-image use, native position:relative from base.css)
-         - NOT .card-gallery, which carries its own ~14px padding around
-         the photo, so anchoring there landed the chips in that padding
-         gutter instead of on the image. */
-      /* The row's own box used to be exactly as tall as the 8px dots and
-         nothing more, so a tap even a couple px above/below the dots fell
-         straight through to the image link - the per-button ::before
-         expansion doesn't help there since the click never even reaches a
-         button. Padding pushes the row's real hit box (and therefore what
-         "click inside .led-swatches" in the JS covers) well past the
-         dots on every side; inset is reduced by the same amount so the
-         dots still land visually where they did before. */
-      .led-swatches {
-        position: absolute;
-        z-index: 3;
-        inset-block-end: 0;
-        inset-inline: 0;
-        width: fit-content;
-        margin-inline: auto;
-        padding-block: 12px;
-        padding-inline: 0;
-        display: flex;
-        /* Keep internal color order stable regardless of the page's RTL
-           context - these are color chips, not text. */
-        direction: ltr;
-        justify-content: center;
-        align-items: center;
-        gap: 8.4px;
-        list-style: none;
-        /* Only appear together with night mode, everywhere this feature is
-           used (cards, product page, banners) - same hover trigger as
-           .led-tint/.hero-night-image. Opacity itself now lives on each
-           <li> below (staggered one-by-one), the row only gates
-           pointer-events so clicks can't land on invisible dots. */
-        pointer-events: none;
-      }
-      .product-media-container:is(:hover, .night-mode-active) .led-swatches,
-      .media-block:is(:hover, .night-mode-active) .led-swatches {
-        pointer-events: auto;
-      }
-      .led-swatches li {
-        display: flex;
-        line-height: 0;
-        /* Each dot fades/slides in on its own instead of the whole row
-           appearing at once - transition-delay is set per nth-child below
-           and applies in both directions, so the dots also cascade off
-           in the same left-to-right order when night mode ends. */
-        opacity: 0;
-        transform: translateY(3px) scale(0.6);
-        transition: opacity 0.35s ease, transform 0.35s ease;
-      }
-      .product-media-container:is(:hover, .night-mode-active) .led-swatches li,
-      .media-block:is(:hover, .night-mode-active) .led-swatches li {
-        opacity: 1;
-        transform: none;
-      }
-      /* A slide that already is the night shot has nothing to cross-fade into,
-         so its swatches stay visible instead of waiting for hover. */
-      .led-swatches--always {
-        pointer-events: auto;
-      }
-      .led-swatches--always li {
-        opacity: 1;
-        transform: none;
-      }
-      .led-swatches li:nth-child(1) { transition-delay: 0s; }
-      .led-swatches li:nth-child(2) { transition-delay: 0.07s; }
-      .led-swatches li:nth-child(3) { transition-delay: 0.14s; }
-      .led-swatches li:nth-child(4) { transition-delay: 0.21s; }
-      .led-swatches li:nth-child(5) { transition-delay: 0.28s; }
-      .led-swatch {
-        position: relative;
-        width: 10px;
-        height: 10px;
-        padding: 0;
-        border: none;
-        border-radius: 50%;
-        opacity: 0.7;
-        cursor: pointer;
-        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), outline-color 0.2s ease;
-      }
-      /* One size step smaller on product cards specifically - banners and
-         the product page keep the regular (now 10px) size. */
-      .card-gallery .led-swatch {
-        width: 8px;
-        height: 8px;
-      }
-      /* Invisible expanded hit area: the dot stays 8px so it reads as a
-         small, unobtrusive chip, while the actual clickable region is
-         bigger (~14px). Capped at -3px (not the previous -8px) because
-         with only 8px gap between dots, a bigger expansion made
-         neighboring swatches' hit zones overlap - whichever swatch was
-         later in the row won that overlap, making the ones sandwiched
-         between two others (like blue) nearly impossible to actually
-         click since red's zone was eating into blue's from one side. */
-      .led-swatch::before {
-        content: '';
-        position: absolute;
-        inset: -3px;
-      }
-      /* Touch has no real "unhover" gesture - tapping a swatch leaves it
-         stuck in :hover (the last-tapped element keeps it until something
-         else is tapped), so this 2.2x zoom-in-place never shrinks back
-         down and physically overlaps/covers the neighboring swatches,
-         making the next one hard to hit. Scope it to devices that can
-         actually hover with a pointer that isn't a finger. */
-      @media (hover: hover) and (pointer: fine) {
-        .led-swatch:hover {
-          transform: scale(2.2);
-        }
-      }
-      .led-swatch:focus-visible {
-        outline: 1px solid #ffffff;
-        outline-offset: 1px;
-      }
-      .led-swatch--active {
-        outline: 1px solid #ffffff;
-        outline-offset: 1px;
-        box-shadow: 0 0 0 2px rgba(26, 26, 46, 0.45);
-      }
-      /* The :hover-driven 2.2x zoom that makes these easy to hit with a
-         mouse never fires on touch - there's no hover state, so the real
-         tap target on mobile is just the raw dot plus its small expanded
-         zone, well under the ~44px a thumb needs. Bigger dots and a much
-         bigger invisible hit zone here, sized to actually be tappable. */
-      @media (max-width: 749px) {
-        .led-swatch,
-        .card-gallery .led-swatch {
-          width: 18px;
-          height: 18px;
-        }
-        /* Kept modest enough that neighboring dots' hit zones can't
-           overlap given the gap below (each side eats 9px into a 20px
-           gap, leaving a 2px buffer) - a bigger expansion here would
-           recreate the old bug where an overlapping zone made whichever
-           swatch came later in the row eat the earlier one's taps. */
-        .led-swatch::before {
-          inset: -9px;
-        }
-        .led-swatches {
-          gap: 20px;
-        }
-      }
-
       /* ============================================================
          Header submenus: compact dropdown anchored to its own trigger,
          instead of the theme's default full-width mega-menu panel.
@@ -923,35 +735,6 @@
         border-style: solid;
         border-color: rgba(0, 0, 0, 0.14);
         border-width: 0 1px 1px 0;
-      }
-
-      /* Night-mode crossfade on hover (snippets/hero-night-mode.liquid injects the
-         .hero-night-image element once a matching file exists), scoped to
-         .media-block (the photo column only) so it doesn't wash out the text side.
-         Day shot underneath, night shot fades in over it - both pixel-aligned so it
-         reads as the lights turning off, not a slideshow swap. Covers the homepage
-         hero and the second "אור שנולד מעץ" banner. Not the Our Story hero -
-         the effect didn't read well on that image, so it was removed there
-         (see snippets/hero-night-mode.liquid). */
-      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-block {
-        position: relative;
-      }
-      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .hero-night-image {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        pointer-events: none;
-        z-index: 1;
-      }
-      /* Trigger on hovering the photo itself, not the whole split section -
-         .media-with-content:hover also fires while hovering the text/button
-         column, which shouldn't flip the image to night mode. */
-      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-block:is(:hover, .night-mode-active) .hero-night-image {
-        opacity: 1;
       }
 
       /* Neumorphic edge highlight on banner sections: a thin light line
@@ -2240,27 +2023,6 @@
         text-decoration: none !important;
       }
 
-      /* Product page night-mode hover crossfade (same idea as the homepage
-         banners): snippets/product-media-gallery-content.liquid renders this
-         overlay only on the first slide, only when the product has a gallery
-         image tagged "...לילה" in its alt text. .product-media-container
-         already has position:relative + overflow:hidden natively, so it's
-         the correct scope for both the absolute overlay and the :hover. */
-      .product-media__night-image {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-        pointer-events: none;
-        z-index: 1;
-      }
-      .product-media-container:is(:hover, .night-mode-active) .product-media__night-image {
-        opacity: 1;
-      }
-
       /* Quick-add pill label: native CSS only pads one side
          (padding-right), so the letter against the unpadded edge sits
          flush on .add-to-cart-text's overflow:hidden boundary and gets
@@ -2695,8 +2457,6 @@
     {% endif %}
 
 
-    {% render 'hero-night-mode' %}
-    <script src="{{ 'led-color-swatches.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-scroll-shrink.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card-cta-hover.js' | asset_url }}" defer></script>
     <script src="{{ 'hebrew-live-search.js' | asset_url }}" defer></script>
