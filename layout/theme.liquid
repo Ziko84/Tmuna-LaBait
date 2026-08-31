@@ -589,7 +589,6 @@
          positioned with the exact padding offsets so it lines up with the
          real content instead of the wrapper's own unpadded box. */
       :is(
-        [id$="__hero_split_tlb01"],
         [id$="__story_hero"],
         [id$="__story_craft"],
         [id$="__hero_overlay_LfPdEJ"]
@@ -716,9 +715,9 @@
         padding-inline-end: 32px;
       }
 
-      /* Hairline stroke on the right + bottom edges, on both homepage
-         media-with-content banners. */
-      :is([id$="__hero_split_tlb01"], [id$="__hero_overlay_LfPdEJ"]) .media-with-content {
+      /* Hairline stroke on the right + bottom edges, on the homepage's
+         media-with-content banner. */
+      [id$="__hero_overlay_LfPdEJ"] .media-with-content {
         border-style: solid;
         border-color: rgba(0, 0, 0, 0.14);
         border-width: 0 1px 1px 0;
@@ -1172,7 +1171,6 @@
       /* Rounded-card sections: tighter type + spacing on small screens */
       @media (max-width: 767px) {
         :is(
-          [id$="__hero_split_tlb01"],
           [id$="__story_hero"],
           [id$="__story_craft"],
           [id$="__hero_overlay_LfPdEJ"]
