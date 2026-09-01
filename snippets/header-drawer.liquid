@@ -115,7 +115,10 @@
                 child links, this just skips rendering the dropdown for
                 that one top-level item.
               {%- endcomment -%}
-              {%- assign hide_submenu = link.title == 'חנות' -%}
+              {%- assign hide_submenu = false -%}
+              {%- if link.title == 'חנות' -%}
+                {%- assign hide_submenu = true -%}
+              {%- endif -%}
               <li
                 style="--menu-drawer-animation-index: {{ animation_index }};"
                 class="{%- if block_settings.drawer_accordion -%}menu-drawer__list-item--deep{%- else -%}menu-drawer__list-item--flat{%- endif -%}{% if block_settings.drawer_dividers %} menu-drawer__list-item--divider{% endif %}"
