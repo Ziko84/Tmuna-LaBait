@@ -1,0 +1,1218 @@
+{%- doc -%}
+  Static (Liquid-free) theme-wide CSS overrides accumulated over many prior
+  fixes: fonts, product-card/badge styling, header nav, homepage banner
+  polish, footer surface, and misc component tweaks. Lives in its own
+  {% stylesheet %} snippet (rather than an inline <style> tag in
+  theme.liquid, where {% stylesheet %} isn't a valid tag) so Shopify's own
+  minifier compresses the wire version while this file stays fully
+  commented and readable.
+
+  Rendered early in <head>, before content_for_header - safe to bundle
+  here since nothing in this block depends on winning a source-order
+  cascade tie against Shopify's own injected per-component CSS. Compare
+  to the separate, much later <style> block still in theme.liquid itself,
+  which explicitly must stay positioned after content_for_header for
+  !important tie-breaking and can't be moved into a {% stylesheet %}
+  bundle (those always compile into the early-loading shared bundle
+  regardless of which file declares them).
+{%- enddoc -%}
+
+{% stylesheet %}
+  :root {
+    --font-body--family: 'Heebo', sans-serif !important;
+    --font-primary--family: 'Heebo', sans-serif !important;
+    --font-subheading--family: 'Heebo', sans-serif !important;
+    --font-heading--family: 'Varela Round', 'Heebo', sans-serif !important;
+    --font-accent--family: 'Varela Round', 'Heebo', sans-serif !important;
+    /* The warm amber the LED backlight photography glows in. Pulled
+       into UI chrome (button hover, category card hover, the craft
+       strip's rule marks) so the site's one truly distinctive color
+       shows up outside the product photos too, not just inside them. */
+    --color-accent-amber: #e8a33d;
+  }
+  body {
+    font-family: 'Heebo', sans-serif;
+    letter-spacing: 0.015em;
+  }
+  /* Every section background on the site was a flat solid fill.
+     This gives the page a single, very quiet ambient-light wash
+     instead - a warm glow (echoing the LED product photography)
+     in one corner, a faint cool one in the other for depth. Fixed
+     + pointer-events:none so it never repaints on scroll (see
+     base.css's own grain-layer pattern for the same technique). */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Centers pulled into the actual viewport (the first version sat
+       mostly above/beside it at -5%, which read as invisible on pages
+       without a big photo up top to blend into, like the store grid). */
+    background:
+      radial-gradient(ellipse 900px 600px at 88% 10%, rgba(232, 163, 61, 0.11), transparent 62%),
+      radial-gradient(ellipse 700px 500px at 8% 92%, rgba(26, 26, 46, 0.05), transparent 62%);
+  }
+
+  /* Toylvia-style product cards */
+  .product-card {
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(24, 24, 32, 0.06), 0 10px 22px rgba(24, 24, 32, 0.08);
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .product-card:hover {
+    box-shadow: 0 4px 10px rgba(24, 24, 32, 0.08), 0 16px 30px rgba(24, 24, 32, 0.12);
+  }
+  .product-card .product-card__content {
+    background: #ffffff !important;
+    border-radius: 14px;
+  }
+  .product-card .product-card__content > *:first-child {
+    background: #ffffff;
+    padding: 14px !important;
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden;
+    /* Quick-add button positions itself off these custom properties,
+       not the literal padding above - without matching them it thinks
+       there's zero inset and sits straddling the image/white-padding
+       boundary, where its heavy backdrop-blur looks broken. */
+    --padding-inline-end: 14px !important;
+    --padding-block-end: 14px !important;
+  }
+  .product-card .product-card__content > *:first-child img,
+  .product-card .product-card__content > *:first-child svg {
+    object-fit: cover !important;
+    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .product-card .product-card__content > *:last-child {
+    padding: 14px 18px 18px !important;
+    border-top: 1px solid #f1f2f5;
+    gap: 2px !important;
+  }
+  .product-card a[ref='productTitleLink'] {
+    display: block;
+  }
+  /* Titles used to be a single nowrap line with an ellipsis, which
+     cut longer Hebrew names mid-word. They wrap to two lines now.
+     No reserved min-height: holding a second line open left an
+     obvious empty band under every short title, which is worse
+     than prices sitting at slightly different heights. */
+  /* The title's text-block wrapper carries its own spacing-style
+     padding from the block settings, which showed up as dead space
+     between the title and the stars row below it. */
+  .product-card a[ref='productTitleLink'] .text-block {
+    padding-block: 0 !important;
+  }
+  .product-card a[ref='productTitleLink'] p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: #33333d;
+    overflow: hidden;
+  }
+  .rating-wrapper {
+    display: none !important;
+  }
+  /* Fake star-rating decoration removed (was a hardcoded CSS ::before
+     claiming "☆☆☆☆☆ (0)" on every card - never real review data).
+     Judge.me is now installed; its own Star Rating Badge block
+     should be added per product card section via the theme editor
+     instead, so the rating shown is tied to real (if empty) review
+     data rather than fabricated content. */
+  product-card .contents.user-select-text::before {
+    display: none !important;
+    content: none !important;
+  }
+  /* Price was the smallest text on the card, below the title and
+     even below the button. It is the second thing anyone looks at,
+     so it now carries real weight of its own. */
+  .product-card product-price,
+  .product-card product-price .price {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #1a1a2e;
+  }
+  /* Struck original price stays quiet next to it. */
+  .product-card product-price .price--compare,
+  .product-card product-price s {
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: rgba(26, 26, 46, 0.45);
+  }
+
+  /* ============================================================
+     Header: force menu links, search, cart, account icons and
+     announcement text to ALWAYS be dark. Covers every color
+     variable the header actually reads, so nothing renders
+     white-on-white in any state.
+     ============================================================ */
+  #header-group .header-section,
+  #header-group .header-section * {
+    --color-foreground: #2f2f3a !important;
+    --color-foreground-rgb: 47, 47, 58 !important;
+    --color-foreground-heading: #2f2f3a !important;
+    --color-transparent-text: #2f2f3a !important;
+    --color-transparent-text-rgb: 47, 47, 58 !important;
+    --button-color: #2f2f3a !important;
+    --color-account-icon: #2f2f3a !important;
+    --menu-top-level-font-color: #2f2f3a !important;
+    --menu-top-level-font-color-rgb: 47, 47, 58 !important;
+    --menu-child-font-color: #2f2f3a !important;
+    --menu-parent-font-color: #2f2f3a !important;
+  }
+  #header-group .header-section a,
+  #header-group .header-section button,
+  #header-group .header-section .header-actions__action,
+  #header-group .header-section .menu-list__link,
+  #header-group .header-section .menu-list__link-title,
+  #header-group .header-section .header__icon--menu,
+  #header-group .header-section .dropdown-localization__button,
+  #header-group .header-section .search-action,
+  #header-group .header-section svg {
+    color: #2f2f3a !important;
+  }
+  #header-group .header-section svg [fill]:not([fill='none']),
+  #header-group .header-section svg:not([fill='none']) {
+    fill: currentColor !important;
+  }
+
+  /* Top bar (header) background - frosted warm off-white matching
+     .page-wrapper's background, regardless of whatever color the
+     theme editor's row settings are set to. (Hallmark redesign,
+     easy to revert: this block only, values below.) */
+  #header-component {
+    --color-background-top-row: rgba(247, 245, 242, 0.72) !important;
+    --color-background-bottom-row: rgba(247, 245, 242, 0.72) !important;
+  }
+  /* Frosted-glass blur behind the top bar - the underlay is the
+     actual element painting that background (see header.liquid).
+     Saturate boost is what makes it read as "glass" rather than
+     just "blurry". */
+  .header__underlay-closed,
+  .header__underlay-open {
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  /* ============================================================
+     Header: always visible while sticky, no hide-on-scroll. Only a
+     drop shadow toggles in once the page has scrolled away from the
+     top (class set by the small script near the end of <body>).
+     `sticky="always"` keeps the header permanently position:sticky
+     (native theme CSS, unconditional).
+     ============================================================ */
+  #header-component[sticky='always'] {
+    transition: box-shadow 0.3s ease;
+  }
+  #header-component.header--scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  /* The theme sets the sticky header's own section to the SAME
+     z-index as the cart drawer (both var(--layer-menu-drawer)),
+     relying on DOM order (drawer renders after the header) to
+     break the tie so the drawer naturally wins. The will-change
+     above promotes the header to its own compositor layer, which
+     disrupts that DOM-order tiebreak for equal z-index siblings -
+     that's why the logo started painting over the open cart
+     drawer. Giving the header an explicitly lower z-index removes
+     the ambiguity instead of relying on paint-order luck. */
+  .header-section:has(> #header-component[sticky='always']),
+  .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
+    z-index: var(--layer-sticky) !important;
+  }
+
+  /* Announcement bar: pin it to the very top on scroll too, same as
+     the header below it. Its wrapper (#header-group's first child)
+     is what actually needs position:sticky - .section-background,
+     a sibling of .announcement-bar that paints its background, is
+     absolutely positioned relative to that same wrapper, so
+     stickying the wrapper keeps both moving together. The header's
+     own sticky top is then pushed down by the announcement bar's
+     measured height (set on body by JS below) instead of 0, so it
+     docks right underneath instead of overlapping it. */
+  #header-group > *:first-child {
+    position: sticky;
+    top: 0;
+    z-index: var(--layer-sticky);
+  }
+  .header-section:has(> #header-component[sticky='always']),
+  .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
+    top: var(--announcement-bar-sticky-height, -1px) !important;
+  }
+
+  .menu-list__link {
+    padding: 0 !important;
+    margin: 0 28px !important;
+  }
+  .menu-list__link-title {
+    position: relative;
+    display: inline;
+    padding: 0 !important;
+    width: fit-content;
+    font-family: 'Assistant', 'Heebo', sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 30px !important;
+    letter-spacing: 0.04em;
+  }
+  /* Short underline, right-aligned: shown only on the current page's
+     nav item - never on hover of other items. Hovering the active
+     item itself gives a small scale pulse, just for feedback. */
+  .menu-list__link-title::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    width: 55%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+  }
+  .menu-list__link--active .menu-list__link-title::after {
+    transform: scaleX(1);
+  }
+  .menu-list__link--active:hover .menu-list__link-title::after {
+    transform: scaleX(1.15);
+  }
+  /* Submenu links: same boutique font as the top-level nav, but with
+     tighter tracking since these sit in a compact dropdown card. */
+  .mega-menu__link {
+    font-family: 'Assistant', 'Heebo', sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* Product cards: the exact same lift + drop-shadow setup the blog
+     article cards use (see .blog-post-card:hover in
+     _blog-post-card.liquid) - not just visually similar values, the
+     actual shared tokens (--hover-transition-duration: 0.25s,
+     --hover-transition-timing: ease-out, both defined in base.css)
+     so the timing and easing curve are byte-identical, not a
+     hand-typed approximation.
+
+     Scoped as ".resource-list__item .product-card", not bare
+     ".product-card" - base.css has its own !important transition on
+     ".resource-list__item product-card" (the real <product-card>
+     element, ancestor-scoped), specificity (0,1,1), which silently
+     wins over a bare ".product-card" (0,1,0) even with !important on
+     both sides, locking the transition to "box-shadow 0.9s
+     cubic-bezier(...)" only - transform never included, so it never
+     animated at all regardless of what this rule said. Matching the
+     same ancestor-scoped pattern gives (0,2,0), which wins on the
+     class-count tiebreak. */
+  .resource-list__item .product-card {
+    border-radius: 16px;
+    transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
+      box-shadow var(--hover-transition-duration) var(--hover-transition-timing) !important;
+  }
+
+  /* The card previously carried four separate edge devices at once:
+     a shadow, an asymmetric 1px right/bottom border, an outline
+     offset 6px, and the gold gradient below. Stacked, they read as
+     unresolved rather than considered. Shadow plus the gold edge
+     highlight are the two that carry the store's identity, so the
+     border and outline are gone. */
+
+  /* Missing-image placeholder on product cards: round it and lift it
+     off the page like a real photo instead of a flat gray box. */
+  .card-gallery__placeholder {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(26, 26, 46, 0.12);
+  }
+
+  /* ============================================================
+     Header submenus: compact dropdown anchored to its own trigger,
+     instead of the theme's default full-width mega-menu panel.
+     The theme's panel is `position:absolute; left:0; width:100%`
+     (spans the entire header row, physical left) with its content
+     then flex/grid-anchored to one fixed edge — for a small store
+     with plain text links (Our Story under Blog, policies under
+     Contact) that meant the dropdown rendered nowhere near the
+     item you actually hovered. This makes it a normal compact
+     list that opens directly under its own parent, RTL or LTR.
+     ============================================================ */
+  .menu-list__list-item:where(:not([slot='overflow'])) {
+    position: relative;
+    background-color: transparent !important;
+    outline: none !important;
+  }
+  .menu-list__list-item:where(:not([slot='overflow'])) a,
+  .menu-list__list-item:where(:not([slot='overflow'])) .menu-list__link,
+  .menu-list__list-item:where(:not([slot='overflow'])) .menu-list__link::after {
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu {
+    width: max-content;
+    min-width: 200px;
+    max-width: 280px;
+    left: auto;
+    right: auto;
+    inset-inline-start: 0;
+    top: 100% !important;
+    /* The theme's native clip-path (rect(header-height, 100%,
+       full-open-header-height, 0)) is coordinates relative to THIS
+       box's own top edge, sized for the old full-width mega-menu
+       whose top tracked the header's expand animation. Since we
+       reposition this box to sit right under its own trigger
+       instead, that native clip window no longer lines up with our
+       box's real content, and silently truncates it (e.g. the 2x2
+       collection-thumbnail grid losing its bottom row). !important
+       needed - same selector, same specificity, native rule is
+       injected later via content_for_header. */
+    clip-path: none !important;
+    padding-inline: 0;
+    /* NEVER add overflow/content-visibility overrides to this
+       specific element again - confirmed three separate times
+       that doing so breaks the dropdown opening entirely. This
+       element is what header-menu.js reads to drive its whole
+       open/close state; whatever it depends on internally
+       (content-visibility, measured offsetHeight, or something
+       else not yet identified) is incompatible with clipping it
+       directly. Do corner-clipping on .menu-list__submenu-inner
+       only, or on the .mega-menu content itself - never here. */
+    /* DevTools confirmed transparent was actually winning here -
+       the gray wasn't this box's own fill, it was bleeding through
+       from whatever sits behind it on the page (the hero card's
+       own shadow, most likely, since the dropdown floats right
+       above it). Painting the exact same white as the inner card
+       makes the square-vs-rounded-corner seam invisible without
+       needing overflow:hidden on this element at all. Still visible
+       against a non-white backdrop (e.g. a hero photo behind the
+       dropdown), so round this box's own corners too - a plain
+       border-radius (no overflow:hidden) just changes how its own
+       background paints, it doesn't affect child clipping at all,
+       so it's safe alongside the note above. */
+    background-color: var(--color-background) !important;
+    border-radius: 16px;
+  }
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .menu-list__submenu-inner {
+    display: block;
+    padding: 8px;
+    max-height: none;
+    background: var(--color-background);
+    border-radius: 16px;
+    overflow: hidden;
+    /* Native rule translates this box down by (full-open-header-height
+       minus submenu-height), a leftover from the old mega-menu's header
+       expand animation. Our compact dropdown never grows the header, so
+       those two vars mismatch and this pushed the card down, leaving a
+       blank gap between the nav row and the card. */
+    transform: none !important;
+    /* Shadow was removed entirely during an earlier debugging pass
+       that traced a gray-corner rendering bug to this card's
+       background-color mismatch (fixed above via the explicit
+       background-color: var(--color-background) match) - the
+       shadow itself was ruled out as the cause. Safe to bring
+       back now that the real fix is in place. (Hallmark redesign,
+       easy to revert: this one declaration.) */
+    box-shadow: 0 12px 32px -12px rgba(26, 26, 46, 0.22), 0 2px 8px rgba(26, 26, 46, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  /* .mega-menu carries the generic .section class, which sets up a
+     3-column page-width grid (grid-template-columns sized off
+     --page-margin/--page-width, meant for full-bleed page
+     sections). Inside our small anchored dropdown that grid still
+     computed its own page-scale box, a different rectangle than
+     our rounded card wrapped around it — the sharp gray corners
+     peeking out from behind the rounded white card. Killing the
+     grid so it's just a plain block that fills the card. */
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu {
+    display: block !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    background: none !important;
+  }
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu > * {
+    grid-column: unset;
+  }
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu :is(.mega-menu__grid, .mega-menu__list, .mega-menu__column) {
+    display: block;
+  }
+  /* Blanket sweep: every div/ul/li nested inside the dropdown's
+     content that hasn't been individually checked, forced to no
+     background at all. This is the wrapper directly under the
+     rounded card the corners were never actually addressed on. */
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu :is(div, ul, li) {
+    background: none !important;
+  }
+  /* The theme also expands a full-width colored band under the
+     entire header row whenever any submenu is open (built for the
+     old full-bleed mega-menu). Our dropdowns are compact now, so
+     keep the header's underlay at its normal closed height always. */
+  .header__underlay-open {
+    height: var(--closed-underlay-height, 100%) !important;
+    background: linear-gradient(
+      var(--color-background-top-row) 0 var(--top-row-height),
+      var(--color-background-bottom-row) var(--top-row-height) var(--header-height)
+    ) !important;
+  }
+  .header__underlay-open::after {
+    display: none;
+  }
+  .menu-list__list-item:where(:not([slot='overflow'])) > .menu-list__submenu .mega-menu__link {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 10px;
+    white-space: nowrap;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  /* ============================================================
+     Hallmark redesign - header nav, modern-minimal genre, N1b
+     archetype (centered link cluster + hover dropdowns).
+     Additive only - nothing above this block was restructured.
+     Easy to revert: delete this block, and the header falls back
+     to its pre-redesign focus/hover behavior. Full stamp below.
+     ============================================================ */
+
+  /* Nav links and mega-menu items had no visible focus state at
+     all - keyboard users got nothing. Ring shows instantly (never
+     animated in, per accessibility discipline), navy at full
+     opacity against the cream header for solid contrast. */
+  #header-component .menu-list__link:focus-visible,
+  #header-component .mega-menu__link:focus-visible {
+    outline: 2px solid #1a1a2e;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Hallmark · macrostructure: component-scope (header nav) · genre: modern-minimal
+   * nav: N1b · knobs: centre-links=4, dropdowns=2, scroll=frost-on-scroll, cta-pair=icons-only
+   * theme: preserved project tokens (paper #f7f5f2, ink #1a1a2e) · studied: no
+   */
+
+  /* Product page: keep image left, details/buttons right */
+  .product-information__grid {
+    direction: ltr;
+  }
+  .product-information__grid .product-details,
+  .product-information__grid .product-information__media {
+    direction: rtl;
+  }
+
+  /* Announcement bar: cream stripe matching the site background,
+     thin black outline, black text */
+  .announcement-bar,
+  .announcement-bar .section-background {
+    background: #f7f5f2 !important;
+    border: 1px solid #000000 !important;
+  }
+  .announcement-bar, .announcement-bar * {
+    color: #000000 !important;
+  }
+  .announcement-bar .announcement-bar__text {
+    letter-spacing: normal !important;
+    opacity: 1;
+  }
+
+  /* ============================================================
+     Apple-style premium homepage polish
+     ============================================================ */
+
+  /* Floating rounded card treatment, shared by every split media+content
+     "hero-style" section on the site (homepage hero, homepage trust
+     section, Our Story page sections). Apply to a new section by adding
+     its shopify-section id (suffix match, ignores the numeric template
+     prefix) to this :is() list — nothing else needs to change.
+
+     One rounding source for the visible fill/clip (.media-with-content
+     + .section-background, both 40px, both positioned by the same
+     padding-respecting box). The shadow can't live on either of those:
+     .media-with-content has overflow:hidden (would clip its own
+     shadow), and .section-background is forced to z-index:-2 by the
+     theme (shadow renders but sits behind opaque content, invisible).
+     So the shadow is a dedicated ::before on the outer wrapper,
+     positioned with the exact padding offsets so it lines up with the
+     real content instead of the wrapper's own unpadded box. */
+  :is(
+    [id$="__story_hero"],
+    [id$="__story_craft"],
+    [id$="__hero_overlay_LfPdEJ"]
+  ) {
+    padding: 16px 0 28px;
+    box-sizing: border-box;
+    max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
+    margin-inline: auto;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      right: 0;
+      bottom: 28px;
+      left: 0;
+      border-radius: 40px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+      pointer-events: none;
+      will-change: transform;
+      isolation: isolate;
+    }
+
+    .media-with-content {
+      border-radius: 40px;
+      overflow: hidden;
+    }
+
+    /* The theme forces .section's own background to transparent and
+       paints the real white fill on a separate sibling,
+       .section-background — that element had no radius of its own,
+       which is the actual reason the card kept showing square corners
+       no matter what was rounded on .media-with-content. */
+    .section-background {
+      border-radius: 40px;
+    }
+
+    /* Image must fully fill its column, edge to edge. Rounding lives
+       ONLY on the outer .media-with-content clip (single source of
+       truth) — the image itself stays radius:0. Rounding it a second
+       time here too produced two slightly offset arcs at the corner
+       instead of one clean edge, since the image's box and the outer
+       clip don't share an exact pixel-identical origin. */
+    .media-block {
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
+    .media-block__media {
+      border-radius: 0 !important;
+      margin: 0 !important;
+    }
+    @media (min-width: 750px) {
+      .media-block {
+        height: 100% !important;
+      }
+      .media-block__media {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        margin: 0 !important;
+      }
+    }
+
+    /* Cinematic slow zoom on the image + refined heading type */
+    .media-block img {
+      animation: heroSlowZoom 24s ease-in-out infinite alternate;
+    }
+    .media-with-content__content :is(h1, h2, h3) {
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .media-with-content__content .group-block-content > * {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .media-with-content__content .group-block-content > *:nth-child(1) { animation-delay: 0.15s; }
+    .media-with-content__content .group-block-content > *:nth-child(2) { animation-delay: 0.32s; }
+    .media-with-content__content .group-block-content > *:nth-child(3) { animation-delay: 0.48s; }
+    .media-with-content__content .group-block-content > *:nth-child(4) { animation-delay: 0.64s; }
+  }
+  @keyframes heroSlowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+  @keyframes heroFadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Bottom banner only. Two fixes with no schema setting available.
+     1) text.liquid's own .text-block--align-right rule sets
+        margin-inline-start: auto to push a narrower-than-container box
+        toward its aligned edge - correct for LTR, but on this RTL site
+        inline-start is the right edge, so an auto margin there pushes
+        the box LEFT instead, away from the heading it should line up
+        with. This site-wide quirk is invisible almost everywhere else
+        because most text blocks are already fit-content width with
+        nothing to push; this paragraph is the rare width:100% +
+        narrower max-width combination that exposes it. Overriding to
+        margin-inline-end: auto here (not touching the shared rule,
+        which is out of scope for a single banner) reverses the push so
+        it lands flush against the heading's right edge instead.
+     2) The button should sit at the left instead of the text's right
+        edge - align-self here follows inline direction too: flex-end
+        is the left edge in RTL, opposite of the LTR-intuitive reading. */
+  [id$="__hero_overlay_LfPdEJ"] .text-block.rte,
+  [id$="__hero_overlay_LfPdEJ"] .text-block.rte > * {
+    margin-inline-start: 0;
+    margin-inline-end: auto;
+  }
+  [id$="__hero_overlay_LfPdEJ"] .button-custom {
+    align-self: flex-end;
+  }
+
+  /* Extra breathing room between the text column and the card's outer
+     (left) edge - padding-inline-end is the left side in this RTL
+     layout. */
+  [id$="__hero_overlay_LfPdEJ"] .media-with-content__content {
+    padding-inline-end: 32px;
+  }
+
+  /* Hairline stroke on the right + bottom edges, on the homepage's
+     media-with-content banner. */
+  [id$="__hero_overlay_LfPdEJ"] .media-with-content {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.14);
+    border-width: 0 1px 1px 0;
+  }
+
+  /* Neumorphic edge highlight on banner sections: a thin light line
+     along the right portion of the bottom edge, plus one up the
+     lower half of the right edge, both fading out as they travel
+     away from the bottom-right corner. Physical right/bottom on
+     purpose (not inline-start/end) so it stays visually bottom-right
+     in this RTL store. Drawn as two no-repeat gradient layers on a
+     single ::after so it never touches the sections' own
+     backgrounds, and pointer-events: none so it can't intercept
+     clicks on anything underneath. */
+  .hero,
+  .media-with-content,
+  .story-banner {
+    position: relative;
+  }
+  .hero::after,
+  .media-with-content::after,
+  .story-banner::after,
+  .product-card::after,
+  [data-template='product'] .product-information__media .product-media-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    /* No edge line. This used to draw a gold hairline along the right
+       and bottom of every card and banner; the shadow already defines
+       the corner, so the line was decoration the layout did not need. */
+    background: none;
+  }
+
+  /* Premium pill buttons with lift on hover */
+  .button, a.button, .button-secondary, .button-custom {
+    border-radius: 999px !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.25s ease !important;
+  }
+  .button:hover:not(.product-card__add-to-cart-button),
+  a.button:hover:not(.product-card__add-to-cart-button),
+  .button-secondary:hover:not(.product-card__add-to-cart-button),
+  .button-custom:hover:not(.product-card__add-to-cart-button) {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+  /* Confirmed via element.matches(':hover') logging that native :hover
+     on .product-card__quick-add-row genuinely dropped mid-hover here
+     even though the row's own position never moved - a transform vs.
+     hover-geometry re-evaluation glitch, not a layout bug. Driven by
+     assets/product-card-cta-hover.js's JS-toggled .is-hovering class
+     instead, which only fires once per real mouseenter/mouseleave. */
+  .product-card__quick-add-row.is-hovering .product-card__add-to-cart-button {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Shine sweep on hover: pure CSS, no JS. A diagonal highlight glides
+     across the button on :hover via a transform transition on an
+     ::after pseudo-element, then resets instantly (no transition) once
+     the pointer leaves so it is ready to sweep again next hover.
+     Unified across every .button on the site - same effect everywhere. */
+  .button, a.button, .button-secondary, .button-custom {
+    position: relative;
+    overflow: hidden;
+  }
+  .button::after, a.button::after, .button-secondary::after, .button-custom::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-20deg) translateX(0);
+    pointer-events: none;
+  }
+  .button:hover::after, a.button:hover::after, .button-secondary:hover::after, .button-custom:hover::after {
+    transform: skewX(-20deg) translateX(320%);
+    transition: transform 0.65s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .button::after, a.button::after, .button-secondary::after, .button-custom::after {
+      display: none;
+    }
+  }
+
+  /* Hide the option-name label ("מידה") above the size dropdown.
+     Visually hidden, not removed, so screen readers still get it -
+     the store only has one option (size), so the label is
+     redundant once the values themselves name the size. */
+  .variant-option--dropdowns > label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Quantity stepper and size dropdown: both already had a 1px
+     border via theme input tokens, but --color-input-border /
+     --color-variant-border are very light (near --color-background),
+     so the outline was barely visible. Strengthening it to a subtle
+     ink-tinted line, keeping the width at 1px (thinnest), and
+     rounding to match the page-wrapper's own 18px card radius used
+     throughout this redesign. */
+  .quantity-selector,
+  .variant-option__select-wrapper {
+    border: 0.5px solid rgba(26, 26, 46, 0.16) !important;
+    border-radius: 999px !important;
+  }
+  .quantity-selector .quantity-minus {
+    border-start-start-radius: 999px !important;
+    border-end-start-radius: 999px !important;
+  }
+  .quantity-selector .quantity-plus {
+    border-start-end-radius: 999px !important;
+    border-end-end-radius: 999px !important;
+  }
+
+  /* Media-with-content: image hover zoom + fade-up reveal */
+  .media-with-content img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .media-with-content:hover img {
+    transform: scale(1.03);
+  }
+
+  /* Footer surface.
+
+     The footer previously inherited the page background with no border and
+     no padding, so it ran straight on from the product cards with nothing
+     marking where the page ended. On a store the footer is where the
+     trust information lives (who we are, how to reach us, the policies),
+     so it needs to read as a deliberate, self-contained band rather than
+     leftover space.
+
+     It uses the same white card surface and 16px radius as the product
+     cards above it, so the separation comes from the site's existing
+     language rather than a new one. */
+  footer {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px 16px 0 0;
+    margin-top: 4rem;
+    /* No bottom padding: the theme's .utilities row already carries 40px
+       below the legal line. Adding more leaves the single line floating
+       over an empty band. */
+    padding-block: 3.5rem 0;
+    padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+    box-shadow: 0 -1px 0 rgba(26, 26, 46, 0.08);
+  }
+
+  /* A short centred rule above the footer, tinted with the brand accent
+     instead of plain grayscale, so the "full-stop" also carries a touch
+     of the same warmth as the rest of the site rather than reading as a
+     leftover default divider. */
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    inset-inline: 0;
+    margin-inline: auto;
+    width: 4rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #8a6e46;
+    opacity: 0.55;
+  }
+
+  /* Column headings pick up the brand accent (the same bronze used on
+     product-card hovers) instead of flat near-black, so the footer reads
+     as designed for this brand rather than a generic theme default. */
+  footer .menu__heading,
+  footer .menu__heading__default,
+  footer .footer-content h2,
+  footer .footer-content h3 {
+    color: #8a6e46;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-block-end: 1.1rem;
+  }
+
+  footer .footer-content a {
+    color: rgba(26, 26, 46, 0.72);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  footer .footer-content a:hover,
+  footer .footer-content a:focus-visible {
+    color: #8a6e46;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Payment logos read as an afterthought when they're just bare flat
+     marks in a row. Giving each one its own quiet card (matching the
+     footer's own white-surface language) makes the row read as a
+     deliberate trust strip instead of a leftover icon dump. */
+  footer .payment-icons__item {
+    background: #ffffff;
+    border: 1px solid rgba(26, 26, 46, 0.1);
+    border-radius: 6px;
+    padding: 0.4rem 0.65rem;
+    box-shadow: 0 1px 2px rgba(26, 26, 46, 0.05);
+  }
+
+  footer .payment-icons__item img,
+  footer .payment-icons__item svg {
+    height: 1.1rem;
+    width: auto;
+    display: block;
+  }
+
+  /* The legal row carries the trading entity and contact details, so it is
+     set quieter than the navigation but still at AA contrast. Copyright and
+     business identity sit on one line and wrap only when the viewport is
+     genuinely too narrow, rather than always stacking. */
+  footer .footer-utilities__group-copyright {
+    color: rgba(26, 26, 46, 0.62);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem 0.75rem;
+  }
+
+  footer .footer-utilities__business {
+    margin-block-start: 0.15rem;
+  }
+
+  footer .footer-utilities__text + .footer-utilities__business::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    margin-inline-end: 0.75rem;
+    background: currentColor;
+    opacity: 0.35;
+    vertical-align: middle;
+  }
+
+  @media screen and (max-width: 749px) {
+    footer {
+      margin-top: 2.5rem;
+      padding-block: 2.5rem 0;
+      border-radius: 12px 12px 0 0;
+    }
+    footer::before {
+      top: -1.25rem;
+    }
+  }
+
+  /* Product card titles asked for Heebo 200 all along, but 200 was not in
+     the font URL, so they silently fell back to 400. Now that 200 loads,
+     the real ExtraLight reads as washed-out grey against the white card.
+     400 restores the weight the titles were actually being shown at, and
+     the colour goes back to the store's navy rather than a grey-blue. */
+  .product-card :is(.product-title, h1, h2, h3, h4, h5, p):not(.price):not([class*='price']) {
+    font-weight: 400;
+    color: #1a1a2e;
+  }
+
+  /* The craft strip's vertical padding is a section setting, and it is
+     set to 24 in templates/index.json - but Shopify's GitHub sync does
+     not pick up JSON templates reliably (the theme editor owns them), so
+     the section kept rendering the old 72px inline. Both say 24, so this
+     is not fighting the setting. If the padding is ever changed in the
+     theme editor, delete this rule or the editor's value will not show. */
+  .craft-strip {
+    padding-block: 24px !important;
+  }
+
+  /* The product grid is set to 5 columns, and the theme applies that from
+     750px up with nothing in between, so a 768px tablet got five 127px
+     cards - images down to 100px and the text crushed under them. These
+     two steps walk 5 columns down to 4 and then 3 before the single
+     column takes over below 750px. */
+  @media screen and (min-width: 750px) and (max-width: 1099px) {
+    .resource-list--grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+  }
+
+  @media screen and (min-width: 1100px) and (max-width: 1399px) {
+    .resource-list--grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+  }
+
+  /* The text group carried a 12px top padding on top of the gallery's
+     own 14px bottom inset, so 26px of empty space sat between the image
+     and the product name. The gallery's inset stays - it is what frames
+     the image evenly on all four sides - and only the extra goes. */
+  .product-card .group-block[class][class] {
+    padding-block-start: 0 !important;
+  }
+
+  /* Price sits directly under the product name so the two read as one
+     unit, with the review line demoted below them. The markup order is
+     title, reviews, price, so the swap is done with flex order rather
+     than by moving blocks in the theme editor - the card layout is a
+     column flex either way. */
+  .product-card .group-block-content {
+    /* The stars are the last thing above the add-to-cart button. The
+       price used to carry the gap with its own bottom margin, so the
+       block margin lives here now that the price contributes none. */
+    > *:has(.product-card__stars),
+    > .product-card__stars {
+      order: 2;
+      margin-block: 0 14px;
+    }
+
+    /* product-price carries its own 4px/8px block margin from the theme.
+       The stack spacing is set here, so the element contributes none. */
+    > *:has(.price),
+    > product-price {
+      order: 1;
+      margin: 0 !important;
+    }
+  }
+
+  /* Doubled class to outrank the theme's own price sizing. */
+  /* 450 needs the variable Heebo requested in the font link above. With
+     the old fixed-instance list, anything between 400 and 500 snapped
+     back to 500 and the weight never changed. */
+  .product-card .price.price {
+    font-weight: 450;
+    font-size: 1.09rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  /* The theme editor set these blocks to align-left, which in a Hebrew
+     RTL card puts the title on the right edge and the price and review
+     line on the left. Nothing lines up. 'start' follows the reading
+     direction, so all three share the same edge in Hebrew and would
+     still behave in a left-to-right locale.
+
+     The theme sets align-left on the outer block AND again on the inner
+     .price__regular wrapper, so both have to be covered - hence the
+     descendant wildcard rather than a list of class names. */
+  .product-card .group-block-content > *:has(.price),
+  .product-card .group-block-content > *:has(.price) *,
+  .product-card .group-block-content > *:has(.product-card__stars),
+  .product-card .group-block-content > *:has(.product-card__stars) * {
+    text-align: start;
+  }
+
+  /* One page gutter for every large content chunk in the store.
+
+     The theme's own sections get their side margins from the .section
+     grid (base.css sets up minmax(--page-margin, 1fr) columns). Custom
+     sections are plain divs, so they carry a page-width-* class for the
+     width tokens but never receive the margin, and their content runs to
+     the screen edge.
+
+     This gives those sections the same gutter the .section grid produces,
+     so a custom section lines up with the product grid above it. Scoped
+     to elements outside a .section so real grid children are not padded
+     twice, and it deliberately does not touch anything inside a card or
+     the product information panel - those keep their own padding.
+
+     One number controls the gutter for the whole store: --page-margin.
+     The .section grid reads it and so does the rule below, so theme and
+     custom sections stay locked together. Desktop is trimmed from the
+     theme's 40px to widen every content chunk by about 10 percent.
+
+     Two scoping notes:
+     - body itself carries page-width-narrow, so it is excluded from the
+       padding rule. Otherwise the gutter lands twice and the whole page
+       gets capped at the narrow width.
+     - body[class], not body: base.css sets --page-margin through the
+       page-width-* class, and a bare element selector would lose to it. */
+  @media screen and (min-width: 750px) {
+    /* base.css re-declares --page-margin on every page-width-* element,
+       not only on body, so the override has to cover both. */
+    body[class],
+    [class].page-width-content,
+    [class].page-width-narrow,
+    [class].page-width-normal,
+    [class].page-width-wide {
+      --page-margin: 18px;
+    }
+  }
+
+  :where(.page-width-content, .page-width-narrow, .page-width-normal, .page-width-wide):not(body):not(.section):not(.section *) {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(var(--narrow-page-width, 90rem) + var(--page-margin) * 2);
+    margin-inline: auto;
+    padding-inline: var(--page-margin);
+  }
+
+
+  /* Toylvia-style floating card layout */
+  html, body {
+    background: #f0f1f3 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    width: 0 !important;
+    display: none !important;
+  }
+  .page-wrapper {
+    margin: 16px;
+    background: #f7f5f2;
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.07);
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .page-wrapper {
+      margin: 4px;
+      border-radius: 12px;
+    }
+    .menu-list__link {
+      margin: 0 8px !important;
+    }
+    .product-card .product-card__content > *:last-child {
+      padding: 10px 12px 12px !important;
+    }
+  }
+
+  /* Tablet / iPad */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .page-wrapper {
+      margin: 8px;
+      border-radius: 14px;
+    }
+    .menu-list__link {
+      margin: 0 16px !important;
+    }
+  }
+
+  /* Rounded-card sections: tighter type + spacing on small screens */
+  @media (max-width: 767px) {
+    :is(
+      [id$="__story_hero"],
+      [id$="__story_craft"],
+      [id$="__hero_overlay_LfPdEJ"]
+    ) {
+      padding: 8px 0 20px;
+
+      &::before {
+        top: 8px;
+        bottom: 20px;
+        border-radius: 24px;
+      }
+      .media-with-content {
+        border-radius: 24px;
+        /* The right+bottom-only hairline stroke (added for the hero
+           card specifically) reads fine tucked against a wide desktop
+           photo, but on a narrow stacked mobile card it shows up as a
+           stray line down one edge with nothing balancing it - drop it
+           here so all four corners read the same. */
+        border: none;
+      }
+      .section-background {
+        border-radius: 24px;
+      }
+      .media-with-content__content :is(h1, h2, h3) {
+        font-size: 2rem;
+      }
+      .media-with-content__content .group-block-content {
+        padding-inline: 20px !important;
+        align-items: center !important;
+      }
+      .media-with-content__content .text-block {
+        --text-align: center !important;
+        margin-inline: auto !important;
+      }
+      .media-with-content__content .button-custom,
+      .media-with-content__content a.button,
+      .media-with-content__content .button {
+        margin-inline: auto !important;
+      }
+    }
+  }
+
+  /* Amber accent, in the two places product cards deliberately don't
+     use it (see the "gold edge highlight" removal note above - that
+     decision stands for product cards). Buttons get a warm glow on
+     hover instead of a color change, additive to whatever background
+     color that instance already resolves to. Category cards had no
+     hover feedback at all, so a quiet amber ring is new here, not a
+     reversal of anything. */
+  .button:hover,
+  .button-custom:hover {
+    box-shadow: 0 0 0 3px rgba(232, 163, 61, 0.28), 0 8px 20px rgba(232, 163, 61, 0.22);
+  }
+  .collection-card {
+    transition: outline-offset 0.35s ease, outline-color 0.35s ease, transform 0.25s ease;
+    border-radius: 10px;
+    outline: 2px solid transparent;
+    outline-offset: 0px;
+  }
+  /* Ring sat flush against the card edge before (a plain box-shadow
+     ring), which read as tight/harsh right on the image border. An
+     offset outline instead, so there's real breathing room between
+     the card and the amber line. */
+  .collection-card:hover {
+    outline-color: var(--color-accent-amber, #e8a33d);
+    outline-offset: 6px;
+  }
+  /* Same lift as .product-card:hover and .blog-post-card:hover, same
+     accessible gating (precise pointer only, no reduced-motion). */
+  @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .collection-card:hover {
+      transform: translateY(-4px);
+    }
+  }
+  /* Judge.me's own empty-review-state markup (targeted by its stable
+     outer #judgeme_product_reviews id only, not its internal classes,
+     which are app-controlled and can change without notice) - wraps
+     the bare "no reviews yet" text in the same soft card surface the
+     rest of the product page uses, instead of floating unstyled in
+     open whitespace. */
+  #judgeme_product_reviews {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 48px 32px;
+    /* A background-color match alone did not read as a distinct
+       surface here - the review section's own wrapper already sits
+       on the same cream tone, so nothing visually separated them
+       without an edge. Same shadow recipe as .product-info-panel__surface
+       above it on the page, for the same "elevated card" language. */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+  }
+{% endstylesheet %}
