@@ -81,21 +81,29 @@
             <!--@list/split-->
           {% endif %}
           {% assign shown_count = shown_count | plus: 1 %}
+          {% comment %}
+            is_lcp_candidate: only the very first card of the first section
+            on the page is a real LCP candidate - fetchpriority set on more
+            than one image dilutes the hint and can hurt LCP instead of
+            helping it. Threaded down to card-gallery.liquid via the
+            closest.* convention already used for closest.product.
+            Computed as its own assign, not inline in the content_for call
+            below - Shopify's Liquid parser rejects a == comparison used
+            directly as a tag parameter value, the same way it rejects one
+            on the right-hand side of a plain assign.
+          {% endcomment %}
+          {% assign is_first_card = false %}
+          {% if shown_count == 1 and section.index == 1 %}
+            {% assign is_first_card = true %}
+          {% endif %}
           <div
             class="resource-list__item"
           >
-            {% comment %}
-              is_lcp_candidate: only the very first card of the first
-              section on the page is a real LCP candidate - fetchpriority
-              set on more than one image dilutes the hint and can hurt LCP
-              instead of helping it. Threaded down to card-gallery.liquid
-              via the closest.* convention already used for closest.product.
-            {% endcomment %}
             {% content_for 'block',
               type: '_product-card',
               id: 'static-product-card',
               closest.product: product,
-              closest.is_lcp_candidate: shown_count == 1 and section.index == 1,
+              closest.is_lcp_candidate: is_first_card,
               product_view_context: 'collection'
             %}
           </div>
