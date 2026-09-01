@@ -392,6 +392,7 @@
         "group_header"
       ],
       "name": "Shop by category",
+      "disabled": true,
       "settings": {
         "collection_list": [
           "חיות",
