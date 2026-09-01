@@ -35,10 +35,14 @@
 
       Marking a collection noindex only while it is empty is self-healing: the
       tag disappears the moment products carrying that tag go live again, with
-      no second edit needed. all_products_count is used rather than
-      products_count so a filtered view of a stocked collection is unaffected.
+      no second edit needed.
+
+      Test collection.products.size, not all_products_count. UNLISTED products
+      are still published to the Online Store, so all_products_count counts
+      them and reads 5 for a collection that renders nothing. products.size is
+      what the grid actually shows, which is the condition that matters here.
     {%- endcomment -%}
-    {%- if collection != blank and collection.all_products_count == 0 -%}
+    {%- if collection != blank and collection.products.size == 0 -%}
       <meta name="robots" content="noindex,follow">
     {%- endif -%}
 
