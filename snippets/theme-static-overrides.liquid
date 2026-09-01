@@ -541,140 +541,14 @@
      So the shadow is a dedicated ::before on the outer wrapper,
      positioned with the exact padding offsets so it lines up with the
      real content instead of the wrapper's own unpadded box. */
-  :is(
-    [id$="__story_hero"],
-    [id$="__story_craft"],
-    [id$="__hero_overlay_LfPdEJ"]
-  ) {
-    padding: 16px 0 28px;
-    box-sizing: border-box;
-    max-width: min(calc(var(--page-width) - var(--page-margin) * 2), calc(100% - var(--page-margin) * 2));
-    margin-inline: auto;
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 16px;
-      right: 0;
-      bottom: 28px;
-      left: 0;
-      border-radius: 40px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
-      pointer-events: none;
-      will-change: transform;
-      isolation: isolate;
-    }
-
-    .media-with-content {
-      border-radius: 40px;
-      overflow: hidden;
-    }
-
-    /* The theme forces .section's own background to transparent and
-       paints the real white fill on a separate sibling,
-       .section-background — that element had no radius of its own,
-       which is the actual reason the card kept showing square corners
-       no matter what was rounded on .media-with-content. */
-    .section-background {
-      border-radius: 40px;
-    }
-
-    /* Image must fully fill its column, edge to edge. Rounding lives
-       ONLY on the outer .media-with-content clip (single source of
-       truth) — the image itself stays radius:0. Rounding it a second
-       time here too produced two slightly offset arcs at the corner
-       instead of one clean edge, since the image's box and the outer
-       clip don't share an exact pixel-identical origin. */
-    .media-block {
-      padding: 0 !important;
-      margin: 0 !important;
-      border-radius: 0 !important;
-    }
-    .media-block__media {
-      border-radius: 0 !important;
-      margin: 0 !important;
-    }
-    @media (min-width: 750px) {
-      .media-block {
-        height: 100% !important;
-      }
-      .media-block__media {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        margin: 0 !important;
-      }
-    }
-
-    /* Cinematic slow zoom on the image + refined heading type */
-    .media-block img {
-      animation: heroSlowZoom 24s ease-in-out infinite alternate;
-    }
-    .media-with-content__content :is(h1, h2, h3) {
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-    }
-    .media-with-content__content .group-block-content > * {
-      opacity: 0;
-      transform: translateY(18px);
-      animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .media-with-content__content .group-block-content > *:nth-child(1) { animation-delay: 0.15s; }
-    .media-with-content__content .group-block-content > *:nth-child(2) { animation-delay: 0.32s; }
-    .media-with-content__content .group-block-content > *:nth-child(3) { animation-delay: 0.48s; }
-    .media-with-content__content .group-block-content > *:nth-child(4) { animation-delay: 0.64s; }
-  }
-  @keyframes heroSlowZoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.08); }
-  }
-  @keyframes heroFadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Bottom banner only. Two fixes with no schema setting available.
-     1) text.liquid's own .text-block--align-right rule sets
-        margin-inline-start: auto to push a narrower-than-container box
-        toward its aligned edge - correct for LTR, but on this RTL site
-        inline-start is the right edge, so an auto margin there pushes
-        the box LEFT instead, away from the heading it should line up
-        with. This site-wide quirk is invisible almost everywhere else
-        because most text blocks are already fit-content width with
-        nothing to push; this paragraph is the rare width:100% +
-        narrower max-width combination that exposes it. Overriding to
-        margin-inline-end: auto here (not touching the shared rule,
-        which is out of scope for a single banner) reverses the push so
-        it lands flush against the heading's right edge instead.
-     2) The button should sit at the left instead of the text's right
-        edge - align-self here follows inline direction too: flex-end
-        is the left edge in RTL, opposite of the LTR-intuitive reading. */
-  [id$="__hero_overlay_LfPdEJ"] .text-block.rte,
-  [id$="__hero_overlay_LfPdEJ"] .text-block.rte > * {
-    margin-inline-start: 0;
-    margin-inline-end: auto;
-  }
-  [id$="__hero_overlay_LfPdEJ"] .button-custom {
-    align-self: flex-end;
-  }
-
-  /* Extra breathing room between the text column and the card's outer
-     (left) edge - padding-inline-end is the left side in this RTL
-     layout. */
-  [id$="__hero_overlay_LfPdEJ"] .media-with-content__content {
-    padding-inline-end: 32px;
-  }
-
-  /* Hairline stroke on the right + bottom edges, on the homepage's
-     media-with-content banner. */
-  [id$="__hero_overlay_LfPdEJ"] .media-with-content {
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.14);
-    border-width: 0 1px 1px 0;
-  }
+  /* The :is([id$="__story_hero"], [id$="__story_craft"],
+     [id$="__hero_overlay_LfPdEJ"]) card-treatment block that used to
+     live here (plus its heroSlowZoom/heroFadeUp keyframes and four
+     standalone [id$="__hero_overlay_LfPdEJ"] rules below it) is dead:
+     no current template has a section keyed story_hero, story_craft,
+     or hero_overlay_LfPdEJ (that last one was removed from
+     templates/index.json entirely). Removed rather than left as inert
+     weight in the compiled bundle. */
 
   /* Neumorphic edge highlight on banner sections: a thin light line
      along the right portion of the bottom edge, plus one up the
@@ -1121,50 +995,11 @@
     }
   }
 
-  /* Rounded-card sections: tighter type + spacing on small screens */
-  @media (max-width: 767px) {
-    :is(
-      [id$="__story_hero"],
-      [id$="__story_craft"],
-      [id$="__hero_overlay_LfPdEJ"]
-    ) {
-      padding: 8px 0 20px;
-
-      &::before {
-        top: 8px;
-        bottom: 20px;
-        border-radius: 24px;
-      }
-      .media-with-content {
-        border-radius: 24px;
-        /* The right+bottom-only hairline stroke (added for the hero
-           card specifically) reads fine tucked against a wide desktop
-           photo, but on a narrow stacked mobile card it shows up as a
-           stray line down one edge with nothing balancing it - drop it
-           here so all four corners read the same. */
-        border: none;
-      }
-      .section-background {
-        border-radius: 24px;
-      }
-      .media-with-content__content :is(h1, h2, h3) {
-        font-size: 2rem;
-      }
-      .media-with-content__content .group-block-content {
-        padding-inline: 20px !important;
-        align-items: center !important;
-      }
-      .media-with-content__content .text-block {
-        --text-align: center !important;
-        margin-inline: auto !important;
-      }
-      .media-with-content__content .button-custom,
-      .media-with-content__content a.button,
-      .media-with-content__content .button {
-        margin-inline: auto !important;
-      }
-    }
-  }
+  /* The mobile (max-width: 767px) counterpart of the dead
+     __story_hero/__story_craft/__hero_overlay_LfPdEJ card-treatment
+     block used to live here - removed alongside the desktop version
+     above for the same reason (no current section matches any of
+     those three id suffixes). */
 
   /* Amber accent, in the two places product cards deliberately don't
      use it (see the "gold edge highlight" removal note above - that
