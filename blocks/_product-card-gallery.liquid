@@ -60,7 +60,7 @@
   {% endunless %}
 {% endcapture %}
 
-{% render 'card-gallery', children: children, is_lcp_candidate: closest.is_lcp_candidate %}
+{% render 'card-gallery', children: children, is_lcp_candidate: is_lcp_candidate %}
 
 {% # Title and price for the zoomed out grid view %}
 <div class="product-grid-view-zoom-out--details">
