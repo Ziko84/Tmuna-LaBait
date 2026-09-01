@@ -75,7 +75,6 @@
                   {%- case val -%}
                     {%- when 'קטן - 50x50' -%}{%- assign short = '50×50' -%}
                     {%- when 'בינוני - 70x70' -%}{%- assign short = '70×70' -%}
-                    {%- when 'גדול - 90x90' -%}{%- assign short = '90×90' -%}
                     {%- when 'התאמה אישית - עד 120x120' -%}{%- assign short = 'אישית' -%}
                   {%- endcase -%}
                   <button type="button" class="lc__pill" data-size="{{ val | escape }}" aria-pressed="{% if val == opt.selected_value %}true{% else %}false{% endif %}">{{ short }}</button>
