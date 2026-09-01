@@ -2368,13 +2368,22 @@
             headerGroupHeight += headerHeight;
           }
 
+          // Read topRowHeight here, alongside the other geometry reads above
+          // and before any of the writes below - reading it after the
+          // --header-height/--header-group-height writes (as this used to,
+          // deferred a frame via requestAnimationFrame so it wouldn't read
+          // stale pre-write geometry) forced a synchronous layout recalc,
+          // since those custom properties feed layout-adjacent CSS
+          // (submenu clip-path, header background gradient stops) elsewhere
+          // in this file. Reading everything up front, before any writes,
+          // gets the same values without forcing that recalc.
+          const topRowHeight = headerTopRow ? headerTopRow.offsetHeight : null;
+
           document.body.style.setProperty('--header-height', `${headerHeight}px`);
           document.body.style.setProperty('--header-group-height', `${headerGroupHeight}px`);
 
-          if (headerTopRow) {
-            window.requestAnimationFrame(function () {
-              document.body.style.setProperty('--top-row-height', `${headerTopRow.offsetHeight}px`);
-            });
+          if (topRowHeight !== null) {
+            document.body.style.setProperty('--top-row-height', `${topRowHeight}px`);
           }
 
           if (!hasHeaderSection || !header?.hasAttribute('transparent')) {
