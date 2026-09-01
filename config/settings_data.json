@@ -9,6 +9,8 @@
  */
 {
   "current": {
+    "page_transition_enabled": false,
+    "transition_to_main_product": false,
     "card_hover_effect": "none",
     "logo": "shopify://shop_images/no-slogan-full_logo_name_black-transparent-2048px.png",
     "logo_inverse": "shopify://shop_images/no-slogan-full_logo_name_white-transparent-2048px.png",
