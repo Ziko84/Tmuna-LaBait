@@ -6,6 +6,8 @@
 
 {% liquid
   assign product = closest.product
+  # Forwarded to child blocks (e.g. _product-card-gallery.liquid) so only the
+  # true LCP candidate gets fetchpriority=high - see product-list.liquid.
   assign is_lcp_candidate = closest.is_lcp_candidate
 -%}
 
