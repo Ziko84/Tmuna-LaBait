@@ -6,10 +6,11 @@
 
 {% liquid
   assign product = closest.product
+  assign is_lcp_candidate = closest.is_lcp_candidate
 -%}
 
 {% capture children %}
-  {% content_for 'blocks', closest.product: product %}
+  {% content_for 'blocks', closest.product: product, closest.is_lcp_candidate: is_lcp_candidate %}
 {% endcapture %}
 
 {% render 'product-card', children: children, product: product, product_view_context: product_view_context %}

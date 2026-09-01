@@ -6,6 +6,10 @@
   @param [children] - Additional content rendered below the card gallery
   @param [section] - The section object the snippet is rendered in
   @param [block] - The block object the snippet is rendered in
+  @param {boolean} [is_lcp_candidate] - True only for the single card most
+    likely to be the page's LCP element (first card, first section) - gives
+    its first image fetchpriority="high" instead of every early card's,
+    which would dilute the hint.
 {%- enddoc -%}
 
 {% liquid
@@ -144,13 +148,18 @@
             assign sizes = image_sizes
           endif
 
+          assign is_main_product_media = false
+          if forloop.first and is_lcp_candidate
+            assign is_main_product_media = true
+          endif
+
           assign class = 'product-media-container media-fit product-media-container--[media_type]' | replace: '[media_type]', media.media_type
           if constrain_to_viewport
             assign class = class | append: ' constrain-height'
           endif
 
           capture slideshow_children
-            render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
+            render 'product-media', media: media, sizes: sizes, loading: loading, is_main_product_media: is_main_product_media, preview_image_only: true
           endcapture
 
           render 'slideshow-slide', slide_id: media.id, index: forloop.index0, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit
