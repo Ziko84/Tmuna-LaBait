@@ -455,128 +455,12 @@
         "background_color": "#f7f5f2",
         "padding_block": 72
       }
-    },
-    "hero_overlay_LfPdEJ": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/2_c47ea54b-9e71-41a0-aebe-eec911b75b23.png",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "text_Hf79zK": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>אור שנולד מעץ</h2>",
-                "width": "100%",
-                "max_width": "narrow",
-                "alignment": "right",
-                "type_preset": "h2",
-                "font": "var(--font-heading--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "#1a1a2e",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_jxGhdJ": {
-              "type": "text",
-              "settings": {
-                "text": "<p>כל פריט מתוכנן בקפידה ונחתך בלייזר על MDF פרימיום בעובי 6 מ״מ. בדגמים המוארים, כשהאור נדלק מאחור הוא עובר דרך החריטה ומעניק לקיר שלכם נשמה.</p>",
-                "width": "100%",
-                "max_width": "narrow",
-                "alignment": "right",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1.125rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "#1a1a2e",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 8,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_zg4nUF": {
-              "type": "button",
-              "settings": {
-                "label": "גלו את הסיפור",
-                "link": "shopify://pages/our-story",
-                "open_in_new_tab": false,
-                "style_class": "button-custom",
-                "custom_button_background": "#1a1a2e",
-                "custom_button_text": "#ffffff",
-                "custom_button_border": "#1a1a2e",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_Hf79zK",
-            "text_jxGhdJ",
-            "button_zg4nUF"
-          ]
-        }
-      },
-      "name": "t:names.media_with_text",
-      "settings": {
-        "media_position": "left",
-        "media_width": "wide",
-        "media_height": "45svh",
-        "section_width": "full-width",
-        "extend_media": false,
-        "background_color": "#ffffff",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
     "product_list_EDUBdR",
     "collection_list_shop_by_category",
-    "craft_strip",
-    "hero_overlay_LfPdEJ"
+    "craft_strip"
   ]
 }
 
