@@ -6,16 +6,30 @@
   @param [children] - Additional content rendered below the card gallery
   @param [section] - The section object the snippet is rendered in
   @param [block] - The block object the snippet is rendered in
-  @param {boolean} [is_lcp_candidate] - True only for the single card most
-    likely to be the page's LCP element (first card, first section) - gives
-    its first image fetchpriority="high" instead of every early card's,
-    which would dilute the hint.
 {%- enddoc -%}
 
 {% liquid
   assign product = closest.product
   assign block_settings = block.settings
   assign image_sizes = '(min-width: 750px) 50vw, 100vw'
+
+  # is_lcp_candidate: true only for the single card most likely to be the
+  # page's LCP element, so it alone gets fetchpriority="high" instead of
+  # every early card's (which would dilute the hint). Determined locally
+  # rather than threaded down from product-list.liquid's loop - Shopify's
+  # content_for 'blocks' tag (used by _product-card.liquid to render this
+  # card's child blocks) only allows a single closest.<type> argument and
+  # no plain arguments at all, so closest.product is the only signal that
+  # can cross that boundary. Restricted to the manual collection_mode case
+  # (e.g. the homepage grid) since that's the only mode where comparing
+  # against section.settings.collection.products.first is reliably
+  # accurate - same_as_product/different_from_product resolve their
+  # displayed collection dynamically in product-list.liquid, so this
+  # simply won't match there and the hint is skipped, not miss-targeted.
+  assign is_lcp_candidate = false
+  if section.index == 1 and section.settings.collection_mode == 'manual' and product != blank and section.settings.collection.products.first.id == product.id
+    assign is_lcp_candidate = true
+  endif
 
   # Check if product has badges and determine position
   assign has_badges = false

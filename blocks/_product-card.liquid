@@ -6,16 +6,10 @@
 
 {% liquid
   assign product = closest.product
-  # Forwarded to child blocks (e.g. _product-card-gallery.liquid) so only the
-  # true LCP candidate gets fetchpriority=high - see product-list.liquid.
-  # Passed as a plain (non-closest) argument below - content_for 'blocks'
-  # allows only one closest.<type> argument per call, and closest.product
-  # is the one every other child block type depends on.
-  assign is_lcp_candidate = closest.is_lcp_candidate
 -%}
 
 {% capture children %}
-  {% content_for 'blocks', closest.product: product, is_lcp_candidate: is_lcp_candidate %}
+  {% content_for 'blocks', closest.product: product %}
 {% endcapture %}
 
 {% render 'product-card', children: children, product: product, product_view_context: product_view_context %}
