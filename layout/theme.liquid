@@ -27,6 +27,21 @@
       </script>
     {%- endif -%}
 
+    {%- comment -%}
+      An empty collection is a soft 404: the page renders, the sitemap still
+      submits it, and anyone arriving from search sees nothing for sale. Three
+      of the themed collections are smart collections on tags whose products
+      are currently unlisted, so they empty and refill on their own.
+
+      Marking a collection noindex only while it is empty is self-healing: the
+      tag disappears the moment products carrying that tag go live again, with
+      no second edit needed. all_products_count is used rather than
+      products_count so a filtered view of a stocked collection is unaffected.
+    {%- endcomment -%}
+    {%- if collection != blank and collection.all_products_count == 0 -%}
+      <meta name="robots" content="noindex,follow">
+    {%- endif -%}
+
     <meta name="p:domain_verify" content="f0f72d18a0d2f6cf9e31215f7c6f590c"/>
 
     {%- if settings.favicon != blank -%}
