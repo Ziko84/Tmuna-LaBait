@@ -83,6 +83,20 @@
       substitutes 400, which reads as unintentionally bold.
     {%- endcomment -%}
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200..700&family=Varela+Round&family=Assistant:wght@200;300;400&display=swap" rel="stylesheet"></noscript>>
+    {%- comment -%}
+      English-only typeface. Heebo/Assistant are Hebrew-first fonts - their
+      Latin glyphs read poorly, so /en gets a single clean sans (Poppins)
+      instead, scoped to html[lang="en"] so the Hebrew site is untouched.
+    {%- endcomment -%}
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <style>
+      html[lang="en"] {
+        --font-body--family: 'Poppins', sans-serif;
+        --font-subheading--family: 'Poppins', sans-serif;
+        --font-heading--family: 'Poppins', sans-serif;
+        --font-accent--family: 'Poppins', sans-serif;
+      }
+    </style>
     {%- render 'theme-static-overrides' -%}
 
     {% if request.design_mode %}
