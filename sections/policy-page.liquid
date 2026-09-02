@@ -23,13 +23,13 @@
         assign policy_title = page.title
         case page.title
           when 'Privacy policy'
-            assign policy_title = 'מדיניות פרטיות'
+            assign policy_title = 'theme_custom.policy_titles.privacy' | t
           when 'Refund policy'
-            assign policy_title = 'מדיניות החזרות'
+            assign policy_title = 'theme_custom.policy_titles.refund' | t
           when 'Shipping'
-            assign policy_title = 'מדיניות משלוחים'
+            assign policy_title = 'theme_custom.policy_titles.shipping' | t
           when 'Terms of service'
-            assign policy_title = 'תנאי שימוש'
+            assign policy_title = 'theme_custom.policy_titles.terms' | t
         endcase
       %}
       <h1 class="policy-page__title">{{ policy_title }}</h1>

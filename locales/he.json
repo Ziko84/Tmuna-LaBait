@@ -4486,5 +4486,36 @@
         }
       }
     }
+  },
+  "theme_custom": {
+    "sort_options": {
+      "manual": "מומלץ",
+      "best_selling": "הנמכרים ביותר",
+      "title_ascending": "לפי שם, א-ת",
+      "title_descending": "לפי שם, ת-א",
+      "price_ascending": "מחיר, מהנמוך לגבוה",
+      "price_descending": "מחיר, מהגבוה לנמוך",
+      "created_descending": "החדשים ביותר",
+      "created_ascending": "הישנים ביותר"
+    },
+    "policy_titles": {
+      "privacy": "מדיניות פרטיות",
+      "refund": "מדיניות החזרות",
+      "shipping": "מדיניות משלוחים",
+      "terms": "תנאי שימוש"
+    },
+    "page_titles": {
+      "cart": "עגלת הקניות שלי",
+      "search_results": "תוצאות חיפוש עבור \"{{ terms }}\"",
+      "all_categories": "כל הקטגוריות",
+      "not_found": "הדף לא נמצא"
+    },
+    "collection_tabs": {
+      "all": "הכל",
+      "nature": "טבע",
+      "animals": "חיות",
+      "world_symbols": "סמלי עולם",
+      "abstract": "מופשט"
+    }
   }
 }

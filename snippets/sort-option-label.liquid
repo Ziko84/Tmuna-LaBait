@@ -1,5 +1,5 @@
 {%- doc -%}
-  Renders a Hebrew label for a collection/search sort option, since
+  Renders a localized label for a collection/search sort option, since
   Shopify's native option.name is not translated for this store's locale.
 
   @param {object} option - A sort option from results.sort_options
@@ -9,21 +9,21 @@
   assign label = option.name
   case option.value
     when 'manual'
-      assign label = 'מומלץ'
+      assign label = 'theme_custom.sort_options.manual' | t
     when 'best-selling'
-      assign label = 'הנמכרים ביותר'
+      assign label = 'theme_custom.sort_options.best_selling' | t
     when 'title-ascending'
-      assign label = 'לפי שם, א-ת'
+      assign label = 'theme_custom.sort_options.title_ascending' | t
     when 'title-descending'
-      assign label = 'לפי שם, ת-א'
+      assign label = 'theme_custom.sort_options.title_descending' | t
     when 'price-ascending'
-      assign label = 'מחיר, מהנמוך לגבוה'
+      assign label = 'theme_custom.sort_options.price_ascending' | t
     when 'price-descending'
-      assign label = 'מחיר, מהגבוה לנמוך'
+      assign label = 'theme_custom.sort_options.price_descending' | t
     when 'created-descending'
-      assign label = 'החדשים ביותר'
+      assign label = 'theme_custom.sort_options.created_descending' | t
     when 'created-ascending'
-      assign label = 'הישנים ביותר'
+      assign label = 'theme_custom.sort_options.created_ascending' | t
   endcase
 -%}
 {{- label -}}

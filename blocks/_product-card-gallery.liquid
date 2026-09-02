@@ -96,7 +96,6 @@
       {%- form 'product', product, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
         <input type="hidden" name="id" ref="variantId" value="{{ card_variant.id }}">
         {% render 'add-to-cart-button',
-          add_to_cart_text: 'הוסף לסל',
           class: 'add-to-cart-button product-card__add-to-cart-button',
           can_add_to_cart: card_can_add_to_cart,
           product: product

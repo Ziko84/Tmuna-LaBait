@@ -396,5 +396,36 @@
         "title": "VAT Invoices"
       }
     }
+  },
+  "theme_custom": {
+    "sort_options": {
+      "manual": "Recommended",
+      "best_selling": "Best selling",
+      "title_ascending": "Alphabetically, A-Z",
+      "title_descending": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "created_descending": "Newest",
+      "created_ascending": "Oldest"
+    },
+    "policy_titles": {
+      "privacy": "Privacy Policy",
+      "refund": "Refund Policy",
+      "shipping": "Shipping Policy",
+      "terms": "Terms of Service"
+    },
+    "page_titles": {
+      "cart": "My Shopping Cart",
+      "search_results": "Search results for \"{{ terms }}\"",
+      "all_categories": "All Categories",
+      "not_found": "Page Not Found"
+    },
+    "collection_tabs": {
+      "all": "All",
+      "nature": "Nature",
+      "animals": "Animals",
+      "world_symbols": "World Symbols",
+      "abstract": "Abstract"
+    }
   }
 }

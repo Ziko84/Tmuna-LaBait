@@ -26,13 +26,13 @@
   # here before anything downstream (the <title> tag, og:title,
   # twitter:title) reads page_title.
   if request.page_type == 'cart'
-    assign page_title = 'עגלת הקניות שלי'
+    assign page_title = 'theme_custom.page_titles.cart' | t
   elsif request.page_type == 'search'
-    assign page_title = 'תוצאות חיפוש עבור "' | append: search.terms | append: '"'
+    assign page_title = 'theme_custom.page_titles.search_results' | t: terms: search.terms
   elsif request.page_type == 'list-collections'
-    assign page_title = 'כל הקטגוריות'
+    assign page_title = 'theme_custom.page_titles.all_categories' | t
   elsif request.page_type == '404'
-    assign page_title = 'הדף לא נמצא'
+    assign page_title = 'theme_custom.page_titles.not_found' | t
   endif
 
   assign og_title = page_title | default: shop.name
