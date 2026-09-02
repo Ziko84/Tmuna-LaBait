@@ -1165,6 +1165,18 @@
       .theme-drawer__dialog--opening-inline-start {
         animation-duration: 0.4s !important;
       }
+
+      /* Store/collection page: product_card_size has no literal "N columns"
+         option (unlike the homepage's Featured collection section, which
+         sets columns directly) - it only picks a minimum card width that
+         auto-fill divides the row by. Pinned to 4 equal columns here so the
+         store page matches the homepage's fixed 4-column layout instead of
+         however many "large" cards happen to fit. */
+      @media screen and (min-width: 750px) {
+        [data-template='collection'] .product-grid--grid {
+          --product-grid-columns-desktop: repeat(4, 1fr) !important;
+        }
+      }
     </style>
     <meta name="trustpilot-one-time-domain-verification-id" content="e2a3975a-b43a-4b35-8eb0-0582443ebd18"/>
   </head>
