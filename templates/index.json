@@ -155,7 +155,7 @@
                   "name": "t:names.product_title",
                   "settings": {
                     "width": "fit-content",
-                    "max_width": "narrow",
+                    "max_width": "normal",
                     "alignment": "right",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
