@@ -394,7 +394,8 @@
       "name": "Shop by category",
       "settings": {
         "collection_list": [
-          "geometric-animals"
+          "geometric-animals",
+          "dogs"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
