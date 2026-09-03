@@ -1,0 +1,208 @@
+{%- comment -%}
+  Dense category grid for the wall-art catalogue: many small square tiles,
+  image first, minimal caption, no price/swatches clutter on the grid itself.
+  Hover (or tap on touch) reveals the native quick-add trigger - "Add" for a
+  single-variant product, "Choose" opening the theme's existing quick-add
+  modal for products with more than one option (our size + lighting wall
+  art always needs the modal, never a silently-picked default variant).
+
+  Meant to be the "main" section of an alternate collection template
+  (see templates/collection.dense-grid.json), assigned per collection from
+  the Shopify admin template picker, so the standard collection.json layout
+  is untouched for anything that should not use this treatment.
+{%- endcomment -%}
+
+<div class="dense-grid" dir="rtl">
+  <div class="section section--page-width dense-grid__wrap">
+
+    <div class="dense-grid__head">
+      <h1 class="dense-grid__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <p class="dense-grid__desc">{{ collection.description }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if collection.products.size == 0 -%}
+      <p class="dense-grid__empty">אין עדיין יצירות בקטגוריה הזו.</p>
+    {%- else -%}
+      <div class="dense-grid__grid">
+        {%- for product in collection.products -%}
+          {%- assign v0 = product.selected_or_first_available_variant -%}
+          <div class="dense-grid__tile">
+            <a href="{{ product.url }}" class="dense-grid__link" aria-label="{{ product.title | escape }}">
+              {%- if product.featured_image -%}
+                <img
+                  class="dense-grid__img"
+                  src="{{ product.featured_image | image_url: width: 700 }}"
+                  srcset="{{ product.featured_image | image_url: width: 400 }} 400w,
+                          {{ product.featured_image | image_url: width: 700 }} 700w,
+                          {{ product.featured_image | image_url: width: 1000 }} 1000w"
+                  sizes="(min-width: 990px) 220px, 45vw"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="700"
+                  height="700"
+                >
+              {%- else -%}
+                <div class="dense-grid__img dense-grid__img--placeholder"></div>
+              {%- endif -%}
+            </a>
+
+            <div class="dense-grid__cap">
+              <a href="{{ product.url }}" class="dense-grid__name">{{ product.title }}</a>
+              {%- if v0.price -%}
+                <span class="dense-grid__price">מ{{ v0.price | money }}</span>
+              {%- endif -%}
+            </div>
+
+            <div class="dense-grid__quickadd">
+              {% render 'quick-add', product: product, section_id: section.id %}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% stylesheet %}
+  .dense-grid__wrap {
+    padding-block: var(--padding-lg, 32px) var(--padding-2xl, 48px);
+  }
+
+  .dense-grid__head {
+    text-align: center;
+    margin-block-end: var(--padding-lg, 24px);
+  }
+
+  .dense-grid__title {
+    margin: 0;
+  }
+
+  .dense-grid__desc {
+    color: var(--color-foreground-75, rgba(0, 0, 0, 0.65));
+    max-width: 60ch;
+    margin: 8px auto 0;
+  }
+
+  .dense-grid__empty {
+    text-align: center;
+    padding-block: 48px;
+    color: var(--color-foreground-75, rgba(0, 0, 0, 0.65));
+  }
+
+  .dense-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 3px;
+    background: var(--color-border, #e5e0d8);
+    border: 1px solid var(--color-border, #e5e0d8);
+  }
+
+  @media (min-width: 990px) {
+    .dense-grid__grid {
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    }
+  }
+
+  .dense-grid__tile {
+    position: relative;
+    background: #0a0908;
+    overflow: hidden;
+  }
+
+  .dense-grid__link {
+    display: block;
+    aspect-ratio: 1;
+  }
+
+  .dense-grid__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .dense-grid__img--placeholder {
+    background: #1a1816;
+  }
+
+  .dense-grid__tile:hover .dense-grid__img {
+    transform: scale(1.04);
+  }
+
+  .dense-grid__cap {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 9px 11px 8px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent);
+    color: #fff;
+    pointer-events: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .dense-grid__name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    pointer-events: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dense-grid__price {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .dense-grid__quickadd {
+    position: absolute;
+    inset-inline-start: 8px;
+    inset-block-start: 8px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+  }
+
+  .dense-grid__tile:hover .dense-grid__quickadd,
+  .dense-grid__tile:focus-within .dense-grid__quickadd {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (hover: none) {
+    /* touch devices: no hover, always show the quick-add trigger so it is reachable */
+    .dense-grid__quickadd {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      inset-inline-start: auto;
+      inset-inline-end: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dense-grid__img,
+    .dense-grid__quickadd {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dense category grid"
+}
+{% endschema %}

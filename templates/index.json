@@ -392,13 +392,12 @@
         "group_header"
       ],
       "name": "Shop by category",
-      "disabled": true,
       "settings": {
         "collection_list": [
-          "חיות",
-          "נוף-וטבע",
-          "מופשט-ומינימליסטי",
-          "סמלי-עולם"
+          "geometric-animals",
+          "dog-portraits",
+          "australian-wildlife",
+          "nature-scenes"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,

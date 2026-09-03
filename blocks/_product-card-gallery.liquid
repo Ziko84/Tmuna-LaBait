@@ -71,37 +71,14 @@
   {% endif %}
 </div>
 
-{% # Add to cart: a plain always-visible button on the card, not the native quick-add's two-button (Add/Choose) hover pill %}
-{% liquid
-  assign card_variant = product.selected_or_first_available_variant
-  assign card_can_add_to_cart = false
-  if card_variant.available
-    assign card_can_add_to_cart = true
-  endif
-%}
+{% # Add to cart: native quick-add. Single-option products (or a swatch already
+   picked) get a direct Add button, everything else gets Choose, which opens
+   the theme's own quick-add modal with the real variant picker. Wall art
+   (size + lighting) always needs the modal, since one silent default variant
+   is not a real choice. %}
 {% unless product == blank %}
   <div class="product-card__quick-add-row">
-    <product-form-component
-      data-section-id="{{ section.id }}"
-      data-product-id="{{ product.id }}"
-      on:submit="/handleSubmit"
-    >
-      <div
-        class="visually-hidden"
-        aria-live="assertive"
-        role="status"
-        aria-atomic="true"
-        ref="liveRegion"
-      ></div>
-      {%- form 'product', product, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-        <input type="hidden" name="id" ref="variantId" value="{{ card_variant.id }}">
-        {% render 'add-to-cart-button',
-          class: 'add-to-cart-button product-card__add-to-cart-button',
-          can_add_to_cart: card_can_add_to_cart,
-          product: product
-        %}
-      {%- endform -%}
-    </product-form-component>
+    {% render 'quick-add', product: product, section_id: section.id %}
   </div>
 {% endunless %}
 
