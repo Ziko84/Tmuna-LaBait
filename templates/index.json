@@ -394,10 +394,7 @@
       "name": "Shop by category",
       "settings": {
         "collection_list": [
-          "geometric-animals",
-          "dog-portraits",
-          "australian-wildlife",
-          "nature-scenes"
+          "geometric-animals"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
