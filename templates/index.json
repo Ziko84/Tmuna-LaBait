@@ -395,7 +395,8 @@
       "settings": {
         "collection_list": [
           "geometric-animals",
-          "dogs"
+          "dogs",
+          "australian-wildlife"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
