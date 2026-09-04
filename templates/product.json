@@ -213,11 +213,6 @@
                   },
                   "blocks": {}
                 },
-                "custom_size_field": {
-                  "type": "custom-size-input",
-                  "settings": {},
-                  "blocks": {}
-                },
                 "buy_buttons_eYQEYi": {
                   "type": "buy-buttons",
                   "settings": {
@@ -281,7 +276,6 @@
               },
               "block_order": [
                 "variant_picker_R3rGDr",
-                "custom_size_field",
                 "buy_buttons_eYQEYi"
               ]
             },
