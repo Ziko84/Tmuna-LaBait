@@ -4512,10 +4512,10 @@
     },
     "collection_tabs": {
       "all": "הכל",
-      "nature": "טבע",
-      "animals": "חיות",
-      "world_symbols": "סמלי עולם",
-      "abstract": "מופשט"
+      "geometric_animals": "חיות גיאומטריות",
+      "dogs": "כלבים",
+      "australian_wildlife": "חיות בר אוסטרלי",
+      "nature_scenes": "נופי טבע"
     }
   }
 }

@@ -8,13 +8,13 @@
   "
 >
   {% liquid
-    assign tab_handles = 'frontpage,נוף-וטבע,חיות,סמלי-עולם,מופשט-ומינימליסטי' | split: ','
+    assign tab_handles = 'frontpage,geometric-animals,dogs,australian-wildlife,nature-scenes' | split: ','
     assign tab_label_all = 'theme_custom.collection_tabs.all' | t
-    assign tab_label_nature = 'theme_custom.collection_tabs.nature' | t
-    assign tab_label_animals = 'theme_custom.collection_tabs.animals' | t
-    assign tab_label_world_symbols = 'theme_custom.collection_tabs.world_symbols' | t
-    assign tab_label_abstract = 'theme_custom.collection_tabs.abstract' | t
-    assign tab_labels = tab_label_all | append: '|' | append: tab_label_nature | append: '|' | append: tab_label_animals | append: '|' | append: tab_label_world_symbols | append: '|' | append: tab_label_abstract | split: '|'
+    assign tab_label_geometric_animals = 'theme_custom.collection_tabs.geometric_animals' | t
+    assign tab_label_dogs = 'theme_custom.collection_tabs.dogs' | t
+    assign tab_label_australian_wildlife = 'theme_custom.collection_tabs.australian_wildlife' | t
+    assign tab_label_nature_scenes = 'theme_custom.collection_tabs.nature_scenes' | t
+    assign tab_labels = tab_label_all | append: '|' | append: tab_label_geometric_animals | append: '|' | append: tab_label_dogs | append: '|' | append: tab_label_australian_wildlife | append: '|' | append: tab_label_nature_scenes | split: '|'
     assign url_prefix = collection.url | split: 'collections/' | first
     assign frontpage_url = url_prefix | append: 'collections/frontpage'
   %}

@@ -422,10 +422,10 @@
     },
     "collection_tabs": {
       "all": "All",
-      "nature": "Nature",
-      "animals": "Animals",
-      "world_symbols": "World Symbols",
-      "abstract": "Abstract"
+      "geometric_animals": "Geometric Animals",
+      "dogs": "Dogs",
+      "australian_wildlife": "Australian Wildlife",
+      "nature_scenes": "Nature Scenes"
     }
   }
 }
