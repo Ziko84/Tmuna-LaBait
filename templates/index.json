@@ -396,7 +396,8 @@
         "collection_list": [
           "geometric-animals",
           "dogs",
-          "australian-wildlife"
+          "australian-wildlife",
+          "nature-scenes"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
