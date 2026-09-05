@@ -17,6 +17,7 @@
 
     <div class="dense-grid__head">
       <h1 class="dense-grid__title">{{ collection.title }}</h1>
+      <p class="dense-grid__tagline">אמנות קיר מעץ בחיתוך לייזר. עיצוב ייחודי לכל חלל בבית.</p>
       {%- if collection.description != blank -%}
         <p class="dense-grid__desc">{{ collection.description }}</p>
       {%- endif -%}
@@ -78,6 +79,12 @@
 
   .dense-grid__title {
     margin: 0;
+  }
+
+  .dense-grid__tagline {
+    color: var(--color-foreground-75, rgba(0, 0, 0, 0.65));
+    max-width: 60ch;
+    margin: 8px auto 0;
   }
 
   .dense-grid__desc {
