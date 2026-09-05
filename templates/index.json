@@ -9,6 +9,95 @@
  */
 {
   "sections": {
+    "hero_our_story": {
+      "type": "hero",
+      "blocks": {
+        "text_headline": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>מהסקיצה הראשונה ועד הקיר שלכם</h1>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "right",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_subline": {
+          "type": "text",
+          "settings": {
+            "text": "<p>צוות קטן, שני אנשים בלבד, שהופכים כל סקיצה ליצירת עץ בחיתוך לייזר. מהרעיון שלנו ועד הקיר שלכם.</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "right",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 32,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_our_story": {
+          "type": "button",
+          "settings": {
+            "label": "קראו את הסיפור שלנו",
+            "link": "shopify://pages/our-story",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "#ffffff",
+            "custom_button_text": "#1a1a2e",
+            "custom_button_border": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_headline",
+        "text_subline",
+        "button_our_story"
+      ],
+      "name": "Hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/tmuna-labait-studio-hero-2.png",
+        "media_type_2": "image",
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-end",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 16,
+        "section_width": "full-width",
+        "section_height": "medium",
+        "toggle_overlay": true,
+        "overlay_color": "#00000066",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
     "product_list_EDUBdR": {
       "type": "product-list",
       "blocks": {
@@ -483,6 +572,7 @@
     }
   },
   "order": [
+    "hero_our_story",
     "product_list_EDUBdR",
     "craft_strip",
     "collection_list_shop_by_category"
