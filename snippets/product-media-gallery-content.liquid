@@ -372,6 +372,9 @@
           {% else %}
             {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
           {% endif %}
+          {%- if media.media_type == 'image' and media.preview_image.src contains 'mockup' -%}
+            <p class="ai-mockup-caption">שימו לב, תמונה זו היא הדמיה שנוצרה באמצעות בינה מלאכותית להמחשה בלבד</p>
+          {%- endif -%}
         {% endcapture %}
         {% capture class %}
           {{ product_media_container_class }} product-media-container--{{ media.media_type }}{% if block_settings.zoom %} product-media-container--zoomable{% endif %}{% if forloop.index0 == lowest_aspect_ratio_index and block_settings.aspect_ratio == 'adapt' %} product-media-container--tallest{% endif %}
@@ -487,6 +490,9 @@
             {% else %}
               {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
             {% endif %}
+            {%- if media.media_type == 'image' and media.preview_image.src contains 'mockup' -%}
+              <p class="ai-mockup-caption">שימו לב, תמונה זו היא הדמיה שנוצרה באמצעות בינה מלאכותית להמחשה בלבד</p>
+            {%- endif -%}
           </li>
         {% endfor %}
       </ul>
@@ -1047,5 +1053,15 @@
 
   slideshow-slide.product-media-container--tallest {
     content-visibility: visible;
+  }
+
+  .ai-mockup-caption {
+    margin: 0;
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--color-foreground-75, rgba(0, 0, 0, 0.65));
+    background: var(--color-background, #fff);
   }
 {% endstylesheet %}
