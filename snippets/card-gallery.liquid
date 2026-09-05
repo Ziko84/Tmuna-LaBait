@@ -255,11 +255,16 @@
     position: absolute;
     /* Physical (not logical) left: the favorite-toggle heart already owns
        the top-right corner via inset-inline-end, so anchor this to the
-       opposite physical corner regardless of logical-property direction. */
-    left: 8px;
-    inset-block-start: 8px;
+       opposite physical corner regardless of logical-property direction.
+       Height/top match the heart's own 30px circle so the two sit at the
+       same visual height. */
+    left: var(--padding-sm, 16px);
+    top: var(--padding-sm, 16px);
+    height: 30px;
+    display: flex;
+    align-items: center;
     z-index: 2;
-    padding: 3px 9px;
+    padding: 0 10px;
     border-radius: 999px;
     background: rgb(10 9 8 / 60%);
     backdrop-filter: blur(2px);
