@@ -175,11 +175,10 @@
 
   .dense-grid__ai-badge {
     position: absolute;
-    /* Top-center: the tile's bottom edge is already the price/name caption
-       strip, so the badge sits clear of both that and the artwork's
-       center. */
+    /* Bottom-center, but lifted clear of the price/name caption strip
+       that already occupies the tile's bottom edge. */
     left: 50%;
-    top: 8px;
+    bottom: 40px;
     transform: translateX(-50%);
     padding: 3px 9px;
     border-radius: 999px;
