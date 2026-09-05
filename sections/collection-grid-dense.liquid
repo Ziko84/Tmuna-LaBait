@@ -59,6 +59,7 @@
                     width="700"
                     height="700"
                   >
+                  <span class="dense-grid__ai-badge">הדמיית AI &middot; להמחשה בלבד</span>
                 {%- endif -%}
               {%- else -%}
                 <div class="dense-grid__img dense-grid__img--placeholder"></div>
@@ -172,6 +173,28 @@
     opacity: 1;
   }
 
+  .dense-grid__ai-badge {
+    position: absolute;
+    inset-inline-start: 8px;
+    inset-block-start: 8px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(10, 9, 8, 0.6);
+    backdrop-filter: blur(2px);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .dense-grid__tile:hover .dense-grid__ai-badge {
+    opacity: 1;
+  }
+
   .dense-grid__cap {
     position: absolute;
     inset-inline: 0;
@@ -235,6 +258,7 @@
   @media (prefers-reduced-motion: reduce) {
     .dense-grid__img,
     .dense-grid__img--secondary,
+    .dense-grid__ai-badge,
     .dense-grid__quickadd {
       transition: none;
     }
