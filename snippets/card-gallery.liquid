@@ -292,6 +292,36 @@
     aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
   }
 
+  /*
+   * The hover preview (previewImage/resetImage in product-card.js) drives the
+   * shared slideshow component, which by default slides slides horizontally.
+   * That reads as an aggressive swipe on a small card. Override to a plain
+   * crossfade here so card hover matches the dense-grid tiles' fade.
+   */
+  .card-gallery slideshow-slides {
+    aspect-ratio: var(--gallery-aspect-ratio, var(--media-preview-ratio));
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .card-gallery slideshow-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .card-gallery slideshow-slide[aria-hidden='false'] {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-gallery slideshow-slide {
+      transition: none;
+    }
+  }
+
   .product-card-gallery__title-placeholder {
     padding: var(--padding-md);
     font-size: var(--font-size--2xl);
