@@ -1,10 +1,18 @@
 {
   "sections": {
+    "collection-tabs": {
+      "type": "collection-tabs",
+      "settings": {
+        "padding-block-start": 24,
+        "padding-block-end": 16
+      }
+    },
     "main": {
       "type": "collection-grid-dense"
     }
   },
   "order": [
+    "collection-tabs",
     "main"
   ]
 }
