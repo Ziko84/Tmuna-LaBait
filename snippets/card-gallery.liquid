@@ -207,7 +207,7 @@
       %}
     </a>
     {%- if settings.show_second_image_on_hover and media_list_to_show.size > 1 -%}
-      <span class="card-gallery__ai-badge">הדמיית AI</span>
+      <span class="mockup-ai-badge">הדמיית AI</span>
     {%- endif -%}
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
@@ -251,7 +251,7 @@
     width: 100%;
   }
 
-  .card-gallery__ai-badge {
+  .mockup-ai-badge {
     position: absolute;
     /* Physical (not logical) left: the favorite-toggle heart already owns
        the top-right corner via inset-inline-end, so anchor this to the
@@ -273,12 +273,12 @@
     pointer-events: none;
   }
 
-  .card-gallery:hover .card-gallery__ai-badge {
+  .card-gallery:hover .mockup-ai-badge {
     opacity: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .card-gallery__ai-badge {
+    .mockup-ai-badge {
       transition: none;
     }
   }
