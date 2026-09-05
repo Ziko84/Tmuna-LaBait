@@ -33,7 +33,7 @@
             <a href="{{ product.url }}" class="dense-grid__link" aria-label="{{ product.title | escape }}">
               {%- if product.featured_image -%}
                 <img
-                  class="dense-grid__img"
+                  class="dense-grid__img dense-grid__img--primary"
                   src="{{ product.featured_image | image_url: width: 700 }}"
                   srcset="{{ product.featured_image | image_url: width: 400 }} 400w,
                           {{ product.featured_image | image_url: width: 700 }} 700w,
@@ -44,6 +44,21 @@
                   width="700"
                   height="700"
                 >
+                {%- assign second_image = product.images[1] -%}
+                {%- if second_image -%}
+                  <img
+                    class="dense-grid__img dense-grid__img--secondary"
+                    src="{{ second_image | image_url: width: 700 }}"
+                    srcset="{{ second_image | image_url: width: 400 }} 400w,
+                            {{ second_image | image_url: width: 700 }} 700w,
+                            {{ second_image | image_url: width: 1000 }} 1000w"
+                    sizes="(min-width: 990px) 220px, 45vw"
+                    alt="{{ second_image.alt | default: product.title | escape }}"
+                    loading="lazy"
+                    width="700"
+                    height="700"
+                  >
+                {%- endif -%}
               {%- else -%}
                 <div class="dense-grid__img dense-grid__img--placeholder"></div>
               {%- endif -%}
@@ -122,6 +137,7 @@
   .dense-grid__link {
     display: block;
     aspect-ratio: 1;
+    position: relative;
   }
 
   .dense-grid__img {
@@ -129,7 +145,13 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.35s ease;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  .dense-grid__img--secondary {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
   }
 
   .dense-grid__img--placeholder {
@@ -138,6 +160,14 @@
 
   .dense-grid__tile:hover .dense-grid__img {
     transform: scale(1.04);
+  }
+
+  .dense-grid__tile:hover .dense-grid__img--primary {
+    opacity: 0;
+  }
+
+  .dense-grid__tile:hover .dense-grid__img--secondary {
+    opacity: 1;
   }
 
   .dense-grid__cap {
@@ -202,6 +232,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .dense-grid__img,
+    .dense-grid__img--secondary,
     .dense-grid__quickadd {
       transition: none;
     }
