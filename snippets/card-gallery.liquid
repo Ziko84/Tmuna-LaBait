@@ -253,7 +253,10 @@
 
   .card-gallery__ai-badge {
     position: absolute;
-    inset-inline-start: 8px;
+    /* Physical (not logical) left: the favorite-toggle heart already owns
+       the top-right corner via inset-inline-end, so anchor this to the
+       opposite physical corner regardless of logical-property direction. */
+    left: 8px;
     inset-block-start: 8px;
     z-index: 2;
     padding: 3px 9px;
