@@ -295,24 +295,22 @@
   /*
    * The hover preview (previewImage/resetImage in product-card.js) drives the
    * shared slideshow component, which by default slides slides horizontally.
-   * That reads as an aggressive swipe on a small card. Override to a plain
-   * crossfade here so card hover matches the dense-grid tiles' fade.
+   * That reads as an aggressive swipe on a small card. We still need the real
+   * horizontal scroll to happen (the component's own aria-hidden tracking is
+   * intersection-based against the scroller, so overflow:visible made every
+   * slide "visible" at once and they all rendered stacked at full opacity).
+   * Instead, pin each slide to the scrollport's leading edge with `sticky` so
+   * it never visually moves while the container scrolls underneath it - only
+   * the opacity crossfade (driven by the real aria-hidden toggle) is seen.
    */
-  .card-gallery slideshow-slides {
-    aspect-ratio: var(--gallery-aspect-ratio, var(--media-preview-ratio));
-    overflow: visible;
-    scroll-snap-type: none;
-  }
-
   .card-gallery slideshow-slide {
     /* !important needed: the slide element also carries .product-media-container
        (see snippets/card-gallery.liquid's slideshow-slide render call), and that
        class's own `:not(.dialog-zoomed-gallery) > .product-media-container` rule
        in base.css has two classes of specificity, beating this descendant
        selector's one-class-plus-tag and silently keeping position: relative. */
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
+    position: sticky !important;
+    inset-inline-start: 0 !important;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
