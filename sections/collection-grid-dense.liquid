@@ -26,6 +26,7 @@
     {%- if collection.products.size == 0 -%}
       <p class="dense-grid__empty">אין עדיין יצירות בקטגוריה הזו.</p>
     {%- else -%}
+      {%- paginate collection.products by 250 -%}
       <div class="dense-grid__grid">
         {%- for product in collection.products -%}
           {%- assign v0 = product.selected_or_first_available_variant -%}
@@ -77,6 +78,7 @@
           </div>
         {%- endfor -%}
       </div>
+      {%- endpaginate -%}
     {%- endif -%}
 
   </div>
