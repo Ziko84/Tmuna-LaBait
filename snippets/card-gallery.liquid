@@ -253,22 +253,23 @@
 
   .mockup-ai-badge {
     position: absolute;
-    /* Physical (not logical) left: the favorite-toggle heart already owns
-       the top-right corner via inset-inline-end, so anchor this to the
-       opposite physical corner regardless of logical-property direction.
-       Height/top match the heart's own 30px circle so the two sit at the
-       same visual height. */
-    left: var(--padding-sm, 16px);
-    top: var(--padding-sm, 16px);
+    /* The favorite-heart actually lives on the physical right (theme.liquid
+       overrides it to inset-inline-start, which resolves to the right in
+       this RTL theme, with a top offset of padding-sm + 5px). Mirror that
+       exact top offset and dark-disc styling on the opposite (left)
+       corner so the two badges read as one consistent design language. */
+    left: calc(var(--padding-sm, 16px) + 5px);
+    top: calc(var(--padding-sm, 16px) + 5px);
     height: 30px;
     display: flex;
     align-items: center;
     z-index: 2;
     padding: 0 10px;
     border-radius: 999px;
-    background-color: rgb(255 255 255 / 0.92);
-    box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
-    color: #1a1a2e;
+    background: rgb(26 26 46 / 22%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    color: #fff;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.02em;
