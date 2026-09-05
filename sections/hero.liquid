@@ -456,7 +456,7 @@
   endif
 -%}
 
-{%- if section.id == 'hero_our_story' -%}
+{%- if section.id contains 'hero_our_story' -%}
   {%- comment -%}
     A single-media hero always renders its image edge-to-edge (100vw) by
     design (see media_width_desktop/media_width_mobile above) regardless of
