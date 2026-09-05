@@ -70,10 +70,37 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "product_list_text_tagline": {
+              "type": "_product-list-text",
+              "name": "Tagline",
+              "settings": {
+                "text": "<p>אמנות קיר מעץ בחיתוך לייזר. עיצוב ייחודי לכל חלל בבית.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "right",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "product_list_text_qK4EWG"
+            "product_list_text_qK4EWG",
+            "product_list_text_tagline"
           ]
         },
         "static-product-card": {
