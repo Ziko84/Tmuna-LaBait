@@ -294,28 +294,46 @@
 
   /*
    * The hover preview (previewImage/resetImage in product-card.js) drives the
-   * shared slideshow component, which by default slides slides horizontally.
-   * That reads as an aggressive swipe on a small card. We still need the real
-   * horizontal scroll to happen (the component's own aria-hidden tracking is
-   * intersection-based against the scroller, so overflow:visible made every
-   * slide "visible" at once and they all rendered stacked at full opacity).
-   * Instead, pin each slide to the scrollport's leading edge with `sticky` so
-   * it never visually moves while the container scrolls underneath it - only
-   * the opacity crossfade (driven by the real aria-hidden toggle) is seen.
+   * shared slideshow component, which by default slides slides horizontally -
+   * that read as an aggressive swipe on a small card, and both attempts to
+   * fake a crossfade by repositioning the *scrolling* slide (overflow:visible,
+   * then position:sticky) failed: the component's own aria-hidden tracking is
+   * intersection-based against real scroll position, so faking the scroll
+   * broke it (every slide "visible" at rest, or the outgoing slide stuck
+   * onscreen after hover ended).
+   *
+   * Instead we stop relying on the component's scroll/aria-hidden machinery
+   * for this specific effect entirely, and drive a plain opacity crossfade
+   * from `:hover` directly, exactly like the dense-grid tiles. The slideshow
+   * JS still runs underneath (harmless - it's just moving an invisible
+   * scroll position around) but no longer controls what's visible.
    */
+  .card-gallery slideshow-slides {
+    aspect-ratio: var(--gallery-aspect-ratio, var(--media-preview-ratio));
+  }
+
   .card-gallery slideshow-slide {
     /* !important needed: the slide element also carries .product-media-container
        (see snippets/card-gallery.liquid's slideshow-slide render call), and that
        class's own `:not(.dialog-zoomed-gallery) > .product-media-container` rule
        in base.css has two classes of specificity, beating this descendant
        selector's one-class-plus-tag and silently keeping position: relative. */
-    position: sticky !important;
-    inset-inline-start: 0 !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
 
-  .card-gallery slideshow-slide[aria-hidden='false'] {
+  .card-gallery slideshow-slide:first-of-type {
+    opacity: 1;
+  }
+
+  .card-gallery:hover slideshow-slide:first-of-type {
+    opacity: 0;
+  }
+
+  .card-gallery:hover slideshow-slide:nth-of-type(2) {
     opacity: 1;
   }
 
