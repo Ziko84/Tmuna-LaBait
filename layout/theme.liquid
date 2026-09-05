@@ -597,13 +597,11 @@
         box-shadow: 0 14px 34px rgba(90, 85, 77, 0.14) !important;
       }
 
-      /* Lift, same recipe as .blog-post-card:hover in _blog-post-card.liquid -
-         same -4px translate and gated the same way, only deepening the
-         shadow further (card's own warm tone, not blog's navy) instead of
-         copying blog's shadow color outright. */
+      /* Deepen the shadow on hover, no lift/translate - the -4px hover lift
+         previously here read as an unwanted extra motion alongside the
+         card's own image crossfade (see snippets/card-gallery.liquid). */
       @media (any-pointer: fine) and (prefers-reduced-motion: no-preference) {
         .resource-list__item .product-card:hover {
-          transform: translateY(-4px) !important;
           box-shadow:
             0 4px 10px rgba(90, 85, 77, 0.18),
             0 14px 34px rgba(90, 85, 77, 0.22) !important;
