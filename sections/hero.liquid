@@ -456,6 +456,23 @@
   endif
 -%}
 
+{%- if section.id == 'hero_our_story' -%}
+  {%- comment -%}
+    A single-media hero always renders its image edge-to-edge (100vw) by
+    design (see media_width_desktop/media_width_mobile above) regardless of
+    section_width - "page-width" only affects the text container. This is
+    the only "hero" instance on the site, so it's safe to scope a width cap
+    directly to it rather than changing that shared fallback behavior.
+  {%- endcomment -%}
+  <style>
+    #Hero-{{ section.id }} .hero__media-wrapper,
+    #Hero-{{ section.id }} .hero__media {
+      max-width: var(--page-width, 1440px);
+      margin-inline: auto;
+    }
+  </style>
+{%- endif -%}
+
 <div
   id="Hero-{{ section.id }}"
   class="hero{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"

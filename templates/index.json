@@ -89,7 +89,7 @@
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 16,
         "section_width": "full-width",
-        "section_height": "large",
+        "section_height": "medium",
         "toggle_overlay": true,
         "overlay_color": "#00000066",
         "overlay_style": "gradient",
