@@ -88,7 +88,7 @@
         "horizontal_alignment_flex_direction_column": "flex-end",
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 16,
-        "section_width": "full-width",
+        "section_width": "page-width",
         "section_height": "medium",
         "toggle_overlay": true,
         "overlay_color": "#00000066",
