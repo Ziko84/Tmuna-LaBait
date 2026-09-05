@@ -305,9 +305,14 @@
   }
 
   .card-gallery slideshow-slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
+    /* !important needed: the slide element also carries .product-media-container
+       (see snippets/card-gallery.liquid's slideshow-slide render call), and that
+       class's own `:not(.dialog-zoomed-gallery) > .product-media-container` rule
+       in base.css has two classes of specificity, beating this descendant
+       selector's one-class-plus-tag and silently keeping position: relative. */
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
