@@ -206,6 +206,9 @@
         attributes: slideshow_attributes
       %}
     </a>
+    {%- if settings.show_second_image_on_hover and media_list_to_show.size > 1 -%}
+      <span class="card-gallery__ai-badge">הדמיית AI</span>
+    {%- endif -%}
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
       <a
@@ -246,6 +249,35 @@
   .card-gallery__placeholder svg {
     height: 100%;
     width: 100%;
+  }
+
+  .card-gallery__ai-badge {
+    position: absolute;
+    inset-inline-start: 8px;
+    inset-block-start: 8px;
+    z-index: 2;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgb(10 9 8 / 60%);
+    backdrop-filter: blur(2px);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .card-gallery:hover .card-gallery__ai-badge {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-gallery__ai-badge {
+      transition: none;
+    }
   }
 
   .card-gallery svg {
