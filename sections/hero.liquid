@@ -464,6 +464,7 @@
     --hero-border-width: {{ section.settings.border_width }}px;
     --hero-border-opacity: {{ section.settings.border_opacity }}%;
     --hero-border-radius: {{ section.settings.border_radius | default: 0 }}px;
+    --hero-media-grid-column: {% if section.settings.section_width == 'page-width' %}2{% else %}1 / -1{% endif %};
     --blur-opacity: {{ section.settings.reflection_opacity | divided_by: 100.0 }};
     {% if section.settings.section_height == 'custom' %}
       --hero-min-height: {{ section.settings.section_height_custom }}svh;
@@ -499,13 +500,8 @@
     {% endif %}
   {% endif %}
 
-  {% comment %}
-    Hardcoded to section--full-width bc the media has to be full width in all cases.
-    hero__content-wrapper applies section_width.
-  {% endcomment %}
-
   <div
-    class="hero__container spacing-style section section--full-width"
+    class="hero__container spacing-style section {% if section.settings.section_width == 'page-width' %}section--page-width{% else %}section--full-width{% endif %}"
     style="{% render 'spacing-style', settings: section.settings %}"
   >
     {%- if section.settings.link != blank -%}
@@ -600,7 +596,7 @@
     position: absolute;
     inset: 0;
     display: grid;
-    grid-column: 1 / -1;
+    grid-column: var(--hero-media-grid-column, 1 / -1);
     grid-template-columns: repeat(var(--hero-media-count, 1), 1fr);
   }
 
@@ -668,7 +664,7 @@
   .hero__link {
     position: absolute;
     inset: 0;
-    grid-column: 1 / -1;
+    grid-column: var(--hero-media-grid-column, 1 / -1);
   }
 
   .hero__media-grid,
