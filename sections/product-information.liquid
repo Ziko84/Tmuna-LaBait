@@ -1,7 +1,78 @@
 
 
+{%- comment -%}
+  Shopify's native `structured_data` filter emits a valid ProductGroup but
+  omits hasMerchantReturnPolicy and shippingDetails on every offer (flagged
+  by Search Console as a "could be improved" item) and gives no per-variant
+  description. That filter has no hooks to add them, so this hand-writes
+  the same ProductGroup shape instead, matching the richer schema
+  led-configurator.liquid already emits for its own product template, with
+  real values from the actual shipping/return policy (14-day free return,
+  0-day handling, 3-5 business day transit, flat 45 ILS).
+{%- endcomment -%}
 <script type="application/ld+json">
-  {{ closest.product | structured_data }}
+{
+  "@context": "https://schema.org/",
+  "@type": "ProductGroup",
+  "name": {{ closest.product.title | json }},
+  "description": {{ closest.product.description | strip_html | strip_newlines | truncate: 400 | json }},
+  "brand": { "@type": "Brand", "name": "תמונה לבית" },
+  "productGroupID": {{ closest.product.id | json }},
+  "url": {{ closest.product.url | prepend: shop.url | json }},
+  "variesBy": ["https://schema.org/size", "https://schema.org/pattern"],
+  "image": [
+    {%- assign _ld_imgs = closest.product.media | where: 'media_type', 'image' -%}
+    {%- for m in _ld_imgs limit: 5 -%}
+      {%- capture _u -%}{{ m.preview_image | image_url: width: 1400 }}{%- endcapture -%}
+      {%- if _u contains '://' -%}{%- assign _abs = _u -%}{%- else -%}{%- assign _abs = _u | prepend: 'https:' -%}{%- endif -%}
+      {{ _abs | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  "hasVariant": [
+    {%- for v in closest.product.variants -%}
+      {%- assign _vimg = v.image | default: closest.product.featured_media.preview_image -%}
+      {%- capture _vu -%}{{ _vimg | image_url: width: 1200 }}{%- endcapture -%}
+      {%- if _vu contains '://' -%}{%- assign _vabs = _vu -%}{%- else -%}{%- assign _vabs = _vu | prepend: 'https:' -%}{%- endif -%}
+      {%- comment -%} Flat shipping rate of 45 ILS on every order, no free-shipping threshold. {%- endcomment -%}
+      {%- assign _ship = '45' -%}
+      {
+        "@type": "Product",
+        "name": {{ v.title | prepend: ' - ' | prepend: closest.product.title | json }},
+        "description": {{ closest.product.description | strip_html | strip_newlines | truncate: 300 | json }},
+        "size": {{ v.option1 | json }},
+        "pattern": {{ v.option2 | json }},
+        "sku": {{ v.sku | json }},
+        "image": {{ _vabs | json }},
+        "offers": {
+          "@type": "Offer",
+          "price": "{{ v.price | divided_by: 100.0 }}",
+          "priceCurrency": {{ shop.currency | json }},
+          "availability": "https://schema.org/InStock",
+          "url": {{ v.url | prepend: shop.url | json }},
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "IL",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 14,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": { "@type": "MonetaryAmount", "value": "{{ _ship }}", "currency": "ILS" },
+            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "IL" },
+            {%- comment -%} Matches GMC shipping settings: same business day handling, 3-5 business day transit. {%- endcomment -%}
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+              "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 5, "unitCode": "DAY" }
+            }
+          }
+        }
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
 </script>
 
 {% capture media_gallery %}
