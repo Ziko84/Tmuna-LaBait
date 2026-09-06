@@ -484,8 +484,8 @@
   },
   "order": [
     "collection_list_shop_by_category",
-    "product_list_EDUBdR",
-    "craft_strip"
+    "craft_strip",
+    "product_list_EDUBdR"
   ]
 }
 
