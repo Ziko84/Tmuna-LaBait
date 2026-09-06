@@ -505,11 +505,7 @@
           "settings": {
             "label": "לצפייה בקולקציה",
             "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "{{ settings.color_palette.background }}",
-            "custom_button_text": "{{ settings.color_palette.foreground }}",
-            "custom_button_border": "{{ settings.color_palette.background }}"
+            "open_in_new_tab": false
           },
           "blocks": {}
         }
@@ -525,18 +521,17 @@
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment_flex_direction_column": "flex-end",
-        "vertical_alignment_flex_direction_column": "flex-end",
+        "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
         "section_height": "large",
         "background_color": "",
         "border_radius": 20,
         "toggle_overlay": true,
-        "overlay_color": "#00000059",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
+        "overlay_color": "#00000040",
+        "overlay_style": "solid",
         "padding-block-start": 40,
-        "padding-block-end": 48
+        "padding-block-end": 40
       }
     },
     "craft_strip": {
