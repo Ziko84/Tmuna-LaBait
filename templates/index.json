@@ -480,12 +480,58 @@
         "background_color": "#f7f5f2",
         "padding_block": 72
       }
+    },
+    "craft_strip_catalog": {
+      "type": "craft-strip",
+      "blocks": {
+        "fact_variety": {
+          "type": "fact",
+          "settings": {
+            "value": "3 סגנונות",
+            "label": "נופי טבע, חיות גיאומטריות וכלבים, לכל טעם ולכל חלל"
+          }
+        },
+        "fact_material": {
+          "type": "fact",
+          "settings": {
+            "value": "MDF פרימיום",
+            "label": "עץ בעובי 6 מ״מ, חיתוך לייזר מדויק ועיצוב שנשאר לשנים"
+          }
+        },
+        "fact_custom": {
+          "type": "fact",
+          "settings": {
+            "value": "התאמה אישית",
+            "label": "בחירת מידה ותאורה לכל יצירה, בהתאם לחלל שלכם"
+          }
+        }
+      },
+      "block_order": [
+        "fact_variety",
+        "fact_material",
+        "fact_custom"
+      ],
+      "settings": {
+        "heading": "כל הסגנונות במקום אחד",
+        "reassurance": "",
+        "background_color": "#ffffff",
+        "padding_block": 56
+      }
+    },
+    "dense_grid_catalog": {
+      "type": "collection-grid-dense",
+      "settings": {
+        "collection": "frontpage",
+        "heading": "כל היצירות שלנו"
+      }
     }
   },
   "order": [
     "collection_list_shop_by_category",
     "craft_strip",
-    "product_list_EDUBdR"
+    "product_list_EDUBdR",
+    "craft_strip_catalog",
+    "dense_grid_catalog"
   ]
 }
 
