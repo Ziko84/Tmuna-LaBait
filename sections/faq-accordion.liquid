@@ -143,6 +143,72 @@
   </reveal-on-scroll>
 </div>
 
+{%- comment -%}
+  FAQPage structured data, mirroring the visible Q&A pairs above exactly.
+  Kept as a flat list of liquid variables (not looped from the markup)
+  because the accordion content above is intentionally hardcoded, not
+  data-driven from blocks or a metafield.
+{%- endcomment -%}
+{%- liquid
+  assign faq_q1 = 'מאיזה חומר עשויות היצירות?'
+  assign faq_a1 = 'כל יצירה עשויה מ-MDF פרימיום בעובי 6 מ״מ, חתוך בלייזר בדיוק של שבריר מילימטר.'
+  assign faq_q2 = 'אילו מידות זמינות?'
+  assign faq_a2 = 'ניתן לבחור בין 50x50 ו-70x70 ס״מ, וגם במידה מותאמת אישית עד 120x120 ס״מ.'
+  assign faq_q3 = 'האם כל היצירות מגיעות עם תאורה?'
+  assign faq_a3 = 'המידה הקטנה (50x50) מגיעה ללא תאורה בלבד, ואין עבורה אפשרות תאורת לד. במידה הבינונית (70x70) ובמידה המותאמת אישית ניתן לבחור בין ללא תאורה, לבן חם, צבע יחיד ורב-צבע. הגרסאות המוארות מגיעות עם שלט להפעלה, לעמעום ולבחירת מצבי תאורה.'
+  assign faq_q4 = 'איך נקבע המחיר?'
+  assign faq_a4 = 'המחיר עולה בהתאם למידה ולסוג התאורה שנבחרו, ומוצג במלואו בעמוד המוצר לפני ההוספה לסל.'
+  assign faq_q5 = 'תוך כמה זמן ההזמנה מגיעה?'
+  assign faq_a5 = 'כל יצירה מיוצרת לפי הזמנה והיא יוצאת למשלוח באותו יום העסקים בו התקבלה ההזמנה. זמן האספקה מרגע המשלוח הוא 3 עד 5 ימי עסקים, כך שסך הכל ההזמנה מגיעה תוך 3 עד 5 ימי עסקים.'
+  assign faq_q6 = 'מה עלות המשלוח?'
+  assign faq_a6 = 'עלות המשלוח היא 45 ש״ח קבועים לכל הזמנה, ללא קשר לסכום הרכישה.'
+  assign faq_q7 = 'לאן אתם שולחים?'
+  assign faq_a7 = 'אנחנו שולחים כרגע בתוך ישראל בלבד.'
+  assign faq_q8 = 'מה מדיניות ההחזרות?'
+  assign faq_a8 = 'ניתן להחזיר כל יצירה תוך 14 יום. ההחזרה חינם, ועלות משלוח ההחזרה היא על חשבוננו.'
+  assign faq_q9 = 'אילו אמצעי תשלום מתקבלים?'
+  assign faq_a9 = 'ניתן לשלם באמצעות כרטיסי אשראי (ויזה, מאסטרקארד, אמריקן אקספרס, דיסקאבר, JCB ודיינרס קלאב), Google Pay, Apple Pay וביט.'
+  assign faq_q10 = 'מי עומד מאחורי תמונה לבית?'
+  assign faq_a10 = 'תמונה לבית מופעלת על ידי דניאל פיקס, עוסק מורשה 306082793, מושב רינתיה. הצוות שמאחורי הסטודיו הוא דניאל אמינוב וזרמן איסקוב.'
+  assign faq_q11 = 'איך אפשר ליצור איתכם קשר?'
+  assign faq_a11 = 'אפשר לפנות אלינו בטלפון, באימייל או בוואטסאפ דרך עמוד צרו קשר, שם תמצאו גם את הכתובת המלאה שלנו.'
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for i in (1..11) -%}
+      {%- assign q_key = 'faq_q' | append: i -%}
+      {%- assign a_key = 'faq_a' | append: i -%}
+      {%- assign q_text = '' -%}
+      {%- assign a_text = '' -%}
+      {%- case i -%}
+        {%- when 1 -%}{%- assign q_text = faq_q1 -%}{%- assign a_text = faq_a1 -%}
+        {%- when 2 -%}{%- assign q_text = faq_q2 -%}{%- assign a_text = faq_a2 -%}
+        {%- when 3 -%}{%- assign q_text = faq_q3 -%}{%- assign a_text = faq_a3 -%}
+        {%- when 4 -%}{%- assign q_text = faq_q4 -%}{%- assign a_text = faq_a4 -%}
+        {%- when 5 -%}{%- assign q_text = faq_q5 -%}{%- assign a_text = faq_a5 -%}
+        {%- when 6 -%}{%- assign q_text = faq_q6 -%}{%- assign a_text = faq_a6 -%}
+        {%- when 7 -%}{%- assign q_text = faq_q7 -%}{%- assign a_text = faq_a7 -%}
+        {%- when 8 -%}{%- assign q_text = faq_q8 -%}{%- assign a_text = faq_a8 -%}
+        {%- when 9 -%}{%- assign q_text = faq_q9 -%}{%- assign a_text = faq_a9 -%}
+        {%- when 10 -%}{%- assign q_text = faq_q10 -%}{%- assign a_text = faq_a10 -%}
+        {%- when 11 -%}{%- assign q_text = faq_q11 -%}{%- assign a_text = faq_a11 -%}
+      {%- endcase -%}
+      {
+        "@type": "Question",
+        "name": {{ q_text | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ a_text | json }}
+        }
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+
 <script>
   (function () {
     document.querySelectorAll('.faq__row').forEach(function (row) {
