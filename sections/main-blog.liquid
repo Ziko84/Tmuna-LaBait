@@ -45,9 +45,10 @@
       class="blog-posts-container"
     >
       {% liquid
-        assign items_on_page = blog.articles.size
+        assign sorted_articles = blog.articles | sort: 'updated_at' | reverse
+        assign items_on_page = sorted_articles.size
       %}
-      {% for article in blog.articles %}
+      {% for article in sorted_articles %}
         {% liquid
           # Uniform card grid: every post gets the same size, no featured/hero treatment
           assign col_span = 2
