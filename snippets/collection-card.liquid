@@ -96,10 +96,12 @@
     <span class="visually-hidden">{{ collection.title }}</span>
   </a>
   <div class="collection-card__inner">
-    {{ card_image }}
-    {%- if is_ai_lifestyle_photo -%}
-      <span class="collection-card__ai-badge">הדמיית AI</span>
-    {%- endif -%}
+    <div class="collection-card__image-wrap">
+      {{ card_image }}
+      {%- if is_ai_lifestyle_photo -%}
+        <span class="collection-card__ai-badge">הדמיית AI</span>
+      {%- endif -%}
+    </div>
     <div class="collection-card__content layout-panel-flex--column">
       {{ children }}
     </div>
@@ -199,17 +201,21 @@
     max-width: 100%;
   }
 
+  .collection-card__image-wrap {
+    position: relative;
+  }
+
   .collection-card__ai-badge {
     position: absolute;
-    inset-inline-end: 12px;
-    inset-block-end: 12px;
+    inset-inline-end: 16px;
+    inset-block-end: 16px;
     z-index: 1;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 999px;
     background: rgba(10, 9, 8, 0.55);
     backdrop-filter: blur(2px);
     color: #fff;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.02em;
     white-space: nowrap;
