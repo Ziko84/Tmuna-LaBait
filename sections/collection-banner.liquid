@@ -6,17 +6,20 @@
   as no image set at all, rendering nothing regardless of enabled/disabled.
   This section does the same job with actual Liquid, so each collection's
   own image (already set on every collection) renders as a real banner.
+  Uses plain `collection`, not `closest.collection`: this section sits at
+  the template's top level (a peer of "section"/"main" in the order array,
+  not nested inside them), where `closest` isn't populated.
 {%- enddoc -%}
 
-{% if closest.collection.image %}
+{% if collection.image %}
   <div class="collection-banner">
     {{
-      closest.collection.image
+      collection.image
       | image_url: width: 1600
       | image_tag:
         loading: 'eager',
         fetchpriority: 'high',
-        alt: closest.collection.image.alt,
+        alt: collection.image.alt,
         sizes: '100vw',
         widths: '750, 1100, 1500, 1600'
     }}
