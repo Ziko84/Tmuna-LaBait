@@ -392,9 +392,14 @@
         "padding-block-start": 0,
         "padding-block-end": 16
       }
+    },
+    "collection_banner": {
+      "type": "collection-banner",
+      "settings": {}
     }
   },
   "order": [
+    "collection_banner",
     "section",
     "collection-tabs",
     "main"

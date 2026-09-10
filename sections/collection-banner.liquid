@@ -1,0 +1,48 @@
+{%- doc -%}
+  Collection page banner. The shared collection template has its own
+  "image" block for this, but that block's image setting holds the literal
+  string "{{ closest.collection.image }}" (a JSON value, not real Liquid),
+  so Shopify's native image-picker block never evaluates it and treats it
+  as no image set at all, rendering nothing regardless of enabled/disabled.
+  This section does the same job with actual Liquid, so each collection's
+  own image (already set on every collection) renders as a real banner.
+{%- enddoc -%}
+
+{% if closest.collection.image %}
+  <div class="collection-banner">
+    {{
+      closest.collection.image
+      | image_url: width: 1600
+      | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        alt: closest.collection.image.alt,
+        sizes: '100vw',
+        widths: '750, 1100, 1500, 1600'
+    }}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .collection-banner {
+    width: 100%;
+    height: clamp(200px, 28vw, 360px);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-block-end: clamp(16px, 3vw, 32px);
+  }
+
+  .collection-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "settings": []
+}
+{% endschema %}
