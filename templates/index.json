@@ -96,11 +96,38 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "product_list_text_guidance": {
+              "type": "_product-list-text",
+              "name": "Sizing and LED guidance",
+              "settings": {
+                "text": "<p>בחרו מידה שמתאימה לקיר שלכם. מ-50x50 ס״מ ועד התאמה אישית ל-120x120 ס״מ. כל היצירות זמינות גם עם תאורת לד.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "rgb(26 26 46 / 65%)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "product_list_text_qK4EWG",
-            "product_list_text_tagline"
+            "product_list_text_tagline",
+            "product_list_text_guidance"
           ]
         },
         "static-product-card": {
