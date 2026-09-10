@@ -40,12 +40,19 @@
 
   # Manual recenter for the wide lifestyle banner photos reused here as
   # square-ish tiles: their wall art subject isn't perfectly centered in
-  # the original frame, so a plain 50% crop looks off. Tuned per collection
-  # by eye rather than regenerating the source images.
+  # the original frame, so a plain 50% crop looks off. Values computed from
+  # each source image's actual subject bounding box (measured directly on
+  # the uploaded 2172x724 banners) rather than eyeballed, since the source
+  # is much wider than the 4:3 tile crop and small position errors are very
+  # visible. Formula: for a crop window covering fraction w = (4/3)/(source
+  # aspect ratio) of the source width, position% = (subjectCenterFraction -
+  # w/2) / (1 - w).
   assign image_object_position = '50% center'
   case collection.handle
     when 'geometric-animals'
-      assign image_object_position = '38% center'
+      assign image_object_position = '57% center'
+    when 'dogs'
+      assign image_object_position = '56% center'
     when 'nature-scenes'
       assign image_object_position = '58% center'
   endcase
