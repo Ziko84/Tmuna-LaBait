@@ -149,10 +149,16 @@
         found stuck at 4 items after the last bulk product import, while
         every real automated/manual collection reflected the current
         catalog correctly, so it isn't a reliable source here.
+
+        collection.products is paginated at 50 per page regardless of any
+        `limit:` filter on the for-loop, so a plain for-loop still silently
+        dropped everything past the 50th product. {% paginate %} is the
+        only way to actually raise that page size.
       {%- endcomment -%}
       <script type="application/json" data-live-search-catalog>
         [
-          {%- for product in collections.frontpage.products limit: 250 -%}
+          {%- paginate collections.frontpage.products by 250 -%}
+          {%- for product in collections.frontpage.products -%}
             {%- capture haystack -%}
               {{ product.title }} {{ product.product_type }} {{ product.vendor }} {{ product.tags | join: ' ' }}
             {%- endcapture -%}
@@ -164,6 +170,7 @@
               "s": {{ haystack | strip | downcase | json }}
             }{%- unless forloop.last -%},{%- endunless -%}
           {%- endfor -%}
+          {%- endpaginate -%}
         ]
       </script>
     </predictive-search-component>
