@@ -29,6 +29,19 @@
     line-height: 1.8;
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    .blog-post-content rte-formatter > * {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .blog-post-content rte-formatter > *.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .blog-post-content p {
     margin-block: 1.6em;
   }
