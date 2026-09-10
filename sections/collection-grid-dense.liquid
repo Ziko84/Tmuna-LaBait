@@ -291,6 +291,17 @@
       inset-inline-start: auto;
       inset-inline-end: 8px;
     }
+
+    /* touch devices: :hover never fires, so without this the secondary
+       (AI-rendered) image and its badge could never be seen at all here.
+       Show them by default instead, matching what hover reveals on desktop. */
+    .dense-grid__img--secondary {
+      opacity: 1;
+    }
+
+    .dense-grid__ai-badge {
+      opacity: 1;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
