@@ -27,21 +27,25 @@
     z-index: 40;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0;
     height: 52px;
-    padding-inline: 8px 18px;
+    padding-inline: 8px;
     border-radius: 999px;
     background-color: #25d366;
     color: #ffffff;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.12);
     text-decoration: none;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease,
+      padding-inline-end 0.35s cubic-bezier(0.16, 1, 0.3, 1), gap 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .whatsapp-float-button:hover {
+  .whatsapp-float-button:hover,
+  .whatsapp-float-button:focus-visible {
     transform: translateY(-2px);
     background-color: #20b858;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26), 0 2px 5px rgba(0, 0, 0, 0.14);
+    padding-inline-end: 18px;
+    gap: 10px;
   }
 
   .whatsapp-float-button:active {
@@ -71,6 +75,18 @@
     font-weight: 500;
     white-space: nowrap;
     letter-spacing: 0;
+    display: inline-block;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  }
+
+  .whatsapp-float-button:hover .whatsapp-float-button__label,
+  .whatsapp-float-button:focus-visible .whatsapp-float-button__label {
+    max-width: 160px;
+    opacity: 1;
+    transition: max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease 0.05s;
   }
 
   @media screen and (max-width: 749px) {
