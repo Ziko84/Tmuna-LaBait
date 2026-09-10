@@ -5,7 +5,6 @@
   type="module"
   fetchpriority="low"
 ></script>
-<script type="module" src="{{ 'reveal-on-scroll.js' | asset_url }}"></script>
 
 {% liquid
   if section.settings.background_color != blank
@@ -41,7 +40,7 @@
     {%- endcomment -%}
     <p class="blog-posts__intro">טיפים, השראה וסיפורים מאחורי היצירות שלנו.</p>
 
-    <reveal-on-scroll
+    <div
       ref="grid"
       class="blog-posts-container"
     >
@@ -83,7 +82,7 @@
           {% content_for 'block', id: 'static-blog-post-card', type: '_blog-post-card', article: article %}
         </div>
       {% endfor %}
-    </reveal-on-scroll>
+    </div>
   </div>
 </blog-posts-list>
 
