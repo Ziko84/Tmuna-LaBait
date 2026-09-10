@@ -24,7 +24,7 @@
             "weight": "400",
             "letter_spacing": "normal",
             "case": "none",
-            "text_color": "#000000"
+            "text_color": "#FFFFFF"
           },
           "blocks": {}
         }
@@ -36,7 +36,7 @@
       "settings": {
         "speed": 5,
         "section_width": "full-width",
-        "background_color": "#f7f5f2",
+        "background_color": "#0A1F44",
         "divider_width": 0,
         "divider_color": "",
         "padding-block-start": 15,
