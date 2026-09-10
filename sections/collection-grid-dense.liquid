@@ -22,6 +22,21 @@
 <div class="dense-grid" dir="rtl">
   <div class="section section--page-width dense-grid__wrap">
 
+    {%- if the_collection.image -%}
+      <div class="dense-grid__banner">
+        {{
+          the_collection.image
+          | image_url: width: 1600
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: the_collection.image.alt,
+            sizes: '100vw',
+            widths: '750, 1100, 1500, 1600'
+        }}
+      </div>
+    {%- endif -%}
+
     <div class="dense-grid__head">
       <h1 class="dense-grid__title">{{ section.settings.heading | default: the_collection.title }}</h1>
       <p class="dense-grid__tagline">אמנות קיר מעץ בחיתוך לייזר. עיצוב ייחודי לכל חלל בבית.</p>
@@ -95,6 +110,21 @@
 {% stylesheet %}
   .dense-grid__wrap {
     padding-block: var(--padding-lg, 32px) var(--padding-2xl, 48px);
+  }
+
+  .dense-grid__banner {
+    width: 100%;
+    height: clamp(200px, 28vw, 360px);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-block-end: clamp(20px, 4vw, 32px);
+  }
+
+  .dense-grid__banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .dense-grid__head {
