@@ -11,6 +11,10 @@
   @param {object} [section_settings] - Section settings for layout-aware sizing
   @param {string} [block_attributes] - Block shopify attributes for theme editor
 
+  For 'collections', the first card of the first section on the page gets
+  fetchpriority="high" automatically (see is_lcp_candidate below) - no
+  extra param needed to opt in.
+
   @example
   {% render 'resource-image',
       content_type: 'articles',
@@ -102,6 +106,21 @@
   assign lazy_sizes = 'auto, ' | append: sizes
   assign loading = 'eager'
 
+  # is_lcp_candidate: true only for the single collection card most likely
+  # to be the page's LCP element (first card of the first section on the
+  # page) - computed locally the same way card-gallery.liquid does it for
+  # product cards, using only globally-available section/closest objects
+  # rather than threading a signal through content_for. Scoped to
+  # 'collections' since that is the only content_type this component
+  # renders above the fold on this store (the homepage's shop-by-category
+  # grid).
+  assign is_lcp_candidate = false
+  assign fetch_priority = 'auto'
+  if content_type == 'collections' and section.index == 1 and section_settings.collection_list.first.id == collection.id
+    assign is_lcp_candidate = true
+    assign fetch_priority = 'high'
+  endif
+
   # Layout-aware sizing for resource lists
   if section_settings.layout_type
     case section_settings.layout_type
@@ -126,6 +145,10 @@
         assign loading = 'lazy'
         assign sizes = lazy_sizes
     endcase
+  endif
+
+  if is_lcp_candidate
+    assign loading = 'eager'
   endif
 
   assign widths = '240, 352, 480, 640, 832, 1200, 1600, 1920, 2560, 3840'
@@ -191,7 +214,7 @@
     {{
       image_resource
       | image_url: width: 3840, quality: 65, format: 'webp'
-      | image_tag: widths: widths, class: 'resource-image__image', sizes: sizes, loading: loading
+      | image_tag: widths: widths, class: 'resource-image__image', sizes: sizes, loading: loading, fetchpriority: fetch_priority
     }}
   </div>
 {% else %}
