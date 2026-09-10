@@ -18,7 +18,7 @@
       <div class="sticky-buy-bar__media">
         {%- if product.featured_media -%}
           <img
-            src="{{ product.featured_media | image_url: width: 100 }}"
+            src="{{ product.featured_media | image_url: width: 100, quality: 65, format: 'webp' }}"
             width="50"
             height="50"
             alt=""

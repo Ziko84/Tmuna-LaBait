@@ -166,7 +166,7 @@
               "t": {{ product.title | json }},
               "u": {{ product.url | json }},
               "p": {{ product.price | money | json }},
-              "i": {% if product.featured_media %}{{ product.featured_media | image_url: width: 120 | json }}{% else %}""{% endif %},
+              "i": {% if product.featured_media %}{{ product.featured_media | image_url: width: 120, quality: 65, format: 'webp' | json }}{% else %}""{% endif %},
               "s": {{ haystack | strip | downcase | json }}
             }{%- unless forloop.last -%},{%- endunless -%}
           {%- endfor -%}

@@ -38,7 +38,7 @@
         {% assign image_alt = image_to_show.alt | default: product.title | escape %}
         {{
           image_to_show
-          | image_url: width: 120
+          | image_url: width: 120, quality: 65, format: 'webp'
           | image_tag:
             loading: 'lazy',
             alt: image_alt,
