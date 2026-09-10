@@ -36,6 +36,7 @@
             sizes: '100vw',
             widths: '750, 1100, 1500, 1600'
         }}
+        <span class="dense-grid__banner-ai-badge">הדמיית AI</span>
       </div>
     {%- endif -%}
 
@@ -115,6 +116,7 @@
   }
 
   .dense-grid__banner {
+    position: relative;
     width: 100%;
     aspect-ratio: 3 / 1;
     border-radius: 16px;
@@ -127,6 +129,21 @@
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  .dense-grid__banner-ai-badge {
+    position: absolute;
+    inset-inline-end: 16px;
+    inset-block-end: 16px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(10, 9, 8, 0.55);
+    backdrop-filter: blur(2px);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
   .dense-grid__head {
