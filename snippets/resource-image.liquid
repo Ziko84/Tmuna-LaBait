@@ -57,21 +57,44 @@
     assign image_resource = image_source
   endif
 
-  # Calculate aspect ratio
+  # Calculate aspect ratio (both the CSS string and a numeric value, the
+  # latter used below to compensate srcset sizing for crops narrower than
+  # the source image, which otherwise starve the object-fit: cover crop
+  # of resolution and force a visible upscale)
   assign ratio = 1
+  assign ratio_numeric = 1
   case block_settings.image_ratio
     when 'landscape'
       assign ratio = '16 / 9'
+      assign ratio_numeric = 16.0 | divided_by: 9
     when 'portrait'
       assign ratio = '4 / 5'
+      assign ratio_numeric = 4.0 | divided_by: 5
     when 'square'
       assign ratio = '1 / 1'
+      assign ratio_numeric = 1
+    when '4:3'
+      assign ratio = '4 / 3'
+      assign ratio_numeric = 4.0 | divided_by: 3
     when 'adapt'
       assign ratio = image_resource.aspect_ratio
+      assign ratio_numeric = image_resource.aspect_ratio
   endcase
 
   if ratio == 0 or ratio == null
     assign ratio = 1
+  endif
+  if ratio_numeric == 0 or ratio_numeric == null
+    assign ratio_numeric = 1
+  endif
+
+  # When the crop is narrower than the source image's own ratio, cover
+  # crops horizontally and needs proportionally more fetched width to
+  # keep the visible (height-constrained) area sharp.
+  assign source_ratio = image_resource.aspect_ratio | default: 1
+  assign crop_factor = source_ratio | times: 1.0 | divided_by: ratio_numeric
+  if crop_factor < 1
+    assign crop_factor = 1
   endif
 
   # Generate responsive image attributes
@@ -83,11 +106,21 @@
   if section_settings.layout_type
     case section_settings.layout_type
       when 'grid', 'carousel'
-        assign calculated_width = 100 | divided_by: section_settings.columns | append: 'vw'
-        assign calculated_width_mobile = '100vw'
-        if section_settings.mobile_columns
-          assign calculated_width_mobile = 100 | divided_by: section_settings.mobile_columns | append: 'vw'
+        assign calculated_width_num = 100 | divided_by: section_settings.columns | times: crop_factor
+        if calculated_width_num > 100
+          assign calculated_width_num = 100
         endif
+        assign calculated_width = calculated_width_num | round | append: 'vw'
+
+        assign calculated_width_mobile_num = 100
+        if section_settings.mobile_columns
+          assign calculated_width_mobile_num = 100 | divided_by: section_settings.mobile_columns | times: crop_factor
+          if calculated_width_mobile_num > 100
+            assign calculated_width_mobile_num = 100
+          endif
+        endif
+        assign calculated_width_mobile = calculated_width_mobile_num | round | append: 'vw'
+
         assign sizes = '(min-width: 750px) [calc-width], [calc-width-mobile]' | replace: '[calc-width]', calculated_width | replace: '[calc-width-mobile]', calculated_width_mobile
       when 'editorial', 'bento'
         assign loading = 'lazy'
