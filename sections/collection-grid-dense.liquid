@@ -19,6 +19,8 @@
 
 {%- assign the_collection = section.settings.collection | default: collection -%}
 
+<script type="module" src="{{ 'reveal-on-scroll.js' | asset_url }}"></script>
+
 <div class="dense-grid" dir="rtl">
   <div class="section section--page-width dense-grid__wrap">
 
@@ -49,7 +51,7 @@
       <p class="dense-grid__empty">אין עדיין יצירות בקטגוריה הזו.</p>
     {%- else -%}
       {%- paginate the_collection.products by 250 -%}
-      <div class="dense-grid__grid">
+      <reveal-on-scroll class="dense-grid__grid">
         {%- for product in the_collection.products -%}
           {%- assign v0 = product.selected_or_first_available_variant -%}
           <div class="dense-grid__tile">
@@ -100,7 +102,7 @@
             </div>
           </div>
         {%- endfor -%}
-      </div>
+      </reveal-on-scroll>
       {%- endpaginate -%}
     {%- endif -%}
 

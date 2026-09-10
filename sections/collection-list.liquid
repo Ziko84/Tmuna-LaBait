@@ -57,6 +57,8 @@
   "
   data-testid="collection-list"
 >
+  <script type="module" src="{{ 'reveal-on-scroll.js' | asset_url }}"></script>
+  <reveal-on-scroll>
   <div class="section-resource-list__content">
     {%- content_for 'blocks' -%}
   </div>
@@ -94,6 +96,7 @@
     content_type: 'collections',
     test_id: 'collections-list-grid'
   %}
+  </reveal-on-scroll>
 </div>
 
 {% schema %}

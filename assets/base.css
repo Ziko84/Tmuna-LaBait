@@ -4118,3 +4118,21 @@ product-card .button.product-card__add-to-cart-button {
     min-height: unset !important;  /* Allows the button to shrink */
     height: auto !important;       /* Ensures height is based on the new padding */
 }
+
+/* Site-wide reveal-on-scroll defaults (assets/reveal-on-scroll.js).
+   Any <reveal-on-scroll> element anywhere gets this fade/rise-in treatment
+   without needing to redefine it per section. Individual sections may still
+   override --reveal-distance or the transition itself for a bespoke feel. */
+@media (prefers-reduced-motion: no-preference) {
+  reveal-on-scroll.is-observing {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance, 24px));
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  reveal-on-scroll.is-observing.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

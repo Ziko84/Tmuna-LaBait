@@ -7,11 +7,13 @@
   so the homepage does not read as the same composition three times.
 {%- endcomment -%}
 
+<script type="module" src="{{ 'reveal-on-scroll.js' | asset_url }}"></script>
+
 <div
   class="craft-strip"
   style="background-color: {{ section.settings.background_color }}; padding-block: {{ section.settings.padding_block }}px;"
 >
-  <div class="craft-strip__inner page-width-content">
+  <reveal-on-scroll class="craft-strip__inner page-width-content">
     {% if section.settings.heading != blank %}
       <h2 class="craft-strip__heading">{{ section.settings.heading }}</h2>
     {% endif %}
@@ -32,7 +34,7 @@
     {% if section.settings.reassurance != blank %}
       <p class="craft-strip__reassurance">{{ section.settings.reassurance }}</p>
     {% endif %}
-  </div>
+  </reveal-on-scroll>
 </div>
 
 {% stylesheet %}

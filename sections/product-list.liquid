@@ -113,6 +113,8 @@
     assign list_items_array = list_items | strip | split: '<!--@list/split-->'
   %}
 
+  <script type="module" src="{{ 'reveal-on-scroll.js' | asset_url }}"></script>
+  <reveal-on-scroll>
   {% render 'resource-list',
     list_items: list_items,
     list_items_array: list_items_array,
@@ -121,6 +123,7 @@
     content_type: 'products',
     test_id: 'resource-list-grid'
   %}
+  </reveal-on-scroll>
 
   <div
     class="section-resource-list__content"
