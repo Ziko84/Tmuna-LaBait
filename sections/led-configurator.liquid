@@ -191,7 +191,13 @@
         {%- assign _vimg = v.image | default: product.featured_media.preview_image -%}
         {%- capture _vu -%}{{ _vimg | image_url: width: 1200 }}{%- endcapture -%}
         {%- if _vu contains '://' -%}{%- assign _vabs = _vu -%}{%- else -%}{%- assign _vabs = _vu | prepend: 'https:' -%}{%- endif -%}
-        {%- comment -%} Flat shipping rate of 45 ILS on every order, no free-shipping threshold. {%- endcomment -%}
+        {%- comment -%}
+          45 ILS flat shipping below 450 ILS, free at 450 ILS and above (matches
+          the Shopify delivery profile's two price-conditioned rates, synced
+          the same way to GMC). This JSON-LD always shows the 45 ILS rate since
+          schema.org's OfferShippingDetails has no native way to express a
+          conditional/tiered rate - a documented simplification, not a bug.
+        {%- endcomment -%}
         {%- assign _ship = '45' -%}
         {
           "@type": "Product",
