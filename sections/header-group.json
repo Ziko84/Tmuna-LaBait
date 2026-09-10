@@ -17,7 +17,7 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "משלוח בעלות קבועה של 45 ש\"ח לכל הזמנה",
+            "text": "משלוח 45 ש\"ח, חינם בהזמנות מעל 450 ש\"ח",
             "link": "shopify://collections/all",
             "font": "var(--font-body--family)",
             "font_size": "0.9375rem",
