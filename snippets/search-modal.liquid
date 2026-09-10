@@ -141,11 +141,18 @@
         so /search/suggest can never return results on this store and the
         as-you-type panel would always stay empty. This inlines the catalog
         instead so assets/hebrew-live-search.js can filter it locally. Cheap
-        at this store's size (~20 products) and needs no request at all.
+        at this store's size (~60 products) and needs no request at all.
+
+        Uses collections.frontpage (an automated collection with a
+        price > -1 catch-all rule, so every real product always matches)
+        instead of collections.all: that virtual "all products" listing was
+        found stuck at 4 items after the last bulk product import, while
+        every real automated/manual collection reflected the current
+        catalog correctly, so it isn't a reliable source here.
       {%- endcomment -%}
       <script type="application/json" data-live-search-catalog>
         [
-          {%- for product in collections.all.products limit: 250 -%}
+          {%- for product in collections.frontpage.products limit: 250 -%}
             {%- capture haystack -%}
               {{ product.title }} {{ product.product_type }} {{ product.vendor }} {{ product.tags | join: ' ' }}
             {%- endcapture -%}
