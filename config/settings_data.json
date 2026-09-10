@@ -9,10 +9,6 @@
  */
 {
   "current": {
-    "page_transition_enabled": false,
-    "transition_to_main_product": false,
-    "card_hover_effect": "none",
-    "show_second_image_on_hover": true,
     "logo": "shopify://shop_images/no-slogan-full_logo_name_black-transparent-2048px.png",
     "logo_inverse": "shopify://shop_images/no-slogan-full_logo_name_white-transparent-2048px.png",
     "logo_height": 56,
@@ -32,6 +28,9 @@
     "type_size_h5": "18",
     "type_case_h6": "none",
     "page_background_color": "#f5f6f8",
+    "page_transition_enabled": false,
+    "transition_to_main_product": false,
+    "card_hover_effect": "none",
     "badge_sale_background_color": "{{ settings.color_palette.background }}",
     "badge_sale_text_color": "#000000",
     "badge_sold_out_background_color": "{{ settings.color_palette.foreground }}",
@@ -64,6 +63,7 @@
     "currency_code_enabled_product_cards": false,
     "quick_add_background": "{{ settings.color_palette.background }}",
     "quick_add_text": "{{ settings.color_palette.foreground }}",
+    "show_second_image_on_hover": true,
     "product_corner_radius": 16,
     "card_corner_radius": 16,
     "palette_variant_background": "{{ settings.color_palette.background }}",
@@ -80,6 +80,24 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "6159598353363395418": {
+        "type": "shopify://apps/google-youtube/blocks/store_widget/14ec7bd0-ac77-49a9-9417-90752398bdff",
+        "disabled": false,
+        "settings": {
+          "widget_position": "LEFT_BOTTOM",
+          "side_margin": 36,
+          "bottom_margin": 36,
+          "mobile_side_margin": 16,
+          "mobile_bottom_margin": 46
+        }
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+          "widget_type": "review-widget"
+        }
       }
     },
     "color_palette": {
