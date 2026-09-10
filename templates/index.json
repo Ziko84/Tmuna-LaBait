@@ -101,7 +101,7 @@
               "type": "_product-list-text",
               "name": "Sizing and LED guidance",
               "settings": {
-                "text": "<p>בחרו מידה שמתאימה לקיר שלכם. מ-50x50 ס״מ ועד התאמה אישית ל-120x120 ס״מ. כל היצירות זמינות גם עם תאורת לד.</p>",
+                "text": "<p>בחרו מידה שמתאימה לקיר שלכם, 50x50 או 70x70 ס״מ. כל היצירות זמינות גם עם תאורת לד.</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "center",
