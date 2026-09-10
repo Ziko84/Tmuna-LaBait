@@ -2,7 +2,8 @@
   Sitewide floating WhatsApp contact button, fixed to the bottom-left corner
   regardless of the page's RTL text direction (explicit user request, not a
   layout-direction bug). Uses the same verified number already linked on the
-  Contact page and the homepage's WhatsApp CTA.
+  Contact page and the homepage's WhatsApp CTA. Shows an icon + label pill on
+  larger screens, collapses to an icon-only circle on mobile to stay compact.
 {%- enddoc -%}
 
 <a
@@ -10,11 +11,12 @@
   class="whatsapp-float-button"
   target="_blank"
   rel="noopener"
-  aria-label="{{ 'accessibility.whatsapp_contact' | t: default: 'צרו קשר בוואטסאפ' }}"
+  aria-label="דברו איתנו בוואטסאפ"
 >
   <span class="svg-wrapper whatsapp-float-button__icon" aria-hidden="true">
     {{- 'icon-whatsapp.svg' | inline_asset_content -}}
   </span>
+  <span class="whatsapp-float-button__label">דברו איתנו</span>
 </a>
 
 {% stylesheet %}
@@ -25,48 +27,79 @@
     z-index: 40;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+    gap: 10px;
+    height: 52px;
+    padding-inline: 8px 18px;
+    border-radius: 999px;
     background-color: #25d366;
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
   }
 
   .whatsapp-float-button:hover {
-    transform: scale(1.06);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+    transform: translateY(-2px);
+    background-color: #20b858;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26), 0 2px 5px rgba(0, 0, 0, 0.14);
+  }
+
+  .whatsapp-float-button:active {
+    transform: translateY(0) scale(0.97);
   }
 
   .whatsapp-float-button__icon {
-    width: 30px;
-    height: 30px;
-    display: block;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.16);
   }
 
   .whatsapp-float-button__icon svg {
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: 20px;
     display: block;
+  }
+
+  .whatsapp-float-button__label {
+    font-family: var(--font-body--family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: 0;
   }
 
   @media screen and (max-width: 749px) {
     .whatsapp-float-button {
-      width: 50px;
-      height: 50px;
       /* Product pages render a full-width sticky-add-to-cart bar pinned to
          the screen bottom on mobile (see sticky-add-to-cart.liquid) - this
          clears its height so the button never sits behind it, on product
          pages or anywhere else. */
       inset-block-end: 88px;
       left: 16px;
+      height: 50px;
+      padding-inline: 0;
+      width: 50px;
+      gap: 0;
     }
 
     .whatsapp-float-button__icon {
+      width: 50px;
+      height: 50px;
+      background-color: transparent;
+    }
+
+    .whatsapp-float-button__icon svg {
       width: 26px;
       height: 26px;
+    }
+
+    .whatsapp-float-button__label {
+      display: none;
     }
   }
 {% endstylesheet %}
