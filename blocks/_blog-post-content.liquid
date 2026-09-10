@@ -1,6 +1,12 @@
 
 
-<div
+<script
+  src="{{ 'reveal-on-scroll.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<reveal-on-scroll
   class="blog-post-content rte"
   style="
     {% if block.settings.text_color != blank %}
@@ -12,7 +18,7 @@
   <rte-formatter>
     {{ article.content }}
   </rte-formatter>
-</div>
+</reveal-on-scroll>
 
 {% stylesheet %}
   .blog-post-content {

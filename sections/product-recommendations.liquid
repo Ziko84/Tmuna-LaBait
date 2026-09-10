@@ -4,6 +4,7 @@
   type="module"
   fetchpriority="low"
 ></script>
+<script type="module" src="{{ 'reveal-on-scroll.js' | asset_url }}"></script>
 
 {% liquid
   case section.settings.layout_type
@@ -120,7 +121,7 @@
         endif
       %}
 
-      <div
+      <reveal-on-scroll
         class="
           resource-list
           {% if section.settings.layout_type == 'carousel' %}
@@ -147,7 +148,7 @@
               settings: section.settings
             %}
         {% endcase %}
-      </div>
+      </reveal-on-scroll>
 
       {% if section.settings.carousel_on_mobile and section.settings.layout_type != 'carousel' %}
         {% liquid
