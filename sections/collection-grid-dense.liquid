@@ -71,22 +71,6 @@
                   width="700"
                   height="700"
                 >
-                {%- assign second_image = product.images[1] -%}
-                {%- if second_image -%}
-                  <img
-                    class="dense-grid__img dense-grid__img--secondary"
-                    src="{{ second_image | image_url: width: 700, quality: 65, format: 'webp' }}"
-                    srcset="{{ second_image | image_url: width: 400, quality: 65, format: 'webp' }} 400w,
-                            {{ second_image | image_url: width: 700, quality: 65, format: 'webp' }} 700w,
-                            {{ second_image | image_url: width: 1000, quality: 65, format: 'webp' }} 1000w"
-                    sizes="(min-width: 990px) 220px, 45vw"
-                    alt="{{ second_image.alt | default: product.title | escape }}"
-                    loading="lazy"
-                    width="700"
-                    height="700"
-                  >
-                  <span class="dense-grid__ai-badge">הדמיית AI</span>
-                {%- endif -%}
               {%- else -%}
                 <div class="dense-grid__img dense-grid__img--placeholder"></div>
               {%- endif -%}
@@ -210,47 +194,8 @@
     transition: opacity 0.45s ease;
   }
 
-  .dense-grid__img--secondary {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-  }
-
   .dense-grid__img--placeholder {
     background: #1a1816;
-  }
-
-  .dense-grid__tile:hover .dense-grid__img--primary {
-    opacity: 0;
-  }
-
-  .dense-grid__tile:hover .dense-grid__img--secondary {
-    opacity: 1;
-  }
-
-  .dense-grid__ai-badge {
-    position: absolute;
-    /* Bottom-center, but lifted clear of the price/name caption strip
-       that already occupies the tile's bottom edge. */
-    left: 50%;
-    bottom: 40px;
-    transform: translateX(-50%);
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: rgba(10, 9, 8, 0.6);
-    backdrop-filter: blur(2px);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-
-  .dense-grid__tile:hover .dense-grid__ai-badge {
-    opacity: 1;
   }
 
   .dense-grid__cap {
@@ -312,22 +257,10 @@
       inset-inline-end: 8px;
     }
 
-    /* touch devices: :hover never fires, so without this the secondary
-       (AI-rendered) image and its badge could never be seen at all here.
-       Show them by default instead, matching what hover reveals on desktop. */
-    .dense-grid__img--secondary {
-      opacity: 1;
-    }
-
-    .dense-grid__ai-badge {
-      opacity: 1;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .dense-grid__img,
-    .dense-grid__img--secondary,
-    .dense-grid__ai-badge,
     .dense-grid__quickadd {
       transition: none;
     }
