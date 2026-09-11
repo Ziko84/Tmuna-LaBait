@@ -172,6 +172,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
+                "show_second_image": true,
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,

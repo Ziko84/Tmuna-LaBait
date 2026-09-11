@@ -95,7 +95,7 @@
     --gallery-aspect-ratio: {{ ratio }};
   "
   data-product-id="{{ product.id }}"
-  {% if settings.show_second_image_on_hover %}
+  {% if settings.show_second_image_on_hover and block_settings.show_second_image != true %}
     on:pointerenter="/previewImage"
     on:pointerleave="/resetImage"
   {% endif %}
@@ -113,9 +113,19 @@
 
       # Sort media so product.featured_media.preview_image comes first as that is the most relevant image to display
       # product.featured_media updates based on search context and filters applied
-
-      assign other_media = product.media | reject: 'src', product.featured_media
-      assign media_list_to_show = product.featured_media | concat: other_media
+      #
+      # Exception: block_settings.show_second_image puts the second media
+      # first instead, for card grids that intentionally show the AI
+      # lifestyle render up front rather than the plain product photo
+      # (paired with a dense catalog grid elsewhere on the page that shows
+      # the first/plain image, so the two grids complement each other).
+      if block_settings.show_second_image and product.media.size > 1
+        assign lead_media = product.media[1]
+      else
+        assign lead_media = product.featured_media
+      endif
+      assign other_media = product.media | reject: 'src', lead_media
+      assign media_list_to_show = lead_media | concat: other_media
 
       if product.media.size > 2 and generic_media_size > 0
         assign show_arrows = true
@@ -206,8 +216,10 @@
         attributes: slideshow_attributes
       %}
     </a>
-    {%- if settings.show_second_image_on_hover and media_list_to_show.size > 1 -%}
+    {%- if media_list_to_show.size > 1 and settings.show_second_image_on_hover -%}
       <span class="mockup-ai-badge">הדמיית AI</span>
+    {%- elsif media_list_to_show.size > 1 and block_settings.show_second_image -%}
+      <span class="mockup-ai-badge mockup-ai-badge--always-on">הדמיית AI</span>
     {%- endif -%}
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
@@ -276,6 +288,10 @@
     opacity: 0;
     transition: opacity 0.35s ease;
     pointer-events: none;
+  }
+
+  .mockup-ai-badge--always-on {
+    opacity: 1;
   }
 
   .card-gallery:hover .mockup-ai-badge {
