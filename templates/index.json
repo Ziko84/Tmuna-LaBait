@@ -101,7 +101,7 @@
               "type": "_product-list-text",
               "name": "Sizing and LED guidance",
               "settings": {
-                "text": "<p>מידות 50x50 או 70x70 ס״מ, עם אפשרות לתאורת לד · <a href=\"https://wa.me/972546385242\" target=\"_blank\" rel=\"noopener\">שאלות? דברו איתנו בוואטסאפ</a></p>",
+                "text": "<p>מידות 50x50 או 70x70 ס״מ, עם אפשרות לתאורת לד<br><a href=\"https://wa.me/972546385242\" target=\"_blank\" rel=\"noopener\">שאלות? דברו איתנו בוואטסאפ</a></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "center",
