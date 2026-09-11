@@ -101,7 +101,7 @@
               "type": "_product-list-text",
               "name": "Sizing and LED guidance",
               "settings": {
-                "text": "<p>בחרו מידה שמתאימה לקיר שלכם, 50x50 או 70x70 ס״מ.<br>כל היצירות זמינות גם עם תאורת לד.</p>",
+                "text": "<p>מידות 50x50 או 70x70 ס״מ, עם אפשרות לתאורת לד · <a href=\"https://wa.me/972546385242\" target=\"_blank\" rel=\"noopener\" style=\"color: inherit; text-decoration: underline;\">שאלות? דברו איתנו בוואטסאפ</a></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "center",
@@ -122,32 +122,12 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "product_list_button_whatsapp": {
-              "type": "button",
-              "name": "WhatsApp trust CTA",
-              "settings": {
-                "label": "שאלות? דברו איתנו בוואטסאפ",
-                "link": "https://wa.me/972546385242",
-                "open_in_new_tab": true,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "product_list_text_qK4EWG",
             "product_list_text_tagline",
-            "product_list_text_guidance",
-            "product_list_button_whatsapp"
+            "product_list_text_guidance"
           ]
         },
         "static-product-card": {
