@@ -24,7 +24,7 @@
 <div class="dense-grid" dir="rtl">
   <div class="section section--page-width dense-grid__wrap">
 
-    {%- if the_collection.image -%}
+    {%- if section.settings.show_banner and the_collection.image -%}
       <div class="dense-grid__banner">
         {{
           the_collection.image
@@ -40,6 +40,7 @@
       </div>
     {%- endif -%}
 
+    {%- if section.settings.show_content -%}
     <div class="dense-grid__head">
       <h2 class="dense-grid__title">{{ section.settings.heading | default: the_collection.title }}</h2>
       <p class="dense-grid__tagline">אמנות קיר מעץ בחיתוך לייזר. עיצוב ייחודי לכל חלל בבית.</p>
@@ -105,6 +106,7 @@
         {%- endfor -%}
       </reveal-on-scroll>
       {%- endpaginate -%}
+    {%- endif -%}
     {%- endif -%}
 
   </div>
@@ -347,6 +349,19 @@
       "id": "heading",
       "label": "Heading override",
       "info": "Leave blank to use the collection's own title."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_banner",
+      "label": "Show banner image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content",
+      "label": "Show heading and product grid",
+      "default": true,
+      "info": "Turn off to use this section as a standalone banner, e.g. to place the banner separately from the grid on the homepage."
     }
   ],
   "presets": [
