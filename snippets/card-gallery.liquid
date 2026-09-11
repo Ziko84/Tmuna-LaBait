@@ -216,10 +216,10 @@
         attributes: slideshow_attributes
       %}
     </a>
-    {%- if media_list_to_show.size > 1 and settings.show_second_image_on_hover -%}
-      <span class="mockup-ai-badge">הדמיית AI</span>
-    {%- elsif media_list_to_show.size > 1 and block_settings.show_second_image -%}
+    {%- if media_list_to_show.size > 1 and block_settings.show_second_image -%}
       <span class="mockup-ai-badge mockup-ai-badge--always-on">הדמיית AI</span>
+    {%- elsif media_list_to_show.size > 1 and settings.show_second_image_on_hover -%}
+      <span class="mockup-ai-badge">הדמיית AI</span>
     {%- endif -%}
   {% elsif product != blank and product.media.size == 0 %}
     <div class="product-card-gallery__title-placeholder">
