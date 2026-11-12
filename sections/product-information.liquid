@@ -5,8 +5,7 @@
   omits hasMerchantReturnPolicy and shippingDetails on every offer (flagged
   by Search Console as a "could be improved" item) and gives no per-variant
   description. That filter has no hooks to add them, so this hand-writes
-  the same ProductGroup shape instead, matching the richer schema
-  led-configurator.liquid already emits for its own product template, with
+  the same ProductGroup shape instead, with
   real values from the actual shipping/return policy (14-day free return,
   0-day handling, 3-5 business day transit, 45 ILS below 450 ILS / free at
   450 ILS and above).
@@ -117,7 +116,7 @@
 
 {% render 'product-info-panel', product: closest.product %}
 
-{% comment %} sticky-add-to-cart markup + CSS now lives in snippets/sticky-add-to-cart.liquid, shared with led-configurator.liquid {% endcomment %}
+{% comment %} sticky-add-to-cart markup + CSS now lives in snippets/sticky-add-to-cart.liquid {% endcomment %}
 
 {% schema %}
 {

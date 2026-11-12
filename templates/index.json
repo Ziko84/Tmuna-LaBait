@@ -99,9 +99,9 @@
             },
             "product_list_text_guidance": {
               "type": "_product-list-text",
-              "name": "Sizing and LED guidance",
+              "name": "Sizing guidance",
               "settings": {
-                "text": "<p>מידות 50x50 או 70x70 ס״מ, עם אפשרות לתאורת לד<br><a href=\"https://wa.me/972546385242\" target=\"_blank\" rel=\"noopener\">שאלות? דברו איתנו בוואטסאפ</a></p>",
+                "text": "<p>מידות 50x50 או 70x70 ס״מ<br><a href=\"https://wa.me/972546385242\" target=\"_blank\" rel=\"noopener\">שאלות? דברו איתנו בוואטסאפ</a></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "center",
@@ -493,7 +493,7 @@
           "type": "fact",
           "settings": {
             "value": "מוכן לתלייה",
-            "label": "בדגמים המוארים: תאורת לד חכמה, וכל אביזרי ההרכבה כלולים"
+            "label": "כל אביזרי ההרכבה כלולים, והיצירה מוכנה לתלייה מיד עם ההגעה"
           }
         }
       },
@@ -530,7 +530,7 @@
           "type": "fact",
           "settings": {
             "value": "התאמה אישית",
-            "label": "בחירת מידה ותאורה לכל יצירה, בהתאם לחלל שלכם"
+            "label": "בחירת מידה לכל יצירה, בהתאם לחלל שלכם"
           }
         }
       },
