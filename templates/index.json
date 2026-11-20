@@ -553,13 +553,6 @@
         "heading": "כל היצירות שלנו",
         "show_banner": false
       }
-    },
-    "wolf_banner": {
-      "type": "collection-grid-dense",
-      "settings": {
-        "collection": "frontpage",
-        "show_content": false
-      }
     }
   },
   "order": [
@@ -567,8 +560,6 @@
     "craft_strip",
     "collection_list_shop_by_category",
     "craft_strip_catalog",
-    "dense_grid_catalog",
-    "wolf_banner"
+    "dense_grid_catalog"
   ]
 }
-
