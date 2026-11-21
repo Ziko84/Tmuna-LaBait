@@ -42,7 +42,7 @@
 
     {%- if section.settings.show_content -%}
     <div class="dense-grid__head">
-      <h2 class="dense-grid__title">{{ section.settings.heading | default: the_collection.title }}</h2>
+      {%- if template.name == 'collection' -%}<h1 class="dense-grid__title">{{ section.settings.heading | default: the_collection.title }}</h1>{%- else -%}<h2 class="dense-grid__title">{{ section.settings.heading | default: the_collection.title }}</h2>{%- endif -%}
       <p class="dense-grid__tagline">אמנות קיר מעץ בחיתוך לייזר. עיצוב ייחודי לכל חלל בבית.</p>
       {%- if the_collection.description != blank -%}
         <p class="dense-grid__desc">{{ the_collection.description }}</p>
