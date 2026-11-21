@@ -19,7 +19,7 @@
   "brand": { "@type": "Brand", "name": "תמונה לבית" },
   "productGroupID": {{ closest.product.id | json }},
   "url": {{ closest.product.url | prepend: shop.url | json }},
-  "variesBy": ["https://schema.org/size", "https://schema.org/pattern"],
+  "variesBy": ["https://schema.org/size"],
   "image": [
     {%- assign _ld_imgs = closest.product.media | where: 'media_type', 'image' -%}
     {%- for m in _ld_imgs limit: 5 -%}
