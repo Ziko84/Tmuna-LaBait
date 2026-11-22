@@ -24,6 +24,28 @@
     "
   >
     {% content_for 'blocks' %}
+    {%- comment -%}related products per guide topic: user 2026-11-22{%- endcomment -%}
+    {%- assign bp_text = article.title | append: ' ' | append: article.handle -%}
+    {%- if bp_text contains 'כלב' -%}{%- assign bp_handle = 'dogs' -%}
+    {%- elsif bp_text contains 'גיאומטר' -%}{%- assign bp_handle = 'geometric-animals' -%}
+    {%- elsif bp_text contains 'טבע' or bp_text contains 'יער' or bp_text contains 'נוף' or bp_text contains 'אגם' or bp_text contains 'שקיעה' or bp_text contains 'מדבר' -%}{%- assign bp_handle = 'nature-scenes' -%}
+    {%- elsif bp_text contains 'סלון' -%}{%- assign bp_handle = 'living-room-wall-art' -%}
+    {%- else -%}{%- assign bp_handle = 'frontpage' -%}{%- endif -%}
+    {%- assign bp_coll = collections[bp_handle] -%}
+    {%- if bp_coll.products_count > 0 -%}
+    <div class="blog-related-products">
+      <h2 class="blog-related-products__title">יצירות שמתאימות למדריך</h2>
+      <div class="blog-related-products__grid">
+        {%- for p in bp_coll.products limit: 4 -%}
+          <a class="blog-related-products__item" href="{{ p.url }}">
+            {%- if p.featured_image -%}{{ p.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: p.title, width: 400, height: 400 }}{%- endif -%}
+            <span>{{ p.title }}</span>
+          </a>
+        {%- endfor -%}
+      </div>
+      <a class="blog-related-products__all" href="{{ bp_coll.url }}">לכל היצירות בקטגוריה</a>
+    </div>
+    {%- endif -%}
 
     {% if blog.comments_enabled? %}
       <div class="blog-post-comments-container">
@@ -147,6 +169,17 @@
     border-bottom: 1px solid var(--color-foreground);
   }
 {% endstylesheet %}
+
+{% style %}
+  .blog-related-products { max-width: var(--normal-content-width, 800px); margin: 3rem auto 2rem; padding-inline: 16px; text-align: center; }
+  .blog-related-products__title { margin: 0 0 1.25rem; }
+  .blog-related-products__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 749px) { .blog-related-products__grid { grid-template-columns: repeat(2, 1fr); } }
+  .blog-related-products__item { display: block; text-decoration: none; color: inherit; }
+  .blog-related-products__item img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; }
+  .blog-related-products__item span { display: block; margin-top: 6px; font-size: 0.95rem; }
+  .blog-related-products__all { display: inline-block; margin-top: 1.25rem; text-decoration: underline; text-underline-offset: 3px; color: inherit; }
+{% endstyle %}
 
 {% schema %}
 {
