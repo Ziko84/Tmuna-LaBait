@@ -42,6 +42,16 @@
 
       <details class="faq__row">
         <summary class="faq__row-summary">
+          <span class="faq__row-question">איך תולים את היצירה?</span>
+          <span class="faq__row-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq__row-answer">
+          <p>כל יצירה מגיעה מוכנה לתלייה, כולל אביזרי הרכבה, כך שאפשר לתלות אותה על הקיר מיד כשהיא מגיעה.</p>
+        </div>
+      </details>
+
+      <details class="faq__row">
+        <summary class="faq__row-summary">
           <span class="faq__row-question">איך נקבע המחיר?</span>
           <span class="faq__row-icon" aria-hidden="true"></span>
         </summary>
@@ -56,7 +66,7 @@
           <span class="faq__row-icon" aria-hidden="true"></span>
         </summary>
         <div class="faq__row-answer">
-          <p>כל יצירה מיוצרת לפי הזמנה והיא יוצאת למשלוח באותו יום העסקים בו התקבלה ההזמנה. זמן האספקה מרגע המשלוח הוא 3 עד 5 ימי עסקים, כך שסך הכל ההזמנה מגיעה תוך 3 עד 5 ימי עסקים.</p>
+          <p>ההזמנה מגיעה תוך 2 עד 5 ימים לכל הארץ. כל יצירה יוצאת למשלוח באותו יום עסקים שבו התקבלה ההזמנה. אנחנו שולחים בתוך ישראל בלבד.</p>
         </div>
       </details>
     </div>
@@ -147,7 +157,7 @@
   assign faq_q3 = 'איך נקבע המחיר?'
   assign faq_a3 = 'המחיר נקבע לפי המידה שנבחרה, ומוצג במלואו בעמוד המוצר לפני ההוספה לסל.'
   assign faq_q4 = 'תוך כמה זמן ההזמנה מגיעה?'
-  assign faq_a4 = 'כל יצירה מיוצרת לפי הזמנה והיא יוצאת למשלוח באותו יום העסקים בו התקבלה ההזמנה. זמן האספקה מרגע המשלוח הוא 3 עד 5 ימי עסקים, כך שסך הכל ההזמנה מגיעה תוך 3 עד 5 ימי עסקים.'
+  assign faq_a4 = 'ההזמנה מגיעה תוך 2 עד 5 ימים לכל הארץ. כל יצירה יוצאת למשלוח באותו יום עסקים שבו התקבלה ההזמנה. אנחנו שולחים בתוך ישראל בלבד.'
   assign faq_q5 = 'מה עלות המשלוח?'
   assign faq_a5 = 'עלות המשלוח היא 45 ש״ח. בהזמנות מעל 450 ש״ח המשלוח חינם.'
   assign faq_q6 = 'לאן אתם שולחים?'
@@ -160,13 +170,15 @@
   assign faq_a9 = 'תמונה לבית מופעלת על ידי דניאל פיקס, עוסק מורשה 306082793, מושב רינתיה. הצוות שמאחורי הסטודיו הוא דניאל אמינוב וזרמן איסקוב.'
   assign faq_q10 = 'איך אפשר ליצור איתכם קשר?'
   assign faq_a10 = 'אפשר לפנות אלינו בטלפון, באימייל או בוואטסאפ דרך עמוד צרו קשר, שם תמצאו גם את הכתובת המלאה שלנו.'
+  assign faq_q11 = 'איך תולים את היצירה?'
+  assign faq_a11 = 'כל יצירה מגיעה מוכנה לתלייה, כולל אביזרי הרכבה, כך שאפשר לתלות אותה על הקיר מיד כשהיא מגיעה.'
 -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {%- for i in (1..10) -%}
+    {%- for i in (1..11) -%}
       {%- assign q_key = 'faq_q' | append: i -%}
       {%- assign a_key = 'faq_a' | append: i -%}
       {%- assign q_text = '' -%}
@@ -182,6 +194,7 @@
         {%- when 8 -%}{%- assign q_text = faq_q8 -%}{%- assign a_text = faq_a8 -%}
         {%- when 9 -%}{%- assign q_text = faq_q9 -%}{%- assign a_text = faq_a9 -%}
         {%- when 10 -%}{%- assign q_text = faq_q10 -%}{%- assign a_text = faq_a10 -%}
+        {%- when 11 -%}{%- assign q_text = faq_q11 -%}{%- assign a_text = faq_a11 -%}
       {%- endcase -%}
       {
         "@type": "Question",
