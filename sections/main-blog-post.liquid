@@ -28,7 +28,7 @@
     {%- assign bp_text = article.title | append: ' ' | append: article.handle -%}
     {%- if bp_text contains 'כלב' -%}{%- assign bp_handle = 'dogs' -%}
     {%- elsif bp_text contains 'גיאומטר' -%}{%- assign bp_handle = 'geometric-animals' -%}
-    {%- elsif bp_text contains 'טבע' or bp_text contains 'יער' or bp_text contains 'נוף' or bp_text contains 'אגם' or bp_text contains 'שקיעה' or bp_text contains 'מדבר' -%}{%- assign bp_handle = 'nature-scenes' -%}
+    {%- elsif bp_text contains 'טבע' or bp_text contains 'יער' or bp_text contains 'נוף' or bp_text contains 'אגם' or bp_text contains 'שקיעה' or bp_text contains 'מדבר' or bp_text contains 'שינה' -%}{%- assign bp_handle = 'nature-scenes' -%}
     {%- elsif bp_text contains 'סלון' -%}{%- assign bp_handle = 'living-room-wall-art' -%}
     {%- else -%}{%- assign bp_handle = 'frontpage' -%}{%- endif -%}
     {%- assign bp_coll = collections[bp_handle] -%}
