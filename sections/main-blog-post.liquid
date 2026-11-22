@@ -71,13 +71,20 @@
     "@id": {{ article.url | prepend: shop.url | json }}
   },
   "headline": {{ article.title | json }},
-  "description": {{ article.excerpt | strip_html | default: article.content | strip_html | truncate: 300 | json }},
+  "description": {{ article.excerpt | replace: '<', ' <' | strip_html | strip_newlines | default: article.content | replace: '<', ' <' | strip_html | strip_newlines | truncate: 300 | json }},
   {% if article.image %}"image": {{ article.image | image_url: width: 1920 | prepend: "https:" | json }},{% endif %}
   "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
   "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
   "author": {
-    "@type": "Organization",
-    "name": {{ shop.name | json }}
+    "@type": "Person",
+    {%- if article.author != blank and article.author != shop.name %}
+    "name": {{ article.author | json }}
+    {%- else %}
+    "name": "דניאל אמינוב",
+    "jobTitle": "מייסד ומעצב",
+    "url": {{ shop.url | append: '/pages/our-story' | json }},
+    "worksFor": {"@type": "Organization", "name": {{ shop.name | json }}}
+    {%- endif %}
   },
   "publisher": {
     "@type": "Organization",
