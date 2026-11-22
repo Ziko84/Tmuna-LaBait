@@ -1049,4 +1049,11 @@
        above it on the page, for the same "elevated card" language. */
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
   }
+
+  /* readability-floor: user 2026-11-22, no faint gray text anywhere */
+  .product-details__summary,
+  .footer .utilities,
+  .footer .utilities a {
+    color: rgb(var(--color-foreground-rgb) / 0.85) !important;
+  }
 {% endstylesheet %}
