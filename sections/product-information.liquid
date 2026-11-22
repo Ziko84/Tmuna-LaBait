@@ -43,7 +43,7 @@
       {%- assign _ship = '45' -%}
       {
         "@type": "Product",
-        "name": {{ v.title | prepend: ' - ' | prepend: closest.product.title | json }},
+        "name": {{ v.title | remove: "‏" | remove: "‎" | strip | prepend: ' - ' | prepend: closest.product.title | json }},
         "description": {{ closest.product.description | replace: '<', ' <' | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 300 | json }},
         "size": {{ v.option1 | remove: "‏" | remove: "‎" | strip | json }},
         {%- if v.option2 != blank -%}"pattern": {{ v.option2 | json }},{%- endif -%}
