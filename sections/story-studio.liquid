@@ -478,6 +478,29 @@
   }
 {% endstylesheet %}
 
+{%- liquid
+  assign founders = section.blocks | where: 'type', 'team_member'
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": {{ page.title | json }},
+  "url": {{ canonical_url | json }},
+  "about": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }},
+    "address": {"@type": "PostalAddress", "addressCountry": "IL"},
+    "founder": [
+      {%- for b in founders -%}
+      {"@type": "Person", "name": {{ b.settings.name | json }}{% if b.settings.role != blank %}, "jobTitle": {{ b.settings.role | json }}{% endif %}}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+}
+</script>
+
 {% schema %}
 {
   "name": "Story studio",
