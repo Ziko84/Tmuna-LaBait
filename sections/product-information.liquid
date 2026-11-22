@@ -15,7 +15,7 @@
   "@context": "https://schema.org/",
   "@type": "ProductGroup",
   "name": {{ closest.product.title | json }},
-  "description": {{ closest.product.description | strip_html | strip_newlines | truncate: 400 | json }},
+  "description": {{ closest.product.description | replace: '<', ' <' | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 400 | json }},
   "brand": { "@type": "Brand", "name": "תמונה לבית" },
   "productGroupID": {{ closest.product.id | json }},
   "url": {{ closest.product.url | prepend: shop.url | json }},
@@ -44,9 +44,9 @@
       {
         "@type": "Product",
         "name": {{ v.title | prepend: ' - ' | prepend: closest.product.title | json }},
-        "description": {{ closest.product.description | strip_html | strip_newlines | truncate: 300 | json }},
-        "size": {{ v.option1 | json }},
-        "pattern": {{ v.option2 | json }},
+        "description": {{ closest.product.description | replace: '<', ' <' | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 300 | json }},
+        "size": {{ v.option1 | remove: "‏" | remove: "‎" | strip | json }},
+        {%- if v.option2 != blank -%}"pattern": {{ v.option2 | json }},{%- endif -%}
         "sku": {{ v.sku | json }},
         "image": {{ _vabs | json }},
         "offers": {
