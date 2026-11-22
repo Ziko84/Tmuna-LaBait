@@ -29,7 +29,7 @@
       is appended last and lifted above the buy and trust blocks with the
       order rules in layout/theme.liquid, since content_for cannot be split.
     {%- endcomment -%}
-    {%- assign details_summary = closest.product.description | strip_html | strip | truncatewords: 24 -%}
+    {%- assign details_summary = closest.product.description | replace: '<', ' <' | strip_html | strip_newlines | replace: '  ', ' ' | strip | truncatewords: 24 -%}
     {% if details_summary != blank %}
       <p class="product-details__summary">{{ details_summary }}</p>
     {% endif %}
