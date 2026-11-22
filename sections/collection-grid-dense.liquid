@@ -67,7 +67,7 @@
                           {{ product.featured_image | image_url: width: 1000, quality: 65, format: 'webp' }} 1000w"
                   sizes="(min-width: 990px) 220px, 45vw"
                   alt="{{ product.featured_image.alt | default: product.title | escape }}"
-                  loading="lazy"
+                  {% if forloop.index <= 4 %}loading="eager"{% if forloop.first %} fetchpriority="high"{% endif %}{% else %}loading="lazy"{% endif %}
                   width="700"
                   height="700"
                 >
