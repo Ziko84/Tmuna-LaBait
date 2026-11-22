@@ -62,6 +62,21 @@
           <dt>שאלות?</dt>
           <dd><a href="/pages/faq" style="text-decoration:underline;text-underline-offset:3px;">לכל השאלות הנפוצות</a></dd>
         </div>
+        {%- comment -%}guide link per category: user 2026-11-22{%- endcomment -%}
+        {%- assign pip_handles = product.collections | map: 'handle' -%}
+        {%- if pip_handles contains 'dogs' -%}
+          {%- assign pip_guide = 'מתנה-לאוהבי-כלבים-תמונת-קיר-בדיוק-בגזע-שהם-אוהבים' -%}{%- assign pip_label = 'מדריך: מתנה לאוהבי כלבים' -%}
+        {%- elsif pip_handles contains 'geometric-animals' -%}
+          {%- assign pip_guide = 'קיר-גיאומטרי-איך-לבחור-עיצוב-לבית' -%}{%- assign pip_label = 'מדריך: איך לבחור עיצוב גיאומטרי' -%}
+        {%- elsif pip_handles contains 'nature-scenes' -%}
+          {%- assign pip_guide = 'תמונות-טבע-לקיר-הבית-להביא-את-השקט-של-החוץ-פנימה' -%}{%- assign pip_label = 'מדריך: תמונות טבע לקיר הבית' -%}
+        {%- else -%}
+          {%- assign pip_guide = 'תמונות-לייזר-לסלון-מדריך-בחירה-ומיקום' -%}{%- assign pip_label = 'מדריך: איזו מידה ובאיזה גובה לתלות' -%}
+        {%- endif -%}
+        <div class="product-info-panel__fact">
+          <dt>השראה</dt>
+          <dd><a href="/blogs/news/{{ pip_guide }}" style="text-decoration:underline;text-underline-offset:3px;">{{ pip_label }}</a></dd>
+        </div>
       </dl>
     </div>
   </div>
