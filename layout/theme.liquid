@@ -56,7 +56,8 @@
       >
     {%- endif -%}
 
-    {% if settings.transition_to_main_product or settings.page_transition_enabled %}
+    {%- comment -%}not on collections: blocked paint until the 250-tile grid parsed, 2026-11-23{%- endcomment -%}
+    {% if request.page_type != 'collection' and settings.transition_to_main_product or settings.page_transition_enabled %}
       <link
         rel="expect"
         href="#MainContent"
