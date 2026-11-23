@@ -53,7 +53,7 @@
       <p class="dense-grid__empty">אין עדיין יצירות בקטגוריה הזו.</p>
     {%- else -%}
       {%- paginate the_collection.products by 250 -%}
-      <reveal-on-scroll class="dense-grid__grid">
+      <div class="dense-grid__grid">{%- comment -%}no reveal: it delayed LCP ~2s, 2026-11-23{%- endcomment -%}
         {%- for product in the_collection.products -%}
           {%- assign v0 = product.selected_or_first_available_variant -%}
           <div class="dense-grid__tile">
@@ -88,7 +88,7 @@
             </div>
           </div>
         {%- endfor -%}
-      </reveal-on-scroll>
+      </div>
       {%- endpaginate -%}
     {%- endif -%}
     {%- endif -%}
