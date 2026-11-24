@@ -1,0 +1,231 @@
+{% doc %}
+  Homepage Q&A for search engines and AI assistants (ChatGPT, Gemini, Perplexity).
+  Each question is phrased the way people ask it; every answer starts with a
+  direct one-sentence reply. Visible text and the FAQPage JSON-LD below are
+  generated from the same list so they never drift apart.
+  Facts must match the FAQ page (sections/faq-accordion.liquid) and policies.
+{% enddoc %}
+
+{%- liquid
+  assign q1 = 'מה זה תמונה לבית?'
+  assign a1 = 'תמונה לבית הוא סטודיו ישראלי לתמונות קיר בחיתוך לייזר. כל יצירה נחתכת מ-MDF שחור מט בעובי 6 מ״מ, בעיצובים של חיות גאומטריות, כלבים ונופי טבע, ונשלחת מוכנה לתלייה לכל הארץ.'
+  assign q2 = 'ממה עשויות תמונות הקיר?'
+  assign a2 = 'היצירות עשויות מ-MDF פרימיום בעובי 6 מ״מ בגימור שחור מט, חתוך בלייזר בדיוק של שבריר מילימטר. התוצאה היא צללית חדה ותלת ממדית שבולטת על כל קיר בהיר.'
+  assign q3 = 'אילו מידות יש לתמונות הקיר?'
+  assign a3 = 'כל עיצוב זמין בשתי מידות: 50x50 ס״מ ו-70x70 ס״מ. המחיר המלא של כל מידה מוצג בעמוד המוצר.'
+  assign q4 = 'לאיזה חדר מתאימה תמונת קיר מחיתוך לייזר?'
+  assign a4 = 'היצירות מתאימות לסלון, לחדר שינה, לחדר ילדים, למשרד ולקליניקה. בסלון ממליצים על 70x70 ס״מ מעל ספה, ובחדרים קטנים או במסדרון על 50x50 ס״מ.'
+  assign q5 = 'האם תמונת קיר מעץ היא מתנה טובה לחנוכת בית?'
+  assign a5 = 'כן. תמונת קיר בחיתוך לייזר היא מתנה אישית לחנוכת בית, לזוג או להורים, שמשתלבת כמעט בכל סגנון עיצוב. היא מגיעה מוכנה לתלייה עם אביזרי הרכבה, כך שאפשר לתלות אותה כבר ביום הקבלה.'
+  assign q6 = 'איך תולים את היצירה?'
+  assign a6 = 'כל יצירה מגיעה עם אביזרי הרכבה ומוכנה לתלייה, כך שאפשר לתלות אותה על הקיר מיד כשהיא מגיעה.'
+  assign q7 = 'כמה זמן לוקח המשלוח וכמה הוא עולה?'
+  assign a7 = 'ההזמנה מגיעה תוך 3 עד 5 ימי עסקים לכל הארץ. עלות המשלוח היא 45 ש״ח, ובהזמנות מעל 450 ש״ח המשלוח חינם. אנחנו שולחים בתוך ישראל בלבד.'
+  assign q8 = 'אפשר להחזיר יצירה?'
+  assign a8 = 'כן. ניתן להחזיר כל יצירה תוך 14 יום, וההחזרה חינם: עלות משלוח ההחזרה על חשבוננו.'
+  assign q9 = 'אילו עיצובים יש בקולקציה?'
+  assign a9 = 'הקולקציה כוללת שלוש קטגוריות: חיות גאומטריות כמו אריה, זאב, צבי ונשר, דיוקנאות של גזעי כלבים, ונופי טבע עם הרים, יערות ושקיעות.'
+-%}
+
+<div class="hfaq page-width-content">
+  <div class="hfaq__intro">
+    <p class="hfaq__eyebrow">שאלות נפוצות</p>
+    <h2 class="hfaq__heading">שאלות ותשובות על תמונות הקיר שלנו</h2>
+  </div>
+
+  <div class="hfaq__list">
+    {%- for i in (1..9) -%}
+      {%- case i -%}
+        {%- when 1 -%}{%- assign q = q1 -%}{%- assign a = a1 -%}
+        {%- when 2 -%}{%- assign q = q2 -%}{%- assign a = a2 -%}
+        {%- when 3 -%}{%- assign q = q3 -%}{%- assign a = a3 -%}
+        {%- when 4 -%}{%- assign q = q4 -%}{%- assign a = a4 -%}
+        {%- when 5 -%}{%- assign q = q5 -%}{%- assign a = a5 -%}
+        {%- when 6 -%}{%- assign q = q6 -%}{%- assign a = a6 -%}
+        {%- when 7 -%}{%- assign q = q7 -%}{%- assign a = a7 -%}
+        {%- when 8 -%}{%- assign q = q8 -%}{%- assign a = a8 -%}
+        {%- when 9 -%}{%- assign q = q9 -%}{%- assign a = a9 -%}
+      {%- endcase -%}
+      <details class="hfaq__row">
+        <summary class="hfaq__q">
+          <h3 class="hfaq__q-text">{{ q }}</h3>
+          <span class="hfaq__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="hfaq__a">
+          <p>{{ a }}</p>
+          {%- if i == 9 -%}
+            <p class="hfaq__links">
+              <a href="/collections/geometric-animals">חיות גאומטריות</a>
+              <a href="/collections/dogs">כלבים</a>
+              <a href="/collections/nature-scenes">נופי טבע</a>
+            </p>
+          {%- endif -%}
+        </div>
+      </details>
+    {%- endfor -%}
+  </div>
+
+  <p class="hfaq__more"><a href="/pages/faq">לכל השאלות והתשובות</a></p>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for i in (1..9) -%}
+      {%- case i -%}
+        {%- when 1 -%}{%- assign q = q1 -%}{%- assign a = a1 -%}
+        {%- when 2 -%}{%- assign q = q2 -%}{%- assign a = a2 -%}
+        {%- when 3 -%}{%- assign q = q3 -%}{%- assign a = a3 -%}
+        {%- when 4 -%}{%- assign q = q4 -%}{%- assign a = a4 -%}
+        {%- when 5 -%}{%- assign q = q5 -%}{%- assign a = a5 -%}
+        {%- when 6 -%}{%- assign q = q6 -%}{%- assign a = a6 -%}
+        {%- when 7 -%}{%- assign q = q7 -%}{%- assign a = a7 -%}
+        {%- when 8 -%}{%- assign q = q8 -%}{%- assign a = a8 -%}
+        {%- when 9 -%}{%- assign q = q9 -%}{%- assign a = a9 -%}
+      {%- endcase -%}
+      {
+        "@type": "Question",
+        "name": {{ q | json }},
+        "acceptedAnswer": { "@type": "Answer", "text": {{ a | json }} }
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{% stylesheet %}
+  .hfaq {
+    padding-block: 64px 96px;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .hfaq__intro {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .hfaq__eyebrow {
+    font-family: var(--font-accent--family);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: #1a1a2e;
+    opacity: 0.65;
+    margin: 0 0 12px;
+  }
+  .hfaq__heading {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+    line-height: 1.25;
+    color: #1a1a2e;
+    margin: 0;
+  }
+  .hfaq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hfaq__row {
+    background: #ffffff;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 7%);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .hfaq__row[open] {
+    border-color: rgb(var(--color-foreground-rgb) / 12%);
+  }
+  .hfaq__q {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hfaq__q::-webkit-details-marker {
+    display: none;
+  }
+  .hfaq__q-text {
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1a1a2e;
+    text-align: right;
+    margin: 0;
+  }
+  .hfaq__icon {
+    flex: none;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    opacity: 0.55;
+  }
+  .hfaq__icon::before,
+  .hfaq__icon::after {
+    content: '';
+    position: absolute;
+    background: #1a1a2e;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hfaq__icon::before {
+    width: 16px;
+    height: 1px;
+  }
+  .hfaq__icon::after {
+    width: 1px;
+    height: 16px;
+  }
+  .hfaq__row[open] .hfaq__icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+  }
+  .hfaq__a p {
+    margin: 0;
+    padding: 0 24px 22px;
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgb(var(--color-foreground-rgb) / 75%);
+  }
+  .hfaq__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .hfaq__links a,
+  .hfaq__more a {
+    color: #1a1a2e;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .hfaq__more {
+    text-align: center;
+    margin: 28px 0 0;
+    font-family: var(--font-body--family);
+  }
+  @media screen and (max-width: 749px) {
+    .hfaq {
+      padding-block: 48px 72px;
+    }
+    .hfaq__q {
+      padding: 18px 20px;
+    }
+    .hfaq__a p {
+      padding: 0 20px 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Homepage FAQ",
+  "settings": [],
+  "presets": [{ "name": "Homepage FAQ" }]
+}
+{% endschema %}

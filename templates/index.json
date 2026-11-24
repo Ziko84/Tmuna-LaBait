@@ -553,6 +553,10 @@
         "heading": "כל היצירות שלנו",
         "show_banner": false
       }
+    },
+    "home_faq": {
+      "type": "home-faq",
+      "settings": {}
     }
   },
   "order": [
@@ -560,6 +564,7 @@
     "craft_strip",
     "collection_list_shop_by_category",
     "craft_strip_catalog",
-    "dense_grid_catalog"
+    "dense_grid_catalog",
+    "home_faq"
   ]
 }
