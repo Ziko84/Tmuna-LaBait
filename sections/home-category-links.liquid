@@ -77,8 +77,9 @@
   }
   .hcat__name {
     font-family: var(--font-heading--family);
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 0.6rem + 0.9vw, 1.5rem);
     line-height: 1.2;
+    white-space: nowrap;
   }
   .hcat__meta {
     display: flex;
