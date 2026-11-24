@@ -1,0 +1,70 @@
+{% doc %}
+  Homepage "shop by category" as text pills (no images).
+  Same 5 collections as the main menu dropdown; pill style matches collection-tabs.
+{% enddoc %}
+
+<div class="hcat page-width-content">
+  <h2 class="hcat__heading">קנו לפי קטגוריה</h2>
+  <nav class="hcat__list" aria-label="קטגוריות">
+    <a class="hcat__pill" href="/collections/geometric-animals">חיות גאומטריות</a>
+    <a class="hcat__pill" href="/collections/dogs">כלבים</a>
+    <a class="hcat__pill" href="/collections/nature-scenes">נופי טבע</a>
+    <a class="hcat__pill" href="/collections/living-room-wall-art">תמונות לסלון</a>
+    <a class="hcat__pill" href="/collections/bedroom-wall-art">תמונות לחדר שינה</a>
+  </nav>
+</div>
+
+{% stylesheet %}
+  .hcat {
+    padding-block: 48px 56px;
+    text-align: center;
+  }
+  .hcat__heading {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+    line-height: 1.25;
+    color: #1a1a2e;
+    margin: 0 0 24px;
+  }
+  .hcat__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .hcat__pill {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 15%);
+    font-family: var(--font-body--family);
+    font-size: 0.95rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .hcat__pill:hover {
+    background: #1a1a2e;
+    border-color: #1a1a2e;
+    color: #fff;
+  }
+  @media screen and (max-width: 749px) {
+    .hcat {
+      padding-block: 36px 40px;
+    }
+    .hcat__pill {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Category links",
+  "settings": [],
+  "presets": [{ "name": "Category links" }]
+}
+{% endschema %}

@@ -556,6 +556,10 @@
         "show_banner": false
       }
     },
+    "home_category_links": {
+      "type": "home-category-links",
+      "settings": {}
+    },
     "home_faq": {
       "type": "home-faq",
       "settings": {}
@@ -564,7 +568,7 @@
   "order": [
     "product_list_EDUBdR",
     "craft_strip",
-    "collection_list_shop_by_category",
+    "home_category_links",
     "craft_strip_catalog",
     "dense_grid_catalog",
     "home_faq"
