@@ -15,6 +15,12 @@ class RevealOnScroll extends Component {
     const items = formatter ? Array.from(formatter.children) : [this];
     if (!items.length) return;
 
+    // Never hide content that is already on screen at load. Hiding it delays
+    // the first paint of above-the-fold images (mobile LCP went to 9s+), and a
+    // fade on content the visitor is already looking at adds nothing.
+    const top = this.getBoundingClientRect().top;
+    if (top < window.innerHeight) return;
+
     // When the children are the ones animating, the host itself never gets
     // .is-revealed. Any rule that hides the host would then never be undone and
     // would hide the revealed children with it, since opacity multiplies down
