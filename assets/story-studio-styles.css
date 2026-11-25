@@ -1,0 +1,336 @@
+.story-studio h1,
+  .story-studio h2 {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .story-studio h2 {
+    color: #1a1a2e;
+  }
+
+  /* Single consistent gutter and width cap for every element on the page,
+     hero included. Previously the hero and team row ran edge to edge while
+     body/bento/quote each carried their own separate inset, so the page
+     had no one consistent margin and things read as randomly placed. */
+  .story-studio__inner {
+    max-width: 1600px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 64px);
+  }
+
+  /* width is explicit, not left to resolve from aspect-ratio: combining
+     aspect-ratio with max-height on a block otherwise sized by content
+     makes the browser shrink the width to preserve the ratio once height
+     hits the cap, instead of just letting object-fit crop the image. That
+     silently narrowed this hero to about 60% of the page on wide screens. */
+  .story-studio__hero {
+    position: relative;
+    width: 100%;
+    height: clamp(260px, 32vw, 440px);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-block-start: clamp(20px, 4vw, 40px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-studio__hero {
+      height: min(90vw, 420px);
+    }
+  }
+
+  .story-studio__hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Bottom third stays solidly dark rather than fading immediately, so a
+     two-line heading is never left to fight whatever happens to be behind
+     it in the photo at that breakpoint's crop (a tablet-width crop put the
+     bright monitor screen in the photo right under the second line). */
+  /* z-index: a ::after pseudo-element always paints after every real DOM
+     child of its host regardless of source order, so without an explicit
+     stacking order this scrim was rendering on top of the heading text
+     below, dimming it, instead of just sitting behind it as backdrop. */
+  .story-studio__hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to top, rgba(18, 18, 24, 0.8) 0%, rgba(18, 18, 24, 0.8) 32%, transparent 72%);
+  }
+
+  .story-studio__hero-heading {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: 2;
+    padding: 32px clamp(20px, 4vw, 56px) 40px;
+    color: #ffffff;
+    font-size: clamp(1.9rem, 1.4rem + 2vw, 2.9rem);
+    line-height: 1.18;
+    max-width: 18ch;
+    text-align: end;
+    margin-inline-start: auto;
+  }
+
+  /* Team, immediately below the hero: two founders, amber-ringed portraits.
+     Each member is its own centered vertical stack (photo, then name, then
+     role), so the two are true mirrors of each other regardless of which
+     side of the row they land on, rather than a fixed photo-then-text
+     order that put one photo near the edge and the other near the center. */
+  .story-studio__team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(40px, 7vw, 96px);
+    padding-block: 32px;
+  }
+
+  .story-studio__member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .story-studio__member-photo {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex: none;
+    outline: 3px solid var(--color-accent-amber, #e8a33d);
+    outline-offset: 3px;
+  }
+
+  .story-studio__member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-studio__member-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .story-studio__member-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 4px;
+  }
+
+  .story-studio__member-role {
+    margin: 0;
+    color: #5a554d;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    max-width: 22ch;
+    text-align: center;
+  }
+
+  /* Body: narrative text beside a supporting photo. In this RTL page the
+     text stays first in source order (the visual start / right side), the
+     photo second (the visual end / left side). */
+  .story-studio__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding-block: 48px;
+  }
+
+  .story-studio__body-text p {
+    line-height: 1.75;
+    color: #5a554d;
+    margin: 0 0 16px;
+    font-size: 1rem;
+  }
+
+  .story-studio__body-text p:last-child {
+    margin-block-end: 0;
+  }
+
+  .story-studio__body-photo {
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .story-studio__body-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-studio__body {
+      grid-template-columns: 1fr;
+      padding-block: 40px;
+    }
+
+    .story-studio__body-photo {
+      order: -1;
+    }
+  }
+
+  /* At tablet widths each column is narrower than desktop, so the 3-paragraph
+     text block wraps to 5-6 lines and grows much taller than a 16:9 photo
+     sized to that same narrower column, leaving the photo looking stubby
+     next to a much taller text block. Taller ratio here only, desktop and
+     mobile (already full width, stacked) stay as they were. */
+  @media screen and (min-width: 750px) and (max-width: 1099px) {
+    .story-studio__body-photo {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  .story-studio__bento-head {
+    padding-block: 24px 20px;
+  }
+
+  .story-studio__bento-head h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Equipment grouped by process stage instead of one undifferentiated grid:
+     each cluster is its own labeled row, so the section reads as a sequence
+     (cutting, then shaping, then finishing) rather than a photo dump. Column
+     count is set per row from the group's real photo count (--group-count),
+     not left to grid's auto-fill: auto-fill picks track count using a
+     minmax range's fixed max bound, not its min, so at tablet widths a
+     4-photo row was only getting 3 tracks and the 4th photo wrapped onto
+     its own orphaned row. An explicit count avoids that regardless of
+     viewport width, and each track still shrinks between 150-200px. */
+  .story-studio__equipment {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-block-end: 56px;
+  }
+
+  .story-studio__equipment-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-block-end: 1.5px solid rgba(26, 26, 46, 0.12);
+    padding-block-end: 10px;
+    margin-block-end: 18px;
+  }
+
+  .story-studio__equipment-head h3 {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin: 0;
+    color: #1a1a2e;
+  }
+
+  .story-studio__equipment-row {
+    display: grid;
+    grid-template-columns: repeat(var(--group-count, 3), minmax(150px, 200px));
+    justify-content: start;
+    gap: 18px;
+  }
+
+  .story-studio__equipment-photo-frame {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .story-studio__equipment-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-studio__equipment-caption {
+    margin: 10px 2px 0;
+    font-size: 0.85rem;
+    color: #5a554d;
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-studio__equipment-row {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      justify-content: stretch;
+    }
+  }
+
+  /* A contained card, not a full-bleed strip: with the page's background
+     already a similar warm neutral, a band spanning the whole width had no
+     visible edge and just read as the page getting wider here for no
+     reason. Boxed and centered, it reads as one closing statement instead.
+     Two equal halves: the quote stays right-aligned in its half, the CTA
+     is centered within its own half rather than pinned to the outer edge. */
+  .story-studio__quote-band {
+    background: #efeade;
+    border-radius: 20px;
+    padding: 40px clamp(24px, 5vw, 48px);
+    margin-block-end: clamp(32px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .story-studio__quote-band p {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    font-size: 1.3rem;
+    max-width: 34ch;
+    margin: 0;
+    color: #1a1a2e;
+    text-align: right;
+    justify-self: right;
+  }
+
+  .story-studio__quote-band a {
+    justify-self: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .story-studio__quote-band {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .story-studio__quote-band p {
+      text-align: center;
+      justify-self: center;
+      margin-inline: auto;
+    }
+  }
+
+  .story-studio__quote-band a {
+    padding: 12px 26px;
+    border-radius: 10px;
+    background: #1a1a2e;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .story-studio reveal-on-scroll.is-observing {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .story-studio reveal-on-scroll.is-observing.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
