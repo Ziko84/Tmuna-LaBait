@@ -97,6 +97,8 @@
 </div>
 
 {% stylesheet %}
+  /* Skip layout/paint for off-screen tiles until scrolled near (mobile LCP: Style & Layout was 4s+). */
+  .dense-grid__tile { content-visibility: auto; contain-intrinsic-size: auto 320px; }
   .dense-grid__wrap {
     padding-block: var(--padding-lg, 32px) var(--padding-2xl, 48px);
   }
