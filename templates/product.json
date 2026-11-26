@@ -689,7 +689,7 @@
                     "text_DNPAct": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>ההזמנה יוצאת אליכם תוך 1 עד 3 ימי עסקים ומגיעה תוך 2 עד 6 ימי עסקים מרגע ההזמנה.</p><p>אנחנו עושים כל מאמץ לשלוח כל הזמנה בזמן, כדי שהיצירה תגיע אליכם בהקדם האפשרי.</p><p>חשוב לנו שתהיו מרוצים מהרכישה. ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו. פנו אלינו דרך עמוד צרו קשר ונטפל בבקשה בקפידה ובהתחשבות.</p>",
+                        "text": "<p>ההזמנה מגיעה תוך 3 עד 5 ימי עסקים מרגע ההזמנה.</p><p></p><p>חשוב לנו שתהיו מרוצים מהרכישה. ניתן להחזיר פריט תוך 14 ימים ממועד הקבלה, ומשלוח ההחזרה הוא על חשבוננו. פנו אלינו דרך עמוד צרו קשר ונטפל בבקשה בקפידה ובהתחשבות.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "right",
@@ -839,6 +839,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
+                "show_second_image": false,
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
@@ -1078,6 +1079,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
+                "show_second_image": false,
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
