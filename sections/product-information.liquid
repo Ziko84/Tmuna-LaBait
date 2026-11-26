@@ -6,9 +6,8 @@
   by Search Console as a "could be improved" item) and gives no per-variant
   description. That filter has no hooks to add them, so this hand-writes
   the same ProductGroup shape instead, with
-  real values from the actual shipping/return policy (14-day free return,
-  0-day handling, 3-5 business day transit, 45 ILS below 450 ILS / free at
-  450 ILS and above).
+  real values from the actual shipping/return policy (30-day free return,
+  0-day handling, 3-5 business day transit, free shipping on every order).
 {%- endcomment -%}
 <script type="application/ld+json">
 {
@@ -33,14 +32,7 @@
       {%- assign _vimg = v.image | default: closest.product.featured_media.preview_image -%}
       {%- capture _vu -%}{{ _vimg | image_url: width: 1200 }}{%- endcapture -%}
       {%- if _vu contains '://' -%}{%- assign _vabs = _vu -%}{%- else -%}{%- assign _vabs = _vu | prepend: 'https:' -%}{%- endif -%}
-      {%- comment -%}
-        45 ILS flat shipping below 450 ILS, free at 450 ILS and above (matches
-        the Shopify delivery profile's two price-conditioned rates, synced
-        the same way to GMC). This JSON-LD always shows the 45 ILS rate since
-        schema.org's OfferShippingDetails has no native way to express a
-        conditional/tiered rate - a documented simplification, not a bug.
-      {%- endcomment -%}
-      {%- assign _ship = '45' -%}
+      {%- assign _ship = '0' -%}
       {
         "@type": "Product",
         "name": {{ v.title | remove: "‏" | remove: "‎" | strip | prepend: ' - ' | prepend: closest.product.title | json }},
@@ -59,7 +51,7 @@
             "@type": "MerchantReturnPolicy",
             "applicableCountry": "IL",
             "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-            "merchantReturnDays": 14,
+            "merchantReturnDays": 30,
             "returnMethod": "https://schema.org/ReturnByMail",
             "returnFees": "https://schema.org/FreeReturn"
           },
